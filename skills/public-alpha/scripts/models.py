@@ -25,6 +25,8 @@ class CallCandidate(BaseModel):
     # agent's LLM extraction over CMC content) may fill these; otherwise calls.py derives them.
     stance: Optional[str] = None       # bullish | bearish | neutral
     conviction: Optional[float] = None # 0..1
+    platform: Optional[str] = None     # show platform: twitch | youtube | x | ... (for avatar + platform icon)
+    verified: Optional[bool] = None    # speaker is a verified account (paste.trade / CMC)
 
 
 class Call(BaseModel):
@@ -40,6 +42,8 @@ class Call(BaseModel):
     weight: float = 1.0
     url: Optional[str] = None
     engagement: dict = Field(default_factory=dict)   # carried through for the classifier (followers, likes)
+    platform: Optional[str] = None     # show platform (avatar provider + platform icon)
+    verified: bool = False             # verified speaker
 
 
 class CallClassification(BaseModel):

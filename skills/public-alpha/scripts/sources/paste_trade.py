@@ -51,6 +51,11 @@ class PasteTradeSource:
                 print(f"  [paste_trade] {show}: skipped ({type(e).__name__}: {e})")
                 continue
             out.extend(self._parse(show, payload, since))
+        # promote: if a speaker is verified on ANY trade, treat them as verified everywhere
+        verified = {c.author for c in out if c.verified}
+        for c in out:
+            if c.author in verified:
+                c.verified = True
         return out
 
     # --- internals -------------------------------------------------------
@@ -74,6 +79,7 @@ class PasteTradeSource:
         out: List[CallCandidate] = []
         for src in payload.get("sources", []):
             source = src.get("source", {})
+            platform = source.get("platform")        # show platform: twitch | youtube | x | ...
             for tr in src.get("trades", []):
                 ticker = (tr.get("ticker") or "").strip().upper()
                 if not ticker:
@@ -94,6 +100,8 @@ class PasteTradeSource:
                         url=tr.get("source_url") or source.get("url"),
                         stance=_stance(tr.get("direction")),
                         conviction=None,  # calls.py derives; paste.trade has no conviction field
+                        platform=platform,
+                        verified=bool(tr.get("speaker_verified")),
                     )
                 )
         return out

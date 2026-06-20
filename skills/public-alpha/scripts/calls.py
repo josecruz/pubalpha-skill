@@ -88,6 +88,8 @@ def normalize(candidates: List[CallCandidate], cfg: dict) -> List[Call]:
                 weight=round(weight, 3),
                 url=c.url,
                 engagement=c.engagement,
+                platform=c.platform,
+                verified=bool(c.verified),
             )
         )
     return out
