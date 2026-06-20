@@ -11,7 +11,9 @@ export interface Call {
   symbol: string; classification?: Verdict; score?: number; author: string; source: string;
   stance: string | null; conviction: number | null; summary: string; ts: string;
   engagement: Record<string, number>; url: string | null;
+  entry_price?: number | null; since_call_pct?: number | null;
 }
+export interface PricePoint { ts: string; close: number; }
 export interface Attention { on_cmc: boolean; sources: string[]; rank: number | null; }
 export interface Identity {
   logo: string | null; tags: string[]; category: string | null;
@@ -46,6 +48,7 @@ export interface Signal {
   stance_mix: { bullish: number; bearish: number; neutral: number };
   latest_ts: string; top_calls: Call[]; market?: Market | null;
   attention?: Attention; identity?: Identity | null; performance?: Performance | null; venues?: Venue[];
+  price_series?: PricePoint[];
 }
 export interface Idea {
   symbol: string; score: number; classification: Verdict; confidence: number; confirmed: boolean;
@@ -79,6 +82,7 @@ export const SC: Record<string, string> = { bullish: "92 28% 65%", bearish: "355
 export const hsl = (t: string, a?: number) => (a ? `hsl(${t} / ${a})` : `hsl(${t})`);
 export const vc = (v?: string) => VC[v ?? "mixed"] ?? "213 14% 65%";
 export const sc = (s?: string | null) => SC[s ?? "neutral"] ?? "213 14% 65%";
+export const stanceLabel = (s?: string | null) => (s === "bullish" ? "LONG" : s === "bearish" ? "SHORT" : "WATCH");
 
 export function ago(iso?: string): string {
   if (!iso) return "";

@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { PriceChart } from "@/components/price-chart";
 import {
   type Call, type Idea, type Scan, type Signal,
-  SC, age, ago, hsl, pct, sc, usd, vc,
+  SC, age, ago, hsl, pct, stanceLabel, usd, vc,
 } from "@/lib/scan";
 
 const Label = ({ children }: { children: React.ReactNode }) => (
@@ -65,6 +66,24 @@ export default function AssetPage() {
           {id?.urls?.source_code && <a className="text-muted-foreground hover:text-primary" href={id.urls.source_code} target="_blank" rel="noreferrer">code ↗</a>}
         </span>
       </div>
+
+      {/* price chart with call markers */}
+      {sig.price_series && sig.price_series.length > 1 && (
+        <div>
+          <div className="flex items-baseline justify-between">
+            <Label>price — last {sig.price_series.length}d · {calls.length} calls marked</Label>
+            <span className="text-[11px] text-muted-foreground">
+              {usd(Math.min(...sig.price_series.map((p) => p.close)))} – {usd(Math.max(...sig.price_series.map((p) => p.close)))}
+            </span>
+          </div>
+          <div className="mt-1"><PriceChart series={sig.price_series} calls={calls.map((c) => ({ ts: c.ts, stance: c.stance }))} /></div>
+          <div className="flex gap-3 text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
+            <span style={{ color: hsl(SC.bullish) }}>● long call</span>
+            <span style={{ color: hsl(SC.bearish) }}>● short call</span>
+            <span style={{ color: hsl(SC.neutral) }}>● watch</span>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* market */}
@@ -150,22 +169,38 @@ export default function AssetPage() {
         </div>
       )}
 
-      {/* calls */}
+      {/* calls explained — paste.trade-style cards with since-call P&L */}
       <div>
         <Label>the calls — {calls.length} on {sig.symbol}</Label>
         <div className="space-y-1.5 mt-1">
-          {calls.map((c, i) => (
-            <div key={i} className="border border-border bg-card px-3 py-2">
-              <div className="flex items-center gap-2 text-xs">
-                <span className="font-medium">{c.author}</span>
-                <span className="uppercase" style={{ color: hsl(sc(c.stance)) }}>{c.stance ?? "—"}</span>
-                <span className="text-muted-foreground">{c.source}</span>
-                {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">↗ source</a>}
-                <span className="text-muted-foreground ml-auto">{ago(c.ts)}</span>
+          {calls.map((c, i) => {
+            const stClr = c.stance === "bullish" ? SC.bullish : c.stance === "bearish" ? SC.bearish : SC.neutral;
+            return (
+              <div key={i} className="border border-border bg-card p-3">
+                <div className="flex items-center gap-2 text-xs">
+                  <span className="px-1.5 py-px border text-[10px] uppercase tracking-wider" style={{ color: hsl(stClr), borderColor: hsl(stClr, 0.4) }}>{stanceLabel(c.stance)}</span>
+                  <span className="font-medium">{c.author}</span>
+                  <span className="text-muted-foreground">{c.source}</span>
+                  {c.conviction != null && <span className="text-muted-foreground">conv {c.conviction.toFixed(2)}</span>}
+                  {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">↗ source</a>}
+                  <span className="text-muted-foreground ml-auto">{ago(c.ts)} ago</span>
+                </div>
+                <div className="text-sm mt-1.5 text-foreground">{c.summary}</div>
+                {c.entry_price != null && (
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 border-t border-border pt-2 text-sm">
+                    <span className="font-semibold">{sig.symbol}</span>
+                    <span className="uppercase text-xs" style={{ color: hsl(stClr) }}>{stanceLabel(c.stance)}</span>
+                    <span className="text-muted-foreground">@ {usd(c.entry_price)}</span>
+                    <span className="ml-auto text-muted-foreground">now {usd(m?.price)}</span>
+                    {c.since_call_pct != null && (
+                      <span className="font-medium" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>
+                    )}
+                    <span className="text-muted-foreground text-xs">since call {ago(c.ts)}</span>
+                  </div>
+                )}
               </div>
-              <div className="text-sm mt-0.5">{c.summary}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </Wrap>

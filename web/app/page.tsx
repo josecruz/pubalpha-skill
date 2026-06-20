@@ -235,6 +235,9 @@ function CallRow({ c, compact }: { c: Call; compact?: boolean }) {
           <span className="uppercase" style={{ color: hsl(sc(c.stance)) }}>{c.stance ?? "—"}</span>
           <span className="text-muted-foreground">{c.source}</span>
           {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">↗</a>}
+          {c.since_call_pct != null && (
+            <span title="since the call" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>
+          )}
           <span className="text-muted-foreground ml-auto">{ago(c.ts)}</span>
         </div>
         <div className="text-sm mt-0.5 text-foreground/90">{c.summary}</div>
