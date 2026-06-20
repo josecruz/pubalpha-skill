@@ -131,6 +131,22 @@ def scan(cfg, args) -> dict:
         })
     ideas.sort(key=lambda i: (i["entry_ready"], i["confidence"]), reverse=True)
 
+    # flat social-trades feed: every call on a classified asset, recent-first (for the web dashboard)
+    sig_by_sym = {s["symbol"]: s for s in signals}
+    feed = []
+    for c in calls:
+        s = sig_by_sym.get(c.symbol)
+        if not s:
+            continue
+        feed.append({
+            "symbol": c.symbol, "classification": s["classification"], "score": s["score"],
+            "author": c.author, "source": c.source.split(":")[0], "stance": c.stance,
+            "conviction": c.conviction, "summary": c.summary, "ts": c.ts.isoformat(),
+            "engagement": c.engagement, "url": c.url,
+        })
+    feed.sort(key=lambda f: f["ts"], reverse=True)
+    feed = feed[:300]
+
     out = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "meta": {"total_calls": len(calls), "unique_symbols": len(groups),
@@ -140,6 +156,7 @@ def scan(cfg, args) -> dict:
         "gate_stats": compute_gate_stats(groups, cfg),
         "signals": signals,
         "trade_ideas": ideas,
+        "feed": feed,
     }
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     (RESULTS_DIR / "scan.json").write_text(json.dumps(out, indent=2, default=str))

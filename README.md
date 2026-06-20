@@ -81,6 +81,18 @@ view (the confirmed subset + a gate scoreboard), with a detail pane showing the 
 Under the hood: `scan.py` → `results/scan.json` → `scan_tui.py`. The single-asset deep-dive
 (`run.py --symbol X`) emits the full Spec + Card + Backtest.
 
+## Web dashboard (SMUI / shadcn)
+
+A browser dashboard over the same `scan.json` — a hot-assets top bar, a social-trades feed (calls /
+asset rows / grouped, switchable) and a Trade Ideas panel. Next.js + Tailwind + shadcn/ui + the SMUI
+terminal theme.
+
+```bash
+cd web && npm install && npm run scan:dev   # scans, then opens http://localhost:3000
+```
+
+![Web dashboard](docs/img/web-dashboard.png)
+
 ## Data sources & access (honest)
 
 - **CMC** — the spine. The widest set of families above.
