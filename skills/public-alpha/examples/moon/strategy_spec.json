@@ -2,9 +2,15 @@
   "strategy": {
     "name": "public-alpha-coordinated-moon",
     "version": "1.0",
-    "generated_at": "2026-06-20T05:05:03Z",
+    "generated_at": "2026-06-20T05:51:18Z",
+    "asset": {
+      "display": "MOON",
+      "kind": "crypto",
+      "market_listing": "MOON",
+      "chain": "\u2014"
+    },
     "universe": {
-      "chain": "bsc",
+      "chain": "\u2014",
       "assets": [
         "MOON"
       ]
@@ -20,23 +26,23 @@
       "top_categories": [
         {
           "name": "Insurance",
-          "avg_price_change": 62.25
+          "avg_price_change": 62.18
         },
         {
           "name": "MVB",
-          "avg_price_change": 51.79
+          "avg_price_change": 59.8
         },
         {
           "name": "Binance Wallet IDO",
-          "avg_price_change": 47.91
+          "avg_price_change": 45.15
         },
         {
           "name": "Options",
-          "avg_price_change": 38.12
+          "avg_price_change": 38.01
         },
         {
           "name": "Account Abstraction",
-          "avg_price_change": 22.4
+          "avg_price_change": 25.95
         }
       ],
       "trending_topics": [
@@ -104,7 +110,7 @@
       "holder_growth_pct": 0.0,
       "top10_holder_pct": 0.0,
       "notes": [
-        "no liquidity/DEX-volume data",
+        "no market/liquidity data on CMC for this asset (pluggable via a market source)",
         "buy/sell split not exposed by CMC DEX",
         "holder data not exposed by CMC DEX",
         "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -113,7 +119,7 @@
     "regime": {
       "state": "risk_off",
       "fear_greed": 21,
-      "btc_dominance": 58.33,
+      "btc_dominance": 58.28,
       "altseason": 42
     }
   },
@@ -145,7 +151,7 @@
       "max_drawdown_guard_pct": 20
     }
   },
-  "thesis": "MOON: calls classified coordinated (organic score 0.238). Drivers: 6 of 6 calls within 120 min \u2192 clustered; near-identical phrasing across authors (3-gram Jaccard 1.0) \u2192 copypasta. On-chain NOT confirmed (no liquidity/DEX-volume data). Regime risk_off (F&G 21).",
+  "thesis": "MOON: calls classified coordinated (organic score 0.238). Drivers: 6 of 6 calls within 120 min \u2192 clustered; near-identical phrasing across authors (3-gram Jaccard 1.0) \u2192 copypasta. On-chain NOT confirmed (no market/liquidity data on CMC for this asset (pluggable via a market source)). Regime risk_off (F&G 21).",
   "confidence": 0.06,
   "entry_signal": false,
   "backtest_ref": null

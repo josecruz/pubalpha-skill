@@ -133,10 +133,12 @@ MIT — see [LICENSE](LICENSE).
 ---
 
 _Status: the full funnel runs live on CMC data — classifier, calls (paste.trade + CMC + seed),
-confirmation, regime gate, and a 180-day backtest. **Works for any asset** — search any ticker and its
-calls are pulled live from CMC community posts + news (not limited to the paste.trade shows). The
-classifier (the wedge) is asset-agnostic; **confirmation is asset-aware** — on-chain DEX flow for
-crypto, market volume for other assets, and an honest "no data (pluggable)" when CMC doesn't track it.
-Committed golden run in [`skills/public-alpha/examples/`](skills/public-alpha/examples/): `cake/`
-(organic, on-chain confirmed, +31.6% excess vs BNB), `pepe/` (calls sourced entirely from CMC), `moon/`
-(a coordinated pump, filtered). Remaining before the lock: demo video + DoraHacks submission (repo public)._
+confirmation, regime gate, and a 180-day backtest. **Works for any asset.** Search a ticker *or company
+name* and it resolves to a unified entity — a crypto, or one of CMC's **400+ tokenized stocks across
+chains** (xStock/Ondo/bStocks on Ethereum, Solana, BNB Chain) — then unifies the calls (paste.trade
+ticker + CMC posts) and runs the funnel. The classifier is asset-agnostic; **confirmation is
+asset-aware** — on-chain DEX flow for crypto, market volume for tokenized stocks/others, honest "no
+data (pluggable)" otherwise. Committed golden run in [`skills/public-alpha/examples/`](skills/public-alpha/examples/):
+`tsla/` (Tesla tokenized stock → TSLAX, +24.8% excess vs BNB), `cake/` (BNB crypto, on-chain confirmed,
++31.6% excess), `pepe/` (calls sourced entirely from CMC), `moon/` (a coordinated pump, filtered).
+Remaining before the lock: demo video + DoraHacks submission (repo public)._

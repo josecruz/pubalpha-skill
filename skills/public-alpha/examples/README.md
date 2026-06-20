@@ -1,27 +1,30 @@
 # Examples — golden run
 
-Real funnel output demonstrating the contract (`docs/PRDs/01/output-contract.md`). Generated with a
-live CMC key (`python3 skills/public-alpha/scripts/run.py --symbol <SYM> --backtest`).
+Real funnel output demonstrating the contract (`docs/PRDs/01/output-contract.md`). Generated live with a
+CMC key (`python3 skills/public-alpha/scripts/run.py --symbol <query> --backtest`). Public Alpha resolves a
+query (ticker **or** company name) to a unified asset — crypto, or one of CMC's 400+ tokenized stocks across
+chains — then unifies its calls (paste.trade ticker + CMC posts) and runs the full funnel.
 
-### `cake/` — the full funnel on a BNB-ecosystem token (organic)
-CAKE classifies **organic** (0.927) from 30 calls (paste.trade + CMC community/news + seed), narrative
-heating from CMC categories, on-chain **confirmed** via CMC DEX volume ($4.1M), regime **risk_off**
-(F&G 21) → honest **NO ENTRY**. 180-day daily backtest: **+0.44% vs −31% buy-and-hold BNB**
-(**+31.6% excess**), Sharpe 1.49. Gate: across 64 real call clusters, **3.1% coordinated**.
+### `tsla/` — a tokenized stock (all-asset support)
+"Tesla" / "TSLA" resolves to **Tesla tokenized stock (xStock), TSLAX on Ethereum** ($11.8M 24h vol). 46 calls
+(paste.trade "TSLA" + CMC posts) unify under one entity → **organic** (0.946), confirmed on DEX volume,
+180-day backtest **−6.3% vs −31% buy-and-hold BNB (+24.8% excess)**. Searching a stock name works because
+the resolver bridges the underlying ticker to the tradeable tokenized listing.
 
-### `pepe/` — search ANY coin (calls sourced live from CMC)
-PEPE isn't covered by the paste.trade shows, so its **27 calls come entirely from CMC community posts +
-news** — proof that any CMC-listed coin is searchable. Classifies **organic** (0.925, 22 distinct
-authors); backtest **−8.5% vs −31% BNB** (timing kept it out of most of the drawdown).
+### `cake/` — a BNB-ecosystem crypto (full on-chain funnel)
+CAKE → **organic** (0.927), 30 calls, on-chain **confirmed** via CMC DEX volume ($4.1M), regime risk_off →
+NO ENTRY. Backtest **+0.44% vs −31% BNB (+31.6% excess)**. Gate: 64 clusters, 3.1% coordinated.
+
+### `pepe/` — search any coin (calls sourced live from CMC)
+PEPE isn't covered by the paste.trade shows, so its 27 calls come entirely from CMC community posts + news.
+**Organic** (0.925); backtest −8.5% vs −31% BNB.
 
 ### `moon/` — the wedge rejecting a coordinated pump (the headline)
-$MOON classifies **coordinated** (0.238): 6 calls in 38 min (clustered), near-identical copypasta
-(3-gram Jaccard 1.0), 100% low-follower accounts, pure urgency — **filtered**, with reasons. This is
-the differentiator: a coordinated burst vs an organically-discussed thesis.
+$MOON → **coordinated** (0.238): 6 calls in 38 min (clustered), copypasta (3-gram Jaccard 1.0), low-follower
+accounts, pure urgency — **filtered**, with reasons.
 
-> The classifier scores conviction 0–1 and labels organic / mixed / coordinated. Coordination is
-> judged **relative** to the cluster (a burst that *dominates*, like MOON's 6/6), so large, diverse,
-> organically-discussed feeds (CAKE, PEPE, BTC) read organic even with a little repost noise. The
-> regime gate shows NO ENTRY for all three because the live market was risk-off (F&G 21) — an honest
-> demonstration of the gate. On-chain uses CMC aggregated DEX volume (the per-pool DEX endpoint is
-> rate-limited on this tier; buy/sell split + holders aren't exposed by the CMC DEX API — stated in the card).
+> The classifier is asset-agnostic (it judges any asset's call pattern). Confirmation is asset-aware —
+> on-chain DEX flow for crypto, market volume for tokenized stocks/others, honest "no data (pluggable)" when
+> CMC doesn't track it. The regime gate shows NO ENTRY for the real assets because the live crypto market was
+> risk-off (F&G 21) on the run date — an honest demo of the gate. The dashboard (`/dashboard/?run=tsla|cake|pepe|moon`)
+> renders any of these.

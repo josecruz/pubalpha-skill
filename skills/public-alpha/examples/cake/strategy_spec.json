@@ -2,9 +2,15 @@
   "strategy": {
     "name": "public-alpha-organic-cake",
     "version": "1.0",
-    "generated_at": "2026-06-20T05:04:55Z",
+    "generated_at": "2026-06-20T05:51:06Z",
+    "asset": {
+      "display": "CAKE",
+      "kind": "crypto",
+      "market_listing": "CAKE",
+      "chain": "\u2014"
+    },
     "universe": {
-      "chain": "bsc",
+      "chain": "\u2014",
       "assets": [
         "CAKE"
       ]
@@ -20,23 +26,23 @@
       "top_categories": [
         {
           "name": "Insurance",
-          "avg_price_change": 62.28
+          "avg_price_change": 69.92
         },
         {
           "name": "MVB",
-          "avg_price_change": 51.6
+          "avg_price_change": 58.02
         },
         {
           "name": "Binance Wallet IDO",
-          "avg_price_change": 47.72
+          "avg_price_change": 44.88
         },
         {
           "name": "Options",
-          "avg_price_change": 38.18
+          "avg_price_change": 38.0
         },
         {
-          "name": "Trading Card Game (TCG)",
-          "avg_price_change": 22.94
+          "name": "Account Abstraction",
+          "avg_price_change": 25.17
         }
       ],
       "trending_topics": [
@@ -103,11 +109,11 @@
     "onchain_confirmation": {
       "confirmed": true,
       "buy_sell_ratio": 0.0,
-      "liquidity_usd": 4098698.02333653,
+      "liquidity_usd": 4148324.7815708,
       "holder_growth_pct": 0.0,
       "top10_holder_pct": 0.0,
       "notes": [
-        "24h on-chain DEX volume $4,098,698 \u2265 $25,000",
+        "24h on-chain DEX volume $4,148,324 \u2265 $25,000",
         "buy/sell split not exposed by CMC DEX",
         "holder data not exposed by CMC DEX",
         "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -116,7 +122,7 @@
     "regime": {
       "state": "risk_off",
       "fear_greed": 21,
-      "btc_dominance": 58.33,
+      "btc_dominance": 58.28,
       "altseason": 42
     }
   },
@@ -148,7 +154,7 @@
       "max_drawdown_guard_pct": 20
     }
   },
-  "thesis": "CAKE: calls classified organic (organic score 0.927). Drivers: calls spread out (max 4 in 120 min) \u2192 organic timing; varied phrasing across authors (max similarity 0.923). On-chain confirmed (24h on-chain DEX volume $4,098,698 \u2265 $25,000). Regime risk_off (F&G 21).",
+  "thesis": "CAKE: calls classified organic (organic score 0.927). Drivers: calls spread out (max 4 in 120 min) \u2192 organic timing; varied phrasing across authors (max similarity 0.923). On-chain confirmed (24h on-chain DEX volume $4,148,324 \u2265 $25,000). Regime risk_off (F&G 21).",
   "confidence": 0.42,
   "entry_signal": false,
   "backtest_ref": "results/backtest_2025-12-23_2026-06-19.json"

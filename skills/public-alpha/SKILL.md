@@ -43,9 +43,11 @@ Python, so it's reproducible. CoinMarketCap is the data spine.
 ## Inputs (from the user's request; fall back to config/default.yaml)
 - `symbol` (e.g. CAKE) or a small `universe`; `risk_profile` (conservative|balanced|aggressive);
   `lookback` days; `horizon`.
-- **Any CMC-listed coin works** — the searched coin's calls are pulled live from CMC community posts +
-  news (`calls_for`), plus paste.trade's shows + the seed where they cover it. So you're not limited to
-  a fixed list; `--symbol PEPE`, `--symbol SOL`, etc. all resolve.
+- **Any asset works** — pass a ticker OR a company name. `resolve()` maps it to a unified entity: a
+  crypto, or one of CMC's 400+ **tokenized stocks across chains** (xStock `<T>X`, Ondo `<T>on`, bStocks
+  `<T>B` on Ethereum/Solana/BNB). It then unifies the calls under every alias (the underlying ticker from
+  paste.trade + CMC community posts/news) and uses the highest-volume tradeable listing for confirmation +
+  backtest. So `--symbol TSLA`, `--symbol micron`, `--symbol PEPE`, `--symbol SOL` all resolve.
 
 ## The funnel — run it, then narrate each stage IN ORDER
 

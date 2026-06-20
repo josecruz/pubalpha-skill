@@ -1,8 +1,8 @@
 # Strategy Card — public-alpha-coordinated-moon
 
-**⛔ NO ENTRY**  ·  confidence **0.06**  ·  balanced / swing/days / lookback 180d  ·  chain `bsc`
+**⛔ NO ENTRY**  ·  confidence **0.06**  ·  balanced / swing/days / lookback 180d  ·  chain `—`
 
-> MOON: calls classified coordinated (organic score 0.238). Drivers: 6 of 6 calls within 120 min → clustered; near-identical phrasing across authors (3-gram Jaccard 1.0) → copypasta. On-chain NOT confirmed (no liquidity/DEX-volume data). Regime risk_off (F&G 21).
+> MOON: calls classified coordinated (organic score 0.238). Drivers: 6 of 6 calls within 120 min → clustered; near-identical phrasing across authors (3-gram Jaccard 1.0) → copypasta. On-chain NOT confirmed (no market/liquidity data on CMC for this asset (pluggable via a market source)). Regime risk_off (F&G 21).
 
 ## The funnel
 1. **Narrative heating** — 🔥 Insurance _(source: cmc_categories+community_trending)_
@@ -12,8 +12,8 @@
    - near-identical phrasing across authors (3-gram Jaccard 1.0) → copypasta
    - 4 distinct authors, 100% low-follower accounts
    - LLM: low substance — 100x, ape, dont fade, dont miss; little thesis
-4. **On-chain confirmation** — ❌ not confirmed — no liquidity/DEX-volume data; buy/sell split not exposed by CMC DEX; holder data not exposed by CMC DEX
-5. **Regime gate** — **risk_off** (F&G 21, BTC dom 58.33%, altseason 42)
+4. **Confirmation** (on-chain for crypto / market activity otherwise) — ❌ not confirmed — no market/liquidity data on CMC for this asset (pluggable via a market source); buy/sell split not exposed by CMC DEX; holder data not exposed by CMC DEX
+5. **Regime gate** — **risk_off** (F&G 21, BTC dom 58.28%, altseason 42)
 
 ## Rules
 **Entry (all must hold):**

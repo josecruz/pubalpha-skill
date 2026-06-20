@@ -56,7 +56,7 @@
 <main id="app"><div class="sub">Loading…</div></main>
 
 <script>
-const RUNS = { cake: "../skills/public-alpha/examples/cake/", pepe: "../skills/public-alpha/examples/pepe/", moon: "../skills/public-alpha/examples/moon/" };
+const RUNS = { cake: "../skills/public-alpha/examples/cake/", tsla: "../skills/public-alpha/examples/tsla/", pepe: "../skills/public-alpha/examples/pepe/", moon: "../skills/public-alpha/examples/moon/" };
 const params = new URLSearchParams(location.search);
 const run = params.get("run") || "cake";
 const BASE = params.get("data") || RUNS[run] || RUNS.cake;
@@ -146,8 +146,8 @@ function drawEquity(rep){
     app.innerHTML="";
     app.appendChild($(`<div class="panel"><div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
       <span class="badge ${entry?'entry':'no'}">${entry?'✅ ENTRY':'⛔ NO ENTRY'}</span>
-      <strong>${spec.strategy?.name||""}</strong>
-      <span class="sub">confidence ${spec.confidence} · ${spec.strategy?.risk_profile} · ${spec.strategy?.horizon} · lookback ${spec.strategy?.lookback}</span>
+      <strong>${(spec.strategy?.asset?.display)||spec.strategy?.name||""}</strong>
+      <span class="sub">${spec.strategy?.asset?(spec.strategy.asset.kind+' · '+spec.strategy.asset.market_listing+' on '+spec.strategy.asset.chain+' · '):''}confidence ${spec.confidence} · ${spec.strategy?.risk_profile} · lookback ${spec.strategy?.lookback}</span>
     </div></div>`));
     app.appendChild($(funnel(spec)));
     if(rep) app.appendChild($(gateBar(rep.gate_stats)));

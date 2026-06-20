@@ -1,18 +1,18 @@
 {
   "strategy": {
-    "name": "public-alpha-organic-pepe",
+    "name": "public-alpha-organic-tsla",
     "version": "1.0",
-    "generated_at": "2026-06-20T05:51:11Z",
+    "generated_at": "2026-06-20T05:51:15Z",
     "asset": {
-      "display": "PEPE",
-      "kind": "crypto",
-      "market_listing": "PEPE",
-      "chain": "\u2014"
+      "display": "Tesla tokenized stock (xStock)",
+      "kind": "tokenized_stock",
+      "market_listing": "TSLAX",
+      "chain": "Ethereum"
     },
     "universe": {
-      "chain": "\u2014",
+      "chain": "Ethereum",
       "assets": [
-        "PEPE"
+        "TSLA"
       ]
     },
     "risk_profile": "balanced",
@@ -56,59 +56,60 @@
       "available": true
     },
     "calls": {
-      "symbol": "PEPE",
-      "score": 0.925,
+      "symbol": "TSLA",
+      "score": 0.946,
       "classification": "organic",
       "reasons": [
-        "calls spread out (max 4 in 120 min) \u2192 organic timing",
-        "varied phrasing across authors (max similarity 0.825)",
-        "22 distinct authors",
-        "LLM: substantive thesis (substance 0.96)"
+        "calls spread out (max 2 in 120 min) \u2192 organic timing",
+        "varied phrasing across authors (max similarity 0.222)",
+        "28 distinct authors",
+        "LLM: substantive thesis (substance 0.99)"
       ],
       "sources": [
         "cmc_community",
-        "cmc_news"
+        "paste_trade:all-in",
+        "paste_trade:threadguy"
       ],
-      "n_calls": 27,
+      "n_calls": 46,
       "evidence": [
         {
-          "source": "cmc_news",
-          "ts": "2026-06-19T11:00:00+00:00",
-          "stance": "neutral",
-          "summary": "Little Pepe Price Prediction 2026: Why Stage 13 Still Hasn't Closed Little Pepe price prediction\u2026",
-          "weight": 0.66
-        },
-        {
-          "source": "cmc_news",
-          "ts": "2026-06-19T09:30:00+00:00",
-          "stance": "neutral",
-          "summary": "Little Pepe Presale End Date: Math Points to September 2026 Little Pepe Presale End Date\u2026",
-          "weight": 0.66
-        },
-        {
-          "source": "cmc_news",
-          "ts": "2026-06-18T11:34:00+00:00",
+          "source": "paste_trade:all-in",
+          "ts": "2026-05-29T00:00:00+00:00",
           "stance": "bullish",
-          "summary": "Little Pepe Price Prediction: Is a Tier-1 Listing the Catalyst? The market is watching one\u2026",
-          "weight": 0.66
+          "summary": "Optimus humanoids displacing warehouse sorting plus an order-of-magnitude cheaper xAI training stack",
+          "weight": 0.6
         },
         {
-          "source": "cmc_news",
-          "ts": "2026-06-18T11:00:00+00:00",
-          "stance": "neutral",
-          "summary": "Little Pepe Sells Discounts During the Crash: Smart or Risky? What the Little Pepe Discount\u2026",
-          "weight": 0.66
+          "source": "paste_trade:all-in",
+          "ts": "2026-05-23T14:57:31.399000+00:00",
+          "stance": "bullish",
+          "summary": "Chamath treats a Tesla-into-SpaceX consolidation under one Elon entity as a near-certainty, and unlike privately\u2026",
+          "weight": 0.6
+        },
+        {
+          "source": "paste_trade:all-in",
+          "ts": "2026-05-08T22:46:01+00:00",
+          "stance": "bullish",
+          "summary": "Chamath stakes that 'Elon world' uniquely commands a valuation premium because it keeps innovating, and\u2026",
+          "weight": 0.6
+        },
+        {
+          "source": "paste_trade:all-in",
+          "ts": "2026-04-06T00:00:00+00:00",
+          "stance": "bullish",
+          "summary": "Only one US company built at-scale manufacturing muscle this century and it is Tesla",
+          "weight": 0.6
         }
       ]
     },
     "onchain_confirmation": {
       "confirmed": true,
       "buy_sell_ratio": 0.0,
-      "liquidity_usd": 222195.80444864,
+      "liquidity_usd": 5455657.25020137,
       "holder_growth_pct": 0.0,
       "top10_holder_pct": 0.0,
       "notes": [
-        "24h on-chain DEX volume $222,195 \u2265 $25,000",
+        "24h on-chain DEX volume $5,455,657 \u2265 $25,000",
         "buy/sell split not exposed by CMC DEX",
         "holder data not exposed by CMC DEX",
         "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -149,8 +150,8 @@
       "max_drawdown_guard_pct": 20
     }
   },
-  "thesis": "PEPE: calls classified organic (organic score 0.925). Drivers: calls spread out (max 4 in 120 min) \u2192 organic timing; varied phrasing across authors (max similarity 0.825). On-chain confirmed (24h on-chain DEX volume $222,195 \u2265 $25,000). Regime risk_off (F&G 21).",
-  "confidence": 0.42,
+  "thesis": "TSLA: calls classified organic (organic score 0.946). Drivers: calls spread out (max 2 in 120 min) \u2192 organic timing; varied phrasing across authors (max similarity 0.222). On-chain confirmed (24h on-chain DEX volume $5,455,657 \u2265 $25,000). Regime risk_off (F&G 21).",
+  "confidence": 0.43,
   "entry_signal": false,
   "backtest_ref": "results/backtest_2025-12-23_2026-06-19.json"
 }

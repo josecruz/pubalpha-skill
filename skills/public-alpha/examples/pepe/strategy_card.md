@@ -1,8 +1,8 @@
 # Strategy Card — public-alpha-organic-pepe
 
-**⛔ NO ENTRY**  ·  confidence **0.42**  ·  balanced / swing/days / lookback 180d  ·  chain `bsc`
+**⛔ NO ENTRY**  ·  confidence **0.42**  ·  balanced / swing/days / lookback 180d  ·  chain `—`
 
-> PEPE: calls classified organic (organic score 0.925). Drivers: calls spread out (max 4 in 120 min) → organic timing; varied phrasing across authors (max similarity 0.825). On-chain confirmed (24h on-chain DEX volume $218,043 ≥ $25,000). Regime risk_off (F&G 21).
+> PEPE: calls classified organic (organic score 0.925). Drivers: calls spread out (max 4 in 120 min) → organic timing; varied phrasing across authors (max similarity 0.825). On-chain confirmed (24h on-chain DEX volume $222,195 ≥ $25,000). Regime risk_off (F&G 21).
 
 ## The funnel
 1. **Narrative heating** — 🔥 Insurance _(source: cmc_categories+community_trending)_
@@ -12,8 +12,8 @@
    - varied phrasing across authors (max similarity 0.825)
    - 22 distinct authors
    - LLM: substantive thesis (substance 0.96)
-4. **On-chain confirmation** — ✅ confirmed — 24h on-chain DEX volume $218,043 ≥ $25,000; buy/sell split not exposed by CMC DEX; holder data not exposed by CMC DEX
-5. **Regime gate** — **risk_off** (F&G 21, BTC dom 58.33%, altseason 42)
+4. **Confirmation** (on-chain for crypto / market activity otherwise) — ✅ confirmed — 24h on-chain DEX volume $222,195 ≥ $25,000; buy/sell split not exposed by CMC DEX; holder data not exposed by CMC DEX
+5. **Regime gate** — **risk_off** (F&G 21, BTC dom 58.28%, altseason 42)
 
 ## Rules
 **Entry (all must hold):**
