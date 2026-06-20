@@ -29,8 +29,11 @@ the call feed works regardless.
 - **CMC crowd vs calls** strip — corroborated / KOL-only / CMC-only counts; links to Market Intel.
 - **Hot assets** — most-called assets (price + 24h %, plus a **CMC ✓** marker when CMC's crowd
   corroborates the call); click one to open its thesis page.
-- **Social-trades feed** — 3 views via the selector: `CALLS` (author · asset+verdict · stance · time ·
-  snippet · source), `ASSETS` (table with price / 24h / CEX vol / DEX vol), `GROUPED` (calls per asset).
+- **Social-trades feed** — 4 views via the selector: `TIMELINE` (compact chronological KOL timeline —
+  stance dots on a time axis, avatar · handle · LONG/SHORT · asset · since-call %), `CALLS` (cards),
+  `ASSETS` (table with price / 24h / CEX vol / DEX vol), `GROUPED` (calls per asset).
+- Real **asset logos** (CMC) on chips/feed/tables, **exchange logos** on venue tables, and KOL **avatars**
+  throughout — verbose labels trimmed to icons.
 - **Trade Ideas** — the confirmed subset with a gate scoreboard (heating / organic / confirmed / regime).
 
 ### Setups (`/setups`)
