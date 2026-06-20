@@ -24,9 +24,15 @@ the call feed works regardless.
 
 ## What it shows
 - **Context strip** — regime (Fear & Greed), heating narrative, trending topics, totals.
-- **Hot assets** — most-called assets; click one to filter the feed.
+- **Market insights** — total market cap, 24h / DeFi volume, BTC & ETH dominance, and a **CEX vs DEX
+  volume** split across the surfaced assets.
+- **Hot assets** — most-called assets (with price + 24h %); click one to open its detail page.
 - **Social-trades feed** — 3 views via the selector: `CALLS` (each call: author · asset+verdict ·
-  stance · time · snippet · source), `ASSETS` (a table), `GROUPED` (calls under each asset).
+  stance · time · snippet · source link), `ASSETS` (a table with price / 24h / CEX vol / DEX vol),
+  `GROUPED` (calls under each asset).
 - **Trade Ideas** — the confirmed subset with a gate scoreboard (heating / organic / confirmed / regime).
+- **Asset detail** (`/asset?symbol=X`) — price, % changes, **CEX vs DEX volume**, market cap; the
+  classifier verdict + reasons + per-signal feature bars + on-chain confirmation; and the asset's full
+  call feed with source links.
 
 Verdict colors: green = organic, amber = mixed, red = coordinated.

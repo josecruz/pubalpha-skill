@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T08:20:45Z",
+  "generated_at": "2026-06-20T15:27:14Z",
   "meta": {
     "total_calls": 776,
     "unique_symbols": 229,
@@ -10,12 +10,12 @@
   "regime": {
     "available": true,
     "state": "risk_off",
-    "fear_greed": 21,
-    "btc_dominance": 58.27,
+    "fear_greed": 22,
+    "btc_dominance": 58.42,
     "altseason": 42,
     "notes": [
-      "Fear & Greed 21 (extreme fear)",
-      "BTC dominance 58.27%",
+      "Fear & Greed 22 (extreme fear)",
+      "BTC dominance 58.42%",
       "altcoin-season index 42"
     ]
   },
@@ -25,23 +25,23 @@
     "top_categories": [
       {
         "name": "Insurance",
-        "avg_price_change": 69.94
+        "avg_price_change": 69.89
       },
       {
         "name": "MVB",
-        "avg_price_change": 62.66
+        "avg_price_change": 59.92
       },
       {
-        "name": "Binance Wallet IDO",
-        "avg_price_change": 58.72
+        "name": "CMC Labs",
+        "avg_price_change": 37.12
       },
       {
         "name": "Options",
-        "avg_price_change": 38.95
+        "avg_price_change": 35.64
       },
       {
-        "name": "Yield Aggregator",
-        "avg_price_change": 30.75
+        "name": "Chromia Ecosystem",
+        "avg_price_change": 31.99
       }
     ],
     "trending_topics": [
@@ -63,6 +63,22 @@
     "mixed_pct": 21.9,
     "organic_candidates": 48
   },
+  "market_insights": {
+    "total_market_cap": 2201295892557.2197,
+    "total_volume_24h": 50670244941.26,
+    "defi_volume_24h": 8056538916.182995,
+    "altcoin_volume_24h": 32096367124.622475,
+    "stablecoin_volume_24h": 50925864994.14552,
+    "btc_dominance": 58.422961488241,
+    "eth_dominance": 9.546911258174,
+    "surfaced_cex_volume_24h": 28921938343,
+    "surfaced_dex_volume_24h": 253911409,
+    "verdict_split": {
+      "organic_pct": 75.0,
+      "coordinated_pct": 3.1,
+      "mixed_pct": 21.9
+    }
+  },
   "signals": [
     {
       "symbol": "BTC",
@@ -75,6 +91,13 @@
         "10 distinct authors",
         "LLM: substantive thesis (substance 0.99)"
       ],
+      "features": {
+        "timing_clustering": 0.029,
+        "language_similarity": 0.11,
+        "author_concentration": 0.217,
+        "onchain_pump": 0.0,
+        "low_substance": 0.01
+      },
       "distinct_authors": 10,
       "sources": [
         "paste_trade"
@@ -152,7 +175,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2798988265"
         }
-      ]
+      ],
+      "market": {
+        "price": 64144.667915898804,
+        "percent_change_24h": 1.85150757,
+        "percent_change_7d": -0.14000121,
+        "volume_24h": 18567663669.1106,
+        "cex_volume_24h": 18553831681.582825,
+        "dex_volume_24h": 13831987.5277744,
+        "market_cap": 1285813095312.1719,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "NVDA",
@@ -165,6 +199,13 @@
         "18 distinct authors",
         "LLM: substantive thesis (substance 0.94)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.094,
+        "author_concentration": 0.131,
+        "onchain_pump": 0.0,
+        "low_substance": 0.06
+      },
       "distinct_authors": 18,
       "sources": [
         "paste_trade"
@@ -242,7 +283,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=HGbA6ze0_3M"
         }
-      ]
+      ],
+      "market": {
+        "price": 209.63773847784444,
+        "percent_change_24h": 0.04676306,
+        "percent_change_7d": null,
+        "volume_24h": 8244589.21276458,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 8244589.21276458,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "ZEC",
@@ -255,6 +307,13 @@
         "4 distinct authors",
         "LLM: substantive thesis (substance 0.99)"
       ],
+      "features": {
+        "timing_clustering": 0.036,
+        "language_similarity": 0.118,
+        "author_concentration": 0.259,
+        "onchain_pump": 0.0,
+        "low_substance": 0.01
+      },
       "distinct_authors": 4,
       "sources": [
         "paste_trade"
@@ -332,7 +391,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2787867857"
         }
-      ]
+      ],
+      "market": {
+        "price": 483.3092726225601,
+        "percent_change_24h": 6.84165099,
+        "percent_change_7d": 15.89744288,
+        "volume_24h": 445696832.3909609,
+        "cex_volume_24h": 436093953.9123253,
+        "dex_volume_24h": 9602878.47863546,
+        "market_cap": 8075071114.155312,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "CL",
@@ -345,6 +415,13 @@
         "7 distinct authors",
         "LLM: substantive thesis (substance 0.99)"
       ],
+      "features": {
+        "timing_clustering": 0.038,
+        "language_similarity": 0.107,
+        "author_concentration": 0.222,
+        "onchain_pump": 0.0,
+        "low_substance": 0.01
+      },
       "distinct_authors": 7,
       "sources": [
         "paste_trade"
@@ -422,7 +499,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=HiVej9_fvl8"
         }
-      ]
+      ],
+      "market": {
+        "price": 77.76423568717654,
+        "percent_change_24h": 1.88398214,
+        "percent_change_7d": -4.16474488,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "TSLA",
@@ -435,6 +523,13 @@
         "9 distinct authors",
         "LLM: substantive thesis (substance 0.99)"
       ],
+      "features": {
+        "timing_clustering": 0.042,
+        "language_similarity": 0.1,
+        "author_concentration": 0.192,
+        "onchain_pump": 0.0,
+        "low_substance": 0.01
+      },
       "distinct_authors": 9,
       "sources": [
         "paste_trade"
@@ -512,7 +607,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=4Gmd5UTF4rk"
         }
-      ]
+      ],
+      "market": {
+        "price": 401.85960979572434,
+        "percent_change_24h": 0.55995426,
+        "percent_change_7d": null,
+        "volume_24h": 8048473.96239473,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 8048473.96239473,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "SP500",
@@ -525,6 +631,13 @@
         "7 distinct authors",
         "LLM: substantive thesis (substance 0.94)"
       ],
+      "features": {
+        "timing_clustering": 0.043,
+        "language_similarity": 0.088,
+        "author_concentration": 0.212,
+        "onchain_pump": 0.0,
+        "low_substance": 0.06
+      },
       "distinct_authors": 7,
       "sources": [
         "paste_trade"
@@ -602,7 +715,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2798206529"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "HYPE",
@@ -615,6 +729,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.043,
+        "language_similarity": 0.121,
+        "author_concentration": 0.263,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -692,7 +813,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2792718656"
         }
-      ]
+      ],
+      "market": {
+        "price": 70.82696865911183,
+        "percent_change_24h": 2.79068497,
+        "percent_change_7d": 17.40190924,
+        "volume_24h": 628483052.2008692,
+        "cex_volume_24h": 549262208.6587247,
+        "dex_volume_24h": 79220843.5421445,
+        "market_cap": 17939772533.03769,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "ANTHROPIC",
@@ -705,6 +837,13 @@
         "14 distinct authors",
         "LLM: substantive thesis (substance 0.92)"
       ],
+      "features": {
+        "timing_clustering": 0.053,
+        "language_similarity": 0.141,
+        "author_concentration": 0.09,
+        "onchain_pump": 0.0,
+        "low_substance": 0.08
+      },
       "distinct_authors": 14,
       "sources": [
         "paste_trade"
@@ -782,7 +921,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=jJRAvZNGUvI"
         }
-      ]
+      ],
+      "market": {
+        "price": 759.160143456947,
+        "percent_change_24h": 15.15620735,
+        "percent_change_7d": 19.04664289,
+        "volume_24h": 34426.39048521,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 34426.39048521,
+        "market_cap": 7253701.59081956,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "GOOGL",
@@ -795,6 +945,13 @@
         "12 distinct authors",
         "LLM: substantive thesis (substance 0.93)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.125,
+        "author_concentration": 0.1,
+        "onchain_pump": 0.0,
+        "low_substance": 0.07
+      },
       "distinct_authors": 12,
       "sources": [
         "paste_trade"
@@ -872,7 +1029,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=10MdOvK-aG4"
         }
-      ]
+      ],
+      "market": {
+        "price": 366.88101967051466,
+        "percent_change_24h": 0.14198527,
+        "percent_change_7d": null,
+        "volume_24h": 5848064.49975437,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 5848064.49975437,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "MU",
@@ -885,6 +1053,13 @@
         "9 distinct authors",
         "LLM: substantive thesis (substance 0.98)"
       ],
+      "features": {
+        "timing_clustering": 0.067,
+        "language_similarity": 0.134,
+        "author_concentration": 0.131,
+        "onchain_pump": 0.0,
+        "low_substance": 0.02
+      },
       "distinct_authors": 9,
       "sources": [
         "paste_trade"
@@ -962,7 +1137,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=-yrLEKjMyrM"
         }
-      ]
+      ],
+      "market": {
+        "price": 1134.5806910849153,
+        "percent_change_24h": 1.39726585,
+        "percent_change_7d": null,
+        "volume_24h": 2573785.58339488,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2573785.58339488,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "SPCX",
@@ -975,6 +1161,13 @@
         "4 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.117,
+        "author_concentration": 0.208,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 4,
       "sources": [
         "paste_trade"
@@ -1052,7 +1245,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2799787301"
         }
-      ]
+      ],
+      "market": {
+        "price": 180.71108368749842,
+        "percent_change_24h": 0.82282786,
+        "percent_change_7d": 8.70172687,
+        "volume_24h": 2223270.6071888,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2223270.6071888,
+        "market_cap": 12515939.038785461,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "AAPL",
@@ -1065,6 +1269,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 0.97)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.154,
+        "author_concentration": 0.185,
+        "onchain_pump": 0.0,
+        "low_substance": 0.03
+      },
       "distinct_authors": 5,
       "sources": [
         "paste_trade"
@@ -1142,7 +1353,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=7_3gKoQPUfM"
         }
-      ]
+      ],
+      "market": {
+        "price": 296.4378002433831,
+        "percent_change_24h": -0.19926654,
+        "percent_change_7d": null,
+        "volume_24h": 1567464.12261406,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1567464.12261406,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "OPENAI",
@@ -1155,6 +1377,13 @@
         "7 distinct authors",
         "LLM: substantive thesis (substance 0.92)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.11,
+        "author_concentration": 0.125,
+        "onchain_pump": 0.0,
+        "low_substance": 0.08
+      },
       "distinct_authors": 7,
       "sources": [
         "paste_trade"
@@ -1232,7 +1461,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=DVBJQQCjgXU"
         }
-      ]
+      ],
+      "market": {
+        "price": 988.7710823728106,
+        "percent_change_24h": 6.16107398,
+        "percent_change_7d": 5.57060091,
+        "volume_24h": 8484.67845266,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 8484.67845266,
+        "market_cap": 1980361.458807027,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "HIMS",
@@ -1245,6 +1485,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.085,
+        "author_concentration": 0.218,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -1322,7 +1569,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2754544222"
         }
-      ]
+      ],
+      "market": {
+        "price": 35.39685352788272,
+        "percent_change_24h": 0.06429075,
+        "percent_change_7d": null,
+        "volume_24h": 1515903.93828342,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1515903.93828342,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "AMC",
@@ -1334,6 +1592,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.152,
+        "author_concentration": 0.539,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -1411,7 +1676,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2794308987"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.05677603091877541,
+        "percent_change_24h": 6.84560934,
+        "percent_change_7d": 14.2012427,
+        "volume_24h": 1016.17709168,
+        "cex_volume_24h": 1016.17709168,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "HOOD",
@@ -1424,6 +1700,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.111,
+        "language_similarity": 0.143,
+        "author_concentration": 0.15,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 5,
       "sources": [
         "paste_trade"
@@ -1501,7 +1784,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2764207002"
         }
-      ]
+      ],
+      "market": {
+        "price": 3.776894207736e-06,
+        "percent_change_24h": 1.54719317,
+        "percent_change_7d": -3.00256108,
+        "volume_24h": 4985.17710558,
+        "cex_volume_24h": 4985.17710558,
+        "dex_volume_24h": 0,
+        "market_cap": 168251.53634298395,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "MSFT",
@@ -1514,6 +1808,13 @@
         "8 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.087,
+        "author_concentration": 0.033,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 8,
       "sources": [
         "paste_trade"
@@ -1591,7 +1892,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=5nCbHsCG334"
         }
-      ]
+      ],
+      "market": {
+        "price": 381.5249459886816,
+        "percent_change_24h": -0.04322979,
+        "percent_change_7d": null,
+        "volume_24h": 2116712.48700212,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2116712.48700212,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "AMZN",
@@ -1604,6 +1916,13 @@
         "6 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.096,
+        "author_concentration": 0.1,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 6,
       "sources": [
         "paste_trade"
@@ -1681,7 +2000,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=yEb2DX0TzKM"
         }
-      ]
+      ],
+      "market": {
+        "price": 243.52369866735606,
+        "percent_change_24h": 0.30038268,
+        "percent_change_7d": null,
+        "volume_24h": 1772697.88494452,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1772697.88494452,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "PLTR",
@@ -1694,6 +2024,13 @@
         "7 distinct authors",
         "LLM: substantive thesis (substance 0.96)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.144,
+        "author_concentration": 0.067,
+        "onchain_pump": 0.0,
+        "low_substance": 0.04
+      },
       "distinct_authors": 7,
       "sources": [
         "paste_trade"
@@ -1771,7 +2108,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2786293713"
         }
-      ]
+      ],
+      "market": {
+        "price": 129.00489024383305,
+        "percent_change_24h": 0.41309145,
+        "percent_change_7d": null,
+        "volume_24h": 1812123.4456454,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1812123.4456454,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "COPPER",
@@ -1784,6 +2132,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.223,
+        "author_concentration": 0.367,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -1861,7 +2216,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2793522078"
         }
-      ]
+      ],
+      "market": {
+        "price": 3.24706686007e-13,
+        "percent_change_24h": 3.21207875,
+        "percent_change_7d": 11.84088336,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "VVV",
@@ -1873,6 +2239,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.96)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.209,
+        "author_concentration": 0.533,
+        "onchain_pump": 0.0,
+        "low_substance": 0.04
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -1950,7 +2323,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2783912075"
         }
-      ]
+      ],
+      "market": {
+        "price": 14.807322440409612,
+        "percent_change_24h": 3.39791243,
+        "percent_change_7d": -12.8596969,
+        "volume_24h": 22255784.24646876,
+        "cex_volume_24h": 16513748.84979179,
+        "dex_volume_24h": 5742035.39667696,
+        "market_cap": 694054357.4953417,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "META",
@@ -1963,6 +2347,13 @@
         "7 distinct authors",
         "LLM: substantive thesis (substance 0.96)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.09,
+        "author_concentration": 0.037,
+        "onchain_pump": 0.0,
+        "low_substance": 0.04
+      },
       "distinct_authors": 7,
       "sources": [
         "paste_trade"
@@ -2040,7 +2431,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2778360215"
         }
-      ]
+      ],
+      "market": {
+        "price": 3.164154004527273,
+        "percent_change_24h": 0.02339202,
+        "percent_change_7d": 16.88855497,
+        "volume_24h": 313433.686336,
+        "cex_volume_24h": 298766.5704445,
+        "dex_volume_24h": 14667.1158915,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "DELL",
@@ -2053,6 +2455,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.119,
+        "author_concentration": 0.112,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 5,
       "sources": [
         "paste_trade"
@@ -2130,7 +2539,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=5nCbHsCG334"
         }
-      ]
+      ],
+      "market": {
+        "price": 409.5185305136325,
+        "percent_change_24h": -0.03931496,
+        "percent_change_7d": null,
+        "volume_24h": 0.0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0.0,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "native"
+      }
     },
     {
       "symbol": "INTC",
@@ -2143,6 +2563,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.148,
+        "author_concentration": 0.188,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -2220,7 +2647,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2758570970"
         }
-      ]
+      ],
+      "market": {
+        "price": 140.21626765436628,
+        "percent_change_24h": 4.64474236,
+        "percent_change_7d": null,
+        "volume_24h": 1723066.77788514,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1723066.77788514,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "MSTR",
@@ -2233,6 +2671,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.167,
+        "author_concentration": 0.358,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -2310,7 +2755,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2769661202"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.025735079106539233,
+        "percent_change_24h": 2.49415993,
+        "percent_change_7d": 0.03980529,
+        "volume_24h": 56988.25983552,
+        "cex_volume_24h": 56962.15213924,
+        "dex_volume_24h": 26.10769628,
+        "market_cap": 531321.6822439743,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "LLY",
@@ -2323,6 +2779,13 @@
         "7 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.094,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 7,
       "sources": [
         "paste_trade"
@@ -2400,7 +2863,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=fd6QaEJOjvI"
         }
-      ]
+      ],
+      "market": {
+        "price": 1100.2557520418213,
+        "percent_change_24h": 0.04388659,
+        "percent_change_7d": null,
+        "volume_24h": 2375552.94032901,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2375552.94032901,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "SPACEX",
@@ -2413,6 +2887,13 @@
         "6 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.104,
+        "author_concentration": 0.043,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 6,
       "sources": [
         "paste_trade"
@@ -2490,7 +2971,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2782345952"
         }
-      ]
+      ],
+      "market": {
+        "price": 576.1403590484621,
+        "percent_change_24h": -0.56161018,
+        "percent_change_7d": -7.83260533,
+        "volume_24h": 83492.34752162,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 83492.34752162,
+        "market_cap": 5037007.215008397,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "GOLD",
@@ -2503,6 +2995,13 @@
         "7 distinct authors",
         "LLM: substantive thesis (substance 0.95)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.113,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.05
+      },
       "distinct_authors": 7,
       "sources": [
         "paste_trade"
@@ -2580,7 +3079,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=gXY1kx7zlkk"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.002609944507397127,
+        "percent_change_24h": 1.01978273,
+        "percent_change_7d": -13.94364848,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 42893.35351352431,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "ORCL",
@@ -2593,6 +3103,13 @@
         "6 distinct authors",
         "LLM: substantive thesis (substance 0.95)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.107,
+        "author_concentration": 0.043,
+        "onchain_pump": 0.0,
+        "low_substance": 0.05
+      },
       "distinct_authors": 6,
       "sources": [
         "paste_trade"
@@ -2670,7 +3187,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2783912075"
         }
-      ]
+      ],
+      "market": {
+        "price": 186.27614722314735,
+        "percent_change_24h": 0.55752511,
+        "percent_change_7d": null,
+        "volume_24h": 1322404.61210145,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1322404.61210145,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "BABA",
@@ -2683,6 +3211,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.175,
+        "author_concentration": 0.086,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 5,
       "sources": [
         "paste_trade"
@@ -2760,7 +3295,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2778360215"
         }
-      ]
+      ],
+      "market": {
+        "price": 106.87040489675226,
+        "percent_change_24h": -0.08578893,
+        "percent_change_7d": null,
+        "volume_24h": 1775707.64212099,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1775707.64212099,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "XMR",
@@ -2773,6 +3319,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.14,
+        "author_concentration": 0.171,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -2850,7 +3403,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2753754385"
         }
-      ]
+      ],
+      "market": {
+        "price": 317.08417272241417,
+        "percent_change_24h": -0.17843218,
+        "percent_change_7d": -7.96794429,
+        "volume_24h": 123197288.98926178,
+        "cex_volume_24h": 123197288.98926178,
+        "dex_volume_24h": 0,
+        "market_cap": 5950873478.430585,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "STUB",
@@ -2862,6 +3426,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.213,
+        "author_concentration": 0.524,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -2939,7 +3510,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2792718656"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "NVO",
@@ -2952,6 +3524,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.07,
+        "author_concentration": 0.05,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 5,
       "sources": [
         "paste_trade"
@@ -3029,7 +3608,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2756113516"
         }
-      ]
+      ],
+      "market": {
+        "price": 43.939515035776,
+        "percent_change_24h": 0.03305101,
+        "percent_change_7d": null,
+        "volume_24h": 1280846.19325818,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1280846.19325818,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "CRM",
@@ -3042,6 +3632,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 0.94)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.116,
+        "author_concentration": 0.05,
+        "onchain_pump": 0.0,
+        "low_substance": 0.06
+      },
       "distinct_authors": 5,
       "sources": [
         "paste_trade"
@@ -3119,7 +3716,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=wTiHheA40nI"
         }
-      ]
+      ],
+      "market": {
+        "price": 153.21474479405802,
+        "percent_change_24h": -0.38390994,
+        "percent_change_7d": null,
+        "volume_24h": 1171273.17787032,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1171273.17787032,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "BE",
@@ -3132,6 +3740,13 @@
         "4 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.14,
+        "author_concentration": 0.1,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 4,
       "sources": [
         "paste_trade"
@@ -3209,7 +3824,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2748101641"
         }
-      ]
+      ],
+      "market": {
+        "price": 336.07825801406875,
+        "percent_change_24h": 2.71278378,
+        "percent_change_7d": null,
+        "volume_24h": 0.0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0.0,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "native"
+      }
     },
     {
       "symbol": "EWY",
@@ -3222,6 +3848,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.11,
+        "author_concentration": 0.15,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -3299,7 +3932,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2750490320"
         }
-      ]
+      ],
+      "market": {
+        "price": 216.81875665932776,
+        "percent_change_24h": 0.92786932,
+        "percent_change_7d": 9.38982943,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "TAO",
@@ -3312,6 +3956,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.2,
+        "language_similarity": 0.134,
+        "author_concentration": 0.15,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -3389,7 +4040,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2744809212"
         }
-      ]
+      ],
+      "market": {
+        "price": 232.14475983033856,
+        "percent_change_24h": 3.8182799,
+        "percent_change_7d": -12.77183767,
+        "volume_24h": 343833116.93957746,
+        "cex_volume_24h": 336544921.7469583,
+        "dex_volume_24h": 7288195.19261908,
+        "market_cap": 2562214891.761366,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "GME",
@@ -3401,6 +4063,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.94)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.175,
+        "author_concentration": 0.517,
+        "onchain_pump": 0.0,
+        "low_substance": 0.06
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -3478,7 +4147,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2748101641"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.000467624846863176,
+        "percent_change_24h": 1.6983408,
+        "percent_change_7d": 8.94700658,
+        "volume_24h": 652415.53804493,
+        "cex_volume_24h": 636118.98206895,
+        "dex_volume_24h": 16296.55597598,
+        "market_cap": 3219697.244312409,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "MOON",
@@ -3491,6 +4171,13 @@
         "4 distinct authors, 100% low-follower accounts",
         "LLM: low substance \u2014 100x, ape, dont fade, dont miss; little thesis"
       ],
+      "features": {
+        "timing_clustering": 1.0,
+        "language_similarity": 0.965,
+        "author_concentration": 0.4,
+        "onchain_pump": 0.0,
+        "low_substance": 1.0
+      },
       "distinct_authors": 4,
       "sources": [
         "seed"
@@ -3586,7 +4273,18 @@
           },
           "url": null
         }
-      ]
+      ],
+      "market": {
+        "price": 1.5704130639543e-05,
+        "percent_change_24h": 0.98001869,
+        "percent_change_7d": -17.23827413,
+        "volume_24h": 143550.37928725,
+        "cex_volume_24h": 143550.37928725,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "CRWV",
@@ -3599,6 +4297,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.109,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 5,
       "sources": [
         "paste_trade"
@@ -3665,7 +4370,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2782345952"
         }
-      ]
+      ],
+      "market": {
+        "price": 118.13360091163248,
+        "percent_change_24h": 2.43775963,
+        "percent_change_7d": null,
+        "volume_24h": 1516867.07191052,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1516867.07191052,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "CAKE",
@@ -3678,6 +4394,13 @@
         "5 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.127,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 5,
       "sources": [
         "seed"
@@ -3759,7 +4482,18 @@
           },
           "url": null
         }
-      ]
+      ],
+      "market": {
+        "price": 1.3770944093792685,
+        "percent_change_24h": -0.32144439,
+        "percent_change_7d": 1.99255365,
+        "volume_24h": 17503554.33436868,
+        "cex_volume_24h": 14509585.86775672,
+        "dex_volume_24h": 2993968.46661197,
+        "market_cap": 446309003.4605557,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "CBRS",
@@ -3772,6 +4506,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.096,
+        "author_concentration": 0.12,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -3838,7 +4579,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2769661202"
         }
-      ]
+      ],
+      "market": {
+        "price": 230.12048723906017,
+        "percent_change_24h": -1.91909618,
+        "percent_change_7d": null,
+        "volume_24h": 0.0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0.0,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "native"
+      }
     },
     {
       "symbol": "XYZ100",
@@ -3851,6 +4603,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.117,
+        "author_concentration": 0.12,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -3917,7 +4676,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2760135165"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "COIN",
@@ -3930,6 +4690,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.138,
+        "author_concentration": 0.12,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -3996,7 +4763,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2767294194"
         }
-      ]
+      ],
+      "market": {
+        "price": 166.45496257151277,
+        "percent_change_24h": 1.02460735,
+        "percent_change_7d": null,
+        "volume_24h": 2123703.34349996,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2123703.34349996,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "CRWD",
@@ -4009,6 +4787,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.115,
+        "author_concentration": 0.075,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4064,7 +4849,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=w2BqPnVKVo4"
         }
-      ]
+      ],
+      "market": {
+        "price": 737.6076350427152,
+        "percent_change_24h": 1.0479208,
+        "percent_change_7d": null,
+        "volume_24h": 956.72236958,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 956.72236958,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "USBOND",
@@ -4077,6 +4873,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.14,
+        "author_concentration": 0.075,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4132,7 +4935,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=CnaegIpkenA"
         }
-      ]
+      ],
+      "market": {
+        "price": 86.00171587289704,
+        "percent_change_24h": 0,
+        "percent_change_7d": 0.21595826,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "IGV",
@@ -4145,6 +4959,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.143,
+        "author_concentration": 0.075,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4200,7 +5021,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2761765658"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "ETH",
@@ -4212,6 +5034,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.107,
+        "author_concentration": 0.492,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -4267,7 +5096,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2758570970"
         }
-      ]
+      ],
+      "market": {
+        "price": 1741.1981648042683,
+        "percent_change_24h": 2.52854949,
+        "percent_change_7d": 3.54433855,
+        "volume_24h": 6838088469.616631,
+        "cex_volume_24h": 6781909769.456374,
+        "dex_volume_24h": 56178700.16025928,
+        "market_cap": 210134648270.77457,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "TTWO",
@@ -4279,6 +5119,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.171,
+        "author_concentration": 0.492,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -4334,7 +5181,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2758570970"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "MRVL",
@@ -4346,6 +5194,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.92)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.305,
+        "author_concentration": 0.492,
+        "onchain_pump": 0.0,
+        "low_substance": 0.08
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -4401,7 +5256,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2787072268"
         }
-      ]
+      ],
+      "market": {
+        "price": 313.0889538416221,
+        "percent_change_24h": 0.50577171,
+        "percent_change_7d": null,
+        "volume_24h": 1938078.60448648,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1938078.60448648,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "TSM",
@@ -4414,6 +5280,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.044,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4458,7 +5331,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=fd6QaEJOjvI"
         }
-      ]
+      ],
+      "market": {
+        "price": 464.4603562994357,
+        "percent_change_24h": 0.42599156,
+        "percent_change_7d": null,
+        "volume_24h": 1689082.40338287,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1689082.40338287,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "BYDDY",
@@ -4471,6 +5355,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.066,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4515,7 +5406,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=F8cXD5hTt3c"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "SOL",
@@ -4528,6 +5420,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.078,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4572,7 +5471,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2760135165"
         }
-      ]
+      ],
+      "market": {
+        "price": 72.12610704125859,
+        "percent_change_24h": 4.61106673,
+        "percent_change_7d": 5.23545194,
+        "volume_24h": 1744642120.0214975,
+        "cex_volume_24h": 1744608956.0171664,
+        "dex_volume_24h": 33164.00433111,
+        "market_cap": 41854145741.70377,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "AVGO",
@@ -4585,6 +5495,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.094,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4629,7 +5546,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2793522078"
         }
-      ]
+      ],
+      "market": {
+        "price": 410.5134052424399,
+        "percent_change_24h": 0.04320298,
+        "percent_change_7d": null,
+        "volume_24h": 2273218.67866131,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2273218.67866131,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "FIG",
@@ -4642,6 +5570,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.103,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4686,7 +5621,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2750490320"
         }
-      ]
+      ],
+      "market": {
+        "price": 18.688794898862184,
+        "percent_change_24h": -0.04875461,
+        "percent_change_7d": null,
+        "volume_24h": 787238.203967,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 787238.203967,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "AMD",
@@ -4699,6 +5645,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.11,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4743,7 +5696,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=gwW8GKwHB3I"
         }
-      ]
+      ],
+      "market": {
+        "price": 536.9507575225589,
+        "percent_change_24h": 0.17743036,
+        "percent_change_7d": null,
+        "volume_24h": 2192231.72259872,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2192231.72259872,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "CRCL",
@@ -4756,6 +5720,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.135,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4800,7 +5771,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2772001960"
         }
-      ]
+      ],
+      "market": {
+        "price": 80.90766059071805,
+        "percent_change_24h": 2.55214062,
+        "percent_change_7d": null,
+        "volume_24h": 5049197.67046838,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 5049197.67046838,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "PANW",
@@ -4813,6 +5795,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.184,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -4857,7 +5846,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2783912075"
         }
-      ]
+      ],
+      "market": {
+        "price": 286.190601505001,
+        "percent_change_24h": 0.09621839,
+        "percent_change_7d": null,
+        "volume_24h": 835113.83305669,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 835113.83305669,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "UBER",
@@ -4870,6 +5870,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.094,
+        "author_concentration": 0.233,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -4914,7 +5921,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2775249215"
         }
-      ]
+      ],
+      "market": {
+        "price": 76.70717275570208,
+        "percent_change_24h": 7.34576057,
+        "percent_change_7d": null,
+        "volume_24h": 1630153.67369482,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1630153.67369482,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "NEAR",
@@ -4927,6 +5945,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.109,
+        "author_concentration": 0.233,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -4971,7 +5996,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2770422034"
         }
-      ]
+      ],
+      "market": {
+        "price": 2.160211396846953,
+        "percent_change_24h": 0.54337642,
+        "percent_change_7d": 1.82583204,
+        "volume_24h": 198388955.02831933,
+        "cex_volume_24h": 198329345.9795787,
+        "dex_volume_24h": 59609.04874064,
+        "market_cap": 2805542984.485838,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "F",
@@ -4984,6 +6020,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.89)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.091,
+        "author_concentration": 0.233,
+        "onchain_pump": 0.0,
+        "low_substance": 0.11
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5028,7 +6071,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2761765658"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.003892839946249817,
+        "percent_change_24h": 3.76753847,
+        "percent_change_7d": -0.8002316,
+        "volume_24h": 9414038.81459388,
+        "cex_volume_24h": 9414038.81459388,
+        "dex_volume_24h": 0,
+        "market_cap": 16690206.180963375,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "PURRDAT",
@@ -5040,6 +6094,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.16,
+        "author_concentration": 0.467,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -5084,7 +6145,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2776804031"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "TLN",
@@ -5097,6 +6159,13 @@
         "3 distinct authors",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.5,
+        "language_similarity": 0.114,
+        "author_concentration": 0.0,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 3,
       "sources": [
         "paste_trade"
@@ -5141,7 +6210,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2759336391"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "CHIP",
@@ -5154,6 +6224,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.5,
+        "language_similarity": 0.098,
+        "author_concentration": 0.233,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5198,7 +6275,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2754544222"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.03308089315102377,
+        "percent_change_24h": -4.46082926,
+        "percent_change_7d": -1.95146234,
+        "volume_24h": 20685027.63475163,
+        "cex_volume_24h": 20377453.80166605,
+        "dex_volume_24h": 307573.83308558,
+        "market_cap": 66161786.30204754,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "MP",
@@ -5211,6 +6299,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.029,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5244,7 +6339,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2776023214"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "URNM",
@@ -5257,6 +6353,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.036,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5290,7 +6393,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2764207002"
         }
-      ]
+      ],
+      "market": {
+        "price": 59.31815423095267,
+        "percent_change_24h": 2.27843707,
+        "percent_change_7d": 9.01484369,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "BA",
@@ -5303,6 +6417,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.045,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5336,7 +6457,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=fd6QaEJOjvI"
         }
-      ]
+      ],
+      "market": {
+        "price": 223.3856470394859,
+        "percent_change_24h": 0.15059021,
+        "percent_change_7d": null,
+        "volume_24h": 1240446.37193105,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1240446.37193105,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "XYZ",
@@ -5349,6 +6481,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.051,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5382,7 +6521,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2788663101"
         }
-      ]
+      ],
+      "market": {
+        "price": 2.5475253858387e-05,
+        "percent_change_24h": 55.15435333,
+        "percent_change_7d": 115.60224764,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 113940.24310297154,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "AAVE",
@@ -5395,6 +6545,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.058,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5428,7 +6585,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2765747470"
         }
-      ]
+      ],
+      "market": {
+        "price": 75.59755086471702,
+        "percent_change_24h": 3.53007463,
+        "percent_change_7d": 12.19010484,
+        "volume_24h": 105925547.23269437,
+        "cex_volume_24h": 103926680.81923643,
+        "dex_volume_24h": 1998866.41345795,
+        "market_cap": 1164921612.8096874,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "SFTBY",
@@ -5441,6 +6609,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.063,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5474,7 +6649,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2797473647"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "WILL CHINA INVADE TAIWAN BY END OF 2026?",
@@ -5487,6 +6663,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.066,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5520,7 +6703,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=gzwRflcLPAA"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "GEV",
@@ -5533,6 +6717,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.07,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5566,7 +6757,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=w2BqPnVKVo4"
         }
-      ]
+      ],
+      "market": {
+        "price": 1141.0970926030736,
+        "percent_change_24h": 2.58571859,
+        "percent_change_7d": null,
+        "volume_24h": 717041.41114536,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 717041.41114536,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "LMT",
@@ -5579,6 +6781,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.07,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5612,7 +6821,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2764966342"
         }
-      ]
+      ],
+      "market": {
+        "price": 2.9861110959063e-05,
+        "percent_change_24h": 3.20938329,
+        "percent_change_7d": 2.82620908,
+        "volume_24h": 71808.63043187,
+        "cex_volume_24h": 71808.63043187,
+        "dex_volume_24h": 0,
+        "market_cap": 24788.87885225141,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "SILVER",
@@ -5625,6 +6845,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.074,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5658,7 +6885,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2798206529"
         }
-      ]
+      ],
+      "market": {
+        "price": 1.487884187053e-06,
+        "percent_change_24h": -3.06700662,
+        "percent_change_7d": 39.3517879,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 0,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "WILL THE DEMOCRATIC PARTY CONTROL THE HOUSE AFTER THE 2026 MIDTERM ELECTIONS?",
@@ -5671,6 +6909,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.087,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5704,7 +6949,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=kzWbCF_IkHY"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "TKO",
@@ -5717,6 +6963,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.094,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5750,7 +7003,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2786293713"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.0516177332547166,
+        "percent_change_24h": 1.71414372,
+        "percent_change_7d": -0.01330787,
+        "volume_24h": 852814.82744347,
+        "cex_volume_24h": 851551.1556091,
+        "dex_volume_24h": 1263.67183437,
+        "market_cap": 8754135.648669183,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "NFLX",
@@ -5763,6 +7027,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.101,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5796,7 +7067,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=7_3gKoQPUfM"
         }
-      ]
+      ],
+      "market": {
+        "price": 774.5027455788927,
+        "percent_change_24h": 0.0008239,
+        "percent_change_7d": null,
+        "volume_24h": 2091079.1122581,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 2091079.1122581,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "WILL CHINA INVADE TAIWAN BY DECEMBER 31, 2027?",
@@ -5809,6 +7091,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.147,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5842,7 +7131,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=yAHfG6jU2qA"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "VZ",
@@ -5855,6 +7145,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.83)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.064,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.17
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5888,7 +7185,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2793522078"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "SNOW",
@@ -5901,6 +7199,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.83)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.074,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.17
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5934,7 +7239,18 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=wTiHheA40nI"
         }
-      ]
+      ],
+      "market": {
+        "price": 230.77031830504973,
+        "percent_change_24h": 0.10352059,
+        "percent_change_7d": null,
+        "volume_24h": 1180557.00908775,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1180557.00908775,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "ETN",
@@ -5947,6 +7263,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.83)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.075,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.17
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -5980,7 +7303,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2756113516"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.000876777829198021,
+        "percent_change_24h": 3.41328,
+        "percent_change_7d": 4.21819851,
+        "volume_24h": 216679.04131242,
+        "cex_volume_24h": 216679.04131242,
+        "dex_volume_24h": 0,
+        "market_cap": 15764305.448702475,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "IRAN LEADERSHIP CHANGE BY DECEMBER 31?",
@@ -5993,6 +7327,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.169,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -6026,7 +7367,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=y2NeAef6d30"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "POET",
@@ -6038,6 +7380,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.017,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6071,7 +7420,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2758570970"
         }
-      ]
+      ],
+      "market": {
+        "price": 12.635855034091579,
+        "percent_change_24h": -0.55018889,
+        "percent_change_7d": null,
+        "volume_24h": 0.0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0.0,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "native"
+      }
     },
     {
       "symbol": "SNAP",
@@ -6083,6 +7443,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.042,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6116,7 +7483,8 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2748897017"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "RDDT",
@@ -6128,6 +7496,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.046,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6161,7 +7536,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2778360215"
         }
-      ]
+      ],
+      "market": {
+        "price": 173.15512314021336,
+        "percent_change_24h": -1.78021654,
+        "percent_change_7d": null,
+        "volume_24h": 896237.01354444,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 896237.01354444,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "WBD",
@@ -6173,6 +7559,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.078,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6206,7 +7599,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=7_3gKoQPUfM"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "TON",
@@ -6218,6 +7612,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.091,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6251,7 +7652,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2765747470"
         }
-      ]
+      ],
+      "market": {
+        "price": 22.414513419487704,
+        "percent_change_24h": 0.00566532,
+        "percent_change_7d": -6.27039709,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 4860.675697703586,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "BOT",
@@ -6263,6 +7675,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.137,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6296,7 +7715,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2776804031"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.000269723768024275,
+        "percent_change_24h": 5.63217148,
+        "percent_change_7d": 14.57877665,
+        "volume_24h": 0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0,
+        "market_cap": 269723.7680242747,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "QCOM",
@@ -6308,6 +7738,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.145,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6341,7 +7778,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2758570970"
         }
-      ]
+      ],
+      "market": {
+        "price": 228.62713760762657,
+        "percent_change_24h": -0.77460319,
+        "percent_change_7d": null,
+        "volume_24h": 1172515.36211316,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 1172515.36211316,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "EBAY",
@@ -6353,6 +7801,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.83)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.067,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.17
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6386,7 +7841,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2764207002"
         }
-      ]
+      ],
+      "market": {
+        "price": 107.24181801639823,
+        "percent_change_24h": -0.17483966,
+        "percent_change_7d": null,
+        "volume_24h": 0.0,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 0.0,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "native"
+      }
     },
     {
       "symbol": "TESLA AND SPACEX MERGER OFFICIALLY ANNOUNCED BY JUNE 30?",
@@ -6398,6 +7864,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.167,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6431,7 +7904,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=yEb2DX0TzKM"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "HON",
@@ -6443,6 +7917,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.206,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6476,7 +7957,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2783912075"
         }
-      ]
+      ],
+      "market": {
+        "price": 231.92209926166663,
+        "percent_change_24h": -1.28889368,
+        "percent_change_7d": null,
+        "volume_24h": 664741.9644816,
+        "cex_volume_24h": 0,
+        "dex_volume_24h": 664741.9644816,
+        "market_cap": null,
+        "kind": "tokenized_stock",
+        "chain": "Ethereum"
+      }
     },
     {
       "symbol": "PUMP",
@@ -6488,6 +7980,13 @@
         "only 1 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.67)"
       ],
+      "features": {
+        "timing_clustering": 0.0,
+        "language_similarity": 0.123,
+        "author_concentration": 0.417,
+        "onchain_pump": 0.0,
+        "low_substance": 0.33
+      },
       "distinct_authors": 1,
       "sources": [
         "paste_trade"
@@ -6521,7 +8020,18 @@
           "engagement": {},
           "url": "https://twitch.tv/videos/2759336391"
         }
-      ]
+      ],
+      "market": {
+        "price": 0.001379179090460225,
+        "percent_change_24h": -0.4228693,
+        "percent_change_7d": -11.91580299,
+        "volume_24h": 34261803.63854748,
+        "cex_volume_24h": 31137270.49723963,
+        "dex_volume_24h": 3124533.14130786,
+        "market_cap": 477856550.8466076,
+        "kind": "crypto",
+        "chain": null
+      }
     },
     {
       "symbol": "CCJ",
@@ -6534,6 +8044,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 1.0)"
       ],
+      "features": {
+        "timing_clustering": 1.0,
+        "language_similarity": 0.045,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.0
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -6567,7 +8084,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=NyP-euljCHM"
         }
-      ]
+      ],
+      "market": null
     },
     {
       "symbol": "PL",
@@ -6580,6 +8098,13 @@
         "only 2 distinct authors; organic needs \u22653",
         "LLM: substantive thesis (substance 0.67)"
       ],
+      "features": {
+        "timing_clustering": 1.0,
+        "language_similarity": 0.028,
+        "author_concentration": 0.133,
+        "onchain_pump": 0.0,
+        "low_substance": 0.33
+      },
       "distinct_authors": 2,
       "sources": [
         "paste_trade"
@@ -6613,7 +8138,8 @@
           "engagement": {},
           "url": "https://youtube.com/watch?v=jLICvWE7w2Q"
         }
-      ]
+      ],
+      "market": null
     }
   ],
   "trade_ideas": [
@@ -6631,9 +8157,9 @@
       "onchain": {
         "confirmed": true,
         "buy_sell_ratio": 0.0,
-        "liquidity_usd": 15961103.8447827,
+        "liquidity_usd": 13831987.5277744,
         "notes": [
-          "24h on-chain DEX volume $15,961,103 \u2265 $25,000",
+          "24h on-chain DEX volume $13,831,987 \u2265 $25,000",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -6694,9 +8220,9 @@
       "onchain": {
         "confirmed": true,
         "buy_sell_ratio": 0.0,
-        "liquidity_usd": 2472682.63485277,
+        "liquidity_usd": 2223270.6071888,
         "notes": [
-          "24h on-chain DEX volume $2,472,682 \u2265 $25,000",
+          "24h on-chain DEX volume $2,223,270 \u2265 $25,000",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -6757,9 +8283,9 @@
       "onchain": {
         "confirmed": true,
         "buy_sell_ratio": 0.0,
-        "liquidity_usd": 8688878.02998892,
+        "liquidity_usd": 9602878.47863546,
         "notes": [
-          "24h on-chain DEX volume $8,688,878 \u2265 $25,000",
+          "24h on-chain DEX volume $9,602,878 \u2265 $25,000",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -6820,9 +8346,9 @@
       "onchain": {
         "confirmed": true,
         "buy_sell_ratio": 0.0,
-        "liquidity_usd": 95176706.97515643,
+        "liquidity_usd": 79220843.5421445,
         "notes": [
-          "24h on-chain DEX volume $95,176,706 \u2265 $25,000",
+          "24h on-chain DEX volume $79,220,843 \u2265 $25,000",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -6866,6 +8392,69 @@
           "ts": "2026-06-15T20:28:54+00:00",
           "engagement": {},
           "url": "https://twitch.tv/videos/2797473647"
+        }
+      ]
+    },
+    {
+      "symbol": "ANTHROPIC",
+      "n_calls": 20,
+      "score": 0.907,
+      "classification": "organic",
+      "distinct_authors": 14,
+      "reasons": [
+        "calls spread out (max 2 in 120 min) \u2192 organic timing",
+        "varied phrasing across authors (max similarity 0.285)",
+        "14 distinct authors"
+      ],
+      "onchain": {
+        "confirmed": true,
+        "buy_sell_ratio": 0.0,
+        "liquidity_usd": 34426.39048521,
+        "notes": [
+          "24h on-chain DEX volume $34,426 \u2265 $25,000",
+          "buy/sell split not exposed by CMC DEX",
+          "holder data not exposed by CMC DEX",
+          "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
+        ]
+      },
+      "confirmed": true,
+      "narrative_heating": true,
+      "regime_state": "risk_off",
+      "entry_ready": false,
+      "confidence": 0.45,
+      "top_calls": [
+        {
+          "author": "nikesharora",
+          "source": "paste_trade:all-in",
+          "stance": "bullish",
+          "conviction": 0.5,
+          "summary": "Anthropic out-executing OpenAI on enterprise/coding ARR by attacking the profit pools faster.",
+          "weight": 0.6,
+          "ts": "2026-06-08T12:00:00+00:00",
+          "engagement": {},
+          "url": "https://youtube.com/watch?v=hObRMv6qCi0"
+        },
+        {
+          "author": "thomas-laffont",
+          "source": "paste_trade:all-in",
+          "stance": "bullish",
+          "conviction": 0.5,
+          "summary": "The presenter pairs a pure scaling stake with two corroborating facts he volunteers later: a\u2026",
+          "weight": 0.6,
+          "ts": "2026-06-04T18:00:00+00:00",
+          "engagement": {},
+          "url": "https://youtube.com/watch?v=UIoV8rG_25s"
+        },
+        {
+          "author": "bgurley",
+          "source": "paste_trade:all-in",
+          "stance": "bearish",
+          "conviction": 0.5,
+          "summary": "Most-funded lab is also the loudest doomer; regulatory-capture or 'midwife a deity' motive looms over\u2026",
+          "weight": 0.6,
+          "ts": "2026-05-29T00:00:00+00:00",
+          "engagement": {},
+          "url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s"
         }
       ]
     },
@@ -7122,69 +8711,6 @@
       ]
     },
     {
-      "symbol": "ANTHROPIC",
-      "n_calls": 20,
-      "score": 0.907,
-      "classification": "organic",
-      "distinct_authors": 14,
-      "reasons": [
-        "calls spread out (max 2 in 120 min) \u2192 organic timing",
-        "varied phrasing across authors (max similarity 0.285)",
-        "14 distinct authors"
-      ],
-      "onchain": {
-        "confirmed": false,
-        "buy_sell_ratio": 0.0,
-        "liquidity_usd": 17543.94840828,
-        "notes": [
-          "24h on-chain DEX volume $17,543 < $25,000",
-          "buy/sell split not exposed by CMC DEX",
-          "holder data not exposed by CMC DEX",
-          "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
-        ]
-      },
-      "confirmed": false,
-      "narrative_heating": true,
-      "regime_state": "risk_off",
-      "entry_ready": false,
-      "confidence": 0.23,
-      "top_calls": [
-        {
-          "author": "nikesharora",
-          "source": "paste_trade:all-in",
-          "stance": "bullish",
-          "conviction": 0.5,
-          "summary": "Anthropic out-executing OpenAI on enterprise/coding ARR by attacking the profit pools faster.",
-          "weight": 0.6,
-          "ts": "2026-06-08T12:00:00+00:00",
-          "engagement": {},
-          "url": "https://youtube.com/watch?v=hObRMv6qCi0"
-        },
-        {
-          "author": "thomas-laffont",
-          "source": "paste_trade:all-in",
-          "stance": "bullish",
-          "conviction": 0.5,
-          "summary": "The presenter pairs a pure scaling stake with two corroborating facts he volunteers later: a\u2026",
-          "weight": 0.6,
-          "ts": "2026-06-04T18:00:00+00:00",
-          "engagement": {},
-          "url": "https://youtube.com/watch?v=UIoV8rG_25s"
-        },
-        {
-          "author": "bgurley",
-          "source": "paste_trade:all-in",
-          "stance": "bearish",
-          "conviction": 0.5,
-          "summary": "Most-funded lab is also the loudest doomer; regulatory-capture or 'midwife a deity' motive looms over\u2026",
-          "weight": 0.6,
-          "ts": "2026-05-29T00:00:00+00:00",
-          "engagement": {},
-          "url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s"
-        }
-      ]
-    },
-    {
       "symbol": "GOOGL",
       "n_calls": 18,
       "score": 0.929,
@@ -7198,9 +8724,9 @@
       "onchain": {
         "confirmed": false,
         "buy_sell_ratio": 0.0,
-        "liquidity_usd": 36.59629171,
+        "liquidity_usd": 0.0,
         "notes": [
-          "24h on-chain DEX volume $36 < $25,000",
+          "no market/liquidity data on CMC for this asset (pluggable via a market source)",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -7324,9 +8850,9 @@
       "onchain": {
         "confirmed": false,
         "buy_sell_ratio": 0.0,
-        "liquidity_usd": 2146.17756038,
+        "liquidity_usd": 0.0,
         "notes": [
-          "24h on-chain DEX volume $2,146 < $25,000",
+          "no market/liquidity data on CMC for this asset (pluggable via a market source)",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -7387,9 +8913,9 @@
       "onchain": {
         "confirmed": false,
         "buy_sell_ratio": 0.0,
-        "liquidity_usd": 4370.57353287,
+        "liquidity_usd": 8484.67845266,
         "notes": [
-          "24h on-chain DEX volume $4,370 < $25,000",
+          "24h on-chain DEX volume $8,484 < $25,000",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -7515,7 +9041,7 @@
         "buy_sell_ratio": 0.0,
         "liquidity_usd": 0.0,
         "notes": [
-          "24h market volume $5,084 < $25,000",
+          "24h market volume $4,985 < $25,000",
           "buy/sell split not exposed by CMC DEX",
           "holder data not exposed by CMC DEX",
           "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"

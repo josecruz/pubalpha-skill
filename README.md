@@ -91,7 +91,12 @@ terminal theme.
 cd web && npm install && npm run scan:dev   # scans, then opens http://localhost:3000
 ```
 
+It has a market-insights panel (total/DeFi volume, dominance, CEX-vs-DEX split), the hot-assets bar, the
+3-mode social feed, a Trade Ideas panel, and a per-asset **detail page** (`/asset?symbol=X`) with market
+stats (incl. CEX/DEX volume), the classifier breakdown, and the asset's full call feed.
+
 ![Web dashboard](docs/img/web-dashboard.png)
+![Asset detail](docs/img/web-asset.png)
 
 ## Data sources & access (honest)
 
