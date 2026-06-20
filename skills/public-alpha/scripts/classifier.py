@@ -122,6 +122,9 @@ def onchain_crosscheck(conf: Optional[OnchainConfirmation], cfg: dict) -> Tuple[
     """1.0 = price spiking on thin liquidity (classic pump tell). 0.0 / unavailable = neutral."""
     if conf is None:
         return 0.0, {"available": False}
+    if conf.liquidity_usd <= 0:                          # no liquidity/volume data -> can't assess a pump (missing != thin)
+        return 0.0, {"available": True, "price_runup_pct": conf.price_runup_pct,
+                     "liquidity_usd": 0.0, "thin_liquidity": 0.0, "no_data": True}
     min_liq = cfg.get("confirmation", {}).get("min_liquidity_usd", 25000)
     max_runup = cfg.get("exhaustion", {}).get("max_runup_pct", 50)
     runup_signal = _clamp(conf.price_runup_pct / max_runup) if max_runup else 0.0
