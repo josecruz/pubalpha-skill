@@ -12,10 +12,10 @@ skill:
 
 sources:                               # which CallSources are active (CMC + own extractor are the spine)
   cmc_content: true                    # news + community posts (CallSource) and all market data
-  content_extractor: true              # YouTube transcripts / RSS / X
+  content_extractor: false             # STUBBED — YouTube/RSS/X libs not installed; paste.trade + CMC are the call layer
   seed_shows: ["forward-guidance", "all-in", "threadguy", "tbpn"]   # extend freely
   seed_x_handles: []                   # add KOLs to track
-  paste_trade: false                   # V1, best-effort adapter, off by default (no public API)
+  paste_trade: true                    # allowed public surface only: /api/shows/{all-in,threadguy} (NOT the gated bulk API)
   lunarcrush: false                    # V1, optional, historical social for backtest depth
   santiment: false                     # V1, optional
 
