@@ -26,7 +26,9 @@ export default function StreamPage() {
   const [seek, setSeek] = useState(0);
 
   useEffect(() => {
-    setId(new URLSearchParams(window.location.search).get("id") || "");
+    const p = new URLSearchParams(window.location.search);
+    setId(p.get("id") || "");
+    setSeek(Number(p.get("t")) || 0);   // deep-link from a mention lands at its moment
     fetch("/paste.json").then((r) => { if (!r.ok) throw new Error(`paste.json ${r.status}`); return r.json(); })
       .then(setPaste).catch((e) => setErr(String(e)));
   }, []);
@@ -90,7 +92,7 @@ function TradeCard({ t, onSeek }: { t: PasteTrade; onSeek: () => void }) {
         <button onClick={onSeek} disabled={t.video_seconds == null} className="text-primary hover:underline disabled:text-muted-foreground disabled:no-underline">▶ {mmss(t.video_seconds) || "—"}</button>
         {t.bucket && <span className="px-1.5 py-px border border-border uppercase tracking-wider text-muted-foreground">{t.bucket}</span>}
         {t.staked && <span className="px-1.5 py-px border uppercase tracking-wider" style={{ color: hsl("205 70% 60%"), borderColor: hsl("205 70% 60%", 0.4) }}>paste pick</span>}
-        {t.source_url && <a href={t.source_url} target="_blank" rel="noreferrer" className="ml-auto text-muted-foreground hover:text-primary">source ↗</a>}
+        {(t.video_url || t.source_url) && <a href={t.video_url || t.source_url || "#"} target="_blank" rel="noreferrer" className="ml-auto text-muted-foreground hover:text-primary">source ↗</a>}
       </div>
 
       {t.headline_quote && <div className="text-base leading-snug">“{t.headline_quote}”</div>}

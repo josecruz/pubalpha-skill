@@ -35,6 +35,10 @@ export function Timeline({ feed, logoBy, showAsset = true }: { feed: Call[]; log
                 <span className="text-xs shrink-0" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>
               )}
               <span className="text-muted-foreground truncate flex-1 min-w-0 hidden md:block">{c.summary}</span>
+              {c.source_id && (
+                <Link href={`/stream?id=${encodeURIComponent(c.source_id)}${c.video_seconds ? `&t=${c.video_seconds}` : ""}`}
+                  className="text-muted-foreground hover:text-primary shrink-0 text-xs" title="open the source stream">↗</Link>
+              )}
             </div>
           );
         })}

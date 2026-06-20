@@ -273,7 +273,7 @@ function CallRow({ c, logo, compact }: { c: Call; logo?: string | null; compact?
           <PlatformIcon platform={c.platform} size={12} />
           <span className="uppercase" style={{ color: hsl(sc(c.stance)) }}>{stanceLabel(c.stance)}</span>
           {c.source_id
-            ? <Link href={`/stream?id=${encodeURIComponent(c.source_id)}`} className="text-muted-foreground hover:text-primary">{c.source} ↗</Link>
+            ? <Link href={`/stream?id=${encodeURIComponent(c.source_id)}${c.video_seconds ? `&t=${c.video_seconds}` : ""}`} className="text-muted-foreground hover:text-primary">{c.source} ↗</Link>
             : c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>}
           {c.since_call_pct != null && (
             <span title="since the call" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>

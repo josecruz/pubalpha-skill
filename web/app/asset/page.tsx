@@ -276,7 +276,7 @@ export default function AssetPage() {
                   {c.verified && <VerifiedBadge size={12} />}
                   <PlatformIcon platform={c.platform} size={12} />
                   {c.source_id
-                    ? <Link href={`/stream?id=${encodeURIComponent(c.source_id)}`} className="text-muted-foreground hover:text-primary">{c.source} ↗</Link>
+                    ? <Link href={`/stream?id=${encodeURIComponent(c.source_id)}${c.video_seconds ? `&t=${c.video_seconds}` : ""}`} className="text-muted-foreground hover:text-primary">{c.source} ↗</Link>
                     : c.url
                       ? <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>
                       : <span className="text-muted-foreground">{c.source}</span>}

@@ -4,7 +4,7 @@ export interface PasteTrade {
   id: string; ticker: string; direction: string | null; bucket: string | null; staked: boolean;
   speaker: string; speaker_name: string | null; speaker_verified: boolean;
   platform: string | null; instrument: string | null;
-  video_seconds: number | null; author_date: string | null;
+  video_seconds: number | null; video_url: string | null; author_date: string | null;
   entry_price: number | null; posted_price: number | null; peak_pct: number | null; market_cap_fmt: string | null;
   logo_url: string | null;
   headline_quote: string | null; thesis: string | null; trade_summary: string | null; ticker_context: string | null;

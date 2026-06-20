@@ -12,7 +12,7 @@ export interface Call {
   stance: string | null; conviction: number | null; summary: string; ts: string;
   engagement: Record<string, number>; url: string | null;
   entry_price?: number | null; since_call_pct?: number | null;
-  platform?: string | null; verified?: boolean; source_id?: string | null;
+  platform?: string | null; verified?: boolean; source_id?: string | null; video_seconds?: number | null;
 }
 export interface PricePoint { ts: string; close: number; }
 export interface Attention { on_cmc: boolean; sources: string[]; rank: number | null; }
