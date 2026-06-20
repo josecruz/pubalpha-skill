@@ -37,6 +37,15 @@ the call feed works regardless.
   icon** (Twitch / YouTube / X) per call; monogram fallback. Verbose labels trimmed to icons.
 - **Trade Ideas** — the confirmed subset with a gate scoreboard (heating / organic / confirmed / regime).
 
+### Streams browser (`/streams` · `/stream?id=` · `/speaker?handle=`)
+A paste.trade-style browser of the source shows (threadguy/Twitch, all-in/YouTube). The index lists
+episodes (filter by show/speaker, sort newest/most-calls); a **stream page** has the streamer header, an
+**embedded Twitch/YouTube player** (click a call's timestamp to seek), the calls list, and "trades
+explained" cards (bucket / paste-pick tags, the quote, speaker, reasoning, price box, expandable reasoning);
+**speaker pages** show a speaker's calls + L/S + verified. Every call links to its CMC `/asset` thesis.
+Reads `public/paste.json` (from `paste_browse.py`). Content is paste.trade's, shown **with attribution +
+links** to the show and source video.
+
 ### Setups (`/setups`)
 The *decide / predict a move* surface — native re-implementations of CMC Skill Hub skills. Two ranked
 tables: **spot breakout candidates** (20-day-high breakout + volume/ATR + **KOL social confirmation**) and

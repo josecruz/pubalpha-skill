@@ -102,8 +102,13 @@ It has a market-insights panel (total/DeFi volume, dominance, **real altcoin-sea
 CEX-vs-DEX split), the hot-assets bar (with a **CMC ✓** marker when CMC's own crowd corroborates a call),
 the 3-mode social feed, and a Trade Ideas panel.
 
-Three more views deepen each asset/thesis:
+Four more views deepen each asset/thesis:
 
+- **Streams** (`/streams` · `/stream?id=` · `/speaker?handle=`) — a paste.trade-style browser of the source
+  shows: an episode index (filter by show/speaker), a **stream page** (embedded Twitch/YouTube player +
+  the calls at their in-stream timestamps + "trades explained" cards) and **speaker profiles** (their calls
+  + L/S + verified). Each call links to its CMC `/asset` thesis. The same data is on the CLI via
+  `paste_browse.py` (`--shows`/`--list`/`--stream`/`--speaker`). Content is paste.trade's, shown with credit.
 - **Setups** (`/setups`) — the *decide / predict a move* surface: **spot breakout candidates** (Donchian
   20-day-high + volume + **social confirmation**) and **perp breakout candidates** (funding / open interest
   on major venues + bias). Native re-implementations of the CMC Skill Hub skills
@@ -120,6 +125,8 @@ Three more views deepen each asset/thesis:
   % move since the call**.
 
 ![Web dashboard](docs/img/web-dashboard.png)
+![Streams — the paste.trade source browser](docs/img/web-streams.png)
+![Stream detail — video + calls + trades explained](docs/img/web-stream.png)
 ![Setups — breakout candidates (spot + perp)](docs/img/web-setups.png)
 ![Market Intel — CMC's crowd vs the calls](docs/img/web-intel.png)
 ![Asset thesis](docs/img/web-asset.png)
@@ -134,7 +141,11 @@ Three more views deepen each asset/thesis:
   adapter degrades gracefully.
 - **Seed set** — a small, curated, **paraphrased** set of real-shaped calls (one organic + one
   coordinated cluster) so the classifier is demonstrable and deterministic offline.
-- Evidence is always kept to short paraphrases (copyright).
+- **Attribution.** In the funnel/dashboard, social evidence is kept to short (≤15-word) paraphrases. The
+  **Streams browser** (`/streams`, `paste_browse.py`) reproduces paste.trade's public show content more
+  fully (titles, quotes, reasoning, the embedded source video) — and every stream/speaker/call view carries
+  a **"source: paste.trade"** credit and links back to the show + the source video. Nothing comes from the
+  gated surface.
 
 ## Honesty (what's backtested vs forward-validated)
 
@@ -178,8 +189,10 @@ skills/public-alpha/
 │   ├── strategy.py           # assemble the Strategy Spec
 │   ├── backtest.py           # numpy event backtest + honesty block
 │   ├── render.py             # Spec JSON · Strategy Card MD · Report JSON writers
+│   ├── scan.py               # whole-universe scan -> results/scan.json (dashboard data)
+│   ├── paste_browse.py       # paste.trade browser data + CLI -> results/paste.json (streams/speakers/calls)
 │   └── run.py                # funnel CLI
-├── tests/test_wedge.py       # offline classifier check
+├── tests/{test_wedge,test_decide}.py   # offline classifier + decision-skill checks
 ├── config/default.yaml       # tunable thresholds
 └── examples/                 # committed golden run (proof of execution)
 ```
