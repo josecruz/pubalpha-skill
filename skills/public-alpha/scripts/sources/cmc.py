@@ -69,6 +69,64 @@ class CMCSource:
                 self._id_symbol = {}
         return self._id_symbol
 
+    # --- Entity resolution (universal: crypto + tokenized stocks across chains) ---
+
+    _TOKENIZED_CAT = "604f2767ebccdd50cd175fd0"   # CMC "Tokenized Stock" category
+
+    def _tokenized_index(self) -> dict:
+        """Map underlying ticker -> [tokenized listings] (id, symbol, volume, chain). Cached.
+
+        CMC carries 400+ tokenized stocks (xStock `<TICKER>X`, Ondo `<TICKER>on`) across chains;
+        the call layer uses the plain underlying ticker, so this index bridges the two.
+        """
+        if getattr(self, "_tok_idx", None) is not None:
+            return self._tok_idx
+        idx: dict = {}
+        try:
+            d = self._get("/v1/cryptocurrency/category",
+                          {"id": self._TOKENIZED_CAT, "limit": 1000, "convert": "USD"})
+            for x in d.get("coins", []) or []:
+                sym, name = (x.get("symbol") or "").strip(), x.get("name") or ""
+                u = (x.get("quote", {}) or {}).get("USD", {}) or {}
+                und = _underlying_ticker(sym, name)
+                idx.setdefault(und.upper(), []).append({
+                    "id": x.get("id"), "symbol": sym, "name": name, "underlying": und.upper(),
+                    "volume_24h": u.get("volume_24h") or 0.0, "price": u.get("price"),
+                    "percent_change_24h": u.get("percent_change_24h"),
+                    "chain": (x.get("platform") or {}).get("name") or "native",
+                    "token_address": (x.get("platform") or {}).get("token_address"),
+                })
+        except Exception as e:
+            print(f"  [tokenized index] {type(e).__name__}: {e}")
+        self._tok_idx = idx
+        return idx
+
+    def resolve(self, query: str) -> Optional[dict]:
+        """Resolve a ticker or company name to a unified asset entity.
+
+        Returns {kind, display, underlying, listing{id,symbol,volume_24h,chain,...}, aliases:set}.
+        Tokenized stocks resolve to the highest-volume tradeable listing across chains/issuers;
+        `aliases` are every ticker the calls might use (underlying + each tokenized symbol).
+        """
+        q = query.strip()
+        qu = q.upper()
+        idx = self._tokenized_index()
+        listings = list(idx.get(qu, []))
+        if not listings and len(q) >= 3:                       # company-name match, e.g. "micron"
+            ql = q.lower()
+            listings = [l for ls in idx.values() for l in ls if ql in l["name"].lower()]
+        if listings:
+            best = max(listings, key=lambda l: l.get("volume_24h") or 0)
+            aliases = {qu, best["underlying"]} | {l["symbol"].upper() for l in listings}
+            return {"kind": "tokenized_stock", "display": best["name"],
+                    "underlying": best["underlying"], "listing": best, "aliases": aliases}
+        info = self._resolve([qu]).get(qu)                     # crypto path
+        if info and info.get("price") is not None:
+            return {"kind": "crypto", "display": qu, "underlying": qu,
+                    "listing": {"id": info["id"], "symbol": qu, "volume_24h": None, "chain": None},
+                    "aliases": {qu}}
+        return None
+
     # --- MarketSource ---------------------------------------------------
 
     def _resolve(self, symbols: List[str]) -> dict:
@@ -325,6 +383,24 @@ class CMCSource:
                 seen.add(k)
                 uniq.append(c)
         return uniq
+
+
+def _underlying_ticker(sym: str, name: str) -> str:
+    """Strip the issuer suffix from a tokenized-stock symbol to get the real ticker.
+    xStock: TSLAX->TSLA, SPYX->SPY. Ondo: MUon->MU, CRCLon->CRCL."""
+    s = sym or ""
+    nl = (name or "").lower()
+    if "xstock" in nl and s.lower().endswith("x"):
+        return s[:-1]
+    if "ondo" in nl and s.lower().endswith("on"):
+        return s[:-2]
+    if "bstock" in nl and s.lower().endswith("b"):
+        return s[:-1]
+    if s.lower().endswith("on") and len(s) > 3:
+        return s[:-2]
+    if s.lower().endswith("x") and len(s) > 2:
+        return s[:-1]
+    return s
 
 
 def _num(v) -> float:

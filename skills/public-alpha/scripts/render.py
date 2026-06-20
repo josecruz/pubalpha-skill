@@ -52,6 +52,11 @@ def render_card(spec: dict, report: Optional[dict] = None) -> str:
     L = []
     L.append(f"# Strategy Card — {s.get('name', 'public-alpha')}")
     L.append("")
+    asset = s.get("asset") or {}
+    if asset.get("display") and asset.get("display") != s.get("universe", {}).get("assets", [None])[0]:
+        L.append(f"**Asset:** {asset['display']} · _{asset.get('kind', '')}_ · "
+                 f"tradeable as `{asset.get('market_listing')}` on `{asset.get('chain')}`")
+        L.append("")
     L.append(f"**{verdict}**  ·  confidence **{spec.get('confidence')}**  ·  "
              f"{s.get('risk_profile')} / {s.get('horizon')} / lookback {s.get('lookback')}  ·  "
              f"chain `{s.get('universe', {}).get('chain')}`")

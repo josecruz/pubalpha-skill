@@ -62,42 +62,60 @@ def get_market(cfg):
         return None
 
 
-def run(symbol, cfg, args):
-    symbol = symbol.upper()
+def run(query, cfg, args):
     sources = [s.strip() for s in args.sources.split(",") if s.strip()]
     since = datetime.now(timezone.utc) - timedelta(days=args.lookback)
+    market = get_market(cfg)
 
-    print(f"\n— gathering calls for {symbol} (sources: {', '.join(sources)}; since {since:%Y-%m-%d}) —")
-    candidates = gather_calls(cfg, sources, since, symbol)
+    # resolve to a unified asset entity (crypto, or a tokenized stock across chains/issuers)
+    entity = None
+    if market is not None:
+        try:
+            entity = market.resolve(query)
+        except Exception as e:
+            print(f"  [resolve] {type(e).__name__}: {e}")
+    if entity:
+        underlying = entity["underlying"]
+        aliases = {a.upper() for a in entity["aliases"]}
+        listing = entity["listing"]
+        market_symbol, display, chain = listing["symbol"], entity["display"], listing.get("chain") or "—"
+        print(f"  resolved '{query}' → {display} [{entity['kind']}] · tradeable {market_symbol} on {chain} "
+              f"(24h vol ${int(listing.get('volume_24h') or 0):,}) · call aliases {sorted(aliases)}")
+    else:
+        underlying, aliases = query.upper(), {query.upper()}
+        market_symbol, display, chain, listing = query.upper(), query.upper(), "bsc", None
+
+    print(f"\n— gathering calls for {display} (sources: {', '.join(sources)}; since {since:%Y-%m-%d}) —")
+    candidates = gather_calls(cfg, sources, since, underlying)
     calls = normalize(candidates, cfg)
-    groups = group_by_symbol(calls)
-    print(f"  normalized {len(calls)} calls across {len(groups)} symbols")
+    groups = group_by_symbol(calls)                              # full set, for gate stats
+    sym_calls = [c for c in calls if c.symbol.upper() in aliases]
+    for c in sym_calls:                                          # unify aliases under one display ticker
+        c.symbol = underlying
+    print(f"  {len(calls)} calls across {len(groups)} symbols; {len(sym_calls)} matched {display}")
 
-    sym_calls = groups.get(symbol, [])
     if not sym_calls:
         top = sorted(groups.items(), key=lambda kv: len(kv[1]), reverse=True)[:15]
-        print(f"\n  no calls for {symbol}. Symbols with calls: " +
+        print(f"\n  no calls for {display}. Symbols with calls: " +
               ", ".join(f"{k}({len(v)})" for k, v in top))
         return None
 
-    market = get_market(cfg)
-
-    # narrative heating
+    # narrative heating (market-wide)
     narrative = {"heating": False, "source": "cmc_community_topics+categories", "available": False}
     if market is not None:
         try:
-            narrative = market.narrative(symbol)
+            narrative = market.narrative(underlying)
         except Exception as e:
             print(f"  [narrative] unavailable: {e}")
 
-    # on-chain confirmation (None when no market data -> card shows "not available")
+    # confirmation via the tradeable listing (on-chain for crypto, market volume otherwise)
     conf, conf_for_classifier = None, None
     if market is not None:
         try:
-            conf = confirm(market.onchain(symbol), cfg)
+            conf = confirm(market.onchain(market_symbol), cfg)
             conf_for_classifier = conf
         except Exception as e:
-            print(f"  [onchain] unavailable: {e}")
+            print(f"  [confirm] unavailable: {e}")
 
     # regime
     regime = None
@@ -110,19 +128,21 @@ def run(symbol, cfg, args):
     # optional agent-supplied substance judgment
     judgment = None
     if args.judgment_file and Path(args.judgment_file).exists():
-        judgment = json.loads(Path(args.judgment_file).read_text()).get(symbol)
+        judgment = json.loads(Path(args.judgment_file).read_text()).get(underlying)
 
-    cls = classify(sym_calls, symbol, conf=conf_for_classifier, cfg=cfg, llm_judgment=judgment)
+    cls = classify(sym_calls, underlying, conf=conf_for_classifier, cfg=cfg, llm_judgment=judgment)
 
+    asset = {"display": display, "kind": (entity or {}).get("kind", "crypto"),
+             "market_listing": market_symbol, "chain": chain}
     spec = strategy.assemble_spec(
-        symbol=symbol, cls=cls, calls=sym_calls, conf=conf, regime=regime,
-        narrative=narrative, cfg=cfg, risk_profile=args.risk, lookback_days=args.lookback,
-        thesis=_load_thesis(args, symbol),
+        symbol=underlying, cls=cls, calls=sym_calls, conf=conf, regime=regime,
+        narrative=narrative, cfg=cfg, chain=chain, risk_profile=args.risk, lookback_days=args.lookback,
+        thesis=_load_thesis(args, underlying), asset=asset,
     )
 
     report = None
     if args.backtest:
-        report = _try_backtest(symbol, spec, cfg, market, args, groups)
+        report = _try_backtest(market_symbol, spec, cfg, market, args, groups)
         if report:
             spec["backtest_ref"] = f"results/backtest_{report['window']['start']}_{report['window']['end']}.json"
             render.write_report(report)

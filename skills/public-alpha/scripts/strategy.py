@@ -72,6 +72,7 @@ def assemble_spec(
     lookback_days: Optional[int] = None,
     thesis: Optional[str] = None,
     generated_at: Optional[str] = None,
+    asset: Optional[dict] = None,
 ) -> dict:
     skill_cfg = cfg.get("skill", {})
     profiles = skill_cfg.get("risk_profiles", {})
@@ -89,6 +90,7 @@ def assemble_spec(
             "name": f"public-alpha-{cls.classification}-{symbol.lower()}",
             "version": SPEC_VERSION,
             "generated_at": generated_at,
+            "asset": asset or {"display": symbol, "kind": "crypto", "market_listing": symbol, "chain": chain},
             "universe": {"chain": chain, "assets": universe},
             "risk_profile": risk_profile,
             "horizon": horizon,
