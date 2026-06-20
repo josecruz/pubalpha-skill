@@ -108,8 +108,8 @@ any live calls — use this if live data is flaky during a demo.
 ## How CoinMarketCap data is used
 Community trending + categories (narrative heating) · Content/news + per-coin community posts (call
 extraction) · DEX on-chain pools + aggregated DEX volume (confirmation) · Global metrics + Fear & Greed
-+ **real Altcoin Season Index** (regime) · OHLCV historical (backtest). Breadth is deliberate — a
-full-stack use of CMC data.
++ **real Altcoin Season Index** (regime) · OHLCV historical (backtest + breakout) · **derivatives perp
+funding / open interest** (perp breakout screen). Breadth is deliberate — a full-stack use of CMC data.
 
 **Attention cross-reference (the scanner's edge).** The scanner also asks *does CMC's own crowd
 corroborate the KOL calls?* — cross-referencing every called symbol against CMC `trending/most-visited`,
@@ -122,6 +122,29 @@ on CMC) are the strongest; **KOL-only** = unconfirmed hype; **CMC-only** = trend
 For the agent's narration path you may also reach for MCP `get_crypto_technical_analysis` (RSI/MACD/SMA),
 `get_global_crypto_derivatives_metrics` (leverage/funding/ETF flows), and `search_crypto_info` (semantic
 search over whitepapers/docs) — exploratory color on top of the deterministic REST spine.
+
+## Decision skills (CMC Skill Hub)
+Beyond the funnel, the scanner runs three **decision skills** that mirror CMC Skill Hub marketplace
+pipelines — re-implemented natively over the data above (deterministic; see `scripts/decide.py`). They
+power the web **Setups** page + the per-asset thesis, and are **forward screens, not backtested entries**:
+
+| Skill Hub pipeline | native equivalent | what it surfaces |
+|---|---|---|
+| `altcoin_kol_sentiment` | `decide.kol_sentiment` | net KOL sentiment (bull−bear, conviction-weighted, **down-weighted when coordinated**) |
+| `scan_spot_altcoin_breakout_with_social_confirmation` | `decide.spot_breakout` | 20-day-high (Donchian) breakout + volume/ATR + **organic social confirmation** |
+| `screen_perp_breakout_candidates` | `decide.perp_breakout` + `cmc.derivatives` | perp funding / open interest (major venues) + breakout → long/short bias |
+
+**Adapter — calling the real Skill Hub.** If the marketplace MCP is connected, the agent can call the live
+skills instead of (or to cross-check) the native ones:
+```json
+{ "mcpServers": { "cmc-skills": { "url": "https://<skill-hub-mcp-endpoint>",
+  "headers": { "X-CMC-MCP-API-KEY": "your-api-key" } } } }
+```
+Protocol: `find_skill(query="screen_perp_breakout_candidates")` → read `skill_description` + `input_schema`
+→ `execute_skill(unique_name, params)` with params built from the schema (pass a JSON object, never a
+JSON-encoded string; e.g. `{universe:["BTC","ETH"], venue:"Binance", timeframe:"4h"}`). If a required param
+is missing, **ask — do not fabricate**; on failure, give the reason + 1–2 alternative skills, **don't
+silently retry**. The Skill Hub is **not required** — the native `decide.py` skills run regardless.
 
 ## Output contract
 The three artifacts follow `docs/PRDs/01/output-contract.md`. The optional dashboard and any reuse

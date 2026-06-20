@@ -67,6 +67,8 @@ $MOON → COORDINATED (0.13)   6 calls in 38 min · Jaccard 1.0 copypasta · low
 | Price performance (ATH, % from ATH, ROI ladder) | Price context (early vs late) |
 | Market pairs (top spot venues) | CEX/DEX venue breakdown |
 | Altcoin Season Index + F&G history | Regime gate (real index + trend, not a proxy) |
+| Derivatives perp funding / open interest | **Perp breakout screen** (Skill Hub `screen_perp_breakout_candidates`) |
+| OHLCV + the call layer | **Spot breakout + social confirmation** + **KOL sentiment** (Skill Hub) |
 
 CMC is the data spine via the REST Pro API (deterministic path) and the [CMC MCP](https://coinmarketcap.com/api/mcp) (the agent's exploration + narration).
 
@@ -100,18 +102,25 @@ It has a market-insights panel (total/DeFi volume, dominance, **real altcoin-sea
 CEX-vs-DEX split), the hot-assets bar (with a **CMC ✓** marker when CMC's own crowd corroborates a call),
 the 3-mode social feed, and a Trade Ideas panel.
 
-Two more views deepen each asset/thesis:
+Three more views deepen each asset/thesis:
 
+- **Setups** (`/setups`) — the *decide / predict a move* surface: **spot breakout candidates** (Donchian
+  20-day-high + volume + **social confirmation**) and **perp breakout candidates** (funding / open interest
+  on major venues + bias). Native re-implementations of the CMC Skill Hub skills
+  `scan_spot_altcoin_breakout_with_social_confirmation`, `screen_perp_breakout_candidates` and
+  `altcoin_kol_sentiment` — forward screens, not backtested.
 - **Market Intel** (`/intel`) — *CMC's own crowd vs the KOL calls*: **corroborated** (called + trending on
   CMC), **KOL-only** (unconfirmed hype), **CMC-only** (trending but under-called); market movers
   (gainers/losers/most-visited); and a regime panel (altcoin-season index, F&G 14-day trend, dominance).
 - **Asset thesis** (`/asset?symbol=X`) — logo, tags, listing age + "NEW" flag, provenance links, the
   CMC-attention line, a **price chart with call markers** (where each call landed, colored by stance),
-  market stats + CEX/DEX split, **price context** (ATH, % from ATH, ROI ladder), **top venues**, the
-  classifier breakdown, and the full call feed rendered paste.trade-style — each call a LONG/SHORT thesis
-  card with its **entry price and % move since the call**.
+  market stats + CEX/DEX split, **price context** (ATH, % from ATH, ROI ladder), **decision signals** (KOL
+  sentiment gauge · spot breakout · perp funding/OI), **top venues**, the classifier breakdown, and the
+  full call feed rendered paste.trade-style — each call a LONG/SHORT thesis card with its **entry price and
+  % move since the call**.
 
 ![Web dashboard](docs/img/web-dashboard.png)
+![Setups — breakout candidates (spot + perp)](docs/img/web-setups.png)
 ![Market Intel — CMC's crowd vs the calls](docs/img/web-intel.png)
 ![Asset thesis](docs/img/web-asset.png)
 
@@ -163,6 +172,7 @@ skills/public-alpha/
 │   ├── sources/              # base protocols · cmc · paste_trade · seed (+ stubs)
 │   ├── calls.py              # normalize candidates -> resolved, scored calls
 │   ├── classifier.py         # ★ organic vs coordinated
+│   ├── decide.py             # decision skills: KOL sentiment · spot/perp breakout (CMC Skill Hub, native)
 │   ├── confirm.py            # on-chain confirmation gate
 │   ├── regime.py             # Fear&Greed / dominance / altseason gate
 │   ├── strategy.py           # assemble the Strategy Spec

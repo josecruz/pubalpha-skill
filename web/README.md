@@ -33,6 +33,14 @@ the call feed works regardless.
   snippet · source), `ASSETS` (table with price / 24h / CEX vol / DEX vol), `GROUPED` (calls per asset).
 - **Trade Ideas** — the confirmed subset with a gate scoreboard (heating / organic / confirmed / regime).
 
+### Setups (`/setups`)
+The *decide / predict a move* surface — native re-implementations of CMC Skill Hub skills. Two ranked
+tables: **spot breakout candidates** (20-day-high breakout + volume/ATR + **KOL social confirmation**) and
+**perp breakout candidates** (funding / open interest on major venues + long/short bias). Breakouts sort to
+the top; the rest are "building." Forward screens, not backtested. A teaser strip + a "Setups →" link sit on
+the dashboard. (Mirrors `scan_spot_altcoin_breakout_with_social_confirmation`,
+`screen_perp_breakout_candidates`, `altcoin_kol_sentiment`.)
+
 ### Market Intel (`/intel`)
 *CMC's own crowd vs the KOL calls.* Three columns — **corroborated** (called AND trending on CMC),
 **KOL-only** (called, CMC's crowd isn't watching = unconfirmed hype), **CMC-only** (trending on CMC,
@@ -42,8 +50,9 @@ regime panel (altcoin-season index, Fear & Greed 14-day trend, dominance).
 ### Asset thesis (`/asset?symbol=X`)
 Logo, tags, listing age + **NEW** flag, provenance links; the **CMC-attention** line (which CMC lists it's
 trending in + rank); a **price chart** (daily, with call markers colored by stance); price, % changes,
-**CEX vs DEX volume**, market cap; **price context** (ATH, % from ATH, ROI ladder); **top venues**; the
-classifier verdict + reasons + feature bars + on-chain confirmation; and the call feed rendered
+**CEX vs DEX volume**, market cap; **price context** (ATH, % from ATH, ROI ladder); **decision signals**
+(KOL sentiment gauge · spot breakout · perp funding/OI); **top venues**; the classifier verdict + reasons +
+feature bars + on-chain confirmation; and the call feed rendered
 **paste.trade-style** — each call a LONG/SHORT thesis card with **entry price + % move since the call**.
 
 Verdict colors: green = organic, amber = mixed, red = coordinated.
