@@ -1,0 +1,9 @@
+# Public Alpha — runtime deps. All available on Python 3.11.
+# (pydantic is pinned to the v1 line; the code uses v1 syntax.)
+pydantic>=1.10,<2
+numpy>=1.24
+PyYAML>=6.0
+requests>=2.28
+httpx>=0.24
+beautifulsoup4>=4.12   # parse paste.trade allowed show pages
+lxml>=4.9              # bs4 parser backend

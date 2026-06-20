@@ -1,0 +1,17 @@
+# secrets
+.env
+*.env
+!*.env.example
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# runtime output (the golden run lives in skills/public-alpha/examples/, which IS committed)
+skills/public-alpha/results/
+
+# os
+.DS_Store

@@ -1,0 +1,57 @@
+# config/default.yaml — Public Alpha Skill
+# Starting parameters; tune in V0.2 against real data. The Skill reads these; the agent can override per run.
+
+skill:
+  default_universe: { chain: bsc, assets: ["BNB", "CAKE", "TWT"] }   # focused + recognizable; widen as needed
+  risk_profiles:                       # map a profile -> sizing/exit defaults
+    conservative: { base_pct: 1.5, max_position_pct: 5,  stop_loss_pct: -6,  take_profit_pct: 15 }
+    balanced:     { base_pct: 3.0, max_position_pct: 10, stop_loss_pct: -8,  take_profit_pct: 25 }
+    aggressive:   { base_pct: 5.0, max_position_pct: 15, stop_loss_pct: -12, take_profit_pct: 40 }
+  default_horizon: "swing/days"
+  default_lookback_days: 30
+
+sources:                               # which CallSources are active (CMC + own extractor are the spine)
+  cmc_content: true                    # news + community posts (CallSource) and all market data
+  content_extractor: true              # YouTube transcripts / RSS / X
+  seed_shows: ["forward-guidance", "all-in", "threadguy", "tbpn"]   # extend freely
+  seed_x_handles: []                   # add KOLs to track
+  paste_trade: false                   # V1, best-effort adapter, off by default (no public API)
+  lunarcrush: false                    # V1, optional, historical social for backtest depth
+  santiment: false                     # V1, optional
+
+calls:
+  min_conviction: 0.4                  # drop weak call candidates
+  evidence_max_words: 15               # keep paraphrased evidence short (copyright)
+
+classifier:                            # organic vs coordinated (the novelty)
+  organic_threshold: 0.6               # score >= -> organic enough to consider
+  coordinated_cluster_minutes: 120     # many calls within this window -> coordinated signal
+  language_similarity_flag: 0.85       # near-identical phrasing across authors -> coordinated signal
+  min_distinct_authors_for_organic: 3
+
+confirmation:                          # on-chain (deterministic gate)
+  min_liquidity_usd: 25000
+  min_buy_sell_ratio: 1.1
+  require_holder_growth: true
+  max_top10_holder_pct: 70
+
+regime:
+  fear_greed_risk_off_below: 25
+  fear_greed_risk_on_above: 55
+  # btc_dominance / altseason refine later; start with Fear & Greed
+
+exhaustion:
+  max_runup_pct: 50                    # skip if already up this much over lookback (don't buy the top)
+  lookback_hours: 24
+
+backtest:
+  history_source: cmc_dex_ohlcv        # or "geckoterminal" (confirm reach in V0.0)
+  interval: 1h
+  window_days: 30
+  benchmark: buy_and_hold_bnb
+  fee_pct: 0.25
+  slippage_pct: 0.3
+
+risk_limits:
+  max_total_exposure_pct: 50
+  max_drawdown_guard_pct: 20

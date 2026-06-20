@@ -1,0 +1,116 @@
+{
+  "_note": "Curated, paraphrased example calls used as a demo-safe backbone for the call layer. Two clusters: CAKE (organic) and $MOON (coordinated). Texts are short paraphrases / synthetic, not verbatim quotes (copyright). Timestamps and follower counts are illustrative. The same CallSource interface accepts live CMC content + the paste.trade allowed surface.",
+  "calls": [
+    {
+      "symbol": "CAKE",
+      "raw_text": "CAKE fee revenue plus veCAKE buybacks make it structurally undervalued versus other DEX tokens.",
+      "author": "forward-guidance",
+      "source": "seed:podcast:forward-guidance",
+      "ts": "2026-06-10T14:00:00Z",
+      "engagement": {"followers": 220000, "likes": 1800},
+      "stance": "bullish",
+      "conviction": 0.7
+    },
+    {
+      "symbol": "CAKE",
+      "raw_text": "PancakeSwap v4 hooks could pull liquidity away from competing BSC venues over the next quarter.",
+      "author": "defi_researcher",
+      "source": "seed:substack:defi-researcher",
+      "ts": "2026-06-12T09:30:00Z",
+      "engagement": {"followers": 41000, "likes": 540},
+      "stance": "bullish",
+      "conviction": 0.65
+    },
+    {
+      "symbol": "CAKE",
+      "raw_text": "veCAKE lock ratio keeps climbing; circulating supply is getting tighter each week.",
+      "author": "0xchef",
+      "source": "seed:x:0xchef",
+      "ts": "2026-06-14T18:10:00Z",
+      "engagement": {"followers": 88000, "likes": 920},
+      "stance": "bullish",
+      "conviction": 0.6
+    },
+    {
+      "symbol": "CAKE",
+      "raw_text": "BNB chain activity is up and CAKE is the cleanest liquidity proxy for that trend.",
+      "author": "all-in",
+      "source": "seed:podcast:all-in",
+      "ts": "2026-06-17T16:00:00Z",
+      "engagement": {"followers": 510000, "likes": 4200},
+      "stance": "bullish",
+      "conviction": 0.7
+    },
+    {
+      "symbol": "CAKE",
+      "raw_text": "CAKE is one of the few DEX tokens with real protocol cashflow backing the revenue-share model.",
+      "author": "tbpn",
+      "source": "seed:show:tbpn",
+      "ts": "2026-06-18T12:30:00Z",
+      "engagement": {"followers": 130000, "likes": 1500},
+      "stance": "bullish",
+      "conviction": 0.68
+    },
+
+    {
+      "symbol": "MOON",
+      "raw_text": "$MOON is about to 100x dont miss this last chance ape in now!",
+      "author": "cryptogem_x",
+      "source": "seed:x:cryptogem_x",
+      "ts": "2026-06-19T13:00:00Z",
+      "engagement": {"followers": 1900, "likes": 12},
+      "stance": "bullish",
+      "conviction": 0.9
+    },
+    {
+      "symbol": "MOON",
+      "raw_text": "$MOON is about to 100x dont miss this last chance ape in now",
+      "author": "alpha_caller7",
+      "source": "seed:x:alpha_caller7",
+      "ts": "2026-06-19T13:08:00Z",
+      "engagement": {"followers": 2300, "likes": 9},
+      "stance": "bullish",
+      "conviction": 0.9
+    },
+    {
+      "symbol": "MOON",
+      "raw_text": "$MOON about to 100x dont miss this last chance ape in now!!",
+      "author": "moonshot_ky",
+      "source": "seed:x:moonshot_ky",
+      "ts": "2026-06-19T13:15:00Z",
+      "engagement": {"followers": 800, "likes": 4},
+      "stance": "bullish",
+      "conviction": 0.92
+    },
+    {
+      "symbol": "MOON",
+      "raw_text": "$MOON is about to 100x dont miss this last chance ape now",
+      "author": "cryptogem_x",
+      "source": "seed:x:cryptogem_x",
+      "ts": "2026-06-19T13:22:00Z",
+      "engagement": {"followers": 1900, "likes": 7},
+      "stance": "bullish",
+      "conviction": 0.9
+    },
+    {
+      "symbol": "MOON",
+      "raw_text": "$MOON next 100x gem last chance to ape in now dont fade!!",
+      "author": "degenplays",
+      "source": "seed:x:degenplays",
+      "ts": "2026-06-19T13:30:00Z",
+      "engagement": {"followers": 3100, "likes": 15},
+      "stance": "bullish",
+      "conviction": 0.88
+    },
+    {
+      "symbol": "MOON",
+      "raw_text": "$MOON is about to 100x dont miss this last chance ape in now!",
+      "author": "alpha_caller7",
+      "source": "seed:x:alpha_caller7",
+      "ts": "2026-06-19T13:38:00Z",
+      "engagement": {"followers": 2300, "likes": 11},
+      "stance": "bullish",
+      "conviction": 0.9
+    }
+  ]
+}
