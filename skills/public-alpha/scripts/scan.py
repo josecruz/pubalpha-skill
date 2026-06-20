@@ -51,11 +51,61 @@ def _stance_mix(calls) -> dict:
     return {"bullish": m.get("bullish", 0), "bearish": m.get("bearish", 0), "neutral": m.get("neutral", 0)}
 
 
-def _regime_dict(r):
-    if r is None:
-        return {"available": False, "state": "unknown"}
-    return {"available": True, "state": r.state, "fear_greed": r.fear_greed,
-            "btc_dominance": r.btc_dominance, "altseason": r.altseason, "notes": r.notes}
+def _regime_dict(r, altseason_index=None, fear_greed_trend=None):
+    base = {"available": False, "state": "unknown"} if r is None else {
+        "available": True, "state": r.state, "fear_greed": r.fear_greed,
+        "btc_dominance": r.btc_dominance, "altseason": r.altseason, "notes": r.notes}
+    if altseason_index:
+        base["altseason_index"] = altseason_index        # real CMC index (replaces the proxy)
+    if fear_greed_trend:
+        base["fear_greed_trend"] = fear_greed_trend
+    return base
+
+
+def _attention_overlap(attention: dict, called: set) -> dict:
+    """Cross-ref the called symbols against CMC's own attention lists.
+    Returns the raw movers + overlap sets: corroborated / kol_only / cmc_only,
+    and a per-symbol map {SYM: {sources[], rank}} for stamping each signal."""
+    per_symbol: dict = {}
+    for listname in ("most_visited", "gainers", "losers", "community"):
+        for x in attention.get(listname, []):
+            sym = x.get("symbol")
+            if not sym:
+                continue
+            a = per_symbol.setdefault(sym, {"sources": [], "name": x.get("name"),
+                                            "rank": x.get("rank"), "percent_change_24h": x.get("percent_change_24h")})
+            if listname not in a["sources"]:
+                a["sources"].append(listname)
+            if x.get("rank") and (a["rank"] is None or x["rank"] < a["rank"]):
+                a["rank"] = x["rank"]
+            if a["percent_change_24h"] is None and x.get("percent_change_24h") is not None:
+                a["percent_change_24h"] = x["percent_change_24h"]
+    cmc_syms = set(per_symbol)
+    cmc_only = [{"symbol": s, **per_symbol[s]} for s in sorted(cmc_syms - called,
+                key=lambda s: per_symbol[s]["rank"] or 9999)][:24]
+    return {
+        "per_symbol": per_symbol,
+        "corroborated": sorted(called & cmc_syms),
+        "kol_only": sorted(called - cmc_syms),
+        "cmc_only": cmc_only,
+    }
+
+
+def _identity(info):
+    """Pass through CMC metadata + derive age_days + is_new (brand-new token = pump risk)."""
+    if not info:
+        return None
+    out = dict(info)
+    out["age_days"], out["is_new"] = None, False
+    da = info.get("date_added")
+    if da:
+        try:
+            d = datetime.fromisoformat(str(da).replace("Z", "+00:00"))
+            out["age_days"] = (datetime.now(timezone.utc) - d).days
+            out["is_new"] = out["age_days"] < 30
+        except ValueError:
+            pass
+    return out
 
 
 def _conf_dict(c):
@@ -77,6 +127,7 @@ def scan(cfg, args) -> dict:
 
     market = _market(cfg)
     regime = narrative = None
+    altseason_index, fg_trend = {}, {}
     if market is not None:
         try:
             regime = get_state(market.regime_inputs(), cfg)
@@ -86,6 +137,14 @@ def scan(cfg, args) -> dict:
             narrative = market.narrative()
         except Exception as e:
             print(f"[narrative] {e}", file=sys.stderr)
+        try:
+            altseason_index = market.altcoin_season()       # real CMC index (replaces 100-BTC_dom proxy)
+        except Exception as e:
+            print(f"[altcoin_season] {e}", file=sys.stderr)
+        try:
+            fg_trend = market.fear_greed_trend()
+        except Exception as e:
+            print(f"[fear_greed_trend] {e}", file=sys.stderr)
     narrative = narrative or {"heating": False, "available": False, "trending_topics": [], "top_categories": []}
 
     # social-signal feed: classify every cluster with >= min_calls
@@ -116,6 +175,37 @@ def scan(cfg, args) -> dict:
         except Exception as e:
             print(f"[market_block] {e}", file=sys.stderr)
 
+    # CMC attention cross-ref + identity + price context (enrichment over the classified set)
+    cmc_attention = {}
+    if market is not None and signals:
+        sym_to_id = {s["symbol"]: (s.get("market") or {}).get("id")
+                     for s in signals if (s.get("market") or {}).get("id")}
+        try:
+            raw = market.cmc_attention()
+            ov = _attention_overlap(raw, {s["symbol"] for s in signals})
+            for s in signals:                                # stamp each signal: does CMC's crowd agree?
+                a = ov["per_symbol"].get(s["symbol"])
+                s["attention"] = {"on_cmc": bool(a), "sources": a["sources"] if a else [],
+                                  "rank": a["rank"] if a else None}
+            cmc_attention = {k: raw.get(k, []) for k in ("most_visited", "gainers", "losers", "community")}
+            cmc_attention["overlap"] = {k: ov[k] for k in ("corroborated", "kol_only", "cmc_only")}
+            print(f"  attention: {len(ov['corroborated'])} corroborated · "
+                  f"{len(ov['kol_only'])} KOL-only · {len(ov['cmc_only'])} CMC-only")
+        except Exception as e:
+            print(f"[cmc_attention] {e}", file=sys.stderr)
+        try:
+            ident = market.info(sym_to_id)
+            for s in signals:
+                s["identity"] = _identity(ident.get(s["symbol"]))
+        except Exception as e:
+            print(f"[info] {e}", file=sys.stderr)
+        try:
+            perf = market.price_performance(sym_to_id)
+            for s in signals:
+                s["performance"] = perf.get(s["symbol"])
+        except Exception as e:
+            print(f"[price_performance] {e}", file=sys.stderr)
+
     # trade ideas: on-chain confirm the top organic names (bounded), gate by regime
     ideas = []
     regime_ok = regime is not None and regime.state in ("risk_on", "neutral")
@@ -140,6 +230,14 @@ def scan(cfg, args) -> dict:
             "confidence": confidence, "top_calls": s["top_calls"][:3],
         })
     ideas.sort(key=lambda i: (i["entry_ready"], i["confidence"]), reverse=True)
+
+    # top venues (real CEX/DEX breakdown) for the trade-idea + top signals only (bounds per-asset calls)
+    if market is not None:
+        want = {i["symbol"] for i in ideas} | {s["symbol"] for s in signals[:12]}
+        for s in signals:
+            if s["symbol"] in want:
+                cid = (s.get("market") or {}).get("id")
+                s["venues"] = market.market_pairs(cid) if cid else []
 
     # flat social-trades feed: every call on a classified asset, recent-first (for the web dashboard)
     sig_by_sym = {s["symbol"]: s for s in signals}
@@ -178,10 +276,11 @@ def scan(cfg, args) -> dict:
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "meta": {"total_calls": len(calls), "unique_symbols": len(groups),
                  "classified": len(signals), "trade_ideas": len(ideas), "lookback_days": args.lookback},
-        "regime": _regime_dict(regime),
+        "regime": _regime_dict(regime, altseason_index, fg_trend),
         "narrative": narrative,
         "gate_stats": gate,
         "market_insights": insights,
+        "cmc_attention": cmc_attention,
         "signals": signals,
         "trade_ideas": ideas,
         "feed": feed,

@@ -21,6 +21,9 @@ allowed-tools:
   - mcp__cmc-mcp__get_global_metrics_latest
   - mcp__cmc-mcp__trending_crypto_narratives
   - mcp__cmc-mcp__get_crypto_metrics
+  - mcp__cmc-mcp__get_crypto_technical_analysis
+  - mcp__cmc-mcp__get_global_crypto_derivatives_metrics
+  - mcp__cmc-mcp__search_crypto_info
 ---
 
 # Public Alpha — CMC Strategy Skill
@@ -103,9 +106,22 @@ any live calls — use this if live data is flaky during a demo.
 - Never present the spec's rules as opaque — they're inspectable strings a judge can read.
 
 ## How CoinMarketCap data is used
-Community trending + categories (narrative heating) · Content/news (call extraction) · DEX on-chain
-(confirmation) · Global metrics + Fear & Greed (regime) · OHLCV historical (backtest). Breadth is
-deliberate — this is a full-stack use of CMC data.
+Community trending + categories (narrative heating) · Content/news + per-coin community posts (call
+extraction) · DEX on-chain pools + aggregated DEX volume (confirmation) · Global metrics + Fear & Greed
++ **real Altcoin Season Index** (regime) · OHLCV historical (backtest). Breadth is deliberate — a
+full-stack use of CMC data.
+
+**Attention cross-reference (the scanner's edge).** The scanner also asks *does CMC's own crowd
+corroborate the KOL calls?* — cross-referencing every called symbol against CMC `trending/most-visited`,
+`trending/gainers-losers`, and `community/trending/token`. Calls that are **corroborated** (also trending
+on CMC) are the strongest; **KOL-only** = unconfirmed hype; **CMC-only** = trending but nobody's calling
+(under-called, a watch list). Each asset is further enriched with `cryptocurrency/info` (logo, tags, age
++ "NEW" flag, provenance links), `price-performance-stats` (ATH, % from ATH, ROI ladder), and
+`market-pairs` (top spot venues). These feed the web dashboard's **Market Intel** page + per-asset thesis.
+
+For the agent's narration path you may also reach for MCP `get_crypto_technical_analysis` (RSI/MACD/SMA),
+`get_global_crypto_derivatives_metrics` (leverage/funding/ETF flows), and `search_crypto_info` (semantic
+search over whitepapers/docs) — exploratory color on top of the deterministic REST spine.
 
 ## Output contract
 The three artifacts follow `docs/PRDs/01/output-contract.md`. The optional dashboard and any reuse

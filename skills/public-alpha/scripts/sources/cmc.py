@@ -271,6 +271,7 @@ class CMCSource:
                 if best:
                     e, u = best
                     out[(e.get("symbol") or key).upper()] = {
+                        "id": e.get("id"),
                         "price": u.get("price"), "percent_change_24h": u.get("percent_change_24h"),
                         "percent_change_7d": u.get("percent_change_7d"), "volume_24h": u.get("volume_24h"),
                         "cex_volume_24h": u.get("cex_volume_24h"), "dex_volume_24h": u.get("dex_volume_24h"),
@@ -282,6 +283,7 @@ class CMCSource:
             if (not m or not _num(m.get("volume_24h"))) and sym in idx:
                 b = max(idx[sym], key=lambda l: l.get("volume_24h") or 0)
                 out[sym] = {
+                    "id": b.get("id"),
                     "price": b.get("price"), "percent_change_24h": b.get("percent_change_24h"),
                     "percent_change_7d": None, "volume_24h": b.get("volume_24h"),
                     "cex_volume_24h": 0, "dex_volume_24h": b.get("volume_24h"),
@@ -301,6 +303,168 @@ class CMCSource:
                 "btc_dominance": g.get("btc_dominance"), "eth_dominance": g.get("eth_dominance"),
             }
         except Exception:
+            return {}
+
+    # --- CMC attention (cross-ref the KOL calls against CMC's own crowd) ----
+
+    def cmc_attention(self, limit: int = 30) -> dict:
+        """CMC's own attention signals, to cross-reference against the KOL calls.
+        Each list is [{symbol, name, rank, percent_change_24h}]; best-effort per list so a
+        gated/missing endpoint (crypto trending needs Startup+) just drops one list."""
+        def _coins(path, params):
+            try:
+                d = self._get(path, params)
+                return d if isinstance(d, list) else (d.get("data") or [])
+            except Exception as e:
+                print(f"  [attention {path}] {type(e).__name__}: {e}")
+                return []
+
+        def _row(x):
+            u = (x.get("quote", {}) or {}).get("USD", {}) or {}
+            return {"symbol": (x.get("symbol") or "").upper(), "name": x.get("name"),
+                    "rank": x.get("cmc_rank"), "percent_change_24h": u.get("percent_change_24h")}
+
+        out = {
+            "most_visited": [_row(x) for x in _coins(
+                "/v1/cryptocurrency/trending/most-visited", {"limit": limit})],
+            "gainers": [_row(x) for x in _coins(
+                "/v1/cryptocurrency/trending/gainers-losers",
+                {"limit": limit, "sort": "percent_change_24h", "sort_dir": "desc", "time_period": "24h"})],
+            "losers": [_row(x) for x in _coins(
+                "/v1/cryptocurrency/trending/gainers-losers",
+                {"limit": limit, "sort": "percent_change_24h", "sort_dir": "asc", "time_period": "24h"})],
+            "community": [],
+        }
+        for x in _coins("/v1/community/trending/token", {"limit": min(limit, 5)}):   # caps at 5
+            out["community"].append({"symbol": (x.get("symbol") or "").upper(),
+                                     "name": x.get("name"), "rank": x.get("rank")})
+        return out
+
+    # --- Asset identity + price context -------------------------------------
+
+    def info(self, sym_to_id: dict) -> dict:
+        """Batched metadata by canonical id (avoids symbol-collision scam tokens).
+        {SYM: {logo, tags[], category, date_added, date_launched, description, urls{...}}}."""
+        id_to_sym = {str(i): s for s, i in sym_to_id.items() if i}
+        ids = list(id_to_sym.keys())
+        out: dict = {}
+        for i in range(0, len(ids), 100):
+            chunk = ids[i:i + 100]
+            try:
+                d = self._get("/v2/cryptocurrency/info", {"id": ",".join(chunk)})
+            except Exception as e:
+                print(f"  [info] {type(e).__name__}: {e}")
+                continue
+            for k, entry in (d or {}).items():
+                e = entry[0] if isinstance(entry, list) else entry
+                sym = id_to_sym.get(str(k)) or (e.get("symbol") or "").upper()
+                urls = e.get("urls", {}) or {}
+
+                def _first(key):
+                    v = urls.get(key)
+                    if isinstance(v, list):
+                        return v[0] if v else None
+                    return v or None
+
+                out[sym] = {
+                    "logo": e.get("logo"), "tags": (e.get("tags") or [])[:6],
+                    "category": e.get("category"), "date_added": e.get("date_added"),
+                    "date_launched": e.get("date_launched"),
+                    "description": (e.get("description") or "")[:280] or None,
+                    "urls": {"website": _first("website"), "twitter": _first("twitter"),
+                             "reddit": _first("reddit"), "explorer": _first("explorer"),
+                             "source_code": _first("source_code"), "technical_doc": _first("technical_doc")},
+                }
+        return out
+
+    def price_performance(self, sym_to_id: dict) -> dict:
+        """Batched ATH/ATL + ROI ladder by canonical id.
+        {SYM: {ath, ath_date, atl, pct_from_ath, roi_all_time, periods{7d,30d,90d,365d}}}."""
+        id_to_sym = {str(i): s for s, i in sym_to_id.items() if i}
+        ids = list(id_to_sym.keys())
+        out: dict = {}
+        for i in range(0, len(ids), 100):
+            chunk = ids[i:i + 100]
+            try:
+                d = self._get("/v2/cryptocurrency/price-performance-stats/latest",
+                              {"id": ",".join(chunk), "time_period": "all_time,7d,30d,90d,365d", "convert": "USD"})
+            except Exception as e:
+                print(f"  [price_performance] {type(e).__name__}: {e}")
+                continue
+            for k, entry in (d or {}).items():
+                e = entry[0] if isinstance(entry, list) else entry
+                sym = id_to_sym.get(str(k)) or (e.get("symbol") or "").upper()
+                P = e.get("periods", {}) or {}
+
+                def _pc(p):
+                    return (((P.get(p) or {}).get("quote") or {}).get("USD") or {}).get("percent_change")
+
+                allt = ((P.get("all_time") or {}).get("quote") or {}).get("USD") or {}
+                ath, close = allt.get("high"), allt.get("close")
+                pct_from_ath = round((close - ath) / ath * 100, 2) if (ath and close) else None
+                out[sym] = {
+                    "ath": ath, "ath_date": allt.get("high_timestamp"), "atl": allt.get("low"),
+                    "pct_from_ath": pct_from_ath, "roi_all_time": allt.get("percent_change"),
+                    "periods": {"7d": _pc("7d"), "30d": _pc("30d"), "90d": _pc("90d"), "365d": _pc("365d")},
+                }
+        return out
+
+    def market_pairs(self, cid, limit: int = 8) -> list:
+        """Top spot venues by 24h volume for one asset: [{exchange, pair, category, volume_24h, price}]."""
+        try:
+            d = self._get("/v2/cryptocurrency/market-pairs/latest",
+                          {"id": str(cid), "limit": 100, "category": "spot", "convert": "USD"})
+        except Exception as e:
+            print(f"  [market_pairs {cid}] {type(e).__name__}: {e}")
+            return []
+        pairs = (d.get("market_pairs") if isinstance(d, dict) else None) or []
+        rows = []
+        for p in pairs:
+            q = p.get("quote", {}) or {}
+            usd, rep = q.get("USD", {}) or {}, q.get("exchange_reported", {}) or {}
+            rows.append({
+                "exchange": (p.get("exchange") or {}).get("name"),
+                "pair": p.get("market_pair"), "category": p.get("category"),
+                "volume_24h": _num(usd.get("volume_24h")) or _num(rep.get("volume_24h_quote")),
+                "price": usd.get("price") or rep.get("price"),
+            })
+        rows.sort(key=lambda r: r["volume_24h"] or 0, reverse=True)
+        return rows[:limit]
+
+    def altcoin_season(self) -> dict:
+        """Real CMC Altcoin Season Index (0-100) — replaces the 100-BTC_dom proxy."""
+        try:
+            d = self._get("/v1/altcoin-season-index/latest")
+            idx = d.get("altcoin_index")
+            if idx is None:
+                return {}
+            idx = int(idx)
+            cls = "altcoin_season" if idx >= 75 else ("bitcoin_season" if idx <= 25 else "neutral")
+            return {"value": idx, "classification": cls,
+                    "yearly_high": d.get("yearly_high"), "yearly_low": d.get("yearly_low")}
+        except Exception as e:
+            print(f"  [altcoin_season] {type(e).__name__}: {e}")
+            return {}
+
+    def fear_greed_trend(self, limit: int = 14) -> dict:
+        """F&G over the last `limit` days: {points:[{ts,value}], delta, direction, latest}."""
+        try:
+            d = self._get("/v3/fear-and-greed/historical", {"limit": limit})
+            rows = d if isinstance(d, list) else (d.get("data") or [])
+            pts = []
+            for r in rows:
+                try:
+                    pts.append({"ts": int(r.get("timestamp")), "value": int(r.get("value"))})
+                except (TypeError, ValueError):
+                    continue
+            pts.sort(key=lambda x: x["ts"])   # oldest -> newest
+            if not pts:
+                return {}
+            delta = pts[-1]["value"] - pts[0]["value"]
+            direction = "rising" if delta > 2 else ("falling" if delta < -2 else "flat")
+            return {"points": pts, "delta": delta, "direction": direction, "latest": pts[-1]["value"]}
+        except Exception as e:
+            print(f"  [fear_greed_trend] {type(e).__name__}: {e}")
             return {}
 
     def regime_inputs(self) -> dict:
