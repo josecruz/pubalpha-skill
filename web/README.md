@@ -23,16 +23,26 @@ the call feed works regardless.
 - `npm run dev` — serve the existing `public/scan.json` without re-scanning.
 
 ## What it shows
-- **Context strip** — regime (Fear & Greed), heating narrative, trending topics, totals.
-- **Market insights** — total market cap, 24h / DeFi volume, BTC & ETH dominance, and a **CEX vs DEX
-  volume** split across the surfaced assets.
-- **Hot assets** — most-called assets (with price + 24h %); click one to open its detail page.
-- **Social-trades feed** — 3 views via the selector: `CALLS` (each call: author · asset+verdict ·
-  stance · time · snippet · source link), `ASSETS` (a table with price / 24h / CEX vol / DEX vol),
-  `GROUPED` (calls under each asset).
+- **Context strip** — regime (Fear & Greed + 14-day trend arrow), heating narrative, trending topics, totals.
+- **Market insights** — total market cap, 24h / DeFi volume, BTC & ETH dominance, the **real Altcoin
+  Season Index**, and a **CEX vs DEX volume** split across the surfaced assets.
+- **CMC crowd vs calls** strip — corroborated / KOL-only / CMC-only counts; links to Market Intel.
+- **Hot assets** — most-called assets (price + 24h %, plus a **CMC ✓** marker when CMC's crowd
+  corroborates the call); click one to open its thesis page.
+- **Social-trades feed** — 3 views via the selector: `CALLS` (author · asset+verdict · stance · time ·
+  snippet · source), `ASSETS` (table with price / 24h / CEX vol / DEX vol), `GROUPED` (calls per asset).
 - **Trade Ideas** — the confirmed subset with a gate scoreboard (heating / organic / confirmed / regime).
-- **Asset detail** (`/asset?symbol=X`) — price, % changes, **CEX vs DEX volume**, market cap; the
-  classifier verdict + reasons + per-signal feature bars + on-chain confirmation; and the asset's full
-  call feed with source links.
+
+### Market Intel (`/intel`)
+*CMC's own crowd vs the KOL calls.* Three columns — **corroborated** (called AND trending on CMC),
+**KOL-only** (called, CMC's crowd isn't watching = unconfirmed hype), **CMC-only** (trending on CMC,
+nobody's calling = under-called watch list) — plus market movers (gainers / losers / most-visited) and a
+regime panel (altcoin-season index, Fear & Greed 14-day trend, dominance).
+
+### Asset thesis (`/asset?symbol=X`)
+Logo, tags, listing age + **NEW** flag, provenance links; the **CMC-attention** line (which CMC lists it's
+trending in + rank); price, % changes, **CEX vs DEX volume**, market cap; **price context** (ATH, % from
+ATH, ROI ladder); **top venues**; the classifier verdict + reasons + feature bars + on-chain confirmation;
+and the asset's full call feed with source links.
 
 Verdict colors: green = organic, amber = mixed, red = coordinated.

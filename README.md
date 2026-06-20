@@ -59,9 +59,14 @@ $MOON → COORDINATED (0.13)   6 calls in 38 min · Jaccard 1.0 copypasta · low
 | Community trending topics | Narrative heating |
 | Cryptocurrency categories + performance | Narrative heating |
 | Content (news + posts, engagement) | Call extraction |
-| DEX on-chain (liquidity, buy/sell, holders) | On-chain confirmation |
+| DEX on-chain (liquidity, buy/sell) | On-chain confirmation |
 | Global metrics + Fear & Greed | Regime gate |
 | OHLCV historical | Backtest |
+| Trending (most-visited, gainers/losers) + community trending tokens | **Attention cross-ref** — does CMC's crowd corroborate the calls? |
+| Metadata (logo, tags, links, listing date) | Asset identity + provenance + "new token" flag |
+| Price performance (ATH, % from ATH, ROI ladder) | Price context (early vs late) |
+| Market pairs (top spot venues) | CEX/DEX venue breakdown |
+| Altcoin Season Index + F&G history | Regime gate (real index + trend, not a proxy) |
 
 CMC is the data spine via the REST Pro API (deterministic path) and the [CMC MCP](https://coinmarketcap.com/api/mcp) (the agent's exploration + narration).
 
@@ -91,12 +96,22 @@ terminal theme.
 cd web && npm install && npm run scan:dev   # scans, then opens http://localhost:3000
 ```
 
-It has a market-insights panel (total/DeFi volume, dominance, CEX-vs-DEX split), the hot-assets bar, the
-3-mode social feed, a Trade Ideas panel, and a per-asset **detail page** (`/asset?symbol=X`) with market
-stats (incl. CEX/DEX volume), the classifier breakdown, and the asset's full call feed.
+It has a market-insights panel (total/DeFi volume, dominance, **real altcoin-season index**, F&G trend,
+CEX-vs-DEX split), the hot-assets bar (with a **CMC ✓** marker when CMC's own crowd corroborates a call),
+the 3-mode social feed, and a Trade Ideas panel.
+
+Two more views deepen each asset/thesis:
+
+- **Market Intel** (`/intel`) — *CMC's own crowd vs the KOL calls*: **corroborated** (called + trending on
+  CMC), **KOL-only** (unconfirmed hype), **CMC-only** (trending but under-called); market movers
+  (gainers/losers/most-visited); and a regime panel (altcoin-season index, F&G 14-day trend, dominance).
+- **Asset thesis** (`/asset?symbol=X`) — logo, tags, listing age + "NEW" flag, provenance links, the
+  CMC-attention line, market stats + CEX/DEX split, **price context** (ATH, % from ATH, ROI ladder), **top
+  venues**, the classifier breakdown, and the asset's full call feed.
 
 ![Web dashboard](docs/img/web-dashboard.png)
-![Asset detail](docs/img/web-asset.png)
+![Market Intel — CMC's crowd vs the calls](docs/img/web-intel.png)
+![Asset thesis](docs/img/web-asset.png)
 
 ## Data sources & access (honest)
 
