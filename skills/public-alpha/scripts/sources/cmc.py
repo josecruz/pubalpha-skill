@@ -413,11 +413,12 @@ class CMCSource:
                 }
         return out
 
-    def market_pairs(self, cid, limit: int = 8) -> list:
-        """Top spot venues by 24h volume for one asset: [{exchange, pair, category, volume_24h, price}]."""
+    def market_pairs(self, cid, limit: int = 20) -> list:
+        """All venues an asset trades on (CEX + DEX), top by 24h volume:
+        [{exchange, exchange_id, exchange_slug, pair, category, volume_24h, price}]."""
         try:
             d = self._get("/v2/cryptocurrency/market-pairs/latest",
-                          {"id": str(cid), "limit": 100, "category": "spot", "convert": "USD"})
+                          {"id": str(cid), "limit": 500, "category": "spot", "convert": "USD"})   # all spot venues
         except Exception as e:
             print(f"  [market_pairs {cid}] {type(e).__name__}: {e}")
             return []
@@ -426,8 +427,9 @@ class CMCSource:
         for p in pairs:
             q = p.get("quote", {}) or {}
             usd, rep = q.get("USD", {}) or {}, q.get("exchange_reported", {}) or {}
+            ex = p.get("exchange") or {}
             rows.append({
-                "exchange": (p.get("exchange") or {}).get("name"),
+                "exchange": ex.get("name"), "exchange_id": ex.get("id"), "exchange_slug": ex.get("slug"),
                 "pair": p.get("market_pair"), "category": p.get("category"),
                 "volume_24h": _num(usd.get("volume_24h")) or _num(rep.get("volume_24h_quote")),
                 "price": usd.get("price") or rep.get("price"),
