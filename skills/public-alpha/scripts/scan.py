@@ -21,6 +21,7 @@ from scripts.backtest import compute_gate_stats              # noqa: E402
 from scripts.calls import group_by_symbol, normalize         # noqa: E402
 from scripts.classifier import classify                      # noqa: E402
 from scripts.confirm import confirm                          # noqa: E402
+from scripts.decide import kol_sentiment, perp_breakout, spot_breakout  # noqa: E402
 from scripts.regime import get_state                         # noqa: E402
 from scripts.sources.paste_trade import PasteTradeSource     # noqa: E402
 from scripts.sources.seed import SeedSource                  # noqa: E402
@@ -180,6 +181,7 @@ def scan(cfg, args) -> dict:
             "distinct_authors": len({c.author for c in cs}),
             "sources": sorted({c.source.split(":")[0] for c in cs}),
             "stance_mix": _stance_mix(cs),
+            "sentiment": kol_sentiment(cs, res.classification),   # KOL sentiment skill (free, all signals)
             "latest_ts": max(c.ts for c in cs).isoformat(),
             "top_calls": [_call_dict(c) for c in top],
         })
@@ -281,7 +283,47 @@ def scan(cfg, args) -> dict:
             price = price_by_sym.get(s["symbol"])
             for tc in s["top_calls"]:                       # annotate the signal's own calls
                 tc["entry_price"], tc["since_call_pct"] = _since_call(ser, tc.get("ts"), price)
+            # decision skills: breakout (spot) + perp (derivatives funding/OI) — crypto only
+            if (s.get("market") or {}).get("kind") != "tokenized_stock":
+                s["breakout"] = spot_breakout(candles)
+                try:
+                    s["perp"] = perp_breakout(market.derivatives(s["symbol"]), s.get("breakout"))
+                except Exception as e:
+                    print(f"[derivatives {s['symbol']}] {e}", file=sys.stderr)
         print(f"  price series for {len(series_by_sym)} assets")
+
+    # decision setups (forward screens — NOT backtested) — ranked candidates, breakouts on top.
+    spot_setups, perp_setups = [], []
+    for s in signals:
+        bo, sent, perp = s.get("breakout"), s.get("sentiment") or {}, s.get("perp")
+        if bo:                                              # any crypto with a price series → rank as a candidate
+            confirmed = sent.get("label") == "bullish" and s["classification"] != "coordinated"
+            bo["social_confirmed"] = confirmed
+            spot_setups.append({
+                "symbol": s["symbol"], "classification": s["classification"], "n_calls": s["n_calls"],
+                "is_breakout": bool(bo.get("is_breakout")),
+                "pct_above_20d_high": bo.get("pct_above_20d_high"), "vol_mult": bo.get("vol_mult"),
+                "atr_pct": bo.get("atr_pct"), "mom_7d": bo.get("mom_7d"), "strength": bo.get("strength"),
+                "sentiment_label": sent.get("label"), "sentiment_score": sent.get("score"),
+                "social_confirmed": confirmed,
+            })
+        if perp and (perp.get("is_breakout") or (perp.get("open_interest") or 0) > 1e7):  # drop illiquid perps
+            perp_setups.append({
+                "symbol": s["symbol"], "venue": perp.get("venue"), "funding_rate": perp.get("funding_rate"),
+                "open_interest": perp.get("open_interest"), "perp_volume_24h": perp.get("perp_volume_24h"),
+                "is_breakout": bool(perp.get("is_breakout")), "bias": perp.get("bias"), "score": perp.get("score"),
+            })
+    # breakouts first, then social-confirmed, then strength; perp: breakouts, then score, then funding stretch
+    spot_setups.sort(key=lambda x: (x["is_breakout"], x["social_confirmed"], x["strength"] or 0), reverse=True)
+    perp_setups.sort(key=lambda x: (x["is_breakout"], x["score"] or 0, abs(x["funding_rate"] or 0)), reverse=True)
+    spot_setups, perp_setups = spot_setups[:15], perp_setups[:15]
+    setups = {"spot": spot_setups, "perp": perp_setups,
+              "disclaimer": "Forward screens — ranked breakout candidates with live volume, funding, OI and "
+                            "social-confirmation signals. Not backtested entries; perp OI/funding are "
+                            "point-in-time snapshots."}
+    print(f"  setups: {len(spot_setups)} spot candidates "
+          f"({sum(x['is_breakout'] for x in spot_setups)} breaking out, "
+          f"{sum(x['social_confirmed'] for x in spot_setups)} social-confirmed) · {len(perp_setups)} perp")
 
     # flat social-trades feed: every call on a classified asset, recent-first (for the web dashboard)
     sig_by_sym = {s["symbol"]: s for s in signals}
@@ -327,6 +369,7 @@ def scan(cfg, args) -> dict:
         "gate_stats": gate,
         "market_insights": insights,
         "cmc_attention": cmc_attention,
+        "setups": setups,
         "signals": signals,
         "trade_ideas": ideas,
         "feed": feed,

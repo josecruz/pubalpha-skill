@@ -20,6 +20,10 @@ from ..util import get_key
 
 BASE = "https://pro-api.coinmarketcap.com"
 
+# Reputable perp venues — used to drop wash-volume exchanges from the derivatives aggregate.
+_MAJOR_PERP = {"binance", "bybit", "okx", "bitget", "gate.io", "gate", "deribit",
+               "bitmex", "kraken", "hyperliquid", "kucoin", "htx", "mexc", "coinbase international"}
+
 # Known BSC contract addresses for on-chain confirmation (extend as needed).
 BSC_CONTRACTS = {
     "CAKE": "0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82",
@@ -466,6 +470,48 @@ class CMCSource:
         except Exception as e:
             print(f"  [fear_greed_trend] {type(e).__name__}: {e}")
             return {}
+
+    # --- Derivatives (perp funding / open interest) ------------------------
+
+    def derivatives(self, symbol: str, venue: Optional[str] = None, limit: int = 50) -> dict:
+        """Perp aggregate for an asset across venues (funding / OI / volume).
+        Optionally focus one venue (e.g. 'Binance'). Returns {funding_rate (vol-weighted),
+        open_interest, perp_volume_24h, venue, venues:[{venue, oi, funding_rate, volume_24h, price}]}."""
+        try:
+            d = self._get("/v5/cryptocurrency/derivatives/market-pairs/list/latest",
+                          {"crypto_symbol": symbol.upper(), "limit": limit})
+        except Exception as e:
+            print(f"  [derivatives {symbol}] {type(e).__name__}: {e}")
+            return {}
+        pairs = (d.get("market_pairs") if isinstance(d, dict) else None) or []
+        rows = []
+        for p in pairs:
+            if (p.get("category") or "").lower() != "perpetual":
+                continue
+            quotes = p.get("exchange_reported_quotes") or []
+            q = next((x for x in quotes if (x.get("convert_symbol") or "").upper() == "USD"), None) \
+                or (quotes[0] if quotes else {})
+            rows.append({
+                "venue": (p.get("exchange") or {}).get("exchange_name"),
+                "oi": _num(q.get("open_interest")), "funding_rate": q.get("funding_rate"),
+                "volume_24h": _num(q.get("volume_24h_quote")), "price": q.get("price"),
+            })
+        if venue:
+            vlow = venue.lower()
+            rows = [r for r in rows if (r["venue"] or "").lower() == vlow] or rows
+        elif any((r["venue"] or "").lower() in _MAJOR_PERP for r in rows):
+            rows = [r for r in rows if (r["venue"] or "").lower() in _MAJOR_PERP]  # drop wash-volume venues
+        if not rows:
+            return {}
+        rows.sort(key=lambda r: r["volume_24h"] or 0, reverse=True)
+        fden = sum(r["volume_24h"] for r in rows if r["funding_rate"] is not None)
+        fnum = sum((r["funding_rate"] or 0) * r["volume_24h"] for r in rows if r["funding_rate"] is not None)
+        return {
+            "funding_rate": (fnum / fden) if fden else rows[0].get("funding_rate"),
+            "open_interest": sum(r["oi"] for r in rows),
+            "perp_volume_24h": sum(r["volume_24h"] for r in rows),
+            "venue": rows[0]["venue"], "venues": rows[:8],
+        }
 
     def regime_inputs(self) -> dict:
         fg, fg_label = None, None
