@@ -34,6 +34,15 @@ The LLM (you) does the language work — judging call substance/language and wri
 Everything quantitative (the deterministic features, on-chain confirmation, sizing, backtest) is
 Python, so it's reproducible. CoinMarketCap is the data spine.
 
+## Two ways to use it
+- **Scanner (navigable TUI) — the fast way in.** `./skills/public-alpha/scan` sweeps the whole call
+  universe and opens a terminal UI: a **Signals** feed (every asset being called, ranked by volume,
+  with the organic/coordinated verdict color-coded) and a **Trade Ideas** view (the confirmed,
+  ready-to-act subset with a gate scoreboard). ↑↓ navigate · Enter = detail (the calls + reasons +
+  confirmation) · 1/2 tabs · r rescan · q quit. Under the hood: `scan.py` → `results/scan.json` →
+  `scan_tui.py` (Textual). Use this to spot what's bubbling up.
+- **Deep dive (single asset).** The funnel below, for one asset, emits the Spec + Card + Backtest.
+
 ## Prerequisites
 - `skills/public-alpha/.env` has `CMC_PRO_API_KEY` (paid tier). Optional `PASTE_TRADE_TOKEN`.
 - `pip install -r requirements.txt` (pydantic v1, numpy, requests, PyYAML, beautifulsoup4).

@@ -7,3 +7,4 @@ requests>=2.28
 httpx>=0.24
 beautifulsoup4>=4.12   # parse paste.trade allowed show pages
 lxml>=4.9              # bs4 parser backend
+textual>=0.80          # the scanner TUI (scan_tui.py)

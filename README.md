@@ -65,6 +65,22 @@ $MOON → COORDINATED (0.13)   6 calls in 38 min · Jaccard 1.0 copypasta · low
 
 CMC is the data spine via the REST Pro API (deterministic path) and the [CMC MCP](https://coinmarketcap.com/api/mcp) (the agent's exploration + narration).
 
+## The scanner (terminal UI)
+
+One command sweeps the whole call universe and opens a navigable TUI (Textual) — a **Signals** feed
+(every asset being called, ranked by volume, with the organic/coordinated verdict) and a **Trade Ideas**
+view (the confirmed subset + a gate scoreboard), with a detail pane showing the social evidence.
+
+```bash
+./skills/public-alpha/scan      # scan + open the TUI  ·  ↑↓ navigate · Enter detail · 1/2 tabs · r rescan · q quit
+```
+
+![Signals feed](docs/img/tui-signals.svg)
+![Detail — the calls behind an asset](docs/img/tui-detail.svg)
+
+Under the hood: `scan.py` → `results/scan.json` → `scan_tui.py`. The single-asset deep-dive
+(`run.py --symbol X`) emits the full Spec + Card + Backtest.
+
 ## Data sources & access (honest)
 
 - **CMC** — the spine. The widest set of families above.

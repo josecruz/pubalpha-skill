@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Public Alpha scanner — one command: fresh scan of the call universe, then the navigable TUI.
+#   ./skills/public-alpha/scan
+# Requires CMC_PRO_API_KEY in .env (for regime/confirmation) and `pip install textual`.
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec python3 "$DIR/scripts/scan_tui.py" --scan "$@"
