@@ -283,11 +283,12 @@ def scan(cfg, args) -> dict:
             price = price_by_sym.get(s["symbol"])
             for tc in s["top_calls"]:                       # annotate the signal's own calls
                 tc["entry_price"], tc["since_call_pct"] = _since_call(ser, tc.get("ts"), price)
-            # decision skills: breakout (spot) + perp (derivatives funding/OI) — crypto only
+            # decision skills: breakout (spot) + perp (derivatives funding/OI) — crypto only.
+            # spot_breakout/perp_breakout return {} when there isn't enough data → store None (not {}).
             if (s.get("market") or {}).get("kind") != "tokenized_stock":
-                s["breakout"] = spot_breakout(candles)
+                s["breakout"] = spot_breakout(candles) or None
                 try:
-                    s["perp"] = perp_breakout(market.derivatives(s["symbol"]), s.get("breakout"))
+                    s["perp"] = perp_breakout(market.derivatives(s["symbol"]), s.get("breakout")) or None
                 except Exception as e:
                     print(f"[derivatives {s['symbol']}] {e}", file=sys.stderr)
         print(f"  price series for {len(series_by_sym)} assets")
