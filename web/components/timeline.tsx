@@ -19,7 +19,9 @@ export function Timeline({ feed, logoBy, showAsset = true }: { feed: Call[]; log
               <span className="absolute -left-[18px] w-[9px] h-[9px] rounded-full ring-2 ring-background" style={{ background: hsl(col) }} />
               <span className="text-muted-foreground text-xs w-9 shrink-0 text-right">{ago(c.ts)}</span>
               <Avatar handle={c.author} platform={c.platform} size={16} />
-              <span className="font-medium text-xs truncate max-w-[110px]">{c.author}</span>
+              {c.source_id
+                ? <Link href={`/speaker?handle=${encodeURIComponent(c.author)}`} className="font-medium text-xs truncate max-w-[110px] hover:text-primary">{c.author}</Link>
+                : <span className="font-medium text-xs truncate max-w-[110px]">{c.author}</span>}
               {c.verified && <VerifiedBadge size={12} />}
               <PlatformIcon platform={c.platform} size={12} />
               <span className="uppercase text-[10px] w-10 shrink-0" style={{ color: hsl(col) }}>{stanceLabel(c.stance)}</span>

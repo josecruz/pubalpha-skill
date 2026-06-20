@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "scan": "python3 ../skills/public-alpha/scripts/scan.py && cp ../skills/public-alpha/results/scan.json public/scan.json",
+    "scan": "python3 ../skills/public-alpha/scripts/scan.py && python3 ../skills/public-alpha/scripts/paste_browse.py && cp ../skills/public-alpha/results/scan.json public/scan.json && cp ../skills/public-alpha/results/paste.json public/paste.json",
     "scan:dev": "npm run scan && next dev"
   },
   "dependencies": {

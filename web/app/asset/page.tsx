@@ -270,12 +270,16 @@ export default function AssetPage() {
                 <div className="flex items-center gap-2 text-xs">
                   <span className="px-1.5 py-px border text-[10px] uppercase tracking-wider" style={{ color: hsl(stClr), borderColor: hsl(stClr, 0.4) }}>{stanceLabel(c.stance)}</span>
                   <Avatar handle={c.author} platform={c.platform} size={16} />
-                  <span className="font-medium">{c.author}</span>
+                  {c.source_id
+                    ? <Link href={`/speaker?handle=${encodeURIComponent(c.author)}`} className="font-medium hover:text-primary">{c.author}</Link>
+                    : <span className="font-medium">{c.author}</span>}
                   {c.verified && <VerifiedBadge size={12} />}
                   <PlatformIcon platform={c.platform} size={12} />
-                  {c.url
-                    ? <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>
-                    : <span className="text-muted-foreground">{c.source}</span>}
+                  {c.source_id
+                    ? <Link href={`/stream?id=${encodeURIComponent(c.source_id)}`} className="text-muted-foreground hover:text-primary">{c.source} ↗</Link>
+                    : c.url
+                      ? <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>
+                      : <span className="text-muted-foreground">{c.source}</span>}
                   <span className="text-muted-foreground ml-auto">{ago(c.ts)} ago</span>
                 </div>
                 <div className="text-sm mt-1.5 text-foreground">{c.summary}</div>

@@ -266,11 +266,15 @@ function CallRow({ c, logo, compact }: { c: Call; logo?: string | null; compact?
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2 text-xs">
           <Avatar handle={c.author} platform={c.platform} size={15} />
-          <span className="font-medium truncate">{c.author}</span>
+          {c.source_id
+            ? <Link href={`/speaker?handle=${encodeURIComponent(c.author)}`} className="font-medium truncate hover:text-primary">{c.author}</Link>
+            : <span className="font-medium truncate">{c.author}</span>}
           {c.verified && <VerifiedBadge size={12} />}
           <PlatformIcon platform={c.platform} size={12} />
           <span className="uppercase" style={{ color: hsl(sc(c.stance)) }}>{stanceLabel(c.stance)}</span>
-          {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>}
+          {c.source_id
+            ? <Link href={`/stream?id=${encodeURIComponent(c.source_id)}`} className="text-muted-foreground hover:text-primary">{c.source} ↗</Link>
+            : c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>}
           {c.since_call_pct != null && (
             <span title="since the call" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>
           )}
@@ -306,6 +310,7 @@ function Shell({ children }: { children: React.ReactNode }) {
         <h1 className="text-lg font-bold uppercase tracking-[2px]">Public Alpha</h1>
         <span className="text-muted-foreground text-sm">social trades — organic vs coordinated, confirmed</span>
         <div className="ml-auto flex gap-4">
+          <Link href="/streams" className="text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Streams →</Link>
           <Link href="/setups" className="text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Setups →</Link>
           <Link href="/intel" className="text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Market Intel →</Link>
         </div>
