@@ -15,6 +15,7 @@ If the endpoint shape changes or the network fails, fetch() returns [] and the
 funnel falls back to CMC content + the seed set.
 """
 import json
+import re
 import time
 from datetime import datetime, timezone
 from typing import List, Optional
@@ -78,8 +79,12 @@ class PasteTradeSource:
                     tk = (tr.get("display_ticker") or tr.get("ticker") or "").strip().upper()
                     if not tk:
                         continue
-                    ad = _parse_ts(tr.get("author_date"))
-                    vsec = int((ad - pub).total_seconds()) if (ad and pub) else None
+                    seg_sec, seg_url = _seg(tr)
+                    if seg_sec is not None:
+                        vsec = seg_sec
+                    else:
+                        ad = _parse_ts(tr.get("author_date"))
+                        vsec = int((ad - pub).total_seconds()) if (ad and pub) else None
                     if vsec is not None and vsec < 0:
                         vsec = None
                     sp = tr.get("speaker_handle") or tr.get("author_handle") or show
@@ -89,7 +94,7 @@ class PasteTradeSource:
                         "speaker": sp, "speaker_name": tr.get("speaker_name"),
                         "speaker_verified": bool(tr.get("speaker_verified")),
                         "platform": s.get("platform"), "instrument": tr.get("instrument"),
-                        "video_seconds": vsec, "author_date": tr.get("author_date"),
+                        "video_seconds": vsec, "video_url": seg_url, "author_date": tr.get("author_date"),
                         "entry_price": tr.get("author_price"), "posted_price": tr.get("posted_price"),
                         "peak_pct": tr.get("peak_pct"), "market_cap_fmt": tr.get("market_cap_fmt"),
                         "logo_url": tr.get("logo_url"),
@@ -168,6 +173,7 @@ class PasteTradeSource:
                     continue
                 if since is not None and ts < _aware(since):
                     continue
+                seg_sec, seg_url = _seg(tr)
                 out.append(
                     CallCandidate(
                         symbol=ticker,
@@ -176,15 +182,38 @@ class PasteTradeSource:
                         source=f"paste_trade:{show}",
                         ts=ts,
                         engagement=_engagement(source),
-                        url=tr.get("source_url") or source.get("url"),
+                        url=seg_url or tr.get("source_url") or source.get("url"),
                         stance=_stance(tr.get("direction")),
                         conviction=None,  # calls.py derives; paste.trade has no conviction field
                         platform=platform,
                         verified=bool(tr.get("speaker_verified")),
                         source_id=source.get("id"),
+                        video_seconds=seg_sec,
                     )
                 )
         return out
+
+
+def _seg(tr: dict):
+    """First derivation segment → (video_seconds, deep_source_url). The segment's source_url carries the
+    authoritative in-stream moment as `?t=<seconds>s` (author_date − published_at is 0 for YouTube shows)."""
+    segs = (tr.get("derivation") or {}).get("segments") or []
+    if not segs:
+        return None, None
+    url = segs[0].get("source_url")
+    sec = None
+    if url:
+        m = re.search(r"[?&]t=(\d+)", url)
+        if m:
+            sec = int(m.group(1))
+    if sec is None:
+        parts = (segs[0].get("timestamp") or "").strip("[] ").split(":")
+        try:
+            nums = [int(p) for p in parts]
+            sec = nums[0] * 60 + nums[1] if len(nums) == 2 else nums[0] * 3600 + nums[1] * 60 + nums[2] if len(nums) == 3 else None
+        except (ValueError, IndexError):
+            sec = None
+    return sec, url
 
 
 def _stance(direction: Optional[str]) -> str:

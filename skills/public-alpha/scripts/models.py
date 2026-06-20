@@ -28,6 +28,7 @@ class CallCandidate(BaseModel):
     platform: Optional[str] = None     # show platform: twitch | youtube | x | ... (for avatar + platform icon)
     verified: Optional[bool] = None    # speaker is a verified account (paste.trade / CMC)
     source_id: Optional[str] = None    # paste.trade episode id (deep-link to the stream page)
+    video_seconds: Optional[int] = None  # in-stream moment of the call (seek the stream player)
 
 
 class Call(BaseModel):
@@ -46,6 +47,7 @@ class Call(BaseModel):
     platform: Optional[str] = None     # show platform (avatar provider + platform icon)
     verified: bool = False             # verified speaker
     source_id: Optional[str] = None    # paste.trade episode id (deep-link to the stream page)
+    video_seconds: Optional[int] = None  # in-stream moment of the call
 
 
 class CallClassification(BaseModel):
