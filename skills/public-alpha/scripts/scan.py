@@ -91,6 +91,25 @@ def _attention_overlap(attention: dict, called: set) -> dict:
     }
 
 
+def _since_call(series, call_ts_iso, current_price):
+    """Entry = the daily close on/just-before the call date; return = move to current price.
+    Powers the paste.trade-style 'since call' P&L on each social signal."""
+    if not series or current_price is None:
+        return (None, None)
+    day = (call_ts_iso or "")[:10]
+    entry = None
+    for c in series:                       # series is sorted oldest -> newest
+        if (c.get("ts") or "")[:10] <= day:
+            entry = c.get("close")
+        else:
+            break
+    if entry is None:
+        entry = series[0].get("close")
+    if not entry:
+        return (None, None)
+    return (round(entry, 6), round((current_price - entry) / entry * 100, 2))
+
+
 def _identity(info):
     """Pass through CMC metadata + derive age_days + is_new (brand-new token = pump risk)."""
     if not info:
@@ -239,6 +258,31 @@ def scan(cfg, args) -> dict:
                 cid = (s.get("market") or {}).get("id")
                 s["venues"] = market.market_pairs(cid) if cid else []
 
+    # price series (daily OHLCV) for charts + per-call "since call" P&L (paste.trade-style)
+    series_by_sym = {}
+    price_by_sym = {s["symbol"]: (s.get("market") or {}).get("price") for s in signals}
+    if market is not None:
+        want_series = {i["symbol"] for i in ideas} | {s["symbol"] for s in signals[:20]}
+        end = datetime.now(timezone.utc)
+        start = end - timedelta(days=min(args.lookback, 180))
+        for s in signals:
+            if s["symbol"] not in want_series:
+                continue
+            try:
+                candles = market.ohlcv(s["symbol"], "daily", start, end)
+                ser = sorted(({"ts": c["ts"], "close": c["close"]}
+                              for c in candles if c.get("close") is not None), key=lambda x: x["ts"])
+            except Exception as e:
+                print(f"[ohlcv {s['symbol']}] {e}", file=sys.stderr)
+                ser = []
+            if ser:
+                series_by_sym[s["symbol"]] = ser
+                s["price_series"] = ser
+            price = price_by_sym.get(s["symbol"])
+            for tc in s["top_calls"]:                       # annotate the signal's own calls
+                tc["entry_price"], tc["since_call_pct"] = _since_call(ser, tc.get("ts"), price)
+        print(f"  price series for {len(series_by_sym)} assets")
+
     # flat social-trades feed: every call on a classified asset, recent-first (for the web dashboard)
     sig_by_sym = {s["symbol"]: s for s in signals}
     feed = []
@@ -246,11 +290,13 @@ def scan(cfg, args) -> dict:
         s = sig_by_sym.get(c.symbol)
         if not s:
             continue
+        entry, since = _since_call(series_by_sym.get(c.symbol), c.ts.isoformat(), price_by_sym.get(c.symbol))
         feed.append({
             "symbol": c.symbol, "classification": s["classification"], "score": s["score"],
             "author": c.author, "source": c.source.split(":")[0], "stance": c.stance,
             "conviction": c.conviction, "summary": c.summary, "ts": c.ts.isoformat(),
             "engagement": c.engagement, "url": c.url,
+            "entry_price": entry, "since_call_pct": since,
         })
     feed.sort(key=lambda f: f["ts"], reverse=True)
     feed = feed[:300]
