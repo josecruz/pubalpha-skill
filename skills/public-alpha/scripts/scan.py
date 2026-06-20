@@ -44,7 +44,7 @@ def _call_dict(c) -> dict:
         "author": c.author, "source": c.source, "stance": c.stance,
         "conviction": c.conviction, "summary": c.summary, "weight": c.weight,
         "ts": c.ts.isoformat(), "engagement": c.engagement, "url": c.url,
-        "platform": c.platform, "verified": c.verified,
+        "platform": c.platform, "verified": c.verified, "source_id": c.source_id,
     }
 
 
@@ -341,7 +341,7 @@ def scan(cfg, args) -> dict:
             "conviction": c.conviction, "summary": c.summary, "ts": c.ts.isoformat(),
             "engagement": c.engagement, "url": c.url,
             "entry_price": entry, "since_call_pct": since,
-            "platform": c.platform, "verified": c.verified,
+            "platform": c.platform, "verified": c.verified, "source_id": c.source_id,
         })
     feed.sort(key=lambda f: f["ts"], reverse=True)
     feed = feed[:300]

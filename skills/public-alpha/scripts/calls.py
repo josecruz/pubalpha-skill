@@ -90,6 +90,7 @@ def normalize(candidates: List[CallCandidate], cfg: dict) -> List[Call]:
                 engagement=c.engagement,
                 platform=c.platform,
                 verified=bool(c.verified),
+                source_id=c.source_id,
             )
         )
     return out

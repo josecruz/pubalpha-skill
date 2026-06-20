@@ -27,6 +27,7 @@ class CallCandidate(BaseModel):
     conviction: Optional[float] = None # 0..1
     platform: Optional[str] = None     # show platform: twitch | youtube | x | ... (for avatar + platform icon)
     verified: Optional[bool] = None    # speaker is a verified account (paste.trade / CMC)
+    source_id: Optional[str] = None    # paste.trade episode id (deep-link to the stream page)
 
 
 class Call(BaseModel):
@@ -44,6 +45,7 @@ class Call(BaseModel):
     engagement: dict = Field(default_factory=dict)   # carried through for the classifier (followers, likes)
     platform: Optional[str] = None     # show platform (avatar provider + platform icon)
     verified: bool = False             # verified speaker
+    source_id: Optional[str] = None    # paste.trade episode id (deep-link to the stream page)
 
 
 class CallClassification(BaseModel):

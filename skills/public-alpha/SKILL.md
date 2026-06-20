@@ -146,6 +146,25 @@ JSON-encoded string; e.g. `{universe:["BTC","ETH"], venue:"Binance", timeframe:"
 is missing, **ask — do not fabricate**; on failure, give the reason + 1–2 alternative skills, **don't
 silently retry**. The Skill Hub is **not required** — the native `decide.py` skills run regardless.
 
+## paste.trade browser (streams · streamers · calls)
+The calls come from paste.trade shows; you can browse the source the same way the web does.
+`scripts/paste_browse.py` builds `results/paste.json` (the operator's allowed public surface — the
+`threadguy`/`all-in` shows — with a CMC-derived, collision-guarded since-call % where the ticker resolves)
+and exposes a CLI so **you have the same streamer/stream/call info as the web**:
+
+```bash
+python3 skills/public-alpha/scripts/paste_browse.py            # (re)build results/paste.json
+python3 skills/public-alpha/scripts/paste_browse.py --shows    # threadguy (twitch) · all-in (youtube)
+python3 skills/public-alpha/scripts/paste_browse.py --list [--show threadguy]   # episodes
+python3 skills/public-alpha/scripts/paste_browse.py --stream <id>   # an episode's calls (ts · ticker · dir · entry · since%)
+python3 skills/public-alpha/scripts/paste_browse.py --speakers      # top speakers (calls · L/S · verified)
+python3 skills/public-alpha/scripts/paste_browse.py --speaker <handle>   # one speaker's calls
+```
+
+Use it to answer "what did ThreadGuy call on the latest stream", "show chamath's calls", or to trace a
+feed mention back to its stream. The web mirrors this at `/streams`, `/stream?id=`, `/speaker?handle=`.
+Content is paste.trade's and **always shown with attribution + a link back to the show + source video**.
+
 ## Output contract
 The three artifacts follow `docs/PRDs/01/output-contract.md`. The optional dashboard and any reuse
 consume exactly those files — do not improvise the schema.
