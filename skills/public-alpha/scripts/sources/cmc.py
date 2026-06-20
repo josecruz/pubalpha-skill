@@ -20,9 +20,11 @@ from ..util import get_key
 
 BASE = "https://pro-api.coinmarketcap.com"
 
+# DEX perp venues — for the CEX/DEX tag (and kept in the major set below).
+_DEX_PERP = {"hyperliquid", "gmx", "dydx", "vertex", "drift", "aevo", "apex", "paradex", "jupiter", "orderly"}
 # Reputable perp venues — used to drop wash-volume exchanges from the derivatives aggregate.
 _MAJOR_PERP = {"binance", "bybit", "okx", "bitget", "gate.io", "gate", "deribit",
-               "bitmex", "kraken", "hyperliquid", "kucoin", "htx", "mexc", "coinbase international"}
+               "bitmex", "kraken", "kucoin", "htx", "mexc", "coinbase international"} | _DEX_PERP
 
 # Known BSC contract addresses for on-chain confirmation (extend as needed).
 BSC_CONTRACTS = {
@@ -282,16 +284,31 @@ class CMCSource:
                         "market_cap": u.get("market_cap"), "kind": "crypto", "chain": None,
                     }
         idx = self._tokenized_index()                       # tokenized-stock override (active listing)
+        tok = {}
         for sym in syms:
             m = out.get(sym)
             if (not m or not _num(m.get("volume_24h"))) and sym in idx:
-                b = max(idx[sym], key=lambda l: l.get("volume_24h") or 0)
+                tok[sym] = max(idx[sym], key=lambda l: l.get("volume_24h") or 0)
+        if tok:                                             # fetch the FULL quote by id (7d, mcap, cex/dex)
+            full = {}
+            ids = [str(b["id"]) for b in tok.values() if b.get("id")]
+            for i in range(0, len(ids), 100):
+                try:
+                    data = self._get("/v2/cryptocurrency/quotes/latest", {"id": ",".join(ids[i:i + 100]), "convert": "USD"})
+                    for k, e in (data or {}).items():
+                        full[str(k)] = (e.get("quote", {}) or {}).get("USD", {}) or {}
+                except Exception:
+                    continue
+            for sym, b in tok.items():
+                u = full.get(str(b.get("id")), {})
                 out[sym] = {
                     "id": b.get("id"),
-                    "price": b.get("price"), "percent_change_24h": b.get("percent_change_24h"),
-                    "percent_change_7d": None, "volume_24h": b.get("volume_24h"),
-                    "cex_volume_24h": 0, "dex_volume_24h": b.get("volume_24h"),
-                    "market_cap": None, "kind": "tokenized_stock", "chain": b.get("chain"),
+                    "price": u.get("price") if u.get("price") is not None else b.get("price"),
+                    "percent_change_24h": u.get("percent_change_24h", b.get("percent_change_24h")),
+                    "percent_change_7d": u.get("percent_change_7d"),
+                    "volume_24h": u.get("volume_24h", b.get("volume_24h")),
+                    "cex_volume_24h": u.get("cex_volume_24h") or 0, "dex_volume_24h": u.get("dex_volume_24h") or 0,
+                    "market_cap": u.get("market_cap"), "kind": "tokenized_stock", "chain": b.get("chain"),
                 }
         return out
 
@@ -493,8 +510,10 @@ class CMCSource:
             quotes = p.get("exchange_reported_quotes") or []
             q = next((x for x in quotes if (x.get("convert_symbol") or "").upper() == "USD"), None) \
                 or (quotes[0] if quotes else {})
+            exo = p.get("exchange") or {}
+            ex = exo.get("exchange_name")
             rows.append({
-                "venue": (p.get("exchange") or {}).get("exchange_name"),
+                "venue": ex, "exchange_id": exo.get("exchange_id"), "is_dex": (ex or "").lower() in _DEX_PERP,
                 "oi": _num(q.get("open_interest")), "funding_rate": q.get("funding_rate"),
                 "volume_24h": _num(q.get("volume_24h_quote")), "price": q.get("price"),
             })
@@ -508,11 +527,15 @@ class CMCSource:
         rows.sort(key=lambda r: r["volume_24h"] or 0, reverse=True)
         fden = sum(r["volume_24h"] for r in rows if r["funding_rate"] is not None)
         fnum = sum((r["funding_rate"] or 0) * r["volume_24h"] for r in rows if r["funding_rate"] is not None)
+        # funding-implied long lean: volume share where funding > 0 (longs pay shorts ⇒ net long crowded)
+        totv = sum(r["volume_24h"] for r in rows) or 1
+        longv = sum(r["volume_24h"] for r in rows if (r["funding_rate"] or 0) > 0)
         return {
             "funding_rate": (fnum / fden) if fden else rows[0].get("funding_rate"),
             "open_interest": sum(r["oi"] for r in rows),
             "perp_volume_24h": sum(r["volume_24h"] for r in rows),
-            "venue": rows[0]["venue"], "venues": rows[:8],
+            "long_share": round(longv / totv, 3),
+            "venue": rows[0]["venue"], "n_venues": len(rows), "venues": rows[:12],
         }
 
     def regime_inputs(self) -> dict:

@@ -94,7 +94,8 @@ def perp_breakout(derivs: dict, breakout: dict) -> dict:
         score += 0.2
     return {"funding_rate": fr, "open_interest": derivs.get("open_interest"),
             "perp_volume_24h": derivs.get("perp_volume_24h"), "venue": derivs.get("venue"),
-            "venues": (derivs.get("venues") or [])[:5],
+            "long_share": derivs.get("long_share"), "n_venues": derivs.get("n_venues"),
+            "venues": derivs.get("venues") or [],
             "is_breakout": is_bo, "bias": bias, "score": round(min(1.0, score), 2)}
 
 
