@@ -53,31 +53,26 @@ def _iso(epoch: float) -> str:
 # gate stats (computed from the live run's call clusters — a real number)
 # ---------------------------------------------------------------------------
 
-def compute_gate_stats(groups: dict, cfg: dict, confirmations: Optional[dict] = None) -> dict:
-    """% of call clusters the funnel filters as coordinated / unconfirmed. Real, from this run."""
-    confirmations = confirmations or {}
-    min_calls = 2
+def compute_gate_stats(groups: dict, cfg: dict, min_calls: int = 3) -> dict:
+    """The classifier's verdict breakdown across this run's call clusters — a real number.
+
+    Only clusters with >= min_calls are classified (fewer than that has no timing/language
+    signal). This is the wedge's headline stat: what share of attention is coordinated.
+    """
     clusters = {s: cs for s, cs in groups.items() if len(cs) >= min_calls}
     seen = sum(len(cs) for cs in clusters.values())
     n = len(clusters) or 1
-    coordinated = unconfirmed = entries = 0
+    counts = {"organic": 0, "coordinated": 0, "mixed": 0}
     for sym, cs in clusters.items():
-        res = classify(cs, sym, conf=None, cfg=cfg)
-        if res.classification != "organic":
-            coordinated += 1
-            continue
-        conf = confirmations.get(sym)
-        if conf is not None and not conf.confirmed:
-            unconfirmed += 1
-            continue
-        if conf is not None and conf.confirmed:
-            entries += 1
+        counts[classify(cs, sym, conf=None, cfg=cfg).classification] += 1
     return {
         "calls_seen": seen,
         "clusters_seen": len(clusters),
-        "filtered_coordinated_pct": round(100 * coordinated / n, 1),
-        "filtered_unconfirmed_pct": round(100 * unconfirmed / n, 1),
-        "entries_taken": entries,
+        "min_calls_per_cluster": min_calls,
+        "organic_pct": round(100 * counts["organic"] / n, 1),
+        "filtered_coordinated_pct": round(100 * counts["coordinated"] / n, 1),
+        "mixed_pct": round(100 * counts["mixed"] / n, 1),
+        "organic_candidates": counts["organic"],
     }
 
 
@@ -112,10 +107,11 @@ def run_backtest(symbol, spec, cfg, market=None, candles=None, benchmark_candles
     time_stop_h = _hours(rp.get("time_stop", "72h"))
     excfg = cfg.get("exhaustion", {})
     max_runup = excfg.get("max_runup_pct", 50) / 100.0
-    runup_lb = max(1, int(excfg.get("lookback_hours", 24)))
+    bar_hours = max(1.0, float(np.median(np.diff(ts))) / 3600.0) if n > 1 else 24.0
+    runup_lb = max(1, round(excfg.get("lookback_hours", 24) / bar_hours))   # candle count, interval-aware
 
     ema_f, ema_s = _ema(c, 12), _ema(c, 48)
-    warmup = 48
+    warmup = min(48, n // 3)
 
     eq = 1.0
     curve, trades = [], []

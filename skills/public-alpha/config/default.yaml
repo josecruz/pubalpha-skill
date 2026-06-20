@@ -45,9 +45,9 @@ exhaustion:
   lookback_hours: 24
 
 backtest:
-  history_source: cmc_dex_ohlcv        # or "geckoterminal" (confirm reach in V0.0)
-  interval: 1h
-  window_days: 30
+  history_source: cmc_ohlcv_historical  # /v2/cryptocurrency/ohlcv/historical (listed assets)
+  interval: daily                        # hourly OHLCV not available on this tier; daily fits swing/days
+  window_days: 180                       # enough daily candles for EMA(12/48) warmup + meaningful trades
   benchmark: buy_and_hold_bnb
   fee_pct: 0.25
   slippage_pct: 0.3

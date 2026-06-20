@@ -53,11 +53,12 @@ class CMCSource:
             r.raise_for_status()
             raise CMCError(f"non-JSON response from {path}")
         status = (body or {}).get("status", {})
-        if status.get("error_code"):
-            raise CMCError(f"{path}: {status.get('error_message')}")
+        code = status.get("error_code")
+        if code is not None and str(code) not in ("0", ""):   # CMC returns 0 or "0" on success
+            raise CMCError(f"{path}: {status.get('error_message') or 'error_code ' + str(code)}")
         if r.status_code >= 400:
             raise CMCError(f"{path}: HTTP {r.status_code}")
-        return body.get("data", body)
+        return body.get("data", body) if isinstance(body, dict) else body
 
     def _id_symbol_map(self) -> Dict[int, str]:
         if self._id_symbol is None:
@@ -70,25 +71,46 @@ class CMCSource:
 
     # --- MarketSource ---------------------------------------------------
 
-    def quotes(self, symbols: List[str]) -> dict:
+    def _resolve(self, symbols: List[str]) -> dict:
+        """Pick the canonical token per symbol. CMC returns a LIST of all tokens sharing a
+        symbol (many scam duplicates); the real/highest-ranked one is first and is the one
+        with a USD price. Returns {symbol: {id, price, percent_change_24h}}."""
         data = self._get("/v2/cryptocurrency/quotes/latest", {"symbol": ",".join(symbols), "convert": "USD"})
         out = {}
-        for _id, entry in (data or {}).items():
+        for key, entry in (data or {}).items():
             entries = entry if isinstance(entry, list) else [entry]
+            chosen = None
             for e in entries:
                 usd = (e.get("quote", {}) or {}).get("USD", {}) or {}
-                out[e.get("symbol", _id)] = {
-                    "price": usd.get("price"),
+                if usd.get("price") is not None:
+                    chosen = (e, usd)
+                    break
+            if chosen is None and entries:
+                e0 = entries[0]
+                chosen = (e0, (e0.get("quote", {}) or {}).get("USD", {}) or {})
+            if chosen:
+                e, usd = chosen
+                out[e.get("symbol", key)] = {
+                    "id": e.get("id"), "price": usd.get("price"),
                     "percent_change_24h": usd.get("percent_change_24h"),
                 }
         return out
 
+    def quotes(self, symbols: List[str]) -> dict:
+        return {k: {"price": v["price"], "percent_change_24h": v["percent_change_24h"]}
+                for k, v in self._resolve(symbols).items()}
+
     def ohlcv(self, symbol: str, interval: str, start: datetime, end: datetime) -> List[dict]:
         params = {
-            "symbol": symbol.upper(), "convert": "USD", "interval": interval,
+            "convert": "USD", "interval": interval,
             "time_start": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "time_end": end.strftime("%Y-%m-%dT%H:%M:%SZ"), "count": 10000,
         }
+        info = self._resolve([symbol]).get(symbol.upper())   # use canonical id (avoid symbol-collision tokens)
+        if info and info.get("id"):
+            params["id"] = info["id"]
+        else:
+            params["symbol"] = symbol.upper()
         data = self._get("/v2/cryptocurrency/ohlcv/historical", params)
         quotes = data.get("quotes") if isinstance(data, dict) else None
         if quotes is None and isinstance(data, dict):                       # data keyed by id
@@ -107,38 +129,62 @@ class CMCSource:
         return [c for c in out if c["close"] is not None]
 
     def onchain(self, symbol: str) -> dict:
+        """On-chain confirmation inputs. Prefer the rich DEX pools endpoint (liquidity + buy/sell);
+        if it's unavailable for BSC on this tier, fall back to CMC's aggregated on-chain DEX volume
+        (real, reliable) so confirmation still has a genuine 'money moving' signal."""
+        usd = self._full_usd(symbol)
+        metrics = {
+            "price_runup_pct": round(float(usd.get("percent_change_24h") or 0.0), 2),
+            "dex_volume_24h": _num(usd.get("dex_volume_24h")),
+            "volume_24h": _num(usd.get("volume_24h")),
+            "market_cap": _num(usd.get("market_cap")),
+        }
         contract = BSC_CONTRACTS.get(symbol.upper())
-        metrics = {"price_runup_pct": self._runup_24h(symbol)}
-        if not contract:
-            metrics["notes"] = f"no known BSC contract for {symbol}; on-chain confirmation limited"
-            return metrics
-        try:
-            data = self._get("/v1/dex/token/pools",
-                             {"network_slug": "bsc", "contract_address": contract,
-                              "sort": "liquidity", "sort_dir": "desc", "limit": 50})
-        except Exception:
-            data = self._get("/v4/dex/spot-pairs/latest",
-                             {"network_slug": "bsc", "base_address": contract, "limit": 50})
-        pools = (data.get("pools") if isinstance(data, dict) else None) or \
-                (data.get("pairs") if isinstance(data, dict) else None) or \
-                (data if isinstance(data, list) else [])
-        liq = sum(_num(p.get("liquidity") or p.get("liquidity_usd")) for p in pools)
-        buys = sum(_num(p.get("buys_24h") or p.get("num_transactions_buy_24h")) for p in pools)
-        sells = sum(_num(p.get("sells_24h") or p.get("num_transactions_sell_24h")) for p in pools)
-        metrics.update({
-            "liquidity_usd": liq,
-            "buy_volume_24h": buys,      # transaction counts (USD buy/sell split not exposed) — proxy
-            "sell_volume_24h": sells,
-            "pools": len(pools),
-        })
+        if contract:
+            try:
+                data = self._dex_pools(contract)
+                pools = (data.get("pools") if isinstance(data, dict) else None) or \
+                        (data if isinstance(data, list) else [])
+                if pools:
+                    metrics.update({
+                        "liquidity_usd": sum(_num(p.get("liquidity") or p.get("liquidity_usd")) for p in pools),
+                        "buy_volume_24h": sum(_num(p.get("buys_24h") or p.get("num_transactions_buy_24h")) for p in pools),
+                        "sell_volume_24h": sum(_num(p.get("sells_24h") or p.get("num_transactions_sell_24h")) for p in pools),
+                        "pools": len(pools),
+                        "onchain_source": "cmc_dex_pools",
+                    })
+                    return metrics
+            except Exception as e:
+                metrics["dex_note"] = f"DEX pools unavailable ({e}); using aggregated DEX volume"
+        metrics["onchain_source"] = "cmc_aggregated_dex_volume"
         return metrics
 
-    def _runup_24h(self, symbol: str) -> float:
+    def _dex_pools(self, contract: str, retries: int = 2):
+        last = None
+        for _ in range(retries + 1):
+            try:
+                return self._get("/v1/dex/token/pools",
+                                 {"network_slug": "bsc", "contract_address": contract,
+                                  "sort": "liquidity", "sort_dir": "desc", "limit": 10})
+            except CMCError as e:
+                last = e
+                if "busy" not in str(e).lower():
+                    break
+        raise last or CMCError("dex pools failed")
+
+    def _full_usd(self, symbol: str) -> dict:
+        """Full USD quote block for the canonical token (volumes, market cap, % changes)."""
         try:
-            q = self.quotes([symbol]).get(symbol.upper(), {})
-            return round(float(q.get("percent_change_24h") or 0.0), 2)
+            data = self._get("/v2/cryptocurrency/quotes/latest", {"symbol": symbol.upper(), "convert": "USD"})
+            entries = data.get(symbol.upper()) or []
+            entries = entries if isinstance(entries, list) else [entries]
+            for e in entries:
+                usd = (e.get("quote", {}) or {}).get("USD", {}) or {}
+                if usd.get("price") is not None:
+                    return usd
+            return (entries[0].get("quote", {}) or {}).get("USD", {}) if entries else {}
         except Exception:
-            return 0.0
+            return {}
 
     def regime_inputs(self) -> dict:
         fg, fg_label = None, None
@@ -181,7 +227,9 @@ class CMCSource:
         trending = []
         try:
             t = self._get("/v1/community/trending/topic", {"limit": 5})
-            trending = [x.get("name") for x in (t or []) if x.get("name")]
+            trending = [(x.get("topic") or x.get("name") or "").rstrip("#").strip()
+                        for x in (t or [])]
+            trending = [x for x in trending if x]
         except Exception:
             pass
         return {"heating": heating, "sector": sector, "top_categories": top,

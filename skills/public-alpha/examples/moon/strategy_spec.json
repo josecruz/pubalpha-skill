@@ -1,0 +1,152 @@
+{
+  "strategy": {
+    "name": "public-alpha-coordinated-moon",
+    "version": "1.0",
+    "generated_at": "2026-06-20T04:21:11Z",
+    "universe": {
+      "chain": "bsc",
+      "assets": [
+        "MOON"
+      ]
+    },
+    "risk_profile": "balanced",
+    "horizon": "swing/days",
+    "lookback": "180d"
+  },
+  "signals": {
+    "narrative": {
+      "heating": true,
+      "sector": "Insurance",
+      "top_categories": [
+        {
+          "name": "Insurance",
+          "avg_price_change": 62.36
+        },
+        {
+          "name": "Binance Wallet IDO",
+          "avg_price_change": 42.62
+        },
+        {
+          "name": "MVB",
+          "avg_price_change": 41.37
+        },
+        {
+          "name": "Options",
+          "avg_price_change": 37.99
+        },
+        {
+          "name": "Account Abstraction",
+          "avg_price_change": 17.45
+        }
+      ],
+      "trending_topics": [
+        "BTC Price Analysis",
+        "Macro Insights",
+        "Altcoin Season",
+        "Meme Alpha",
+        "BNBChain"
+      ],
+      "source": "cmc_categories+community_trending",
+      "available": true
+    },
+    "calls": {
+      "symbol": "MOON",
+      "score": 0.238,
+      "classification": "coordinated",
+      "reasons": [
+        "6 of 6 calls within 120 min \u2192 clustered",
+        "near-identical phrasing across authors (3-gram Jaccard 1.0) \u2192 copypasta",
+        "4 distinct authors, 100% low-follower accounts",
+        "LLM: low substance \u2014 100x, ape, dont fade, dont miss; little thesis"
+      ],
+      "sources": [
+        "seed:x:alpha_caller7",
+        "seed:x:cryptogem_x",
+        "seed:x:degenplays",
+        "seed:x:moonshot_ky"
+      ],
+      "n_calls": 6,
+      "evidence": [
+        {
+          "source": "seed:x:moonshot_ky",
+          "ts": "2026-06-19T13:15:00+00:00",
+          "stance": "bullish",
+          "summary": "$MOON about to 100x dont miss this last chance ape in now!!",
+          "weight": 0.792
+        },
+        {
+          "source": "seed:x:cryptogem_x",
+          "ts": "2026-06-19T13:00:00+00:00",
+          "stance": "bullish",
+          "summary": "$MOON is about to 100x dont miss this last chance ape in now!",
+          "weight": 0.78
+        },
+        {
+          "source": "seed:x:alpha_caller7",
+          "ts": "2026-06-19T13:08:00+00:00",
+          "stance": "bullish",
+          "summary": "$MOON is about to 100x dont miss this last chance ape in now",
+          "weight": 0.78
+        },
+        {
+          "source": "seed:x:cryptogem_x",
+          "ts": "2026-06-19T13:22:00+00:00",
+          "stance": "bullish",
+          "summary": "$MOON is about to 100x dont miss this last chance ape now",
+          "weight": 0.78
+        }
+      ]
+    },
+    "onchain_confirmation": {
+      "confirmed": false,
+      "buy_sell_ratio": 0.0,
+      "liquidity_usd": 0.0,
+      "holder_growth_pct": 0.0,
+      "top10_holder_pct": 0.0,
+      "notes": [
+        "no liquidity/DEX-volume data",
+        "buy/sell split not exposed by CMC DEX",
+        "holder data not exposed by CMC DEX",
+        "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
+      ]
+    },
+    "regime": {
+      "state": "risk_off",
+      "fear_greed": 20,
+      "btc_dominance": 58.35,
+      "altseason": 42
+    }
+  },
+  "rules": {
+    "entry": [
+      "narrative.heating == true",
+      "calls.score >= 0.6 AND calls.classification == 'organic'",
+      "onchain_confirmation.confirmed == true",
+      "regime.state in ['risk_on','neutral']",
+      "not_exhausted (price_runup_pct < 50 over 24h)"
+    ],
+    "exit": {
+      "stop_loss_pct": -8,
+      "take_profit_pct": 25,
+      "time_stop": "72h",
+      "invalidations": [
+        "calls.classification -> coordinated",
+        "onchain distribution (buy_sell_ratio < 0.8)",
+        "attention fades AND price breaks entry"
+      ]
+    },
+    "position_sizing": {
+      "base_pct": 3.0,
+      "confidence_scaled": true,
+      "max_position_pct": 10
+    },
+    "risk_limits": {
+      "max_total_exposure_pct": 50,
+      "max_drawdown_guard_pct": 20
+    }
+  },
+  "thesis": "MOON: calls classified coordinated (organic score 0.238). Drivers: 6 of 6 calls within 120 min \u2192 clustered; near-identical phrasing across authors (3-gram Jaccard 1.0) \u2192 copypasta. On-chain NOT confirmed (no liquidity/DEX-volume data). Regime risk_off (F&G 20).",
+  "confidence": 0.06,
+  "entry_signal": false,
+  "backtest_ref": null
+}

@@ -47,8 +47,11 @@ def fallback_thesis(symbol: str, cls: CallClassification, conf: Optional[Onchain
     if cls.reasons:
         bits.append("Drivers: " + "; ".join(cls.reasons[:2]) + ".")
     if conf is not None:
-        bits.append("On-chain " + ("confirmed" if conf.confirmed else "NOT confirmed")
-                     + f" (buy/sell {conf.buy_sell_ratio}, liquidity ${int(conf.liquidity_usd):,}).")
+        if conf.buy_sell_ratio and conf.buy_sell_ratio > 0:
+            detail = f"buy/sell {conf.buy_sell_ratio}, liquidity ${int(conf.liquidity_usd):,}"
+        else:
+            detail = conf.notes[0] if conf.notes else f"liquidity ${int(conf.liquidity_usd):,}"
+        bits.append("On-chain " + ("confirmed" if conf.confirmed else "NOT confirmed") + f" ({detail}).")
     if regime is not None:
         bits.append(f"Regime {regime.state} (F&G {regime.fear_greed}).")
     return " ".join(bits)

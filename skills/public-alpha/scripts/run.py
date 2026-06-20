@@ -120,7 +120,7 @@ def run(symbol, cfg, args):
 
     report = None
     if args.backtest:
-        report = _try_backtest(symbol, spec, cfg, market, args)
+        report = _try_backtest(symbol, spec, cfg, market, args, groups)
         if report:
             spec["backtest_ref"] = f"results/backtest_{report['window']['start']}_{report['window']['end']}.json"
             render.write_report(report)
@@ -133,10 +133,11 @@ def run(symbol, cfg, args):
     return spec
 
 
-def _try_backtest(symbol, spec, cfg, market, args):
+def _try_backtest(symbol, spec, cfg, market, args, groups):
     try:
-        from scripts.backtest import run_backtest
-        return run_backtest(symbol, spec, cfg, market)
+        from scripts.backtest import compute_gate_stats, run_backtest
+        gate = compute_gate_stats(groups, cfg)
+        return run_backtest(symbol, spec, cfg, market, gate_stats=gate)
     except ImportError:
         print("  [backtest] engine not built yet — skipping")
     except Exception as e:

@@ -71,9 +71,11 @@ def render_card(spec: dict, report: Optional[dict] = None) -> str:
     if conf.get("available") is False:
         L.append("4. **On-chain confirmation** — _not available (run with a CMC key)_")
     else:
-        L.append(f"4. **On-chain confirmation** — {'✅ confirmed' if conf.get('confirmed') else '❌ not confirmed'} "
-                 f"(buy/sell {conf.get('buy_sell_ratio')}, liquidity ${_int(conf.get('liquidity_usd'))}, "
-                 f"holders {conf.get('holder_growth_pct')}%)")
+        verdict = "✅ confirmed" if conf.get("confirmed") else "❌ not confirmed"
+        notes = conf.get("notes") or []
+        detail = "; ".join(notes[:3]) if notes else (
+            f"buy/sell {conf.get('buy_sell_ratio')}, liquidity ${_int(conf.get('liquidity_usd'))}")
+        L.append(f"4. **On-chain confirmation** — {verdict} — {detail}")
     if reg.get("available") is False:
         L.append("5. **Regime gate** — _not available (run with a CMC key)_")
     else:
@@ -96,9 +98,9 @@ def render_card(spec: dict, report: Optional[dict] = None) -> str:
                  f"(`{report.get('benchmark')}`) → excess **{m.get('excess_pct')}%**")
         L.append(f"- Max drawdown **{m.get('max_drawdown_pct')}%** · Sharpe **{m.get('sharpe')}** · "
                  f"win rate **{m.get('win_rate_pct')}%** · trades **{m.get('num_trades')}**")
-        L.append(f"- Gate: of **{g.get('calls_seen')}** calls, "
-                 f"**{g.get('filtered_coordinated_pct')}%** filtered coordinated, "
-                 f"**{g.get('filtered_unconfirmed_pct')}%** unconfirmed → **{g.get('entries_taken')}** entries")
+        L.append(f"- Gate: across **{g.get('clusters_seen')}** call clusters ({g.get('calls_seen')} calls), "
+                 f"**{g.get('filtered_coordinated_pct')}%** coordinated (filtered), "
+                 f"**{g.get('organic_pct')}%** organic, **{g.get('mixed_pct')}%** mixed")
         hon = report.get("honesty", {})
         if hon:
             L.append(f"- _Honesty: backtested on {', '.join(hon.get('backtested_on_history', []))}; "
