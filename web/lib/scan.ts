@@ -42,13 +42,38 @@ export interface CmcAttention {
 export interface AltseasonIndex { value: number; classification: string; yearly_high?: number; yearly_low?: number; }
 export interface FngTrend { points: { ts: number; value: number }[]; delta: number; direction: string; latest: number; }
 
+export interface Sentiment {
+  label: string; score: number; n_kols: number; bull: number; bear: number; neutral: number;
+  top_kols: { author: string; stance: string | null; conviction: number | null }[];
+}
+export interface Breakout {
+  is_breakout: boolean; pct_above_20d_high: number | null; vol_mult: number | null;
+  atr_pct: number | null; mom_7d: number | null; mom_30d: number | null; strength: number;
+  social_confirmed?: boolean;
+}
+export interface PerpVenue { venue: string | null; oi: number; funding_rate: number | null; volume_24h: number; price: number | null; }
+export interface Perp {
+  funding_rate: number | null; open_interest: number | null; perp_volume_24h: number | null;
+  venue: string | null; venues: PerpVenue[]; is_breakout: boolean; bias: string; score: number;
+}
+export interface SpotSetup {
+  symbol: string; classification: Verdict; n_calls: number; is_breakout: boolean;
+  pct_above_20d_high: number | null; vol_mult: number | null; atr_pct: number | null;
+  mom_7d: number | null; strength: number; sentiment_label: string; sentiment_score: number; social_confirmed: boolean;
+}
+export interface PerpSetup {
+  symbol: string; venue: string | null; funding_rate: number | null; open_interest: number | null;
+  perp_volume_24h: number | null; is_breakout: boolean; bias: string; score: number;
+}
+export interface Setups { spot: SpotSetup[]; perp: PerpSetup[]; disclaimer: string; }
+
 export interface Signal {
   symbol: string; n_calls: number; classification: Verdict; score: number; reasons: string[];
   features?: Record<string, number>; distinct_authors: number; sources: string[];
   stance_mix: { bullish: number; bearish: number; neutral: number };
   latest_ts: string; top_calls: Call[]; market?: Market | null;
   attention?: Attention; identity?: Identity | null; performance?: Performance | null; venues?: Venue[];
-  price_series?: PricePoint[];
+  price_series?: PricePoint[]; sentiment?: Sentiment; breakout?: Breakout | null; perp?: Perp | null;
 }
 export interface Idea {
   symbol: string; score: number; classification: Verdict; confidence: number; confirmed: boolean;
@@ -73,6 +98,7 @@ export interface Scan {
   gate_stats: { clusters_seen: number; organic_pct: number; filtered_coordinated_pct: number; mixed_pct: number };
   market_insights: Insights;
   cmc_attention: CmcAttention;
+  setups: Setups;
   signals: Signal[]; trade_ideas: Idea[]; feed: Call[];
 }
 
@@ -102,6 +128,9 @@ export function usd(n?: number | null): string {
 }
 export function pct(n?: number | null): string {
   return n == null ? "—" : `${n >= 0 ? "+" : ""}${n.toFixed(1)}%`;
+}
+export function funding(n?: number | null): string {
+  return n == null ? "—" : `${n >= 0 ? "+" : ""}${(n * 100).toFixed(4)}%`;
 }
 export function age(iso?: string | null): string {
   if (!iso) return "";

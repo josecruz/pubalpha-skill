@@ -47,6 +47,7 @@ export default function IntelPage() {
         {back}
         <h1 className="text-lg font-bold uppercase tracking-[2px]">Market Intel</h1>
         <span className="text-muted-foreground text-sm">CMC&apos;s own crowd vs the KOL calls</span>
+        <Link href="/setups" className="ml-auto text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Setups →</Link>
       </div>
 
       {/* CMC crowd vs the calls */}

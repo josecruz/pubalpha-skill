@@ -78,6 +78,9 @@ export default function Page() {
       {/* CMC attention cross-ref strip */}
       <AttentionStrip ca={scan.cmc_attention} />
 
+      {/* setups teaser */}
+      <SetupsStrip setups={scan.setups} />
+
       {/* hot assets */}
       <div>
         <Label>hot assets — most called (click for detail)</Label>
@@ -211,6 +214,24 @@ export function FngArrow({ dir, delta }: { dir: string; delta: number }) {
     {up ? "▲" : down ? "▼" : "→"}{delta >= 0 ? "+" : ""}{delta}</span>;
 }
 
+function SetupsStrip({ setups }: { setups: Scan["setups"] }) {
+  const { spot, perp } = setups;
+  if (!spot?.length && !perp?.length) return null;
+  const breaking = spot.filter((s) => s.is_breakout).length;
+  const confirmed = spot.filter((s) => s.social_confirmed).length;
+  const top = spot.slice(0, 4);
+  return (
+    <Link href="/setups" className="flex flex-wrap items-center gap-x-4 gap-y-1 border border-border bg-card px-3.5 py-2 hover:border-primary transition-colors">
+      <Label>setups</Label>
+      <span className="text-sm"><span style={{ color: hsl(SC.bullish) }}>{breaking}</span> <span className="text-muted-foreground">breaking out</span></span>
+      <span className="text-sm"><span style={{ color: hsl(SC.bullish) }}>{confirmed}</span> <span className="text-muted-foreground">social-confirmed</span></span>
+      <span className="text-sm"><span className="text-primary">{perp.length}</span> <span className="text-muted-foreground">perp candidates</span></span>
+      <span className="hidden md:inline text-muted-foreground text-sm">· {top.map((s) => s.symbol).join(" · ")}</span>
+      <span className="ml-auto text-primary text-sm">Setups →</span>
+    </Link>
+  );
+}
+
 function AttentionStrip({ ca }: { ca: CmcAttention }) {
   if (!ca?.overlap) return null;
   const { corroborated, kol_only, cmc_only } = ca.overlap;
@@ -270,7 +291,10 @@ function Shell({ children }: { children: React.ReactNode }) {
       <div className="flex items-baseline gap-3">
         <h1 className="text-lg font-bold uppercase tracking-[2px]">Public Alpha</h1>
         <span className="text-muted-foreground text-sm">social trades — organic vs coordinated, confirmed</span>
-        <Link href="/intel" className="ml-auto text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Market Intel →</Link>
+        <div className="ml-auto flex gap-4">
+          <Link href="/setups" className="text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Setups →</Link>
+          <Link href="/intel" className="text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Market Intel →</Link>
+        </div>
       </div>
       {children}
     </main>

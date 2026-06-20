@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { PriceChart } from "@/components/price-chart";
 import {
   type Call, type Idea, type Scan, type Signal,
-  SC, age, ago, hsl, pct, stanceLabel, usd, vc,
+  SC, age, ago, funding, hsl, pct, stanceLabel, usd, vc,
 } from "@/lib/scan";
 
 const Label = ({ children }: { children: React.ReactNode }) => (
@@ -151,6 +151,59 @@ export default function AssetPage() {
           )}
         </Card>
       </div>
+
+      {/* decision signals — KOL sentiment · breakout · perp */}
+      {(sig.sentiment || sig.breakout || sig.perp) && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {sig.sentiment && (() => {
+            const s = sig.sentiment, tot = s.bull + s.bear + s.neutral || 1;
+            const clr = s.label === "bullish" ? SC.bullish : s.label === "bearish" ? SC.bearish : SC.neutral;
+            return (
+              <Card className="rounded-none p-3 gap-2">
+                <Label>KOL sentiment</Label>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-lg uppercase" style={{ color: hsl(clr) }}>{s.label}</span>
+                  <span className="text-muted-foreground text-sm">{s.score >= 0 ? "+" : ""}{s.score.toFixed(2)} · {s.n_kols} KOLs</span>
+                </div>
+                <div className="flex h-3 border border-border">
+                  <div style={{ width: `${(s.bull / tot) * 100}%`, background: hsl(SC.bullish) }} />
+                  <div style={{ width: `${(s.neutral / tot) * 100}%`, background: hsl(SC.neutral) }} />
+                  <div style={{ width: `${(s.bear / tot) * 100}%`, background: hsl(SC.bearish) }} />
+                </div>
+                <div className="text-[11px] text-muted-foreground">{s.bull} bull · {s.bear} bear · {s.neutral} neutral</div>
+              </Card>
+            );
+          })()}
+          {sig.breakout && (
+            <Card className="rounded-none p-3 gap-2">
+              <Label>breakout (spot)</Label>
+              <div className="text-sm">
+                {sig.breakout.is_breakout
+                  ? <span style={{ color: hsl(SC.bullish) }}>● BREAKOUT</span>
+                  : <span className="text-muted-foreground">building</span>}
+                {sig.breakout.social_confirmed && <span className="ml-2" style={{ color: hsl(SC.bullish) }}>✓ social-confirmed</span>}
+              </div>
+              <div className="flex flex-wrap gap-x-5 gap-y-1">
+                <Stat k="vs 20d-high" v={pct(sig.breakout.pct_above_20d_high)} color={(sig.breakout.pct_above_20d_high ?? 0) >= 0 ? SC.bullish : SC.bearish} />
+                <Stat k="Vol×" v={sig.breakout.vol_mult != null ? `${sig.breakout.vol_mult.toFixed(2)}×` : "—"} />
+                <Stat k="ATR%" v={sig.breakout.atr_pct != null ? `${sig.breakout.atr_pct.toFixed(1)}%` : "—"} />
+                <Stat k="Strength" v={sig.breakout.strength.toFixed(2)} />
+              </div>
+            </Card>
+          )}
+          {sig.perp && (
+            <Card className="rounded-none p-3 gap-2">
+              <Label>perp (derivatives)</Label>
+              <div className="text-sm">{sig.perp.bias} <span className="text-muted-foreground">· {sig.perp.venue}</span></div>
+              <div className="flex flex-wrap gap-x-5 gap-y-1">
+                <Stat k="Funding" v={funding(sig.perp.funding_rate)} color={(sig.perp.funding_rate ?? 0) >= 0 ? SC.bullish : SC.bearish} />
+                <Stat k="Open interest" v={usd(sig.perp.open_interest)} />
+                <Stat k="Perp vol 24h" v={usd(sig.perp.perp_volume_24h)} />
+              </div>
+            </Card>
+          )}
+        </div>
+      )}
 
       {/* top venues */}
       {venues.length > 0 && (
