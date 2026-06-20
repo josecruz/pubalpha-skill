@@ -30,7 +30,8 @@ export interface Performance {
   periods: Record<"7d" | "30d" | "90d" | "365d", number | null>;
 }
 export interface Venue {
-  exchange: string | null; pair: string | null; category: string | null;
+  exchange: string | null; exchange_id?: number | null; exchange_slug?: string | null;
+  pair: string | null; category: string | null;
   volume_24h: number | null; price: number | null;
 }
 export interface Mover { symbol: string; name: string | null; rank: number | null; percent_change_24h?: number | null; }

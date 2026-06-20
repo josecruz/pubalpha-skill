@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { AssetIcon } from "@/components/icons";
 import {
   type PerpSetup, type Scan, type SpotSetup,
   SC, funding, hsl, pct, usd, vc,
@@ -37,6 +38,7 @@ export default function SetupsPage() {
   if (!scan) return <Wrap>{back}<div className="text-muted-foreground p-6">Loading…</div></Wrap>;
 
   const { spot, perp, disclaimer } = scan.setups;
+  const logoBy: Record<string, string | null | undefined> = Object.fromEntries(scan.signals.map((s) => [s.symbol, s.identity?.logo]));
   return (
     <Wrap>
       <div className="flex items-baseline gap-3">
@@ -59,7 +61,7 @@ export default function SetupsPage() {
             <TableBody>
               {spot.map((s: SpotSetup) => (
                 <TableRow key={s.symbol}>
-                  <TableCell className="flex items-center gap-2"><Asset s={s.symbol} /><Tag v={s.classification} /></TableCell>
+                  <TableCell className="flex items-center gap-2"><AssetIcon logo={logoBy[s.symbol]} symbol={s.symbol} size={16} /><Asset s={s.symbol} /><Tag v={s.classification} /></TableCell>
                   <TableCell>
                     {s.is_breakout
                       ? <span style={{ color: hsl(SC.bullish) }}>● BREAKOUT</span>
@@ -92,7 +94,7 @@ export default function SetupsPage() {
             <TableBody>
               {perp.map((p: PerpSetup) => (
                 <TableRow key={p.symbol}>
-                  <TableCell><Asset s={p.symbol} /></TableCell>
+                  <TableCell className="flex items-center gap-2"><AssetIcon logo={logoBy[p.symbol]} symbol={p.symbol} size={16} /><Asset s={p.symbol} /></TableCell>
                   <TableCell className="text-muted-foreground">{p.venue ?? "—"}</TableCell>
                   <TableCell style={{ color: (p.funding_rate ?? 0) >= 0 ? hsl(SC.bullish) : hsl(SC.bearish) }}>{funding(p.funding_rate)}</TableCell>
                   <TableCell>{usd(p.open_interest)}</TableCell>

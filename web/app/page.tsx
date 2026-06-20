@@ -5,10 +5,13 @@ import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { AssetIcon, Avatar } from "@/components/icons";
 import {
   type Call, type CmcAttention, type Idea, type Scan, type Signal,
-  SC, ago, hsl, pct, sc, usd, vc,
+  SC, ago, hsl, pct, sc, stanceLabel, usd, vc,
 } from "@/lib/scan";
+
+type LogoMap = Record<string, string | null | undefined>;
 
 const Label = ({ children }: { children: React.ReactNode }) => (
   <span className="text-[11px] uppercase tracking-[1.5px] text-muted-foreground">{children}</span>
@@ -27,7 +30,7 @@ const Asset = ({ s }: { s: string }) => (
 export default function Page() {
   const [scan, setScan] = useState<Scan | null>(null);
   const [err, setErr] = useState<string | null>(null);
-  const [view, setView] = useState<"calls" | "assets" | "grouped">("calls");
+  const [view, setView] = useState<"timeline" | "calls" | "assets" | "grouped">("timeline");
 
   useEffect(() => {
     fetch("/scan.json")
@@ -42,6 +45,9 @@ export default function Page() {
     return Object.entries(by).map(([sym, calls]) => ({ sym, calls, sig: sigBy[sym] as Signal | undefined }))
       .sort((a, b) => b.calls.length - a.calls.length);
   }, [scan]);
+
+  const logoBy: LogoMap = useMemo(
+    () => Object.fromEntries((scan?.signals ?? []).map((s) => [s.symbol, s.identity?.logo])), [scan]);
 
   if (err) return <Shell><div className="text-destructive p-6">Failed to load /scan.json — {err}. Run the scanner first.</div></Shell>;
   if (!scan) return <Shell><div className="text-muted-foreground p-6">Loading scan…</div></Shell>;
@@ -90,7 +96,9 @@ export default function Page() {
               <Link key={s.symbol} href={`/asset?symbol=${encodeURIComponent(s.symbol)}`}
                 className="shrink-0 border border-border bg-card px-3 py-2 hover:border-primary transition-colors">
                 <div className="flex items-center gap-2">
-                  <Dot t={vc(s.classification)} /><span className="font-semibold">{s.symbol}</span>
+                  <AssetIcon logo={s.identity?.logo} symbol={s.symbol} size={18} />
+                  <span className="font-semibold">{s.symbol}</span>
+                  <Dot t={vc(s.classification)} />
                   <span className="text-muted-foreground text-xs">{s.n_calls}</span>
                   {s.attention?.on_cmc && <span className="text-[9px] uppercase tracking-wider" style={{ color: hsl(SC.bullish) }} title="trending on CMC too">CMC ✓</span>}
                 </div>
@@ -109,14 +117,16 @@ export default function Page() {
           <div className="flex items-center justify-between">
             <Label>social trades feed</Label>
             <div className="flex border border-border">
-              {(["calls", "assets", "grouped"] as const).map((m) => (
+              {(["timeline", "calls", "assets", "grouped"] as const).map((m) => (
                 <button key={m} onClick={() => setView(m)}
                   className={`text-[11px] uppercase tracking-wider px-2.5 py-1 ${view === m ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{m}</button>
               ))}
             </div>
           </div>
 
-          {view === "calls" && <div className="space-y-1.5">{scan.feed.map((c, i) => <CallRow key={i} c={c} />)}</div>}
+          {view === "timeline" && <Timeline feed={scan.feed} logoBy={logoBy} />}
+
+          {view === "calls" && <div className="space-y-1.5">{scan.feed.map((c, i) => <CallRow key={i} c={c} logo={logoBy[c.symbol]} />)}</div>}
 
           {view === "assets" && (
             <Card className="p-0 overflow-hidden rounded-none">
@@ -128,7 +138,7 @@ export default function Page() {
                 <TableBody>
                   {scan.signals.map((s) => (
                     <TableRow key={s.symbol}>
-                      <TableCell><Asset s={s.symbol} /></TableCell>
+                      <TableCell><span className="flex items-center gap-2"><AssetIcon logo={s.identity?.logo} symbol={s.symbol} size={16} /><Asset s={s.symbol} /></span></TableCell>
                       <TableCell>{s.n_calls}</TableCell>
                       <TableCell><Tag v={s.classification} /></TableCell>
                       <TableCell>{s.score.toFixed(2)}</TableCell>
@@ -148,11 +158,11 @@ export default function Page() {
               {grouped.map(({ sym, calls, sig }) => (
                 <Card key={sym} className="rounded-none gap-0 py-0">
                   <div className="flex items-center gap-2 border-b border-border px-3 py-2">
-                    <Dot t={vc(sig?.classification)} /><Asset s={sym} />
+                    <AssetIcon logo={sig?.identity?.logo} symbol={sym} size={18} /><Asset s={sym} />
                     {sig && <Tag v={sig.classification} />}
                     <span className="text-xs text-muted-foreground ml-auto">{calls.length} calls{sig ? ` · score ${sig.score.toFixed(2)}` : ""}</span>
                   </div>
-                  <div className="divide-y divide-border">{calls.slice(0, 6).map((c, i) => <CallRow key={i} c={c} compact />)}</div>
+                  <div className="divide-y divide-border">{calls.slice(0, 6).map((c, i) => <CallRow key={i} c={c} logo={logoBy[c.symbol]} compact />)}</div>
                 </Card>
               ))}
             </div>
@@ -162,7 +172,7 @@ export default function Page() {
         <div className="space-y-2">
           <Label>trade ideas — confirmed</Label>
           <div className="space-y-1.5">
-            {scan.trade_ideas.map((idea) => <IdeaCard key={idea.symbol} idea={idea} />)}
+            {scan.trade_ideas.map((idea) => <IdeaCard key={idea.symbol} idea={idea} logo={logoBy[idea.symbol]} />)}
             {scan.trade_ideas.length === 0 && <div className="text-muted-foreground text-sm">no confirmed ideas this scan.</div>}
           </div>
         </div>
@@ -246,16 +256,18 @@ function AttentionStrip({ ca }: { ca: CmcAttention }) {
   );
 }
 
-function CallRow({ c, compact }: { c: Call; compact?: boolean }) {
-  const body = (
-    <>
-      <div className="shrink-0 w-24"><Asset s={c.symbol} />{c.classification && <div><Tag v={c.classification} /></div>}</div>
+function CallRow({ c, logo, compact }: { c: Call; logo?: string | null; compact?: boolean }) {
+  return (
+    <div className={`flex items-start gap-3 border-border bg-card px-3 py-2 ${compact ? "" : "border"}`}>
+      <div className="shrink-0 w-[68px] flex items-center gap-1.5">
+        <AssetIcon logo={logo} symbol={c.symbol} size={18} /><Asset s={c.symbol} />
+      </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2 text-xs">
+          <Avatar handle={c.author} size={15} />
           <span className="font-medium truncate">{c.author}</span>
-          <span className="uppercase" style={{ color: hsl(sc(c.stance)) }}>{c.stance ?? "—"}</span>
-          <span className="text-muted-foreground">{c.source}</span>
-          {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">↗</a>}
+          <span className="uppercase" style={{ color: hsl(sc(c.stance)) }}>{stanceLabel(c.stance)}</span>
+          {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>}
           {c.since_call_pct != null && (
             <span title="since the call" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>
           )}
@@ -263,18 +275,44 @@ function CallRow({ c, compact }: { c: Call; compact?: boolean }) {
         </div>
         <div className="text-sm mt-0.5 text-foreground/90">{c.summary}</div>
       </div>
-    </>
+    </div>
   );
-  return <div className={`flex items-start gap-3 border-border bg-card px-3 py-2 ${compact ? "" : "border"}`}>{body}</div>;
 }
 
-function IdeaCard({ idea }: { idea: Idea }) {
+function Timeline({ feed, logoBy }: { feed: Call[]; logoBy: LogoMap }) {
+  return (
+    <div className="relative pl-5">
+      <div className="absolute left-[6px] top-2 bottom-2 w-px bg-border" />
+      <div className="space-y-0.5">
+        {feed.map((c, i) => {
+          const col = c.stance === "bullish" ? SC.bullish : c.stance === "bearish" ? SC.bearish : SC.neutral;
+          return (
+            <div key={i} className="relative flex items-center gap-2 text-sm py-1">
+              <span className="absolute -left-[18px] w-[9px] h-[9px] rounded-full ring-2 ring-background" style={{ background: hsl(col) }} />
+              <span className="text-muted-foreground text-xs w-9 shrink-0 text-right">{ago(c.ts)}</span>
+              <Avatar handle={c.author} size={16} />
+              <span className="font-medium text-xs truncate max-w-[96px]">{c.author}</span>
+              <span className="uppercase text-[10px] w-10 shrink-0" style={{ color: hsl(col) }}>{stanceLabel(c.stance)}</span>
+              <AssetIcon logo={logoBy[c.symbol]} symbol={c.symbol} size={16} /><Asset s={c.symbol} />
+              {c.since_call_pct != null && (
+                <span className="text-xs shrink-0" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>
+              )}
+              <span className="text-muted-foreground truncate flex-1 min-w-0 hidden md:block">{c.summary}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function IdeaCard({ idea, logo }: { idea: Idea; logo?: string | null }) {
   const gate = (ok: boolean, label: string) => (
     <span className="text-[10px] uppercase tracking-wider" style={{ color: ok ? hsl(SC.bullish) : hsl(SC.bearish) }}>{ok ? "✓" : "✕"} {label}</span>
   );
   return (
     <Card className="rounded-none p-3 gap-1.5">
-      <div className="flex items-center gap-2"><Asset s={idea.symbol} /><Tag v={idea.classification} />
+      <div className="flex items-center gap-2"><AssetIcon logo={logo} symbol={idea.symbol} size={18} /><Asset s={idea.symbol} /><Tag v={idea.classification} />
         <span className="text-xs text-primary ml-auto">conf {idea.confidence}</span></div>
       <div className="flex flex-wrap gap-x-3 gap-y-0.5">
         {gate(idea.narrative_heating, "heating")}{gate(idea.score >= 0.6, "organic")}

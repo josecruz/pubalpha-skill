@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { AssetIcon } from "@/components/icons";
 import {
   type CmcOnly, type Mover, type Scan, type Signal,
   SC, hsl, pct, usd, vc,
@@ -62,6 +63,7 @@ export default function IntelPage() {
           <div className="space-y-1">
             {(ov?.cmc_only ?? []).map((c: CmcOnly) => (
               <div key={c.symbol} className="flex items-center gap-2 text-sm">
+                <AssetIcon logo={sigBy[c.symbol]?.identity?.logo} symbol={c.symbol} size={15} />
                 <Asset s={c.symbol} />
                 <span className="text-muted-foreground text-xs truncate">{c.name}</span>
                 {c.rank != null && <span className="text-muted-foreground text-xs">#{c.rank}</span>}
@@ -139,7 +141,8 @@ function CrowdCol({ title, hint, color, syms, sigBy }: {
           const sig = sigBy[s];
           return (
             <span key={s} className="inline-flex items-center gap-1.5 border border-border px-2 py-1 text-sm">
-              {sig && <Dot t={vc(sig.classification)} />}<Asset s={s} />
+              <AssetIcon logo={sig?.identity?.logo} symbol={s} size={15} /><Asset s={s} />
+              {sig && <Dot t={vc(sig.classification)} />}
               {sig && <span className="text-muted-foreground text-xs">{sig.n_calls}</span>}
             </span>
           );
@@ -159,7 +162,7 @@ function MoverCol({ title, rows, sigBy }: { title: string; rows: Mover[]; sigBy:
           const sig = m.symbol ? sigBy[m.symbol] : undefined;
           return (
             <div key={`${m.symbol}-${i}`} className="flex items-center gap-2 text-sm">
-              {sig && <Dot t={vc(sig.classification)} />}
+              <AssetIcon logo={sig?.identity?.logo} symbol={m.symbol} size={15} />
               <Asset s={m.symbol} />
               <span className="text-muted-foreground text-xs truncate max-w-[120px]">{m.name}</span>
               {m.percent_change_24h != null ? (

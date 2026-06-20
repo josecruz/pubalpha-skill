@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { PriceChart } from "@/components/price-chart";
+import { AssetIcon, Avatar, ExchangeIcon } from "@/components/icons";
 import {
   type Call, type Idea, type Scan, type Signal,
   SC, age, ago, funding, hsl, pct, stanceLabel, usd, vc,
@@ -12,6 +13,26 @@ import {
 const Label = ({ children }: { children: React.ReactNode }) => (
   <span className="text-[11px] uppercase tracking-[1.5px] text-muted-foreground">{children}</span>
 );
+
+// Plain-language read of the classifier — turns each feature (higher = more coordinated) into a finding.
+const VERDICT_BLURB: Record<string, string> = {
+  organic: "These look like genuine, independent calls — not a coordinated push.",
+  coordinated: "These show the hallmarks of a coordinated pump.",
+  mixed: "Mixed — some genuine interest, some signs of coordination.",
+};
+const SIGNAL_ROWS: { key: string; label: string; text: Record<string, string> }[] = [
+  { key: "timing_clustering", label: "Timing", text: { organic: "spread over time, not bunched", coordinated: "jammed into a tight window", mixed: "somewhat bunched together", na: "—" } },
+  { key: "author_concentration", label: "Authors", text: { organic: "many independent accounts", coordinated: "a few accounts repeating", mixed: "a handful of accounts", na: "—" } },
+  { key: "language_similarity", label: "Wording", text: { organic: "varied, original phrasing", coordinated: "near-identical copypasta", mixed: "some repeated phrasing", na: "—" } },
+  { key: "low_substance", label: "Substance", text: { organic: "real theses, not just hype", coordinated: "pure urgency / hype", mixed: "mixed substance", na: "—" } },
+  { key: "onchain_pump", label: "Pump check", text: { organic: "no pump pattern on-chain", coordinated: "price spiking on thin liquidity", mixed: "some on-chain froth", na: "not checked on-chain" } },
+];
+function signalState(v: number | undefined): "organic" | "coordinated" | "mixed" | "na" {
+  if (v == null) return "na";
+  return v < 0.34 ? "organic" : v > 0.66 ? "coordinated" : "mixed";
+}
+const STATE_ICON: Record<string, string> = { organic: "✓", coordinated: "✕", mixed: "~", na: "·" };
+const STATE_COLOR: Record<string, string> = { organic: SC.bullish, coordinated: SC.bearish, mixed: "40 71% 73%", na: SC.neutral };
 
 export default function AssetPage() {
   const [scan, setScan] = useState<Scan | null>(null);
@@ -35,13 +56,12 @@ export default function AssetPage() {
 
   const m = sig.market;
   const cex = m?.cex_volume_24h || 0, dex = m?.dex_volume_24h || 0, tot = cex + dex || 1;
-  const feats = Object.entries(sig.features ?? {});
   const id = sig.identity, perf = sig.performance, att = sig.attention, venues = sig.venues ?? [];
 
   return (
     <Wrap>
       <div className="flex items-center gap-3">{back}
-        {id?.logo && /* eslint-disable-next-line @next/next/no-img-element */ <img src={id.logo} alt="" className="w-7 h-7" />}
+        <AssetIcon logo={id?.logo} symbol={sig.symbol} size={28} />
         <h1 className="text-xl font-bold">{sig.symbol}</h1>
         {id?.is_new && <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border" style={{ color: hsl(SC.bearish), borderColor: hsl(SC.bearish, 0.4) }} title="listed < 30 days ago">NEW</span>}
         <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border"
@@ -125,30 +145,32 @@ export default function AssetPage() {
           ) : <div className="text-muted-foreground text-sm">no market data on CMC for this asset.</div>}
         </Card>
 
-        {/* classifier */}
+        {/* why — plain language */}
         <Card className="rounded-none p-3 gap-2">
-          <Label>why — organic vs coordinated</Label>
-          <ul className="space-y-0.5 text-sm">{sig.reasons.map((r, i) => <li key={i}>• {r}</li>)}</ul>
-          {feats.length > 0 && (
-            <div className="mt-1 space-y-1">
-              <Label>signals (higher = more coordinated)</Label>
-              {feats.map(([k, v]) => (
-                <div key={k} className="flex items-center gap-2 text-xs">
-                  <span className="w-40 text-muted-foreground">{k.replace(/_/g, " ")}</span>
-                  <div className="flex-1 h-2 border border-border"><div style={{ width: `${Math.min(1, v) * 100}%`, background: hsl(v >= 0.5 ? SC.bearish : "213 14% 45%") }} className="h-full" /></div>
-                  <span className="w-10 text-right">{v.toFixed(2)}</span>
+          <Label>why this verdict</Label>
+          <div className="flex items-baseline gap-2">
+            <span className="text-base uppercase font-semibold" style={{ color: hsl(vc(sig.classification)) }}>{sig.classification}</span>
+            <span className="text-sm text-muted-foreground">{VERDICT_BLURB[sig.classification]}</span>
+          </div>
+          <div className="space-y-1 mt-0.5">
+            {SIGNAL_ROWS.map((row) => {
+              const st = signalState(sig.features?.[row.key]);
+              return (
+                <div key={row.key} className="flex items-baseline gap-2 text-sm">
+                  <span className="w-4 text-center shrink-0" style={{ color: hsl(STATE_COLOR[st]) }}>{STATE_ICON[st]}</span>
+                  <span className="w-28 shrink-0 text-muted-foreground">{row.label}</span>
+                  <span className="flex-1">{row.text[st]}</span>
                 </div>
-              ))}
-            </div>
-          )}
-          {idea?.onchain && (
-            <div className="mt-1">
-              <Label>on-chain confirmation</Label>
-              <div className="text-sm" style={{ color: idea.onchain.confirmed ? hsl(SC.bullish) : hsl(SC.bearish) }}>
-                {idea.onchain.confirmed ? "confirmed" : "not confirmed"}</div>
-              <ul className="text-[11px] text-muted-foreground">{idea.onchain.notes.slice(0, 4).map((nn, i) => <li key={i}>• {nn}</li>)}</ul>
-            </div>
-          )}
+              );
+            })}
+            {idea?.onchain && (
+              <div className="flex items-baseline gap-2 text-sm border-t border-border pt-2 mt-1">
+                <span className="w-4 text-center shrink-0" style={{ color: hsl(idea.onchain.confirmed ? SC.bullish : SC.neutral) }}>{idea.onchain.confirmed ? "✓" : "·"}</span>
+                <span className="w-28 shrink-0 text-muted-foreground">Confirmation</span>
+                <span className="flex-1">{idea.onchain.confirmed ? "money is moving on-chain — confirmed" : "not yet confirmed on-chain"}</span>
+              </div>
+            )}
+          </div>
         </Card>
       </div>
 
@@ -211,10 +233,11 @@ export default function AssetPage() {
           <Label>top venues — {venues.length} spot markets by 24h volume</Label>
           <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
             {venues.map((v, i) => (
-              <div key={i} className="flex items-center gap-3 px-3 py-1.5">
-                <span className="font-medium w-44 truncate">{v.exchange}</span>
-                <span className="text-muted-foreground w-32">{v.pair}</span>
-                <span className="text-muted-foreground w-20">{v.category}</span>
+              <div key={i} className="flex items-center gap-2.5 px-3 py-1.5">
+                <ExchangeIcon id={v.exchange_id} name={v.exchange} size={16} />
+                <span className="font-medium w-40 truncate">{v.exchange}</span>
+                <span className="text-muted-foreground w-28">{v.pair}</span>
+                <span className="text-muted-foreground w-20 text-xs">{v.category}</span>
                 <span className="ml-auto">{usd(v.volume_24h)}</span>
               </div>
             ))}
@@ -232,10 +255,11 @@ export default function AssetPage() {
               <div key={i} className="border border-border bg-card p-3">
                 <div className="flex items-center gap-2 text-xs">
                   <span className="px-1.5 py-px border text-[10px] uppercase tracking-wider" style={{ color: hsl(stClr), borderColor: hsl(stClr, 0.4) }}>{stanceLabel(c.stance)}</span>
+                  <Avatar handle={c.author} size={16} />
                   <span className="font-medium">{c.author}</span>
-                  <span className="text-muted-foreground">{c.source}</span>
-                  {c.conviction != null && <span className="text-muted-foreground">conv {c.conviction.toFixed(2)}</span>}
-                  {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">↗ source</a>}
+                  {c.url
+                    ? <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>
+                    : <span className="text-muted-foreground">{c.source}</span>}
                   <span className="text-muted-foreground ml-auto">{ago(c.ts)} ago</span>
                 </div>
                 <div className="text-sm mt-1.5 text-foreground">{c.summary}</div>
