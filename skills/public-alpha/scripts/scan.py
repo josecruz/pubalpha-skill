@@ -98,6 +98,7 @@ def scan(cfg, args) -> dict:
         signals.append({
             "symbol": sym, "n_calls": len(cs),
             "classification": res.classification, "score": res.score, "reasons": res.reasons,
+            "features": res.features,
             "distinct_authors": len({c.author for c in cs}),
             "sources": sorted({c.source.split(":")[0] for c in cs}),
             "stance_mix": _stance_mix(cs),
@@ -105,6 +106,15 @@ def scan(cfg, args) -> dict:
             "top_calls": [_call_dict(c) for c in top],
         })
     signals.sort(key=lambda s: (s["n_calls"], s["score"]), reverse=True)   # most-called first
+
+    # per-asset market block (price, %changes, CEX/DEX volume split, market cap)
+    if market is not None and signals:
+        try:
+            mkt = market.market_block([s["symbol"] for s in signals])
+            for s in signals:
+                s["market"] = mkt.get(s["symbol"])
+        except Exception as e:
+            print(f"[market_block] {e}", file=sys.stderr)
 
     # trade ideas: on-chain confirm the top organic names (bounded), gate by regime
     ideas = []
@@ -147,13 +157,31 @@ def scan(cfg, args) -> dict:
     feed.sort(key=lambda f: f["ts"], reverse=True)
     feed = feed[:300]
 
+    # market insights (global volumes/dominance + the CEX/DEX split across surfaced assets)
+    gate = compute_gate_stats(groups, cfg)
+    gi = {}
+    if market is not None:
+        try:
+            gi = market.global_insights()
+        except Exception as e:
+            print(f"[global_insights] {e}", file=sys.stderr)
+    num = lambda x: float(x) if isinstance(x, (int, float)) else 0.0
+    insights = {
+        **gi,
+        "surfaced_cex_volume_24h": round(sum(num((s.get("market") or {}).get("cex_volume_24h")) for s in signals)),
+        "surfaced_dex_volume_24h": round(sum(num((s.get("market") or {}).get("dex_volume_24h")) for s in signals)),
+        "verdict_split": {"organic_pct": gate["organic_pct"],
+                          "coordinated_pct": gate["filtered_coordinated_pct"], "mixed_pct": gate["mixed_pct"]},
+    }
+
     out = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "meta": {"total_calls": len(calls), "unique_symbols": len(groups),
                  "classified": len(signals), "trade_ideas": len(ideas), "lookback_days": args.lookback},
         "regime": _regime_dict(regime),
         "narrative": narrative,
-        "gate_stats": compute_gate_stats(groups, cfg),
+        "gate_stats": gate,
+        "market_insights": insights,
         "signals": signals,
         "trade_ideas": ideas,
         "feed": feed,

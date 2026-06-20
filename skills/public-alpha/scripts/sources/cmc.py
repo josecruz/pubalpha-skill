@@ -244,6 +244,65 @@ class CMCSource:
         except Exception:
             return {}
 
+    def market_block(self, symbols) -> dict:
+        """Rich per-symbol market block (batched). {symbol: {price, percent_change_24h/7d,
+        volume_24h, cex_volume_24h, dex_volume_24h, market_cap, kind, chain}}.
+        Crypto comes from quotes (highest-volume listing); tokenized stocks fall back to the index."""
+        syms = sorted({s.upper() for s in symbols})
+        valid = [s for s in syms if s.isalnum()]   # CMC rejects the whole batch on any non-alphanumeric symbol
+        out: dict = {}
+        for i in range(0, len(valid), 100):
+            chunk = valid[i:i + 100]
+            try:
+                data = self._get("/v2/cryptocurrency/quotes/latest",
+                                 {"symbol": ",".join(chunk), "convert": "USD", "skip_invalid": "true"})
+            except Exception:
+                continue
+            for key, entry in (data or {}).items():
+                entries = entry if isinstance(entry, list) else [entry]
+                best, bestvol = None, -1.0
+                for e in entries:
+                    u = (e.get("quote", {}) or {}).get("USD", {}) or {}
+                    if u.get("price") is None:
+                        continue
+                    v = _num(u.get("volume_24h"))
+                    if v > bestvol:
+                        bestvol, best = v, (e, u)
+                if best:
+                    e, u = best
+                    out[(e.get("symbol") or key).upper()] = {
+                        "price": u.get("price"), "percent_change_24h": u.get("percent_change_24h"),
+                        "percent_change_7d": u.get("percent_change_7d"), "volume_24h": u.get("volume_24h"),
+                        "cex_volume_24h": u.get("cex_volume_24h"), "dex_volume_24h": u.get("dex_volume_24h"),
+                        "market_cap": u.get("market_cap"), "kind": "crypto", "chain": None,
+                    }
+        idx = self._tokenized_index()                       # tokenized-stock override (active listing)
+        for sym in syms:
+            m = out.get(sym)
+            if (not m or not _num(m.get("volume_24h"))) and sym in idx:
+                b = max(idx[sym], key=lambda l: l.get("volume_24h") or 0)
+                out[sym] = {
+                    "price": b.get("price"), "percent_change_24h": b.get("percent_change_24h"),
+                    "percent_change_7d": None, "volume_24h": b.get("volume_24h"),
+                    "cex_volume_24h": 0, "dex_volume_24h": b.get("volume_24h"),
+                    "market_cap": None, "kind": "tokenized_stock", "chain": b.get("chain"),
+                }
+        return out
+
+    def global_insights(self) -> dict:
+        """Market-wide volume/cap insights from global-metrics."""
+        try:
+            g = self._get("/v1/global-metrics/quotes/latest", {"convert": "USD"})
+            u = (g.get("quote", {}) or {}).get("USD", {}) or {}
+            return {
+                "total_market_cap": u.get("total_market_cap"), "total_volume_24h": u.get("total_volume_24h"),
+                "defi_volume_24h": u.get("defi_volume_24h"), "altcoin_volume_24h": u.get("altcoin_volume_24h"),
+                "stablecoin_volume_24h": u.get("stablecoin_volume_24h"),
+                "btc_dominance": g.get("btc_dominance"), "eth_dominance": g.get("eth_dominance"),
+            }
+        except Exception:
+            return {}
+
     def regime_inputs(self) -> dict:
         fg, fg_label = None, None
         try:
