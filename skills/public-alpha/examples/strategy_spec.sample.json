@@ -1,0 +1,112 @@
+{
+  "strategy": {
+    "name": "public-alpha-organic-cake",
+    "version": "1.0",
+    "generated_at": "2026-06-20T03:16:31Z",
+    "universe": {
+      "chain": "bsc",
+      "assets": [
+        "CAKE"
+      ]
+    },
+    "risk_profile": "balanced",
+    "horizon": "swing/days",
+    "lookback": "180d"
+  },
+  "signals": {
+    "narrative": {
+      "heating": false,
+      "source": "cmc_community_topics+categories",
+      "available": false
+    },
+    "calls": {
+      "symbol": "CAKE",
+      "score": 0.96,
+      "classification": "organic",
+      "reasons": [
+        "calls spread out (max 1 in 120 min) \u2192 organic timing",
+        "varied phrasing across authors (max similarity 0.187)",
+        "5 distinct authors",
+        "LLM: substantive thesis (substance 1.0)"
+      ],
+      "sources": [
+        "seed:podcast:all-in",
+        "seed:podcast:forward-guidance",
+        "seed:show:tbpn",
+        "seed:substack:defi-researcher",
+        "seed:x:0xchef"
+      ],
+      "n_calls": 5,
+      "evidence": [
+        {
+          "source": "seed:podcast:forward-guidance",
+          "ts": "2026-06-10T14:00:00+00:00",
+          "stance": "bullish",
+          "summary": "CAKE fee revenue plus veCAKE buybacks make it structurally undervalued versus other DEX tokens.",
+          "weight": 0.82
+        },
+        {
+          "source": "seed:podcast:all-in",
+          "ts": "2026-06-17T16:00:00+00:00",
+          "stance": "bullish",
+          "summary": "BNB chain activity is up and CAKE is the cleanest liquidity proxy for that trend.",
+          "weight": 0.82
+        },
+        {
+          "source": "seed:show:tbpn",
+          "ts": "2026-06-18T12:30:00+00:00",
+          "stance": "bullish",
+          "summary": "CAKE is one of the few DEX tokens with real protocol cashflow backing the revenue-share\u2026",
+          "weight": 0.788
+        },
+        {
+          "source": "seed:substack:defi-researcher",
+          "ts": "2026-06-12T09:30:00+00:00",
+          "stance": "bullish",
+          "summary": "PancakeSwap v4 hooks could pull liquidity away from competing BSC venues over the next quarter.",
+          "weight": 0.75
+        }
+      ]
+    },
+    "onchain_confirmation": {
+      "confirmed": false,
+      "available": false
+    },
+    "regime": {
+      "state": "unknown",
+      "available": false
+    }
+  },
+  "rules": {
+    "entry": [
+      "narrative.heating == true",
+      "calls.score >= 0.6 AND calls.classification == 'organic'",
+      "onchain_confirmation.confirmed == true",
+      "regime.state in ['risk_on','neutral']",
+      "not_exhausted (price_runup_pct < 50 over 24h)"
+    ],
+    "exit": {
+      "stop_loss_pct": -8,
+      "take_profit_pct": 25,
+      "time_stop": "72h",
+      "invalidations": [
+        "calls.classification -> coordinated",
+        "onchain distribution (buy_sell_ratio < 0.8)",
+        "attention fades AND price breaks entry"
+      ]
+    },
+    "position_sizing": {
+      "base_pct": 3.0,
+      "confidence_scaled": true,
+      "max_position_pct": 10
+    },
+    "risk_limits": {
+      "max_total_exposure_pct": 50,
+      "max_drawdown_guard_pct": 20
+    }
+  },
+  "thesis": "CAKE: calls classified organic (organic score 0.96). Drivers: calls spread out (max 1 in 120 min) \u2192 organic timing; varied phrasing across authors (max similarity 0.187).",
+  "confidence": 0.53,
+  "entry_signal": false,
+  "backtest_ref": null
+}
