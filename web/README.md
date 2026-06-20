@@ -32,8 +32,9 @@ the call feed works regardless.
 - **Social-trades feed** — 4 views via the selector: `TIMELINE` (compact chronological KOL timeline —
   stance dots on a time axis, avatar · handle · LONG/SHORT · asset · since-call %), `CALLS` (cards),
   `ASSETS` (table with price / 24h / CEX vol / DEX vol), `GROUPED` (calls per asset).
-- Real **asset logos** (CMC) on chips/feed/tables, **exchange logos** on venue tables, and KOL **avatars**
-  throughout — verbose labels trimmed to icons.
+- Real **asset logos** (CMC) on chips/feed/tables, **exchange logos** on venue tables, and **real KOL
+  profile photos** (via unavatar — Twitch/X by show platform) with a **verified ✓** badge and a **platform
+  icon** (Twitch / YouTube / X) per call; monogram fallback. Verbose labels trimmed to icons.
 - **Trade Ideas** — the confirmed subset with a gate scoreboard (heating / organic / confirmed / regime).
 
 ### Setups (`/setups`)
@@ -55,7 +56,8 @@ Logo, tags, listing age + **NEW** flag, provenance links; the **CMC-attention** 
 trending in + rank); a **price chart** (daily, with call markers colored by stance); price, % changes,
 **CEX vs DEX volume**, market cap; **price context** (ATH, % from ATH, ROI ladder); **decision signals**
 (KOL sentiment gauge · spot breakout · perp funding/OI); **top venues**; the classifier verdict + reasons +
-feature bars + on-chain confirmation; and the call feed rendered
+feature bars + on-chain confirmation; the asset's **mentions** as a compact **timeline** (default) or
+paste.trade-style cards; and the call feed rendered
 **paste.trade-style** — each call a LONG/SHORT thesis card with **entry price + % move since the call**.
 
 Verdict colors: green = organic, amber = mixed, red = coordinated.
