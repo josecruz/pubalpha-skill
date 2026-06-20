@@ -5,15 +5,16 @@ Living engineering log: what's built, the key decisions, and what's pending. Kep
 ## Status vs the checkpoint ladder
 | CP | What | State |
 |----|------|-------|
-| C0 | Scaffold + protocols + config | ✅ done (live MCP/data verification pending CMC key) |
-| C1 | The wedge: classifier + confirm + regime + calls + seed | ✅ done, tested offline (`tests/test_wedge.py`) |
-| C2 | Strategy Spec + Card output (`strategy.py`, `render.py`, `run.py`) | ✅ done, runs on real paste.trade data |
-| C3 | numpy backtest + honesty block (`backtest.py`) | ✅ engine done & tested (synthetic); **golden run pending live OHLCV** |
-| C4 | SKILL.md + README + demo + submit | 🟡 SKILL.md + README done; demo + DoraHacks submit pending |
+| C0 | Scaffold + protocols + config | ✅ done; CMC client live-validated |
+| C1 | The wedge: classifier + confirm + regime + calls + seed | ✅ done, tested (`tests/test_wedge.py`) |
+| C2 | Strategy Spec + Card output (`strategy.py`, `render.py`, `run.py`) | ✅ done, runs on real data |
+| C3 | numpy backtest + honesty block + **golden run** | ✅ done; live golden run in `examples/` |
+| C4 | SKILL.md + README + dashboard + demo + submit | 🟡 SKILL.md + README + dashboard done; **demo video + DoraHacks submit pending** |
 
-**Runs today without a key:** the classifier, the full funnel on seed + paste.trade allowed surface,
-spec + card output, the backtest engine (synthetic). **Needs the CMC key:** on-chain confirmation,
-regime gate, narrative heating, CMC content calls, and the real backtest/golden run.
+**Live golden run** (`examples/cake` + `examples/moon`) produced with a CMC key: classifier, calls
+(paste.trade + CMC + seed), on-chain confirmation (CMC aggregated DEX volume), regime gate, and a
+180-day daily backtest (+31.6% excess vs buy-and-hold BNB). The optional `dashboard/index.html`
+renders it. Remaining: record the demo video and submit on DoraHacks (after making the repo public).
 
 ## Data sources & the access decision
 - **CMC (`scripts/sources/cmc.py`)** — the spine. Exercises community trending + categories (heating),
@@ -55,7 +56,9 @@ regime gate, narrative heating, CMC content calls, and the real backtest/golden 
 - With a CMC key: on-chain/regime/narrative/backtest light up; produce + commit the golden run to `examples/`.
 
 ## Pending
-1. CMC key → validate `cmc.py` live, fix any field-name drift, produce the **golden run** → commit to `examples/`.
-2. Record the agent-driven demo (the funnel narrating itself; the $MOON rejection is the money shot).
-3. Make the repo public; submit on DoraHacks (Track 2, tag CoinMarketCap).
-4. Optional: the static dashboard (`dashboard/index.html`) over `results/*.json`.
+1. Record the agent-driven demo (the funnel narrating itself; the $MOON rejection is the money shot).
+   Script + checklist in `docs/DEMO-AND-SUBMISSION.md`.
+2. Make the repo **public**; submit on DoraHacks (Track 2, tag CoinMarketCap).
+3. (Optional) connect the CMC MCP for live demo narration.
+
+Done since last: CMC client live-validated, golden run committed, dashboard built.

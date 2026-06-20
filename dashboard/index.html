@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Public Alpha — Strategy Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12/marked.min.js"></script>
+<style>
+  :root { --bg:#0b0e14; --panel:#141a24; --line:#222b3a; --fg:#e6edf3; --mut:#8b98a9;
+          --grn:#3fb950; --red:#f85149; --amb:#d29922; --acc:#58a6ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  header { padding:20px 28px; border-bottom:1px solid var(--line); display:flex;
+           align-items:baseline; gap:16px; flex-wrap:wrap; }
+  header h1 { font-size:18px; margin:0; font-weight:650; }
+  header .sub { color:var(--mut); font-size:13px; }
+  .runsel { margin-left:auto; }
+  .runsel a { color:var(--mut); text-decoration:none; padding:4px 10px; border:1px solid var(--line);
+              border-radius:6px; margin-left:6px; }
+  .runsel a.on { color:var(--fg); border-color:var(--acc); }
+  main { max-width:1100px; margin:0 auto; padding:24px 28px 60px; display:grid; gap:20px; }
+  .badge { font-weight:700; padding:3px 10px; border-radius:6px; font-size:13px; }
+  .badge.entry { background:rgba(63,185,80,.15); color:var(--grn); }
+  .badge.no { background:rgba(248,81,73,.15); color:var(--red); }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px 22px; }
+  .panel h2 { margin:0 0 14px; font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--mut); }
+  .funnel { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .stage { background:#0f141d; border:1px solid var(--line); border-radius:10px; padding:12px; }
+  .stage .n { color:var(--mut); font-size:11px; text-transform:uppercase; letter-spacing:.05em; }
+  .stage .v { font-weight:650; margin:4px 0; }
+  .stage .d { color:var(--mut); font-size:12px; }
+  .stage.ok { border-color:rgba(63,185,80,.4); } .stage.bad { border-color:rgba(248,81,73,.4); }
+  .reasons { margin:10px 0 0; padding-left:18px; } .reasons li { margin:2px 0; color:var(--mut); }
+  .gate { display:flex; height:34px; border-radius:8px; overflow:hidden; border:1px solid var(--line); }
+  .gate span { display:flex; align-items:center; justify-content:center; font-size:12px; color:#0b0e14; font-weight:650; }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:12px; margin-bottom:16px; }
+  .metric { background:#0f141d; border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .metric .k { color:var(--mut); font-size:11px; text-transform:uppercase; }
+  .metric .val { font-size:20px; font-weight:700; margin-top:2px; }
+  .pos { color:var(--grn); } .neg { color:var(--red); }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:6px 24px; }
+  .card h1 { font-size:18px; } .card h2 { font-size:13px; color:var(--mut); border:0; }
+  .card code { background:#0f141d; padding:1px 5px; border-radius:4px; }
+  .honesty { color:var(--mut); font-size:12px; font-style:italic; }
+  .err { color:var(--red); padding:20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Public Alpha</h1>
+  <span class="sub">hype → organic-vs-coordinated → on-chain → regime → backtested spec</span>
+  <span class="runsel" id="runsel"></span>
+</header>
+<main id="app"><div class="sub">Loading…</div></main>
+
+<script>
+const RUNS = { cake: "../skills/public-alpha/examples/cake/", moon: "../skills/public-alpha/examples/moon/" };
+const params = new URLSearchParams(location.search);
+const run = params.get("run") || "cake";
+const BASE = params.get("data") || RUNS[run] || RUNS.cake;
+
+const $ = (h) => { const t=document.createElement("template"); t.innerHTML=h.trim(); return t.content.firstChild; };
+const pct = (v) => (v==null ? "—" : (v>0?"+":"")+v+"%");
+const cls = (v) => (v==null?"":v>=0?"pos":"neg");
+
+async function getJSON(u){ const r=await fetch(u); if(!r.ok) throw new Error(r.status+" "+u); return r.json(); }
+async function getText(u){ const r=await fetch(u); return r.ok ? r.text() : ""; }
+
+function runSelector(){
+  const el = document.getElementById("runsel");
+  Object.keys(RUNS).forEach(k=>{
+    const a=$(`<a href="?run=${k}" class="${k===run?'on':''}">${k.toUpperCase()}</a>`); el.appendChild(a);
+  });
+}
+
+function funnel(spec){
+  const s=spec.signals||{}, c=s.calls||{}, oc=s.onchain_confirmation||{}, rg=s.regime||{}, nar=s.narrative||{};
+  const organic = c.classification==="organic";
+  const stage=(n,title,val,detail,state)=>`<div class="stage ${state||''}"><div class="n">${n}. ${title}</div>
+     <div class="v">${val}</div><div class="d">${detail||""}</div></div>`;
+  return `<div class="panel"><h2>The funnel</h2><div class="funnel">
+    ${stage(1,"Heating", nar.heating?("🔥 "+(nar.sector||"yes")):"flat", nar.source||"")}
+    ${stage(2,"Calls", (c.n_calls??"—")+" on "+(c.symbol||""), (c.sources||[]).length+" sources")}
+    ${stage(3,"Organic vs coordinated",(c.classification||"?").toUpperCase(),"score "+(c.score??"—"), organic?"ok":"bad")}
+    ${stage(4,"On-chain", oc.available===false?"n/a":(oc.confirmed?"✅ confirmed":"❌ no"),"", oc.confirmed?"ok":(oc.available===false?"":"bad"))}
+    ${stage(5,"Regime", (rg.state||"?"), rg.fear_greed!=null?("F&G "+rg.fear_greed):"", rg.state==="risk_off"?"bad":"ok")}
+  </div>${(c.reasons&&c.reasons.length)?`<ul class="reasons">${c.reasons.map(r=>`<li>${r}</li>`).join("")}</ul>`:""}</div>`;
+}
+
+function gateBar(g){
+  if(!g||g.clusters_seen==null) return "";
+  const o=g.organic_pct||0, co=g.filtered_coordinated_pct||0, mx=g.mixed_pct||0;
+  return `<div class="panel"><h2>Classifier gate — ${g.clusters_seen} call clusters (${g.calls_seen} calls)</h2>
+    <div class="gate">
+      <span style="width:${o}%;background:var(--grn)">${o}% organic</span>
+      <span style="width:${mx}%;background:var(--amb)">${mx}% mixed</span>
+      <span style="width:${co}%;background:var(--red)">${co}% coordinated</span>
+    </div></div>`;
+}
+
+function backtest(rep){
+  if(!rep) return "";
+  const m=rep.metrics||{}, h=rep.honesty||{};
+  const M=(k,v,c)=>`<div class="metric"><div class="k">${k}</div><div class="val ${c||''}">${v}</div></div>`;
+  return `<div class="panel"><h2>Backtest — ${rep.window?.start} → ${rep.window?.end} (${rep.window?.interval})</h2>
+    <div class="metrics">
+      ${M("Return", pct(m.total_return_pct), cls(m.total_return_pct))}
+      ${M("Benchmark", pct(m.benchmark_return_pct), cls(m.benchmark_return_pct))}
+      ${M("Excess", pct(m.excess_pct), cls(m.excess_pct))}
+      ${M("Max drawdown", pct(m.max_drawdown_pct), "neg")}
+      ${M("Sharpe", m.sharpe??"—")}
+      ${M("Win rate", (m.win_rate_pct??"—")+"%")}
+      ${M("Trades", m.num_trades??"—")}
+    </div>
+    <canvas id="eq" height="90"></canvas>
+    ${h.entry_proxy?`<p class="honesty">Honesty — backtested: ${(h.backtested_on_history||[]).join(", ")}. Forward-validated: ${(h.forward_validated_or_proxied||[]).join(", ")}. Entry: ${h.entry_proxy}</p>`:""}
+  </div>`;
+}
+
+function drawEquity(rep){
+  const cv=document.getElementById("eq"); if(!cv||!rep?.equity_curve?.length) return;
+  const eq=rep.equity_curve, bench=(rep.metrics?.benchmark_return_pct||0)/100;
+  const labels=eq.map(p=>String(p.ts).slice(0,10));
+  const strat=eq.map(p=>p.equity);
+  const bl=eq.map((_,i)=>1+bench*(i/(eq.length-1||1)));
+  new Chart(cv,{type:"line",data:{labels,datasets:[
+    {label:"Strategy",data:strat,borderColor:"#58a6ff",borderWidth:2,pointRadius:0,tension:.1},
+    {label:rep.benchmark||"benchmark",data:bl,borderColor:"#8b98a9",borderWidth:1.5,borderDash:[5,4],pointRadius:0}
+  ]},options:{plugins:{legend:{labels:{color:"#e6edf3"}}},
+    scales:{x:{ticks:{color:"#8b98a9",maxTicksLimit:8},grid:{color:"#1c2430"}},
+            y:{ticks:{color:"#8b98a9"},grid:{color:"#1c2430"}}}}});
+}
+
+(async function(){
+  runSelector();
+  const app=document.getElementById("app");
+  try{
+    const spec=await getJSON(BASE+"strategy_spec.json");
+    let rep=null;
+    const ref=spec.backtest_ref;
+    if(ref){ try{ rep=await getJSON(BASE+ref.split("/").pop()); }catch(e){} }
+    const cardMd=await getText(BASE+"strategy_card.md");
+    const entry=spec.entry_signal;
+    app.innerHTML="";
+    app.appendChild($(`<div class="panel"><div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <span class="badge ${entry?'entry':'no'}">${entry?'✅ ENTRY':'⛔ NO ENTRY'}</span>
+      <strong>${spec.strategy?.name||""}</strong>
+      <span class="sub">confidence ${spec.confidence} · ${spec.strategy?.risk_profile} · ${spec.strategy?.horizon} · lookback ${spec.strategy?.lookback}</span>
+    </div></div>`));
+    app.appendChild($(funnel(spec)));
+    if(rep) app.appendChild($(gateBar(rep.gate_stats)));
+    if(rep) app.appendChild($(backtest(rep)));
+    if(cardMd){ const d=$('<div class="card"></div>'); d.innerHTML=marked.parse(cardMd); app.appendChild(d); }
+    if(rep) drawEquity(rep);
+  }catch(e){
+    app.innerHTML=`<div class="err">Could not load run data from <code>${BASE}</code>.<br>${e.message}
+      <br><br>Serve from the repo root so relative paths resolve: <code>npx serve .</code> then open <code>/dashboard/</code>.</div>`;
+  }
+})();
+</script>
+</body>
+</html>

@@ -132,6 +132,8 @@ MIT — see [LICENSE](LICENSE).
 
 ---
 
-_Status: active build for the BNB HACK lock. The classifier, the funnel, the spec/card output, and
-the backtest engine run today (offline on seed + the paste.trade allowed surface); live CMC data
-(on-chain, regime, OHLCV golden run) wires in with a CMC key._
+_Status: the full funnel runs live on CMC data — classifier, calls (paste.trade + CMC + seed),
+on-chain confirmation, regime gate, and a 180-day backtest. See the committed golden run in
+[`skills/public-alpha/examples/`](skills/public-alpha/examples/): `cake/` (organic, confirmed,
++31.6% excess vs buy-and-hold BNB) and `moon/` (a coordinated pump, filtered with reasons).
+Remaining before the lock: demo video + DoraHacks submission (repo made public)._
