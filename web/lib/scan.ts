@@ -53,10 +53,11 @@ export interface Breakout {
   atr_pct: number | null; mom_7d: number | null; mom_30d: number | null; strength: number;
   social_confirmed?: boolean;
 }
-export interface PerpVenue { venue: string | null; oi: number; funding_rate: number | null; volume_24h: number; price: number | null; }
+export interface PerpVenue { venue: string | null; exchange_id?: number | null; is_dex?: boolean; oi: number; funding_rate: number | null; volume_24h: number; price: number | null; }
 export interface Perp {
   funding_rate: number | null; open_interest: number | null; perp_volume_24h: number | null;
-  venue: string | null; venues: PerpVenue[]; is_breakout: boolean; bias: string; score: number;
+  venue: string | null; long_share?: number | null; n_venues?: number; venues: PerpVenue[];
+  is_breakout: boolean; bias: string; score: number;
 }
 export interface SpotSetup {
   symbol: string; classification: Verdict; n_calls: number; is_breakout: boolean;

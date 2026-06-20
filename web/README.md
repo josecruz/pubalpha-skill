@@ -64,7 +64,8 @@ regime panel (altcoin-season index, Fear & Greed 14-day trend, dominance).
 Logo, tags, listing age + **NEW** flag, provenance links; the **CMC-attention** line (which CMC lists it's
 trending in + rank); a **price chart** (daily, with call markers colored by stance); price, % changes,
 **CEX vs DEX volume**, market cap; **price context** (ATH, % from ATH, ROI ladder); **decision signals**
-(KOL sentiment gauge · spot breakout · perp funding/OI); **top venues**; the classifier verdict + reasons +
+(KOL sentiment gauge · spot breakout · perp funding/OI + a **long/short lean** bar, funding-implied);
+**top spot venues** + **perp venues (CEX + DEX)** with funding/OI; the classifier verdict + reasons +
 feature bars + on-chain confirmation; the asset's **mentions** as a compact **timeline** (default) or
 paste.trade-style cards; and the call feed rendered
 **paste.trade-style** — each call a LONG/SHORT thesis card with **entry price + % move since the call**.

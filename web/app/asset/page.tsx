@@ -59,6 +59,8 @@ export default function AssetPage() {
   const m = sig.market;
   const cex = m?.cex_volume_24h || 0, dex = m?.dex_volume_24h || 0, tot = cex + dex || 1;
   const id = sig.identity, perf = sig.performance, att = sig.attention, venues = sig.venues ?? [];
+  const perpVenues = sig.perp?.venues ?? [];
+  const fundingColor = (fr: number | null | undefined) => ((fr ?? 0) >= 0 ? SC.bullish : SC.bearish);
 
   return (
     <Wrap>
@@ -218,12 +220,22 @@ export default function AssetPage() {
           {sig.perp && sig.perp.bias && (
             <Card className="rounded-none p-3 gap-2">
               <Label>perp (derivatives)</Label>
-              <div className="text-sm">{sig.perp.bias} <span className="text-muted-foreground">· {sig.perp.venue}</span></div>
+              <div className="text-sm">{sig.perp.bias} <span className="text-muted-foreground">· {sig.perp.n_venues ?? (sig.perp.venues?.length || 0)} venues</span></div>
               <div className="flex flex-wrap gap-x-5 gap-y-1">
                 <Stat k="Funding" v={funding(sig.perp.funding_rate)} color={(sig.perp.funding_rate ?? 0) >= 0 ? SC.bullish : SC.bearish} />
                 <Stat k="Open interest" v={usd(sig.perp.open_interest)} />
                 <Stat k="Perp vol 24h" v={usd(sig.perp.perp_volume_24h)} />
               </div>
+              {sig.perp.long_share != null && (
+                <div className="mt-1">
+                  <Label>long / short lean (funding-implied)</Label>
+                  <div className="flex h-3 mt-1 border border-border">
+                    <div style={{ width: `${sig.perp.long_share * 100}%`, background: hsl(SC.bullish) }} />
+                    <div style={{ width: `${(1 - sig.perp.long_share) * 100}%`, background: hsl(SC.bearish) }} />
+                  </div>
+                  <div className="text-[11px] text-muted-foreground mt-0.5">{Math.round(sig.perp.long_share * 100)}% long · {Math.round((1 - sig.perp.long_share) * 100)}% short</div>
+                </div>
+              )}
             </Card>
           )}
         </div>
@@ -240,6 +252,25 @@ export default function AssetPage() {
                 <span className="font-medium w-40 truncate">{v.exchange}</span>
                 <span className="text-muted-foreground w-28">{v.pair}</span>
                 <span className="text-muted-foreground w-20 text-xs">{v.category}</span>
+                <span className="ml-auto">{usd(v.volume_24h)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* perp venues (CEX + DEX) */}
+      {perpVenues.length > 0 && (
+        <div>
+          <Label>perp venues — {perpVenues.length} of {sig.perp?.n_venues ?? perpVenues.length} by 24h volume (funding / OI)</Label>
+          <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
+            {perpVenues.map((v, i) => (
+              <div key={i} className="flex items-center gap-2.5 px-3 py-1.5">
+                <ExchangeIcon id={v.exchange_id} name={v.venue} size={16} />
+                <span className="font-medium w-36 truncate">{v.venue}</span>
+                <span className="text-[10px] uppercase tracking-wider px-1 border border-border text-muted-foreground">{v.is_dex ? "DEX" : "CEX"}</span>
+                <span className="text-xs" style={{ color: hsl(fundingColor(v.funding_rate)) }}>funding {funding(v.funding_rate)}</span>
+                <span className="text-muted-foreground text-xs">OI {usd(v.oi)}</span>
                 <span className="ml-auto">{usd(v.volume_24h)}</span>
               </div>
             ))}
