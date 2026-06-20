@@ -12,11 +12,40 @@ export interface Call {
   stance: string | null; conviction: number | null; summary: string; ts: string;
   engagement: Record<string, number>; url: string | null;
 }
+export interface Attention { on_cmc: boolean; sources: string[]; rank: number | null; }
+export interface Identity {
+  logo: string | null; tags: string[]; category: string | null;
+  date_added: string | null; date_launched: string | null; description: string | null;
+  urls: {
+    website?: string | null; twitter?: string | null; reddit?: string | null;
+    explorer?: string | null; source_code?: string | null; technical_doc?: string | null;
+  };
+  age_days: number | null; is_new: boolean;
+}
+export interface Performance {
+  ath: number | null; ath_date: string | null; atl: number | null;
+  pct_from_ath: number | null; roi_all_time: number | null;
+  periods: Record<"7d" | "30d" | "90d" | "365d", number | null>;
+}
+export interface Venue {
+  exchange: string | null; pair: string | null; category: string | null;
+  volume_24h: number | null; price: number | null;
+}
+export interface Mover { symbol: string; name: string | null; rank: number | null; percent_change_24h?: number | null; }
+export interface CmcOnly extends Mover { sources: string[]; }
+export interface CmcAttention {
+  most_visited: Mover[]; gainers: Mover[]; losers: Mover[]; community: Mover[];
+  overlap: { corroborated: string[]; kol_only: string[]; cmc_only: CmcOnly[] };
+}
+export interface AltseasonIndex { value: number; classification: string; yearly_high?: number; yearly_low?: number; }
+export interface FngTrend { points: { ts: number; value: number }[]; delta: number; direction: string; latest: number; }
+
 export interface Signal {
   symbol: string; n_calls: number; classification: Verdict; score: number; reasons: string[];
   features?: Record<string, number>; distinct_authors: number; sources: string[];
   stance_mix: { bullish: number; bearish: number; neutral: number };
   latest_ts: string; top_calls: Call[]; market?: Market | null;
+  attention?: Attention; identity?: Identity | null; performance?: Performance | null; venues?: Venue[];
 }
 export interface Idea {
   symbol: string; score: number; classification: Verdict; confidence: number; confirmed: boolean;
@@ -33,10 +62,14 @@ export interface Insights {
 export interface Scan {
   generated_at: string;
   meta: { total_calls: number; unique_symbols: number; classified: number; trade_ideas: number };
-  regime: { available: boolean; state: string; fear_greed?: number; btc_dominance?: number };
+  regime: {
+    available: boolean; state: string; fear_greed?: number; btc_dominance?: number;
+    altseason_index?: AltseasonIndex | null; fear_greed_trend?: FngTrend | null;
+  };
   narrative: { heating: boolean; sector?: string; trending_topics?: string[]; available?: boolean };
   gate_stats: { clusters_seen: number; organic_pct: number; filtered_coordinated_pct: number; mixed_pct: number };
   market_insights: Insights;
+  cmc_attention: CmcAttention;
   signals: Signal[]; trade_ideas: Idea[]; feed: Call[];
 }
 
@@ -65,4 +98,12 @@ export function usd(n?: number | null): string {
 }
 export function pct(n?: number | null): string {
   return n == null ? "—" : `${n >= 0 ? "+" : ""}${n.toFixed(1)}%`;
+}
+export function age(iso?: string | null): string {
+  if (!iso) return "";
+  const d = Math.floor((Date.now() - new Date(iso).getTime()) / 86400000);
+  if (d < 1) return "today";
+  if (d < 60) return `${d}d`;
+  if (d < 365) return `${Math.round(d / 30)}mo`;
+  return `${(d / 365).toFixed(1)}y`;
 }

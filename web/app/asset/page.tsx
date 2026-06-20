@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import {
   type Call, type Idea, type Scan, type Signal,
-  SC, ago, hsl, pct, sc, usd, vc,
+  SC, age, ago, hsl, pct, sc, usd, vc,
 } from "@/lib/scan";
 
 const Label = ({ children }: { children: React.ReactNode }) => (
@@ -35,15 +35,35 @@ export default function AssetPage() {
   const m = sig.market;
   const cex = m?.cex_volume_24h || 0, dex = m?.dex_volume_24h || 0, tot = cex + dex || 1;
   const feats = Object.entries(sig.features ?? {});
+  const id = sig.identity, perf = sig.performance, att = sig.attention, venues = sig.venues ?? [];
 
   return (
     <Wrap>
       <div className="flex items-center gap-3">{back}
+        {id?.logo && /* eslint-disable-next-line @next/next/no-img-element */ <img src={id.logo} alt="" className="w-7 h-7" />}
         <h1 className="text-xl font-bold">{sig.symbol}</h1>
+        {id?.is_new && <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border" style={{ color: hsl(SC.bearish), borderColor: hsl(SC.bearish, 0.4) }} title="listed < 30 days ago">NEW</span>}
         <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border"
           style={{ color: hsl(vc(sig.classification)), borderColor: hsl(vc(sig.classification), 0.35) }}>{sig.classification}</span>
         <span className="text-muted-foreground text-sm">organic score {sig.score.toFixed(2)} · {sig.n_calls} calls · {sig.distinct_authors} authors</span>
         {m && <span className="text-muted-foreground text-sm ml-auto">{m.kind === "tokenized_stock" ? `tokenized stock · ${m.chain}` : "crypto"}</span>}
+      </div>
+
+      {/* identity strip — tags · age · CMC attention · provenance */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs">
+        {(id?.tags ?? []).slice(0, 5).map((t) => (
+          <span key={t} className="px-1.5 py-px border border-border text-muted-foreground">{t}</span>
+        ))}
+        {id?.date_added && <span className="text-muted-foreground">listed {age(id.date_added)} ago</span>}
+        {att && (att.on_cmc
+          ? <span style={{ color: hsl(SC.bullish) }}>CMC ✓ trending — {att.sources.map((s) => s.replace("_", " ")).join(", ")}{att.rank ? ` · rank ${att.rank}` : ""}</span>
+          : <span className="text-muted-foreground">not on CMC trending</span>)}
+        <span className="ml-auto flex gap-3">
+          {id?.urls?.website && <a className="text-muted-foreground hover:text-primary" href={id.urls.website} target="_blank" rel="noreferrer">site ↗</a>}
+          {id?.urls?.twitter && <a className="text-muted-foreground hover:text-primary" href={id.urls.twitter} target="_blank" rel="noreferrer">twitter ↗</a>}
+          {id?.urls?.explorer && <a className="text-muted-foreground hover:text-primary" href={id.urls.explorer} target="_blank" rel="noreferrer">explorer ↗</a>}
+          {id?.urls?.source_code && <a className="text-muted-foreground hover:text-primary" href={id.urls.source_code} target="_blank" rel="noreferrer">code ↗</a>}
+        </span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -67,6 +87,21 @@ export default function AssetPage() {
                 </div>
                 <div className="text-[11px] text-muted-foreground mt-0.5">CEX {usd(cex)} · DEX {usd(dex)}</div>
               </div>
+              {perf && (
+                <div className="mt-1">
+                  <Label>price context</Label>
+                  <div className="flex flex-wrap gap-x-6 gap-y-2 mt-0.5">
+                    <Stat k="ATH" v={usd(perf.ath)} />
+                    <Stat k="% from ATH" v={pct(perf.pct_from_ath)} color={(perf.pct_from_ath ?? 0) >= 0 ? SC.bullish : SC.bearish} />
+                    {perf.ath_date && <Stat k="ATH date" v={age(perf.ath_date) + " ago"} />}
+                  </div>
+                  <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5 text-xs">
+                    {(["7d", "30d", "90d", "365d"] as const).map((p) => (
+                      <span key={p} className="text-muted-foreground">{p} <span style={{ color: hsl((perf.periods[p] ?? 0) >= 0 ? SC.bullish : SC.bearish) }}>{pct(perf.periods[p])}</span></span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </>
           ) : <div className="text-muted-foreground text-sm">no market data on CMC for this asset.</div>}
         </Card>
@@ -97,6 +132,23 @@ export default function AssetPage() {
           )}
         </Card>
       </div>
+
+      {/* top venues */}
+      {venues.length > 0 && (
+        <div>
+          <Label>top venues — {venues.length} spot markets by 24h volume</Label>
+          <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
+            {venues.map((v, i) => (
+              <div key={i} className="flex items-center gap-3 px-3 py-1.5">
+                <span className="font-medium w-44 truncate">{v.exchange}</span>
+                <span className="text-muted-foreground w-32">{v.pair}</span>
+                <span className="text-muted-foreground w-20">{v.category}</span>
+                <span className="ml-auto">{usd(v.volume_24h)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* calls */}
       <div>

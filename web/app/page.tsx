@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  type Call, type Idea, type Scan, type Signal,
+  type Call, type CmcAttention, type Idea, type Scan, type Signal,
   SC, ago, hsl, pct, sc, usd, vc,
 } from "@/lib/scan";
 
@@ -54,7 +54,12 @@ export default function Page() {
         <div className="flex items-center gap-2">
           <Label>regime</Label>
           <span className="uppercase text-sm" style={{ color: r.state === "risk_off" ? hsl(SC.bearish) : hsl(SC.bullish) }}>{r.state}</span>
-          {r.fear_greed != null && <span className="text-muted-foreground text-sm">F&amp;G {r.fear_greed}</span>}
+          {r.fear_greed != null && (
+            <span className="text-muted-foreground text-sm">
+              F&amp;G {r.fear_greed}
+              {r.fear_greed_trend && <FngArrow dir={r.fear_greed_trend.direction} delta={r.fear_greed_trend.delta} />}
+            </span>
+          )}
         </div>
         <div className="flex items-center gap-2">
           <Label>heating</Label>
@@ -68,7 +73,10 @@ export default function Page() {
       </div>
 
       {/* market insights */}
-      <MarketInsights mi={mi} />
+      <MarketInsights mi={mi} regime={r} />
+
+      {/* CMC attention cross-ref strip */}
+      <AttentionStrip ca={scan.cmc_attention} />
 
       {/* hot assets */}
       <div>
@@ -81,6 +89,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Dot t={vc(s.classification)} /><span className="font-semibold">{s.symbol}</span>
                   <span className="text-muted-foreground text-xs">{s.n_calls}</span>
+                  {s.attention?.on_cmc && <span className="text-[9px] uppercase tracking-wider" style={{ color: hsl(SC.bullish) }} title="trending on CMC too">CMC ✓</span>}
                 </div>
                 <div className="text-[11px] text-muted-foreground mt-0.5">
                   {s.market?.price != null ? `${usd(s.market.price)} ${pct(s.market.percent_change_24h)}` : `score ${s.score.toFixed(2)}`}
@@ -159,9 +168,10 @@ export default function Page() {
   );
 }
 
-function MarketInsights({ mi }: { mi: Scan["market_insights"] }) {
+function MarketInsights({ mi, regime }: { mi: Scan["market_insights"]; regime: Scan["regime"] }) {
   const cex = mi.surfaced_cex_volume_24h || 0, dex = mi.surfaced_dex_volume_24h || 0;
   const tot = cex + dex || 1;
+  const alt = regime.altseason_index;
   const tiles: [string, string][] = [
     ["Total mcap", usd(mi.total_market_cap)], ["24h volume", usd(mi.total_volume_24h)],
     ["DeFi 24h", usd(mi.defi_volume_24h)], ["BTC dom", mi.btc_dominance != null ? `${mi.btc_dominance.toFixed(1)}%` : "—"],
@@ -174,6 +184,12 @@ function MarketInsights({ mi }: { mi: Scan["market_insights"] }) {
         {tiles.map(([k, v]) => (
           <div key={k}><div className="text-[11px] uppercase tracking-wider text-muted-foreground">{k}</div><div className="text-base">{v}</div></div>
         ))}
+        {alt && (
+          <div>
+            <div className="text-[11px] uppercase tracking-wider text-muted-foreground">Altseason idx</div>
+            <div className="text-base">{alt.value}<span className="text-muted-foreground text-xs ml-1">/100 · {alt.classification.replace("_", " ")}</span></div>
+          </div>
+        )}
         <div className="min-w-[220px] flex-1">
           <div className="text-[11px] uppercase tracking-wider text-muted-foreground">CEX vs DEX volume (surfaced)</div>
           <div className="flex h-3 mt-1 border border-border">
@@ -187,6 +203,27 @@ function MarketInsights({ mi }: { mi: Scan["market_insights"] }) {
   );
 }
 const VCgreen = "92 28% 65%";
+
+export function FngArrow({ dir, delta }: { dir: string; delta: number }) {
+  const up = dir === "rising", down = dir === "falling";
+  const color = up ? SC.bullish : down ? SC.bearish : SC.neutral;
+  return <span className="ml-1" style={{ color: hsl(color) }} title={`F&G ${dir} (${delta >= 0 ? "+" : ""}${delta} / 14d)`}>
+    {up ? "▲" : down ? "▼" : "→"}{delta >= 0 ? "+" : ""}{delta}</span>;
+}
+
+function AttentionStrip({ ca }: { ca: CmcAttention }) {
+  if (!ca?.overlap) return null;
+  const { corroborated, kol_only, cmc_only } = ca.overlap;
+  return (
+    <Link href="/intel" className="flex flex-wrap items-center gap-x-4 gap-y-1 border border-border bg-card px-3.5 py-2 hover:border-primary transition-colors">
+      <Label>cmc crowd vs calls</Label>
+      <span className="text-sm"><span style={{ color: hsl(SC.bullish) }}>{corroborated.length}</span> <span className="text-muted-foreground">corroborated</span></span>
+      <span className="text-sm"><span style={{ color: hsl(SC.neutral) }}>{kol_only.length}</span> <span className="text-muted-foreground">KOL-only</span></span>
+      <span className="text-sm"><span className="text-primary">{cmc_only.length}</span> <span className="text-muted-foreground">CMC-only (under-called)</span></span>
+      <span className="ml-auto text-primary text-sm">Market Intel →</span>
+    </Link>
+  );
+}
 
 function CallRow({ c, compact }: { c: Call; compact?: boolean }) {
   const body = (
@@ -230,6 +267,7 @@ function Shell({ children }: { children: React.ReactNode }) {
       <div className="flex items-baseline gap-3">
         <h1 className="text-lg font-bold uppercase tracking-[2px]">Public Alpha</h1>
         <span className="text-muted-foreground text-sm">social trades — organic vs coordinated, confirmed</span>
+        <Link href="/intel" className="ml-auto text-sm text-muted-foreground hover:text-primary uppercase tracking-wider">Market Intel →</Link>
       </div>
       {children}
     </main>
