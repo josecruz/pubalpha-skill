@@ -106,8 +106,10 @@ Two more views deepen each asset/thesis:
   CMC), **KOL-only** (unconfirmed hype), **CMC-only** (trending but under-called); market movers
   (gainers/losers/most-visited); and a regime panel (altcoin-season index, F&G 14-day trend, dominance).
 - **Asset thesis** (`/asset?symbol=X`) — logo, tags, listing age + "NEW" flag, provenance links, the
-  CMC-attention line, market stats + CEX/DEX split, **price context** (ATH, % from ATH, ROI ladder), **top
-  venues**, the classifier breakdown, and the asset's full call feed.
+  CMC-attention line, a **price chart with call markers** (where each call landed, colored by stance),
+  market stats + CEX/DEX split, **price context** (ATH, % from ATH, ROI ladder), **top venues**, the
+  classifier breakdown, and the full call feed rendered paste.trade-style — each call a LONG/SHORT thesis
+  card with its **entry price and % move since the call**.
 
 ![Web dashboard](docs/img/web-dashboard.png)
 ![Market Intel — CMC's crowd vs the calls](docs/img/web-intel.png)

@@ -41,8 +41,9 @@ regime panel (altcoin-season index, Fear & Greed 14-day trend, dominance).
 
 ### Asset thesis (`/asset?symbol=X`)
 Logo, tags, listing age + **NEW** flag, provenance links; the **CMC-attention** line (which CMC lists it's
-trending in + rank); price, % changes, **CEX vs DEX volume**, market cap; **price context** (ATH, % from
-ATH, ROI ladder); **top venues**; the classifier verdict + reasons + feature bars + on-chain confirmation;
-and the asset's full call feed with source links.
+trending in + rank); a **price chart** (daily, with call markers colored by stance); price, % changes,
+**CEX vs DEX volume**, market cap; **price context** (ATH, % from ATH, ROI ladder); **top venues**; the
+classifier verdict + reasons + feature bars + on-chain confirmation; and the call feed rendered
+**paste.trade-style** — each call a LONG/SHORT thesis card with **entry price + % move since the call**.
 
 Verdict colors: green = organic, amber = mixed, red = coordinated.
