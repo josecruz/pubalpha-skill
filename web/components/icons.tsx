@@ -45,7 +45,36 @@ export function ExchangeIcon({ id, name, size = 16 }: { id?: number | null; name
   return <Monogram label={name || "?"} size={size} />;
 }
 
-/** KOL avatar — deterministic monogram (real X pfps aren't reliably available). */
-export function Avatar({ handle, size = 18 }: { handle: string; size?: number }) {
+/** KOL avatar — real pfp via unavatar (twitch for twitch shows, else x), monogram fallback. */
+export function Avatar({ handle, platform, size = 18 }: { handle: string; platform?: string | null; size?: number }) {
+  const [bad, setBad] = useState(false);
+  const provider = platform === "twitch" ? "twitch" : "x";
+  const url = `https://unavatar.io/${provider}/${encodeURIComponent(handle)}?fallback=false`;
+  if (handle && !bad) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={url} alt="" width={size} height={size} onError={() => setBad(true)}
+      className="inline-block align-middle rounded-full shrink-0 object-cover" style={{ width: size, height: size }} />;
+  }
   return <Monogram label={handle} size={size} round />;
+}
+
+/** Small verified check (a KOL whose account is verified on paste.trade / CMC). */
+export function VerifiedBadge({ size = 13 }: { size?: number }) {
+  return (
+    <span className="inline-flex shrink-0 items-center justify-center rounded-full align-middle"
+      style={{ width: size, height: size, background: "hsl(205 70% 55%)", color: "white", fontSize: size * 0.7, lineHeight: 1 }}
+      title="verified speaker">✓</span>
+  );
+}
+
+const PLATFORM_COLOR: Record<string, string> = { twitch: "9146FF", youtube: "FF0000", x: "9aa4b2", twitter: "9aa4b2" };
+/** Brand platform icon (where a call was made) via the simpleicons CDN. */
+export function PlatformIcon({ platform, size = 13 }: { platform?: string | null; size?: number }) {
+  const [bad, setBad] = useState(false);
+  if (!platform || bad) return null;
+  const slug = platform === "twitter" ? "x" : platform;
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={`https://cdn.simpleicons.org/${slug}/${PLATFORM_COLOR[platform] ?? "9aa4b2"}`} alt={platform}
+    title={platform} width={size} height={size} onError={() => setBad(true)}
+    className="inline-block align-middle shrink-0 opacity-80" style={{ width: size, height: size }} />;
 }

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { PriceChart } from "@/components/price-chart";
-import { AssetIcon, Avatar, ExchangeIcon } from "@/components/icons";
+import { Timeline } from "@/components/timeline";
+import { AssetIcon, Avatar, ExchangeIcon, PlatformIcon, VerifiedBadge } from "@/components/icons";
 import {
   type Call, type Idea, type Scan, type Signal,
   SC, age, ago, funding, hsl, pct, stanceLabel, usd, vc,
@@ -38,6 +39,7 @@ export default function AssetPage() {
   const [scan, setScan] = useState<Scan | null>(null);
   const [sym, setSym] = useState<string>("");
   const [err, setErr] = useState<string | null>(null);
+  const [callsView, setCallsView] = useState<"timeline" | "cards">("timeline");
 
   useEffect(() => {
     setSym((new URLSearchParams(window.location.search).get("symbol") || "").toUpperCase());
@@ -245,9 +247,21 @@ export default function AssetPage() {
         </div>
       )}
 
-      {/* calls explained — paste.trade-style cards with since-call P&L */}
+      {/* mentions — timeline (default) or paste.trade-style cards */}
       <div>
-        <Label>the calls — {calls.length} on {sig.symbol}</Label>
+        <div className="flex items-center justify-between">
+          <Label>mentions — {calls.length} on {sig.symbol}</Label>
+          <div className="flex border border-border">
+            {(["timeline", "cards"] as const).map((m) => (
+              <button key={m} onClick={() => setCallsView(m)}
+                className={`text-[11px] uppercase tracking-wider px-2.5 py-1 ${callsView === m ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{m}</button>
+            ))}
+          </div>
+        </div>
+
+        {callsView === "timeline" && <div className="mt-2"><Timeline feed={calls} showAsset={false} /></div>}
+
+        {callsView === "cards" && (
         <div className="space-y-1.5 mt-1">
           {calls.map((c, i) => {
             const stClr = c.stance === "bullish" ? SC.bullish : c.stance === "bearish" ? SC.bearish : SC.neutral;
@@ -255,8 +269,10 @@ export default function AssetPage() {
               <div key={i} className="border border-border bg-card p-3">
                 <div className="flex items-center gap-2 text-xs">
                   <span className="px-1.5 py-px border text-[10px] uppercase tracking-wider" style={{ color: hsl(stClr), borderColor: hsl(stClr, 0.4) }}>{stanceLabel(c.stance)}</span>
-                  <Avatar handle={c.author} size={16} />
+                  <Avatar handle={c.author} platform={c.platform} size={16} />
                   <span className="font-medium">{c.author}</span>
+                  {c.verified && <VerifiedBadge size={12} />}
+                  <PlatformIcon platform={c.platform} size={12} />
                   {c.url
                     ? <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>
                     : <span className="text-muted-foreground">{c.source}</span>}
@@ -279,6 +295,7 @@ export default function AssetPage() {
             );
           })}
         </div>
+        )}
       </div>
     </Wrap>
   );

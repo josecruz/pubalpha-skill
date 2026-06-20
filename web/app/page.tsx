@@ -5,7 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { AssetIcon, Avatar } from "@/components/icons";
+import { AssetIcon, Avatar, PlatformIcon, VerifiedBadge } from "@/components/icons";
+import { Timeline } from "@/components/timeline";
 import {
   type Call, type CmcAttention, type Idea, type Scan, type Signal,
   SC, ago, hsl, pct, sc, stanceLabel, usd, vc,
@@ -264,8 +265,10 @@ function CallRow({ c, logo, compact }: { c: Call; logo?: string | null; compact?
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2 text-xs">
-          <Avatar handle={c.author} size={15} />
+          <Avatar handle={c.author} platform={c.platform} size={15} />
           <span className="font-medium truncate">{c.author}</span>
+          {c.verified && <VerifiedBadge size={12} />}
+          <PlatformIcon platform={c.platform} size={12} />
           <span className="uppercase" style={{ color: hsl(sc(c.stance)) }}>{stanceLabel(c.stance)}</span>
           {c.url && <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">{c.source} ↗</a>}
           {c.since_call_pct != null && (
@@ -274,33 +277,6 @@ function CallRow({ c, logo, compact }: { c: Call; logo?: string | null; compact?
           <span className="text-muted-foreground ml-auto">{ago(c.ts)}</span>
         </div>
         <div className="text-sm mt-0.5 text-foreground/90">{c.summary}</div>
-      </div>
-    </div>
-  );
-}
-
-function Timeline({ feed, logoBy }: { feed: Call[]; logoBy: LogoMap }) {
-  return (
-    <div className="relative pl-5">
-      <div className="absolute left-[6px] top-2 bottom-2 w-px bg-border" />
-      <div className="space-y-0.5">
-        {feed.map((c, i) => {
-          const col = c.stance === "bullish" ? SC.bullish : c.stance === "bearish" ? SC.bearish : SC.neutral;
-          return (
-            <div key={i} className="relative flex items-center gap-2 text-sm py-1">
-              <span className="absolute -left-[18px] w-[9px] h-[9px] rounded-full ring-2 ring-background" style={{ background: hsl(col) }} />
-              <span className="text-muted-foreground text-xs w-9 shrink-0 text-right">{ago(c.ts)}</span>
-              <Avatar handle={c.author} size={16} />
-              <span className="font-medium text-xs truncate max-w-[96px]">{c.author}</span>
-              <span className="uppercase text-[10px] w-10 shrink-0" style={{ color: hsl(col) }}>{stanceLabel(c.stance)}</span>
-              <AssetIcon logo={logoBy[c.symbol]} symbol={c.symbol} size={16} /><Asset s={c.symbol} />
-              {c.since_call_pct != null && (
-                <span className="text-xs shrink-0" style={{ color: hsl(c.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(c.since_call_pct)}</span>
-              )}
-              <span className="text-muted-foreground truncate flex-1 min-w-0 hidden md:block">{c.summary}</span>
-            </div>
-          );
-        })}
       </div>
     </div>
   );
