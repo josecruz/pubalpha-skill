@@ -75,7 +75,7 @@ def render_card(spec: dict, report: Optional[dict] = None) -> str:
         notes = conf.get("notes") or []
         detail = "; ".join(notes[:3]) if notes else (
             f"buy/sell {conf.get('buy_sell_ratio')}, liquidity ${_int(conf.get('liquidity_usd'))}")
-        L.append(f"4. **On-chain confirmation** — {verdict} — {detail}")
+        L.append(f"4. **Confirmation** (on-chain for crypto / market activity otherwise) — {verdict} — {detail}")
     if reg.get("available") is False:
         L.append("5. **Regime gate** — _not available (run with a CMC key)_")
     else:

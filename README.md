@@ -133,9 +133,10 @@ MIT — see [LICENSE](LICENSE).
 ---
 
 _Status: the full funnel runs live on CMC data — classifier, calls (paste.trade + CMC + seed),
-on-chain confirmation, regime gate, and a 180-day backtest. **Works for any CMC-listed coin**: a
-searched coin's calls are pulled live from CMC community posts + news, so coverage isn't limited to
-the paste.trade shows. Committed golden run in [`skills/public-alpha/examples/`](skills/public-alpha/examples/):
-`cake/` (organic, confirmed, +31.6% excess vs BNB), `pepe/` (calls sourced entirely from CMC — the
-search-any-coin proof), `moon/` (a coordinated pump, filtered with reasons). Remaining before the
-lock: demo video + DoraHacks submission (repo made public)._
+confirmation, regime gate, and a 180-day backtest. **Works for any asset** — search any ticker and its
+calls are pulled live from CMC community posts + news (not limited to the paste.trade shows). The
+classifier (the wedge) is asset-agnostic; **confirmation is asset-aware** — on-chain DEX flow for
+crypto, market volume for other assets, and an honest "no data (pluggable)" when CMC doesn't track it.
+Committed golden run in [`skills/public-alpha/examples/`](skills/public-alpha/examples/): `cake/`
+(organic, on-chain confirmed, +31.6% excess vs BNB), `pepe/` (calls sourced entirely from CMC), `moon/`
+(a coordinated pump, filtered). Remaining before the lock: demo video + DoraHacks submission (repo public)._

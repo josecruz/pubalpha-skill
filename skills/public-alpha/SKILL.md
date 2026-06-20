@@ -62,7 +62,7 @@ Then read `skills/public-alpha/results/strategy_card.md` and narrate, stage by s
 | 1 | **Narrative heating** | CMC categories + community trending | "Which sectors are heating, and why I'm hunting calls there." |
 | 2 | **Call extraction** | paste.trade allowed surface + CMC content + seed | "How many calls on the token, from which sources/authors." |
 | 3 | **Organic vs coordinated** ★ | `classifier.py` | **The money shot.** State the verdict AND the deciding `reasons` (clustered timing? copypasta? low-credibility authors? pure urgency?). **Announce what you FILTER and why.** |
-| 4 | **On-chain confirmation** | CMC DEX (`/v1/dex/token/pools`) | "Is money actually moving? Liquidity, buy/sell flow — confirmed or not." |
+| 4 | **Confirmation** (asset-aware) | CMC DEX pools (crypto) → DEX volume → market volume (any asset) | "Is money actually moving? On-chain liquidity/flow for crypto, market volume for other assets — confirmed or not." |
 | 5 | **Regime gate** | CMC Fear & Greed + global metrics | "Is the macro backdrop risk-on? Size accordingly." |
 | → | **Emit** | `strategy.py` + `backtest.py` + `render.py` | Summarize the spec verdict (ENTRY / NO ENTRY), the backtest headline (return vs benchmark, drawdown, win rate), the **% of calls filtered**, and the **honesty block**. |
 

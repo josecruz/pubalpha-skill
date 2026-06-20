@@ -38,16 +38,22 @@ def confirm(metrics: Optional[dict], cfg: dict) -> OnchainConfirmation:
     checks, notes = [], []           # checks: list of (name, passed); activity flag tracked separately
     activity_ok = False
 
+    # activity signal, asset-aware: pool liquidity (crypto/DEX) -> on-chain DEX volume ->
+    # total market volume (any asset CMC tracks: CEX crypto, tokenized equities, etc.)
     liq = m.get("liquidity_usd")
     dex_vol = m.get("dex_volume_24h")
-    if liq is not None:
+    tot_vol = m.get("volume_24h")
+    if liq is not None and liq > 0:
         ok = liq >= min_liq; checks.append(ok); activity_ok = activity_ok or ok
         notes.append(f"pool liquidity ${int(liq):,} {'≥' if ok else '<'} ${int(min_liq):,}")
     elif dex_vol:
         ok = dex_vol >= min_liq; checks.append(ok); activity_ok = activity_ok or ok
         notes.append(f"24h on-chain DEX volume ${int(dex_vol):,} {'≥' if ok else '<'} ${int(min_liq):,}")
+    elif tot_vol:
+        ok = tot_vol >= min_liq; checks.append(ok); activity_ok = activity_ok or ok
+        notes.append(f"24h market volume ${int(tot_vol):,} {'≥' if ok else '<'} ${int(min_liq):,}")
     else:
-        notes.append("no liquidity/DEX-volume data")
+        notes.append("no market/liquidity data on CMC for this asset (pluggable via a market source)")
 
     buy, sell = m.get("buy_volume_24h"), m.get("sell_volume_24h")
     ratio = 0.0
