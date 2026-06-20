@@ -270,6 +270,62 @@ class CMCSource:
             ))
         return out
 
+    def calls_for(self, symbol: str, since: Optional[datetime] = None) -> List[CallCandidate]:
+        """Per-coin call/mention layer from CMC community posts + news — makes ANY listed coin searchable.
+
+        Community posts (people posting about the coin, with author/time/text/engagement) are the
+        closest thing to 'calls'; news rounds it out. Returned as CallCandidates for calls.py.
+        """
+        info = self._resolve([symbol]).get(symbol.upper())
+        if not info or not info.get("id"):
+            return []
+        cid, sym = info["id"], symbol.upper()
+        out: List[CallCandidate] = []
+        for path in ("/v1/content/posts/top", "/v1/content/posts/latest"):
+            try:
+                d = self._get(path, {"id": cid})
+                rows = d if isinstance(d, list) else (d.get("list") or d.get("data") or [])
+                for p in rows:
+                    ts = _epoch_ms(p.get("post_time"))
+                    text = (p.get("text_content") or "").strip()
+                    if ts is None or not text:
+                        continue
+                    if since is not None and ts < _aware(since):
+                        continue
+                    out.append(CallCandidate(
+                        symbol=sym, raw_text=text,
+                        author=(p.get("owner") or {}).get("nickname") or "cmc_community",
+                        source="cmc_community", ts=ts,
+                        engagement={"likes": _num(p.get("like_count")), "comments": _num(p.get("comment_count"))},
+                        url=p.get("comments_url"), stance=None, conviction=None,
+                    ))
+            except Exception:
+                continue
+        try:
+            news = self._get("/v1/content/latest", {"id": cid, "limit": 20})
+            news = news if isinstance(news, list) else (news.get("data") or [])
+            for it in news:
+                ts = _parse_ts(it.get("released_at") or it.get("created_at"))
+                text = " ".join(filter(None, [it.get("title"), it.get("subtitle")]))
+                if ts is None or not text:
+                    continue
+                if since is not None and ts < _aware(since):
+                    continue
+                out.append(CallCandidate(
+                    symbol=sym, raw_text=text, author=it.get("source_name") or "cmc_news",
+                    source="cmc_news", ts=ts, url=it.get("source_url"),
+                    engagement={}, stance=None, conviction=None,
+                ))
+        except Exception:
+            pass
+        seen, uniq = set(), []                       # dedup near-identical (author + text head)
+        for c in out:
+            k = (c.author, c.raw_text[:48])
+            if k not in seen:
+                seen.add(k)
+                uniq.append(c)
+        return uniq
+
 
 def _num(v) -> float:
     try:
@@ -285,6 +341,13 @@ def _parse_ts(s) -> Optional[datetime]:
         dt = datetime.fromisoformat(str(s).replace("Z", "+00:00"))
         return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
     except ValueError:
+        return None
+
+
+def _epoch_ms(v) -> Optional[datetime]:
+    try:
+        return datetime.fromtimestamp(int(v) / 1000.0, tz=timezone.utc)
+    except (TypeError, ValueError):
         return None
 
 

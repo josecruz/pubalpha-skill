@@ -1,12 +1,12 @@
 {
   "strategy": {
-    "name": "public-alpha-coordinated-moon",
+    "name": "public-alpha-organic-pepe",
     "version": "1.0",
-    "generated_at": "2026-06-20T05:05:03Z",
+    "generated_at": "2026-06-20T05:04:59Z",
     "universe": {
       "chain": "bsc",
       "assets": [
-        "MOON"
+        "PEPE"
       ]
     },
     "risk_profile": "balanced",
@@ -50,61 +50,59 @@
       "available": true
     },
     "calls": {
-      "symbol": "MOON",
-      "score": 0.238,
-      "classification": "coordinated",
+      "symbol": "PEPE",
+      "score": 0.925,
+      "classification": "organic",
       "reasons": [
-        "6 of 6 calls within 120 min \u2192 clustered",
-        "near-identical phrasing across authors (3-gram Jaccard 1.0) \u2192 copypasta",
-        "4 distinct authors, 100% low-follower accounts",
-        "LLM: low substance \u2014 100x, ape, dont fade, dont miss; little thesis"
+        "calls spread out (max 4 in 120 min) \u2192 organic timing",
+        "varied phrasing across authors (max similarity 0.825)",
+        "22 distinct authors",
+        "LLM: substantive thesis (substance 0.96)"
       ],
       "sources": [
-        "seed:x:alpha_caller7",
-        "seed:x:cryptogem_x",
-        "seed:x:degenplays",
-        "seed:x:moonshot_ky"
+        "cmc_community",
+        "cmc_news"
       ],
-      "n_calls": 6,
+      "n_calls": 27,
       "evidence": [
         {
-          "source": "seed:x:moonshot_ky",
-          "ts": "2026-06-19T13:15:00+00:00",
-          "stance": "bullish",
-          "summary": "$MOON about to 100x dont miss this last chance ape in now!!",
-          "weight": 0.792
+          "source": "cmc_news",
+          "ts": "2026-06-19T11:00:00+00:00",
+          "stance": "neutral",
+          "summary": "Little Pepe Price Prediction 2026: Why Stage 13 Still Hasn't Closed Little Pepe price prediction\u2026",
+          "weight": 0.66
         },
         {
-          "source": "seed:x:cryptogem_x",
-          "ts": "2026-06-19T13:00:00+00:00",
-          "stance": "bullish",
-          "summary": "$MOON is about to 100x dont miss this last chance ape in now!",
-          "weight": 0.78
+          "source": "cmc_news",
+          "ts": "2026-06-19T09:30:00+00:00",
+          "stance": "neutral",
+          "summary": "Little Pepe Presale End Date: Math Points to September 2026 Little Pepe Presale End Date\u2026",
+          "weight": 0.66
         },
         {
-          "source": "seed:x:alpha_caller7",
-          "ts": "2026-06-19T13:08:00+00:00",
+          "source": "cmc_news",
+          "ts": "2026-06-18T11:34:00+00:00",
           "stance": "bullish",
-          "summary": "$MOON is about to 100x dont miss this last chance ape in now",
-          "weight": 0.78
+          "summary": "Little Pepe Price Prediction: Is a Tier-1 Listing the Catalyst? The market is watching one\u2026",
+          "weight": 0.66
         },
         {
-          "source": "seed:x:cryptogem_x",
-          "ts": "2026-06-19T13:22:00+00:00",
-          "stance": "bullish",
-          "summary": "$MOON is about to 100x dont miss this last chance ape now",
-          "weight": 0.78
+          "source": "cmc_news",
+          "ts": "2026-06-18T11:00:00+00:00",
+          "stance": "neutral",
+          "summary": "Little Pepe Sells Discounts During the Crash: Smart or Risky? What the Little Pepe Discount\u2026",
+          "weight": 0.66
         }
       ]
     },
     "onchain_confirmation": {
-      "confirmed": false,
+      "confirmed": true,
       "buy_sell_ratio": 0.0,
-      "liquidity_usd": 0.0,
+      "liquidity_usd": 218043.98649932,
       "holder_growth_pct": 0.0,
       "top10_holder_pct": 0.0,
       "notes": [
-        "no liquidity/DEX-volume data",
+        "24h on-chain DEX volume $218,043 \u2265 $25,000",
         "buy/sell split not exposed by CMC DEX",
         "holder data not exposed by CMC DEX",
         "source: CMC aggregated on-chain DEX volume (pool-level split unavailable on tier)"
@@ -145,8 +143,8 @@
       "max_drawdown_guard_pct": 20
     }
   },
-  "thesis": "MOON: calls classified coordinated (organic score 0.238). Drivers: 6 of 6 calls within 120 min \u2192 clustered; near-identical phrasing across authors (3-gram Jaccard 1.0) \u2192 copypasta. On-chain NOT confirmed (no liquidity/DEX-volume data). Regime risk_off (F&G 21).",
-  "confidence": 0.06,
+  "thesis": "PEPE: calls classified organic (organic score 0.925). Drivers: calls spread out (max 4 in 120 min) \u2192 organic timing; varied phrasing across authors (max similarity 0.825). On-chain confirmed (24h on-chain DEX volume $218,043 \u2265 $25,000). Regime risk_off (F&G 21).",
+  "confidence": 0.42,
   "entry_signal": false,
-  "backtest_ref": null
+  "backtest_ref": "results/backtest_2025-12-23_2026-06-19.json"
 }

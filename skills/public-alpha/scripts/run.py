@@ -28,7 +28,7 @@ from scripts.sources.seed import SeedSource                      # noqa: E402
 from scripts.util import RESULTS_DIR, get_key, load_config       # noqa: E402
 
 
-def gather_calls(cfg, sources, since):
+def gather_calls(cfg, sources, since, symbol):
     cands = []
     if "seed" in sources:
         cands += SeedSource().fetch(since)
@@ -42,9 +42,11 @@ def gather_calls(cfg, sources, since):
     if "cmc" in sources:
         try:
             from scripts.sources.cmc import CMCSource
-            cands += CMCSource().fetch(since)
+            n0 = len(cands)
+            cands += CMCSource().calls_for(symbol, since)   # per-coin community posts + news
+            print(f"  [cmc community+news] +{len(cands) - n0} calls for {symbol.upper()}")
         except Exception as e:
-            print(f"  [cmc content] unavailable: {type(e).__name__}: {e}")
+            print(f"  [cmc calls] unavailable: {type(e).__name__}: {e}")
     return cands
 
 
@@ -61,16 +63,16 @@ def get_market(cfg):
 
 
 def run(symbol, cfg, args):
+    symbol = symbol.upper()
     sources = [s.strip() for s in args.sources.split(",") if s.strip()]
     since = datetime.now(timezone.utc) - timedelta(days=args.lookback)
 
-    print(f"\n— gathering calls (sources: {', '.join(sources)}; since {since:%Y-%m-%d}) —")
-    candidates = gather_calls(cfg, sources, since)
+    print(f"\n— gathering calls for {symbol} (sources: {', '.join(sources)}; since {since:%Y-%m-%d}) —")
+    candidates = gather_calls(cfg, sources, since, symbol)
     calls = normalize(candidates, cfg)
     groups = group_by_symbol(calls)
     print(f"  normalized {len(calls)} calls across {len(groups)} symbols")
 
-    symbol = symbol.upper()
     sym_calls = groups.get(symbol, [])
     if not sym_calls:
         top = sorted(groups.items(), key=lambda kv: len(kv[1]), reverse=True)[:15]

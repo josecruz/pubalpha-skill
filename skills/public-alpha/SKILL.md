@@ -43,6 +43,9 @@ Python, so it's reproducible. CoinMarketCap is the data spine.
 ## Inputs (from the user's request; fall back to config/default.yaml)
 - `symbol` (e.g. CAKE) or a small `universe`; `risk_profile` (conservative|balanced|aggressive);
   `lookback` days; `horizon`.
+- **Any CMC-listed coin works** — the searched coin's calls are pulled live from CMC community posts +
+  news (`calls_for`), plus paste.trade's shows + the seed where they cover it. So you're not limited to
+  a fixed list; `--symbol PEPE`, `--symbol SOL`, etc. all resolve.
 
 ## The funnel — run it, then narrate each stage IN ORDER
 

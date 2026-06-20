@@ -202,7 +202,7 @@ def classify(
 
     # hard flags — any one caps the verdict away from "organic"
     flags = []
-    if t_meta["max_in_window"] >= 3 and len(calls) >= 3:
+    if timing >= 0.5 and len(calls) >= 3:   # RELATIVE: cluster dominated by one burst (not a few posts in a big feed)
         flags.append("timing")
     if lang >= lang_flag:
         flags.append("language")
