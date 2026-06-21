@@ -99,6 +99,12 @@ class DetailScreen(Screen):
         yield VerticalScroll(Static(self._build_markup(), id="detail", markup=True))
         yield Footer()
 
+    def refresh_data(self, item: dict, scan: dict) -> None:
+        """Re-render this pane in place when a background scan brings fresh data."""
+        self.item = item
+        self.scan = scan
+        self.query_one("#detail", Static).update(self._build_markup())
+
     def _build_markup(self) -> str:
         it, scan = self.item, self.scan
         reg, nar = scan.get("regime", {}), scan.get("narrative", {})
@@ -345,6 +351,19 @@ class ScannerApp(App):
         self.scan = scan
         self.by_key.clear()
         self._populate()
+        # if a detail pane is open, re-render it from the fresh scan too —
+        # it's a snapshot built at push time and won't update on its own.
+        top = self.screen
+        if isinstance(top, DetailScreen):
+            sym = top.item.get("symbol")
+            # trade ideas carry 'confidence'; prefer the same list the item came from
+            pool = scan.get("trade_ideas", []) if "confidence" in top.item else scan.get("signals", [])
+            fresh = next((x for x in pool if x.get("symbol") == sym), None)
+            if fresh is None:  # fall back to either list if it moved between them
+                fresh = next((x for x in scan.get("signals", []) + scan.get("trade_ideas", [])
+                              if x.get("symbol") == sym), None)
+            if fresh is not None:
+                top.refresh_data(fresh, scan)
         self.notify("Updated to live data.")
 
 
