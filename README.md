@@ -14,14 +14,6 @@ Follow the trades other traders are calling across social — filtered for coord
 
 </div>
 
-<div align="center">◼ ◼ ◼</div>
-
-> **BNB HACK · Track 2 (Strategy Skills).** Follow the most socially active trades — what
-> traders across **Twitch / X / YouTube** and the **CMC community** are actually calling right
-> now — ranked, deduped, **filtered for coordinated noise**, and **cross-referenced against CMC's
-> own crowd**. Then act only when on-chain flow confirms it, and emit a transparent, backtested
-> strategy spec. CoinMarketCap is the data spine. No live execution, no real money.
-
 ---
 
 ## What it does
