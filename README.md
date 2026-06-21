@@ -1,4 +1,14 @@
-# Public Alpha — a social-signal scanner, built as a CoinMarketCap Strategy Skill
+<div align="center">
+
+# Public Alpha
+
+**A social-signal scanner for crypto, built as a CoinMarketCap Strategy Skill.**
+
+Follow the trades other traders are calling across social — filtered for coordinated noise, cross-referenced against CMC's own crowd, and confirmed on-chain.
+
+[What it does](#what-it-does)&nbsp; ·&nbsp; [The funnel](#the-5-stage-funnel)&nbsp; ·&nbsp; [Classifier](#-the-classifier-the-differentiator)&nbsp; ·&nbsp; [CMC data](#how-coinmarketcap-data-is-used)&nbsp; ·&nbsp; [Terminal scanner](#the-scanner-terminal-ui)&nbsp; ·&nbsp; [Web dashboard](#web-dashboard-smui--shadcn)&nbsp; ·&nbsp; [Data sources](#data-sources--access-honest)&nbsp; ·&nbsp; [Honesty](#honesty-whats-backtested-vs-forward-validated)&nbsp; ·&nbsp; [Run it](#run-it)
+
+</div>
 
 > **BNB HACK · Track 2 (Strategy Skills).** Follow the most socially active trades — what
 > traders across **Twitch / X / YouTube** and the **CMC community** are actually calling right
