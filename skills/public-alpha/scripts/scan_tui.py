@@ -253,6 +253,9 @@ class ScannerApp(App):
 
     def on_mount(self) -> None:
         self._populate()
+        # show the cached snapshot instantly, then refresh in the background so
+        # entering the TUI always lands you on current data without a startup lag.
+        self._start_refresh(on_launch=True)
 
     def _populate(self) -> None:
         scan = self.scan
@@ -319,15 +322,30 @@ class ScannerApp(App):
         self.query_one(TabbedContent).active = tab
 
     def action_rescan(self) -> None:
-        self.notify("Rescanning…", timeout=2)
+        self._start_refresh(on_launch=False)
+
+    def _start_refresh(self, on_launch: bool) -> None:
+        if getattr(self, "_refreshing", False):
+            return  # a scan is already in flight; don't stack subprocesses
+        self._refreshing = True
+        self.notify("Refreshing live data…" if on_launch else "Rescanning…", timeout=2)
+        self.run_worker(self._refresh_worker, thread=True, exclusive=True)
+
+    def _refresh_worker(self) -> None:
         try:
             subprocess.run([sys.executable, str(SCAN_PY)], check=True, capture_output=True)
-            self.scan = _load()
-            self.by_key.clear()
-            self._populate()
-            self.notify("Scan refreshed.")
+            scan = _load()
+            self.call_from_thread(self._apply_refresh, scan)
         except subprocess.CalledProcessError as e:
-            self.notify(f"Scan failed: {e}", severity="error")
+            self.call_from_thread(self.notify, f"Scan failed: {e}", severity="error")
+        finally:
+            self._refreshing = False
+
+    def _apply_refresh(self, scan: dict) -> None:
+        self.scan = scan
+        self.by_key.clear()
+        self._populate()
+        self.notify("Updated to live data.")
 
 
 def main():
