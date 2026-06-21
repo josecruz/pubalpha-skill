@@ -47,6 +47,30 @@ def _esc(s) -> str:
     return str(s).replace("[", r"\[")
 
 
+def _usd(n) -> str:
+    try:
+        n = float(n)
+    except (TypeError, ValueError):
+        return "—"
+    a = abs(n)
+    if a >= 1e12:
+        return f"${n / 1e12:.2f}T"
+    if a >= 1e9:
+        return f"${n / 1e9:.2f}B"
+    if a >= 1e6:
+        return f"${n / 1e6:.1f}M"
+    if a >= 1e3:
+        return f"${n / 1e3:.1f}K"
+    return f"${n:.2f}"
+
+
+def _funding(n) -> str:
+    try:
+        return f"{'+' if n >= 0 else ''}{float(n) * 100:.4f}%"
+    except (TypeError, ValueError):
+        return "—"
+
+
 def _load() -> dict:
     if not SCAN_JSON.exists():
         return {}
@@ -69,6 +93,8 @@ class DetailScreen(Screen):
     def _build_markup(self) -> str:
         it, scan = self.item, self.scan
         reg, nar = scan.get("regime", {}), scan.get("narrative", {})
+        # trade ideas carry only a subset; the full signal has perp/liquidations/community
+        full = {s["symbol"]: s for s in scan.get("signals", [])}.get(it.get("symbol"), {})
         cls = it.get("classification", "?")
         cls_style = VERDICT_STYLE.get(cls, "white")
         L = []
@@ -99,6 +125,40 @@ class DetailScreen(Screen):
             L.append(f"   [bold]{_esc(c.get('author', '?')[:18]):<18}[/] [{sc}]{stance:<8}[/] "
                      f"[dim]{str(c.get('ts', ''))[:10]} {engtxt:>10}[/]  {_esc((c.get('summary') or '')[:70])}")
         L.append("")
+
+        # leverage & liquidations (perp funding/OI + realized liquidations + the fused read)
+        perp = it.get("perp") or full.get("perp") or {}
+        liq = it.get("liquidations") or full.get("liquidations") or {}
+        lr = it.get("leverage_read") or full.get("leverage_read") or {}
+        if perp or liq or lr:
+            L.append("[bold underline]  Leverage & liquidations[/]")
+            if perp:
+                L.append(f"   [dim]funding[/] {_funding(perp.get('funding_rate'))}   "
+                         f"[dim]OI[/] {_usd(perp.get('open_interest'))}   "
+                         f"[dim]perp vol[/] {_usd(perp.get('perp_volume_24h'))}"
+                         + (f"   [dim]· {_esc(perp.get('bias'))}[/]" if perp.get('bias') else ""))
+            if liq:
+                L.append(f"   [dim]liq 24h[/] {_usd(liq.get('total'))}   "
+                         f"[green]long {_usd(liq.get('long'))}[/]  [red]short {_usd(liq.get('short'))}[/]")
+            if lr.get("label"):
+                lr_style = ("green" if "squeeze" in lr["label"]
+                            else "red" if ("cascade" in lr["label"] or "flush" in lr["label"]) else "yellow")
+                note = f" — {lr['note']}" if lr.get("note") else ""
+                L.append(f"   [{lr_style}]{_esc(lr['label'])}[/][dim]{_esc(note)}[/]")
+            L.append("")
+
+        # CMC community pulse (top posts + articles)
+        com = it.get("community") or full.get("community") or {}
+        posts, arts = com.get("posts") or [], com.get("articles") or []
+        if posts or arts:
+            L.append(f"[bold underline]  CMC community[/]  [dim]{com.get('n_posts', 0)} posts · "
+                     f"{com.get('engagement', 0)} eng · {len(arts)} articles[/]")
+            for p in posts[:3]:
+                L.append(f"   [bold]{_esc((p.get('author') or '?')[:18]):<18}[/] "
+                         f"[dim]{int(p.get('likes', 0))} likes[/]  {_esc((p.get('text') or '')[:62])}")
+            for a in arts[:2]:
+                L.append(f"   [dim]· {_esc((a.get('title') or '')[:72])}[/]")
+            L.append("")
 
         L.append("[bold underline]  Market context[/]")
         L.append(f"   [dim]regime {reg.get('state')} (F&G {reg.get('fear_greed')}, "
@@ -148,8 +208,15 @@ class ScannerApp(App):
         state = reg.get("state", "?")
         state_style = "bold red" if state == "risk_off" else "bold green"
         heating = nar.get("sector") if nar.get("heating") else "flat"
+        liq = scan.get("liquidations") or {}
+        liq_txt = ""
+        if liq.get("total_24h"):
+            lp = liq.get("long_pct")
+            split = f" ({round(lp * 100)}%L/{round((1 - lp) * 100)}%S)" if lp is not None else ""
+            liq_txt = f"    [dim]liq 24h[/] [bold]{_usd(liq['total_24h'])}[/][dim]{split}[/]"
         ctx = (f"[dim]regime[/] [{state_style}]{state}[/] [dim](F&G {reg.get('fear_greed')})[/]"
                f"    [dim]heating[/] [bold magenta]{_esc(heating)}[/]"
+               f"{liq_txt}"
                f"    [dim]{meta.get('total_calls')} calls · {meta.get('classified')} assets · "
                f"{gs.get('organic_pct')}% organic / {gs.get('filtered_coordinated_pct')}% coordinated"
                f"    · scanned {scan.get('generated_at', '')[:16]}[/]")

@@ -41,8 +41,9 @@ Python, so it's reproducible. CoinMarketCap is the data spine.
 - **Scanner (navigable TUI) — the fast way in.** `./skills/public-alpha/scan` sweeps the whole call
   universe and opens a terminal UI: a **Signals** feed (every asset being called, ranked by volume,
   with the organic/coordinated verdict color-coded) and a **Trade Ideas** view (the confirmed,
-  ready-to-act subset with a gate scoreboard). ↑↓ navigate · Enter = detail (the calls + reasons +
-  confirmation) · 1/2 tabs · r rescan · q quit. Under the hood: `scan.py` → `results/scan.json` →
+  ready-to-act subset with a gate scoreboard). The top bar carries the regime + **market-wide 24h
+  liquidations**. ↑↓ navigate · Enter = detail (the calls + reasons + confirmation + **leverage &
+  liquidations** + **CMC community** pulse) · 1/2 tabs · r rescan · q quit. Under the hood: `scan.py` → `results/scan.json` →
   `scan_tui.py` (Textual). Use this to spot what's bubbling up.
 - **Deep dive (single asset).** The funnel below, for one asset, emits the Spec + Card + Backtest.
 
@@ -109,7 +110,10 @@ any live calls — use this if live data is flaky during a demo.
 Community trending + categories (narrative heating) · Content/news + per-coin community posts (call
 extraction) · DEX on-chain pools + aggregated DEX volume (confirmation) · Global metrics + Fear & Greed
 + **real Altcoin Season Index** (regime) · OHLCV historical (backtest + breakout) · **derivatives perp
-funding / open interest** (perp breakout screen). Breadth is deliberate — a full-stack use of CMC data.
+funding / open interest** (perp breakout screen) · **liquidations** (market-wide + per-asset long/short,
+via CMC's liquidations dashboard) · **community pulse** (top posts + news articles per asset, for display).
+Per-asset liquidations are fused with perp funding into a **leverage read** (`decide.leverage_read` —
+short-squeeze vs long-cascade). Breadth is deliberate — a full-stack use of CMC data.
 
 **Attention cross-reference (the scanner's edge).** The scanner also asks *does CMC's own crowd
 corroborate the KOL calls?* — cross-referencing every called symbol against CMC `trending/most-visited`,
