@@ -6,6 +6,8 @@
 
 Follow the trades other traders are calling across social — filtered for coordinated noise, cross-referenced against CMC's own crowd, and confirmed on-chain.
 
+https://github.com/josecruz/pubalpha-skill/releases/download/v0.1.0/demo-video-pubalpha-hd.mp4
+
 [What it does](#what-it-does)&nbsp; ·&nbsp; [The funnel](#the-5-stage-funnel)&nbsp; ·&nbsp; [Classifier](#-the-classifier-the-differentiator)&nbsp; ·&nbsp; [CMC data](#how-coinmarketcap-data-is-used)&nbsp; ·&nbsp; [Terminal scanner](#the-scanner-terminal-ui)&nbsp; ·&nbsp; [Web dashboard](#web-dashboard-smui--shadcn)&nbsp; ·&nbsp; [Data sources](#data-sources--access-honest)&nbsp; ·&nbsp; [Honesty](#honesty-whats-backtested-vs-forward-validated)&nbsp; ·&nbsp; [Run it](#run-it)
 
 </div>
