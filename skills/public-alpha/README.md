@@ -1,7 +1,9 @@
 # public-alpha (CMC Skill)
 
-A CoinMarketCap Skill that filters crypto hype into a backtestable strategy spec: extract calls →
-classify **organic vs coordinated** → confirm on-chain → gate by regime → emit Spec + Card + Backtest.
+A CoinMarketCap Skill that follows the trades other traders are calling across social and turns them
+into a backtestable strategy spec: scan calls (paste.trade KOLs + CMC community/news) → classify
+**organic vs coordinated** → cross-reference CMC's crowd + confirm on-chain → gate by regime → emit
+Spec + Card + Backtest.
 
 - **Run it:** `python3 scripts/run.py --symbol CAKE --backtest`
 - **The agent's runbook:** [`SKILL.md`](SKILL.md)

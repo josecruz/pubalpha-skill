@@ -1,21 +1,28 @@
-# Public Alpha — a CoinMarketCap Strategy Skill
+# Public Alpha — a social-signal scanner, built as a CoinMarketCap Strategy Skill
 
-> **BNB HACK · Track 2 (Strategy Skills).** A CMC Skill that filters crypto hype into a
-> **backtestable strategy spec** — it extracts specific token *calls*, separates the ones
-> growing **organically** from **coordinated pumps**, confirms with **on-chain** flow,
-> gates by **regime**, and emits a transparent, backtested spec. No live execution, no real money.
+> **BNB HACK · Track 2 (Strategy Skills).** Follow the most socially active trades — what
+> traders across **Twitch / X / YouTube** and the **CMC community** are actually calling right
+> now — ranked, deduped, **filtered for coordinated noise**, and **cross-referenced against CMC's
+> own crowd**. Then act only when on-chain flow confirms it, and emit a transparent, backtested
+> strategy spec. CoinMarketCap is the data spine. No live execution, no real money.
 
 **Targeting:** Track 2 placement + the stackable **"Best Use of CoinMarketCap Data"** special prize.
 
 ---
 
-## The edge — why this isn't "just sentiment"
+## What it does
 
-Sentiment tools score aggregate bullish/bearish *mood*. Plenty exist. The valuable, hard skill
-in crypto is different: **extract the specific calls** people are making, **tell an organically
-growing thesis apart from a coordinated pump**, and **only act when on-chain flow confirms it** —
-then express that as a transparent, backtested strategy. That separation is the wedge, and it's
-packaged here as a reusable CMC Skill.
+Other traders are calling tokens all day across social. **Public Alpha follows those calls** and
+turns the noise into a signal you can act on:
+
+1. **Discover** — sweep the specific token *calls* traders are making across social (paste.trade
+   KOL shows on Twitch/X/YouTube + CMC community posts + CMC news) and rank what's heating up.
+2. **Filter the noise** — tell a call growing **organically** apart from a **coordinated pump**
+   (the classifier below) so you follow conviction, not copypasta.
+3. **Cross-reference the crowd** — check the calls against **CMC's own crowd** (most-visited,
+   gainers, trending), confirm with **on-chain** flow, and gate by **regime**.
+4. **Act** — surface it in a terminal scanner + web dashboard, and emit a backtestable
+   **Strategy Spec / Card / Backtest** for any asset.
 
 ## The 5-stage funnel
 
@@ -59,7 +66,10 @@ $MOON → COORDINATED (0.13)   6 calls in 38 min · Jaccard 1.0 copypasta · low
 | Community trending topics | Narrative heating |
 | Cryptocurrency categories + performance | Narrative heating |
 | Content (news + posts, engagement) | Call extraction |
+| Content — market-wide news feed (all CMC-listed assets) | **News tab / feed** + per-asset articles |
+| Community posts (top, by engagement) | **Community pulse** — who's talking, per asset |
 | DEX on-chain (liquidity, buy/sell) | On-chain confirmation |
+| Liquidations (global + per-coin, 24h) | **Leverage read** — squeeze fuel vs cascade risk + market-wide long/short flush |
 | Global metrics + Fear & Greed | Regime gate |
 | OHLCV historical | Backtest |
 | Trending (most-visited, gainers/losers) + community trending tokens | **Attention cross-ref** — does CMC's crowd corroborate the calls? |
@@ -74,25 +84,29 @@ CMC is the data spine via the REST Pro API (deterministic path) and the [CMC MCP
 
 ## The scanner (terminal UI)
 
-One command sweeps the whole call universe and opens a navigable TUI (Textual) — a **Signals** feed
-(every asset being called, ranked by volume, with the organic/coordinated verdict) and a **Trade Ideas**
-view (the confirmed subset + a gate scoreboard), with a detail pane showing the social evidence.
+One command sweeps the whole call universe and opens a navigable TUI (Textual) — three tabs: a
+**Signals** feed (every asset being called, ranked by volume, with the organic/coordinated verdict),
+a **Trade Ideas** view (the confirmed subset + a gate scoreboard), and a **News** feed (market-wide
+CMC headlines). The detail pane mirrors the web dashboard — the social evidence plus **leverage &
+liquidations** (perp funding + realized long/short flushes, a squeeze-vs-cascade read) and the **CMC
+community** (top posts + articles). A top bar carries the regime + market-wide 24h liquidations.
 
 ```bash
-./skills/public-alpha/scan      # scan + open the TUI  ·  ↑↓ navigate · Enter detail · 1/2 tabs · r rescan · q quit
+./skills/public-alpha/scan      # scan + open the TUI  ·  ↑↓ navigate · Enter detail · 1/2/3 tabs · r rescan · q quit
 ```
 
 ![Signals feed](docs/img/tui-signals.svg)
-![Detail — the calls behind an asset](docs/img/tui-detail.svg)
+![Detail — the calls behind an asset, with leverage & community](docs/img/tui-detail.svg)
+![News — market-wide CMC headlines](docs/img/tui-news.svg)
 
 Under the hood: `scan.py` → `results/scan.json` → `scan_tui.py`. The single-asset deep-dive
 (`run.py --symbol X`) emits the full Spec + Card + Backtest.
 
 ## Web dashboard (SMUI / shadcn)
 
-A browser dashboard over the same `scan.json` — a hot-assets top bar, a social-trades feed (calls /
-asset rows / grouped, switchable) and a Trade Ideas panel. Next.js + Tailwind + shadcn/ui + the SMUI
-terminal theme.
+A browser dashboard over the same `scan.json` — a hot-assets top bar, a 5-mode social-trades feed
+(timeline / calls / asset rows / grouped / news, switchable) and a Trade Ideas panel. Next.js +
+Tailwind + shadcn/ui + the SMUI terminal theme.
 
 ```bash
 cd web && npm install && npm run scan:dev   # scans, then opens http://localhost:3000
@@ -100,7 +114,7 @@ cd web && npm install && npm run scan:dev   # scans, then opens http://localhost
 
 It has a market-insights panel (total/DeFi volume, dominance, **real altcoin-season index**, F&G trend,
 CEX-vs-DEX split), the hot-assets bar (with a **CMC ✓** marker when CMC's own crowd corroborates a call),
-the 3-mode social feed, and a Trade Ideas panel.
+the 5-mode social feed, and a Trade Ideas panel.
 
 Four more views deepen each asset/thesis:
 
@@ -116,13 +130,17 @@ Four more views deepen each asset/thesis:
   `altcoin_kol_sentiment` — forward screens, not backtested.
 - **Market Intel** (`/intel`) — *CMC's own crowd vs the KOL calls*: **corroborated** (called + trending on
   CMC), **KOL-only** (unconfirmed hype), **CMC-only** (trending but under-called); market movers
-  (gainers/losers/most-visited); and a regime panel (altcoin-season index, F&G 14-day trend, dominance).
+  (gainers/losers/most-visited); **market-wide 24h liquidations** (long/short split); and a regime panel
+  (altcoin-season index, F&G 14-day trend, dominance).
 - **Asset thesis** (`/asset?symbol=X`) — logo, tags, listing age + "NEW" flag, provenance links, the
-  CMC-attention line, a **price chart with call markers** (where each call landed, colored by stance),
-  market stats + CEX/DEX split, **price context** (ATH, % from ATH, ROI ladder), **decision signals** (KOL
-  sentiment gauge · spot breakout · perp funding/OI), **top venues**, the classifier breakdown, and the
-  full call feed rendered paste.trade-style — each call a LONG/SHORT thesis card with its **entry price and
-  % move since the call**.
+  CMC-attention line, a **price chart** (shadcn/Recharts) where each **KOL call lands as an avatar dot on
+  the line** (colored by stance, clustered, hover for the thesis) with a **range selector**
+  (1D/7D/1M/3M/1Y/ALL), market stats + CEX/DEX split, **price context** (ATH, % from ATH, ROI ladder),
+  **decision signals** (KOL sentiment gauge · spot breakout · perp funding/OI + a funding-implied
+  **long/short lean** bar), **top venues — spot and perp (CEX + DEX)**, a **leverage & liquidations** card
+  (squeeze-vs-cascade read), the **CMC community** (top posts + news articles), the classifier breakdown,
+  and the full call feed rendered paste.trade-style — each call a LONG/SHORT thesis card with its **entry
+  price and % move since the call**.
 
 ![Web dashboard](docs/img/web-dashboard.png)
 ![Streams — the paste.trade source browser](docs/img/web-streams.png)
