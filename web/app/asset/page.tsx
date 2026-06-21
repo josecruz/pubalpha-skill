@@ -8,7 +8,7 @@ import { Timeline } from "@/components/timeline";
 import { AssetIcon, Avatar, ExchangeIcon, PlatformIcon, VerifiedBadge } from "@/components/icons";
 import {
   type Call, type Idea, type Scan, type Signal,
-  SC, age, ago, funding, hsl, pct, stanceLabel, usd, vc,
+  SC, age, ago, funding, hsl, pct, price, stanceLabel, usd, vc,
 } from "@/lib/scan";
 
 const Label = ({ children }: { children: React.ReactNode }) => (
@@ -67,14 +67,27 @@ export default function AssetPage() {
 
   return (
     <Wrap>
-      <div className="flex items-center gap-3">{back}
-        <AssetIcon logo={id?.logo} symbol={sig.symbol} size={28} />
-        <h1 className="text-xl font-bold">{sig.symbol}</h1>
-        {id?.is_new && <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border" style={{ color: hsl(SC.bearish), borderColor: hsl(SC.bearish, 0.4) }} title="listed < 30 days ago">NEW</span>}
-        <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border"
-          style={{ color: hsl(vc(sig.classification)), borderColor: hsl(vc(sig.classification), 0.35) }}>{sig.classification}</span>
-        <span className="text-muted-foreground text-sm">organic score {sig.score.toFixed(2)} · {sig.n_calls} calls · {sig.distinct_authors} authors</span>
-        {m && <span className="text-muted-foreground text-sm ml-auto">{m.kind === "tokenized_stock" ? `tokenized stock · ${m.chain}` : "crypto"}</span>}
+      {/* header — name · ticker · rank up top, price pulled up right beneath it (CMC-style IA) */}
+      <div className="space-y-1.5">
+        <div className="flex items-center gap-2.5">{back}
+          <AssetIcon logo={id?.logo} symbol={sig.symbol} size={30} />
+          <h1 className="text-2xl font-bold">{sig.symbol}</h1>
+          {m?.cmc_rank != null && m.kind !== "tokenized_stock" && <span className="text-[11px] text-muted-foreground border border-border px-1.5 py-px" title="CoinMarketCap rank">#{m.cmc_rank}</span>}
+          {id?.is_new && <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border" style={{ color: hsl(SC.bearish), borderColor: hsl(SC.bearish, 0.4) }} title="listed < 30 days ago">NEW</span>}
+          <span className="text-[10px] uppercase tracking-wider px-1.5 py-px border"
+            style={{ color: hsl(vc(sig.classification)), borderColor: hsl(vc(sig.classification), 0.35) }}>{sig.classification}</span>
+          {m && <span className="text-muted-foreground text-sm ml-auto">{m.kind === "tokenized_stock" ? `tokenized stock · ${m.chain}` : "crypto"}</span>}
+        </div>
+        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          {m?.price != null && <span className="text-3xl font-bold tracking-tight">{price(m.price)}</span>}
+          {m?.percent_change_24h != null && (
+            <span className="text-sm" style={{ color: hsl(m.percent_change_24h >= 0 ? SC.bullish : SC.bearish) }}>{pct(m.percent_change_24h)} <span className="text-muted-foreground">24h</span></span>
+          )}
+          {m?.percent_change_7d != null && (
+            <span className="text-sm" style={{ color: hsl(m.percent_change_7d >= 0 ? SC.bullish : SC.bearish) }}>{pct(m.percent_change_7d)} <span className="text-muted-foreground">7d</span></span>
+          )}
+          <span className="ml-auto text-muted-foreground text-sm">organic score {sig.score.toFixed(2)} · {sig.n_calls} calls · {sig.distinct_authors} authors</span>
+        </div>
       </div>
 
       {/* identity strip — tags · age · CMC attention · provenance */}
@@ -105,11 +118,9 @@ export default function AssetPage() {
         {m ? (
           <>
             <div className="flex flex-wrap gap-x-6 gap-y-2">
-              <Stat k="Price" v={usd(m.price)} />
-              <Stat k="24h" v={pct(m.percent_change_24h)} color={(m.percent_change_24h ?? 0) >= 0 ? SC.bullish : SC.bearish} />
-              <Stat k="7d" v={pct(m.percent_change_7d)} color={(m.percent_change_7d ?? 0) >= 0 ? SC.bullish : SC.bearish} />
-              <Stat k="24h vol" v={usd(m.volume_24h)} />
               <Stat k="Market cap" v={usd(m.market_cap)} />
+              <Stat k="24h vol" v={usd(m.volume_24h)} />
+              <Stat k="Vol / Mkt cap" v={m.market_cap ? `${((m.volume_24h ?? 0) / m.market_cap * 100).toFixed(2)}%` : "—"} />
             </div>
             <div className="mt-1">
               <Label>CEX vs DEX volume</Label>
@@ -222,8 +233,8 @@ export default function AssetPage() {
         })()}
       </div>
 
-      {/* breakout · perp */}
-      {((sig.breakout && sig.breakout.strength != null) || (sig.perp && sig.perp.bias)) && (
+      {/* breakout · perp · liquidations */}
+      {((sig.breakout && sig.breakout.strength != null) || (sig.perp && sig.perp.bias) || sig.liquidations) && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {sig.breakout && sig.breakout.strength != null && (
             <Card className="rounded-none p-3 gap-2">
@@ -262,6 +273,79 @@ export default function AssetPage() {
                 </div>
               )}
             </Card>
+          )}
+          {sig.liquidations && (() => {
+            const lq = sig.liquidations, lr = sig.leverage_read;
+            const lp = lq.long_pct ?? 0.5;
+            const lrClr = !lr ? SC.neutral
+              : lr.label.includes("squeeze") ? SC.bullish
+              : (lr.label.includes("cascade") || lr.label.includes("flush")) ? SC.bearish : SC.neutral;
+            return (
+              <Card className="rounded-none p-3 gap-2">
+                <Label>liquidations (24h)</Label>
+                <div className="flex flex-wrap gap-x-5 gap-y-1">
+                  <Stat k="Total" v={usd(lq.total)} />
+                  <Stat k="Long liq" v={usd(lq.long)} color={SC.bullish} />
+                  <Stat k="Short liq" v={usd(lq.short)} color={SC.bearish} />
+                  <Stat k="Open interest" v={usd(lq.open_interest)} />
+                </div>
+                <div className="mt-1">
+                  <Label>long / short liquidations</Label>
+                  <div className="flex h-3 mt-1 border border-border">
+                    <div style={{ width: `${lp * 100}%`, background: hsl(SC.bullish) }} />
+                    <div style={{ width: `${(1 - lp) * 100}%`, background: hsl(SC.bearish) }} />
+                  </div>
+                  <div className="text-[11px] text-muted-foreground mt-0.5">{Math.round(lp * 100)}% long · {Math.round((1 - lp) * 100)}% short</div>
+                </div>
+                {lr && (
+                  <div className="text-sm border-t border-border pt-2">
+                    <span className="uppercase" style={{ color: hsl(lrClr) }}>{lr.label}</span>
+                    {lr.note && <span className="text-muted-foreground"> — {lr.note}</span>}
+                  </div>
+                )}
+              </Card>
+            );
+          })()}
+        </div>
+      )}
+
+      {/* CMC community pulse — top posts + news/articles for this asset */}
+      {sig.community && (sig.community.posts.length > 0 || sig.community.articles.length > 0) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          {sig.community.posts.length > 0 && (
+            <div>
+              <Label>CMC community — {sig.community.n_posts} top posts · {sig.community.engagement.toLocaleString()} engagements</Label>
+              <div className="mt-1 space-y-1.5">
+                {sig.community.posts.map((p, i) => (
+                  <div key={i} className="border border-border bg-card p-3">
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <Avatar handle={p.author} size={16} />
+                      <span className="font-medium truncate max-w-[160px]">{p.author}</span>
+                      <span className="text-muted-foreground ml-auto">{ago(p.ts)} ago</span>
+                    </div>
+                    <div className="text-sm mt-1.5">{p.text}</div>
+                    <div className="flex items-center gap-3 text-[11px] text-muted-foreground mt-1.5">
+                      <span>{p.likes.toLocaleString()} likes</span>
+                      <span>{p.comments.toLocaleString()} comments</span>
+                      {p.url && <a href={p.url} target="_blank" rel="noreferrer" className="hover:text-primary ml-auto">view ↗</a>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {sig.community.articles.length > 0 && (
+            <div>
+              <Label>news &amp; articles — {sig.community.articles.length}</Label>
+              <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
+                {sig.community.articles.map((a, i) => (
+                  <a key={i} href={a.url ?? "#"} target="_blank" rel="noreferrer" className="block px-3 py-2 hover:bg-muted/30">
+                    <div className="text-foreground">{a.title}</div>
+                    <div className="text-[11px] text-muted-foreground mt-0.5">{a.source} · {ago(a.ts)} ago</div>
+                  </a>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       )}

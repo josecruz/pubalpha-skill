@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T06:27:35Z",
+  "generated_at": "2026-06-21T07:50:26Z",
   "shows": [
     {
       "slug": "all-in",
@@ -1499,8 +1499,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=3Amlu4y94Ho",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": 0.8
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": 0.59
         },
         {
           "id": "2ee0dbd0-8",
@@ -1538,8 +1538,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=3Amlu4y94Ho",
           "cmc_symbol": "BABA",
-          "cmc_price": 106.9533382307195,
-          "since_call_pct": -0.44
+          "cmc_price": 107.0402353532184,
+          "since_call_pct": -0.36
         },
         {
           "id": "135f61e3-b",
@@ -1785,8 +1785,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2800564980",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": 1.13
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": 0.92
         },
         {
           "id": "0aec576b-8",
@@ -1863,8 +1863,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2800564980",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": -2.77
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": -3.07
         }
       ]
     },
@@ -2012,8 +2012,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2799787301",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": -1.93
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": -2.13
         },
         {
           "id": "3cf40903-9",
@@ -2108,8 +2108,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2799787301",
           "cmc_symbol": "SOL",
-          "cmc_price": 73.11740313321597,
-          "since_call_pct": 4.92
+          "cmc_price": 73.24668491148688,
+          "since_call_pct": 5.11
         },
         {
           "id": "42f4407e-4",
@@ -2250,8 +2250,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798988265",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": -7.82
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": -8.01
         },
         {
           "id": "fc057ab0-4",
@@ -2378,8 +2378,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798988265",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": 0.08
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": 0.03
         },
         {
           "id": "63e592d3-5",
@@ -2505,8 +2505,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798988265",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": -4.98
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": -5.27
         },
         {
           "id": "98a6078d-4",
@@ -2618,8 +2618,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798988265",
           "cmc_symbol": "NKE",
-          "cmc_price": 45.86654662827951,
-          "since_call_pct": 3.79
+          "cmc_price": 45.9181670819995,
+          "since_call_pct": 3.91
         }
       ]
     },
@@ -2670,8 +2670,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798206529",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -0.09
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -0.02
         },
         {
           "id": "b1890696-f",
@@ -2709,8 +2709,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798206529",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": -10.43
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": -10.61
         },
         {
           "id": "b31e5173-9",
@@ -2856,8 +2856,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798206529",
           "cmc_symbol": "UBER",
-          "cmc_price": 76.5787806862502,
-          "since_call_pct": 4.54
+          "cmc_price": 76.37500724537752,
+          "since_call_pct": 4.27
         },
         {
           "id": "1913915a-7",
@@ -2967,8 +2967,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2798206529",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": -0.78
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": -0.77
         }
       ]
     },
@@ -3047,8 +3047,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": -3.7
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": -3.89
         },
         {
           "id": "63aec035-7",
@@ -3097,8 +3097,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -11.55
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -11.53
         },
         {
           "id": "17acc41d-d",
@@ -3142,8 +3142,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "EWY",
-          "cmc_price": 218.84518078295562,
-          "since_call_pct": 3.65
+          "cmc_price": 219.28054860472085,
+          "since_call_pct": 3.86
         },
         {
           "id": "6cbc8731-0",
@@ -3194,8 +3194,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 2.54
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 2.23
         },
         {
           "id": "23915cf1-f",
@@ -3246,8 +3246,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "NEAR",
-          "cmc_price": 2.216202416478036,
-          "since_call_pct": -10.82
+          "cmc_price": 2.23959040019894,
+          "since_call_pct": -9.88
         },
         {
           "id": "beca06c2-4",
@@ -3338,8 +3338,8 @@
           "chain_steps": [],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "DRAM",
-          "cmc_price": 80.94410892945282,
-          "since_call_pct": 14.39
+          "cmc_price": 81.02189820698489,
+          "since_call_pct": 14.5
         },
         {
           "id": "89009395-1",
@@ -3439,8 +3439,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "TAO",
-          "cmc_price": 236.5612737549127,
-          "since_call_pct": -12.48
+          "cmc_price": 236.2322468355155,
+          "since_call_pct": -12.6
         },
         {
           "id": "d804cba7-9",
@@ -3552,8 +3552,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "BABA",
-          "cmc_price": 106.9533382307195,
-          "since_call_pct": -5.46
+          "cmc_price": 107.0402353532184,
+          "since_call_pct": -5.38
         },
         {
           "id": "c5c6ed3d-3",
@@ -3702,8 +3702,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -2.26
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -2.27
         },
         {
           "id": "7fde7686-a",
@@ -3748,7 +3748,7 @@
           "chain_steps": [],
           "source_url": "https://twitch.tv/videos/2797473647",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": -1.53
         }
       ]
@@ -3816,8 +3816,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gH4FTjDm9FQ",
           "cmc_symbol": "BABA",
-          "cmc_price": 106.9533382307195,
-          "since_call_pct": -5.2
+          "cmc_price": 107.0402353532184,
+          "since_call_pct": -5.12
         },
         {
           "id": "0dc1c9d2-4",
@@ -4136,8 +4136,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2795096489",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": 1.05
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": 1.0
         },
         {
           "id": "e8437d8e-e",
@@ -4191,8 +4191,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2795096489",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 12.78
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 12.43
         },
         {
           "id": "527eeea0-7",
@@ -4253,8 +4253,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2795096489",
           "cmc_symbol": "RKLB",
-          "cmc_price": 106.64324105172723,
-          "since_call_pct": 3.37
+          "cmc_price": 106.50153338288577,
+          "since_call_pct": 3.23
         },
         {
           "id": "d0d30f04-8",
@@ -4326,8 +4326,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2795096489",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": 10.31
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": 10.09
         },
         {
           "id": "94bc11a4-9",
@@ -4701,8 +4701,8 @@
           "chain_steps": [],
           "source_url": "https://youtube.com/watch?v=fO5sC7qS04E",
           "cmc_symbol": "GEOD",
-          "cmc_price": 0.20147447042538633,
-          "since_call_pct": 22.46
+          "cmc_price": 0.20131521413538567,
+          "since_call_pct": 22.37
         },
         {
           "id": "4afe8584-9",
@@ -4992,8 +4992,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2794308987",
           "cmc_symbol": "ASTS",
-          "cmc_price": 79.40864626575122,
-          "since_call_pct": -18.61
+          "cmc_price": 79.35403680367493,
+          "since_call_pct": -18.66
         },
         {
           "id": "8f10a17d-0",
@@ -5137,8 +5137,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2794308987",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": 8.21
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": 8.0
         },
         {
           "id": "0ab517fc-f",
@@ -5222,8 +5222,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2794308987",
           "cmc_symbol": "ETH",
-          "cmc_price": 1733.2705221637857,
-          "since_call_pct": 3.17
+          "cmc_price": 1731.8353107483947,
+          "since_call_pct": 3.09
         },
         {
           "id": "71f16672-6",
@@ -5265,8 +5265,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2794308987",
           "cmc_symbol": "XRP",
-          "cmc_price": 1.144185967653184,
-          "since_call_pct": 0.07
+          "cmc_price": 1.1484649019294866,
+          "since_call_pct": 0.44
         }
       ]
     },
@@ -5298,7 +5298,7 @@
           "entry_price": 27.831,
           "posted_price": 27.465,
           "peak_pct": 5.644784592720341,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "I, I wonder, what does a company like Hims do? How do you beat Bryan Johnson distribution? You probably don't... if you're Hims, how do you beat Bryan Johnson\u2026",
           "thesis": "Bryan Johnson's longevity drug platform with elite distribution directly threatens Hims, with no way to compete.",
@@ -5331,8 +5331,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2793522078",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 30.92
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 30.49
         },
         {
           "id": "05df49e7-1",
@@ -5381,8 +5381,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2793522078",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 28.02
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 27.62
         },
         {
           "id": "17c31070-8",
@@ -5470,8 +5470,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2793522078",
           "cmc_symbol": "AVGO",
-          "cmc_price": 410.18951712873456,
-          "since_call_pct": 10.22
+          "cmc_price": 411.8592535766386,
+          "since_call_pct": 10.67
         },
         {
           "id": "f860cf3a-7",
@@ -5805,8 +5805,8 @@
           "chain_steps": [],
           "source_url": "https://twitch.tv/videos/2793522078",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": -23.97
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": -23.78
         },
         {
           "id": "ce9928f3-1",
@@ -5851,8 +5851,8 @@
           "chain_steps": [],
           "source_url": "https://twitch.tv/videos/2793522078",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -0.42
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -0.35
         },
         {
           "id": "584cd622-d",
@@ -5897,7 +5897,7 @@
           "chain_steps": [],
           "source_url": "https://twitch.tv/videos/2793522078",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 2.41
         }
       ]
@@ -5977,8 +5977,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=0y28p0jqPro",
           "cmc_symbol": "CBRS",
-          "cmc_price": 233.14562281660926,
-          "since_call_pct": -1.84
+          "cmc_price": 233.75043390048302,
+          "since_call_pct": -1.58
         },
         {
           "id": "d38b1056-2",
@@ -6153,8 +6153,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=xTO1aQ_m44I",
           "cmc_symbol": "GEV",
-          "cmc_price": 1147.9402579869643,
-          "since_call_pct": 24.76
+          "cmc_price": 1154.871869234545,
+          "since_call_pct": 25.51
         },
         {
           "id": "19819f64-3",
@@ -6264,8 +6264,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=xTO1aQ_m44I",
           "cmc_symbol": "SLV",
-          "cmc_price": 58.82902407159212,
-          "since_call_pct": -8.05
+          "cmc_price": 58.841143693838625,
+          "since_call_pct": -8.03
         }
       ]
     },
@@ -6352,8 +6352,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2792718656",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": 3.53
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": 3.48
         },
         {
           "id": "7d5096de-8",
@@ -6391,8 +6391,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2792718656",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 17.79
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 17.43
         },
         {
           "id": "dd032c3e-7",
@@ -6430,8 +6430,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2792718656",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": 4.79
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": 4.82
         },
         {
           "id": "2cfe5c5d-8",
@@ -6505,8 +6505,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2792718656",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 1.31
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 1.3
         },
         {
           "id": "5277c8fe-e",
@@ -6580,8 +6580,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2792718656",
           "cmc_symbol": "DKNG",
-          "cmc_price": 26.63488657899127,
-          "since_call_pct": -3.46
+          "cmc_price": 26.651610608595444,
+          "since_call_pct": -3.4
         },
         {
           "id": "b344ff42-4",
@@ -6704,7 +6704,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=0umrMuUClC4",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 0.79
         },
         {
@@ -6743,8 +6743,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=0umrMuUClC4",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": -24.29
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": -24.1
         },
         {
           "id": "1a2b4b49-8",
@@ -6782,8 +6782,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=0umrMuUClC4",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 2.55
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 2.62
         }
       ]
     },
@@ -6834,8 +6834,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2791923393",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": 10.08
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": 10.11
         },
         {
           "id": "43f33a52-3",
@@ -6873,8 +6873,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2791923393",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": 1.32
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": 1.28
         },
         {
           "id": "e541fd5b-d",
@@ -6912,8 +6912,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2791923393",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 10.74
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 10.41
         },
         {
           "id": "d07a97a2-9",
@@ -6932,7 +6932,7 @@
           "entry_price": 285.72,
           "posted_price": 289.07,
           "peak_pct": 15.487190256194875,
-          "market_cap_fmt": "$275B",
+          "market_cap_fmt": "$277B",
           "logo_url": "https://api.elbstream.com/logos/symbol/MRVL",
           "headline_quote": "Marvell I re-entered Marvell. Um, I bought some, then I bought a little bit more higher down after market close. No real thesis on this. Maybe this is me\u2026",
           "thesis": "Marvell re-entry on S&P 500 inclusion passive flows and Jensen pump; he bought it back after a winning flip.",
@@ -6951,8 +6951,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2791923393",
           "cmc_symbol": "MRVL",
-          "cmc_price": 314.3537132297181,
-          "since_call_pct": 10.02
+          "cmc_price": 317.74891305889145,
+          "since_call_pct": 11.21
         },
         {
           "id": "e37b7021-8",
@@ -6971,7 +6971,7 @@
           "entry_price": 0.001623,
           "posted_price": 0.001552,
           "peak_pct": 1.9716574245224838,
-          "market_cap_fmt": "$179,634",
+          "market_cap_fmt": "$181,105",
           "logo_url": "https://api.elbstream.com/logos/symbol/PUMP",
           "headline_quote": "circulating market cap is $500 mil... The market cap is their cash balance. They have their market cap in cash... they could completely utterly dominate this\u2026",
           "thesis": "PumpFun token trades near its cash balance; an activist pivot to win tokenized collectibles could send it up.",
@@ -6990,8 +6990,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2791923393",
           "cmc_symbol": "PUMP",
-          "cmc_price": 0.001464301763317578,
-          "since_call_pct": -9.78
+          "cmc_price": 0.001475380853935541,
+          "since_call_pct": -9.1
         },
         {
           "id": "8425d834-f",
@@ -7065,8 +7065,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2791923393",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": -4.83
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": -4.82
         },
         {
           "id": "1c38be26-4",
@@ -7104,8 +7104,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2791923393",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 0.43
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 0.5
         },
         {
           "id": "30fcde36-5",
@@ -7480,8 +7480,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=hObRMv6qCi0",
           "cmc_symbol": "PANW",
-          "cmc_price": 286.37410995410283,
-          "since_call_pct": 5.27
+          "cmc_price": 287.13193329183815,
+          "since_call_pct": 5.54
         },
         {
           "id": "20480caa-e",
@@ -7519,8 +7519,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=hObRMv6qCi0",
           "cmc_symbol": "CRM",
-          "cmc_price": 153.94604811710735,
-          "since_call_pct": -17.08
+          "cmc_price": 153.76986309247837,
+          "since_call_pct": -17.18
         },
         {
           "id": "67dcc4b2-b",
@@ -7558,8 +7558,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=hObRMv6qCi0",
           "cmc_symbol": "SNOW",
-          "cmc_price": 230.87510055384686,
-          "since_call_pct": -3.1
+          "cmc_price": 230.706572430835,
+          "since_call_pct": -3.17
         },
         {
           "id": "f41e3bc6-e",
@@ -7613,7 +7613,7 @@
           "entry_price": 218.48,
           "posted_price": 212.085,
           "peak_pct": 0.9520322226290793,
-          "market_cap_fmt": "$533B",
+          "market_cap_fmt": "$534B",
           "logo_url": "https://api.elbstream.com/logos/symbol/ORCL",
           "headline_quote": "We are going to need 10 times the data stored in enterprise than we have today, right? Next 3 years, 10 times.",
           "thesis": "Oracle benefits as core storage infrastructure for the 10x enterprise data buildout.",
@@ -7631,8 +7631,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=hObRMv6qCi0",
           "cmc_symbol": "ORCL",
-          "cmc_price": 185.88732001951104,
-          "since_call_pct": -14.92
+          "cmc_price": 186.61341731518448,
+          "since_call_pct": -14.59
         },
         {
           "id": "a066cc33-5",
@@ -7670,7 +7670,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=hObRMv6qCi0",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": -0.85
         },
         {
@@ -7709,8 +7709,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=hObRMv6qCi0",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -56.23
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -56.06
         },
         {
           "id": "5fe6036f-f",
@@ -7748,8 +7748,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=hObRMv6qCi0",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 1.66
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 1.82
         }
       ]
     },
@@ -7800,8 +7800,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=V0lFjTWx36I",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": 5.9
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": 5.68
         }
       ]
     },
@@ -7924,8 +7924,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=jLICvWE7w2Q",
           "cmc_symbol": "CBRS",
-          "cmc_price": 233.14562281660926,
-          "since_call_pct": -3.37
+          "cmc_price": 233.75043390048302,
+          "since_call_pct": -3.12
         }
       ]
     },
@@ -8048,8 +8048,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=i8OI8CNdZgU",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -3.16
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -3.1
         }
       ]
     },
@@ -8163,8 +8163,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2788663101",
           "cmc_symbol": "MRVL",
-          "cmc_price": 314.3537132297181,
-          "since_call_pct": -0.6
+          "cmc_price": 317.74891305889145,
+          "since_call_pct": 0.48
         },
         {
           "id": "006a8ada-9",
@@ -8265,8 +8265,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2788663101",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -16.46
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -16.54
         },
         {
           "id": "466b618f-8",
@@ -8378,8 +8378,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2788663101",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -9.15
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -9.13
         },
         {
           "id": "8b6e29b8-6",
@@ -8428,8 +8428,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2788663101",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": 3.91
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": 3.7
         },
         {
           "id": "ee863c91-8",
@@ -8530,8 +8530,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2788663101",
           "cmc_symbol": "XMR",
-          "cmc_price": 321.01504594442747,
-          "since_call_pct": -16.5
+          "cmc_price": 320.5416618945529,
+          "since_call_pct": -16.63
         }
       ]
     },
@@ -8582,8 +8582,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=UIoV8rG_25s",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -53.52
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -53.33
         },
         {
           "id": "8b8ee326-e",
@@ -8621,8 +8621,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=UIoV8rG_25s",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 8.37
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 8.59
         },
         {
           "id": "c2954146-1",
@@ -8732,8 +8732,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=UIoV8rG_25s%26t%3D1809s",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": 3.27
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": 3.06
         }
       ]
     },
@@ -8793,8 +8793,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "MRVL",
-          "cmc_price": 314.3537132297181,
-          "since_call_pct": 4.47
+          "cmc_price": 317.74891305889145,
+          "since_call_pct": 5.6
         },
         {
           "id": "fae5b42a-f",
@@ -8891,8 +8891,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": -6.43
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": -6.72
         },
         {
           "id": "392da101-c",
@@ -8939,8 +8939,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -29.86
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -29.92
         },
         {
           "id": "e53df758-5",
@@ -8987,8 +8987,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -23.02
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -23.0
         },
         {
           "id": "7ebc3cbb-a",
@@ -9143,8 +9143,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "HON",
-          "cmc_price": 231.90790034447625,
-          "since_call_pct": 3.83
+          "cmc_price": 231.97964099724794,
+          "since_call_pct": 3.86
         },
         {
           "id": "5471a8fa-4",
@@ -9198,8 +9198,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -26.17
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -26.15
         },
         {
           "id": "7aef053c-6",
@@ -9246,8 +9246,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": -8.04
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": -8.32
         },
         {
           "id": "fca29ae0-6",
@@ -9294,8 +9294,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "NEAR",
-          "cmc_price": 2.216202416478036,
-          "since_call_pct": -22.81
+          "cmc_price": 2.23959040019894,
+          "since_call_pct": -21.99
         },
         {
           "id": "c00f9f4c-c",
@@ -9342,8 +9342,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "RAIL",
-          "cmc_price": 2.3817397587667846,
-          "since_call_pct": -67.73
+          "cmc_price": 2.3893087898929237,
+          "since_call_pct": -67.62
         },
         {
           "id": "28e1dc01-4",
@@ -9390,8 +9390,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787867857",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -1.47
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -1.52
         }
       ]
     },
@@ -9442,8 +9442,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=_TJFqEhxQg4%26t%3D417s",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": -5.18
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": -5.32
         },
         {
           "id": "b1bcf357-c",
@@ -9517,8 +9517,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=_TJFqEhxQg4%26t%3D412s",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -10.66
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -10.51
         },
         {
           "id": "edf94716-a",
@@ -9556,8 +9556,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=_TJFqEhxQg4%26t%3D417s",
           "cmc_symbol": "CRM",
-          "cmc_price": 153.94604811710735,
-          "since_call_pct": -19.38
+          "cmc_price": 153.76986309247837,
+          "since_call_pct": -19.47
         },
         {
           "id": "5eb18458-a",
@@ -9703,8 +9703,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787072268",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -4.63
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -4.67
         },
         {
           "id": "16511145-2",
@@ -9812,8 +9812,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787072268",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -23.62
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -23.68
         },
         {
           "id": "2348f868-a",
@@ -9881,7 +9881,7 @@
           "entry_price": 291.14,
           "posted_price": 284.815,
           "peak_pct": 17.362780792745763,
-          "market_cap_fmt": "$275B",
+          "market_cap_fmt": "$277B",
           "logo_url": "https://api.elbstream.com/logos/symbol/MRVL",
           "headline_quote": "I get this ping on my phone that Jensen, the CEO of Nvidia, has declared Marvell the next $1 trillion stock.",
           "thesis": "ThreadGuy is long Marvell on Jensen Huang publicly calling it the next trillion-dollar company, treating it as a KOL-shill momentum trade in an up-only market.",
@@ -9929,8 +9929,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2787072268",
           "cmc_symbol": "MRVL",
-          "cmc_price": 314.3537132297181,
-          "since_call_pct": 7.97
+          "cmc_price": 317.74891305889145,
+          "since_call_pct": 9.14
         },
         {
           "id": "dd888c29-5",
@@ -10113,7 +10113,7 @@
           ],
           "source_url": "https://twitch.tv/videos/2787072268",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 0.56
         }
       ]
@@ -10165,8 +10165,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=TjrShuj_Zsg",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -6.32
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -6.25
         },
         {
           "id": "879a3c5c-c",
@@ -10204,8 +10204,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=TjrShuj_Zsg",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 9.03
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 9.25
         },
         {
           "id": "33a0e3d1-e",
@@ -10224,7 +10224,7 @@
           "entry_price": 239.73,
           "posted_price": 217.875,
           "peak_pct": 3.908563800942729,
-          "market_cap_fmt": "$533B",
+          "market_cap_fmt": "$534B",
           "logo_url": "https://api.elbstream.com/logos/symbol/ORCL",
           "headline_quote": "that will be, you know, sticking shovels in the ground on a one gigawatt data center, which is part of our Oracle complex",
           "thesis": "OpenAI's 1GW Michigan build sits inside its Oracle complex; Oracle is a top off-take CSP for the buildout",
@@ -10243,8 +10243,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=TjrShuj_Zsg",
           "cmc_symbol": "ORCL",
-          "cmc_price": 185.88732001951104,
-          "since_call_pct": -22.46
+          "cmc_price": 186.61341731518448,
+          "since_call_pct": -22.16
         },
         {
           "id": "8eb6533f-a",
@@ -10321,8 +10321,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=TjrShuj_Zsg",
           "cmc_symbol": "CRWV",
-          "cmc_price": 117.95787459179004,
-          "since_call_pct": -4.83
+          "cmc_price": 119.60211226139619,
+          "since_call_pct": -3.5
         },
         {
           "id": "5e17d907-5",
@@ -10341,7 +10341,7 @@
           "entry_price": 514.72,
           "posted_price": 510.965,
           "peak_pct": 8.435654336338196,
-          "market_cap_fmt": "$882B",
+          "market_cap_fmt": "$885B",
           "logo_url": "https://api.elbstream.com/logos/symbol/AMD",
           "headline_quote": "we also now have chips in the pipeline from AMD. Um Cerebrus is already online... And there's our own chip that we're working on with Broadcom... we sit on\u2026",
           "thesis": "OpenAI's CFO confirming AMD chips are live in the pipeline is a concrete demand signal for AMD's data-center accelerators from the single largest AI compute buyer. Among the publicly tradeable names she lists, AMD is the cleanest single long.",
@@ -10360,8 +10360,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=TjrShuj_Zsg",
           "cmc_symbol": "AMD",
-          "cmc_price": 539.2354708879326,
-          "since_call_pct": 4.76
+          "cmc_price": 540.8405050876956,
+          "since_call_pct": 5.07
         },
         {
           "id": "125ec04f-d",
@@ -10399,8 +10399,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=TjrShuj_Zsg",
           "cmc_symbol": "AVGO",
-          "cmc_price": 410.18951712873456,
-          "since_call_pct": -1.24
+          "cmc_price": 411.8592535766386,
+          "since_call_pct": -0.84
         },
         {
           "id": "5ff0f399-d",
@@ -10503,8 +10503,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2786293713",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -19.72
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -19.66
         },
         {
           "id": "3aa9fea3-5",
@@ -10562,8 +10562,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2786293713",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": -5.32
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": -5.61
         },
         {
           "id": "1b24d8b3-2",
@@ -10617,8 +10617,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2786293713",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -23.83
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -23.89
         },
         {
           "id": "c1f814c8-d",
@@ -10667,8 +10667,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2786293713",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -16.85
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -16.83
         },
         {
           "id": "b2d19fc7-f",
@@ -10787,8 +10787,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2786293713",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -52.31
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -52.12
         },
         {
           "id": "92221265-3",
@@ -10923,8 +10923,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783912075",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 5.2
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 4.88
         },
         {
           "id": "e53ecf21-c",
@@ -11020,8 +11020,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783912075",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -7.88
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -7.96
         },
         {
           "id": "2da03639-5",
@@ -11120,8 +11120,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783912075",
           "cmc_symbol": "ORCL",
-          "cmc_price": 185.88732001951104,
-          "since_call_pct": -17.75
+          "cmc_price": 186.61341731518448,
+          "since_call_pct": -17.43
         },
         {
           "id": "3bb3d2a3-8",
@@ -11277,8 +11277,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783912075",
           "cmc_symbol": "PANW",
-          "cmc_price": 286.37410995410283,
-          "since_call_pct": 2.13
+          "cmc_price": 287.13193329183815,
+          "since_call_pct": 2.4
         },
         {
           "id": "06b78e08-1",
@@ -11330,8 +11330,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783912075",
           "cmc_symbol": "COIN",
-          "cmc_price": 166.99171908990334,
-          "since_call_pct": -11.41
+          "cmc_price": 166.92217515549908,
+          "since_call_pct": -11.45
         },
         {
           "id": "64184bde-b",
@@ -11383,8 +11383,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783912075",
           "cmc_symbol": "HON",
-          "cmc_price": 231.90790034447625,
-          "since_call_pct": -2.57
+          "cmc_price": 231.97964099724794,
+          "since_call_pct": -2.54
         }
       ]
     },
@@ -11435,8 +11435,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -47.84
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -47.63
         },
         {
           "id": "b72842d1-d",
@@ -11474,8 +11474,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "BABA",
-          "cmc_price": 106.9533382307195,
-          "since_call_pct": -15.03
+          "cmc_price": 107.0402353532184,
+          "since_call_pct": -14.96
         },
         {
           "id": "7511b39f-f",
@@ -11513,8 +11513,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": -4.3
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": -4.28
         },
         {
           "id": "52f11a2c-a",
@@ -11552,8 +11552,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -10.79
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -10.64
         },
         {
           "id": "5edb5cde-3",
@@ -11591,8 +11591,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -2.38
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -2.32
         },
         {
           "id": "e27aae4c-5",
@@ -11630,8 +11630,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -47.84
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -47.63
         },
         {
           "id": "06606a2b-d",
@@ -11669,8 +11669,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": -26.74
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": -26.56
         },
         {
           "id": "fbd86e82-2",
@@ -11708,7 +11708,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": -6.67
         },
         {
@@ -11747,8 +11747,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -8.52
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -8.53
         },
         {
           "id": "8c47af10-b",
@@ -11786,8 +11786,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8%26t%3D2355s",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": -10.77
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": -10.91
         },
         {
           "id": "e2a209a7-f",
@@ -11825,8 +11825,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4oq91rzQcO8",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 0.19
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 0.2
         },
         {
           "id": "16a628c0-1",
@@ -12006,8 +12006,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783123962",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -15.7
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -15.68
         },
         {
           "id": "19006ca2-2",
@@ -12069,8 +12069,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783123962",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 27.63
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 27.83
         },
         {
           "id": "9b96b1b2-c",
@@ -12119,8 +12119,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783123962",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": -4.79
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": -4.78
         },
         {
           "id": "c498db27-6",
@@ -12174,8 +12174,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783123962",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 14.1
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 13.75
         },
         {
           "id": "42d5e245-1",
@@ -12229,8 +12229,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783123962",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -10.17
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -10.1
         },
         {
           "id": "d01fb03b-2",
@@ -12354,8 +12354,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2783123962",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 12.93
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 12.58
         }
       ]
     },
@@ -12415,8 +12415,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 14.58
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 14.23
         },
         {
           "id": "a4dec965-8",
@@ -12463,8 +12463,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -15.79
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -15.77
         },
         {
           "id": "56ff9464-a",
@@ -12521,8 +12521,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "NOK",
-          "cmc_price": 13.729725036130215,
-          "since_call_pct": -12.44
+          "cmc_price": 13.804618320666638,
+          "since_call_pct": -11.96
         },
         {
           "id": "1262870b-1",
@@ -12619,8 +12619,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "CRWV",
-          "cmc_price": 117.95787459179004,
-          "since_call_pct": 11.94
+          "cmc_price": 119.60211226139619,
+          "since_call_pct": 13.5
         },
         {
           "id": "6e28fd3a-f",
@@ -12752,8 +12752,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -13.98
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -14.02
         },
         {
           "id": "0d345f38-1",
@@ -12800,8 +12800,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "SOL",
-          "cmc_price": 73.11740313321597,
-          "since_call_pct": -11.58
+          "cmc_price": 73.24668491148688,
+          "since_call_pct": -11.42
         },
         {
           "id": "c8aaddac-e",
@@ -12852,8 +12852,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "QNT",
-          "cmc_price": 70.92595622040041,
-          "since_call_pct": -24.34
+          "cmc_price": 70.80843106141343,
+          "since_call_pct": -24.46
         },
         {
           "id": "5c7f62da-d",
@@ -12896,8 +12896,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "IONQ",
-          "cmc_price": 58.565919935588944,
-          "since_call_pct": -10.42
+          "cmc_price": 58.47611269988678,
+          "since_call_pct": -10.56
         },
         {
           "id": "f6e80074-9",
@@ -12944,8 +12944,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "AAVE",
-          "cmc_price": 75.63317206721592,
-          "since_call_pct": -9.44
+          "cmc_price": 75.91359392690954,
+          "since_call_pct": -9.1
         },
         {
           "id": "da4ec7c7-a",
@@ -12988,8 +12988,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": -4.65
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": -4.64
         },
         {
           "id": "bb3d216a-0",
@@ -13036,8 +13036,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2782345952",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -13.48
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -13.55
         }
       ]
     },
@@ -13097,8 +13097,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2781566659",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -15.55
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -15.59
         },
         {
           "id": "fd0eacfa-e",
@@ -13151,8 +13151,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2781566659",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -20.21
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -20.19
         },
         {
           "id": "deac7ae6-8",
@@ -13247,8 +13247,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2781566659",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -7.31
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -7.33
         },
         {
           "id": "40d23bf6-9",
@@ -13307,8 +13307,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2781566659",
           "cmc_symbol": "SHOP",
-          "cmc_price": 108.96192025602387,
-          "since_call_pct": 3.86
+          "cmc_price": 109.26354220453528,
+          "since_call_pct": 4.15
         },
         {
           "id": "9af5c14b-0",
@@ -13366,8 +13366,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2781566659",
           "cmc_symbol": "RDDT",
-          "cmc_price": 172.92361190017647,
-          "since_call_pct": 19.42
+          "cmc_price": 173.0840524458419,
+          "since_call_pct": 19.53
         },
         {
           "id": "aa2812a7-6",
@@ -13480,8 +13480,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -46.17
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -45.95
         },
         {
           "id": "9e5dc7ad-4",
@@ -13530,7 +13530,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": -5.19
         },
         {
@@ -13575,8 +13575,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -5.44
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -5.45
         },
         {
           "id": "e996655a-3",
@@ -13625,8 +13625,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 51.81
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 52.12
         },
         {
           "id": "a15e259a-b",
@@ -13675,8 +13675,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "AVGO",
-          "cmc_price": 410.18951712873456,
-          "since_call_pct": -0.96
+          "cmc_price": 411.8592535766386,
+          "since_call_pct": -0.56
         },
         {
           "id": "b680a16d-a",
@@ -13735,8 +13735,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "CRWV",
-          "cmc_price": 117.95787459179004,
-          "since_call_pct": 10.42
+          "cmc_price": 119.60211226139619,
+          "since_call_pct": 11.96
         },
         {
           "id": "8206fba6-9",
@@ -13862,8 +13862,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -3.08
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -3.01
         },
         {
           "id": "e32423fe-e",
@@ -13919,8 +13919,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HGbA6ze0_3M",
           "cmc_symbol": "NATGAS",
-          "cmc_price": 3.247484503391352,
-          "since_call_pct": 6.85
+          "cmc_price": 3.2481571024841713,
+          "since_call_pct": 6.87
         },
         {
           "id": "9f922878-d",
@@ -14046,8 +14046,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2778360215",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -23.09
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -23.08
         },
         {
           "id": "9f9a0831-b",
@@ -14145,8 +14145,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2778360215",
           "cmc_symbol": "RDDT",
-          "cmc_price": 172.92361190017647,
-          "since_call_pct": 22.04
+          "cmc_price": 173.0840524458419,
+          "since_call_pct": 22.15
         },
         {
           "id": "9a6fd9f0-4",
@@ -14190,8 +14190,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2778360215",
           "cmc_symbol": "EWY",
-          "cmc_price": 218.84518078295562,
-          "since_call_pct": 19.5
+          "cmc_price": 219.28054860472085,
+          "since_call_pct": 19.73
         },
         {
           "id": "02056eea-f",
@@ -14283,8 +14283,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2778360215",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": -3.97
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": -3.95
         },
         {
           "id": "b766c9db-c",
@@ -14346,7 +14346,7 @@
           "entry_price": 119.38,
           "posted_price": 98.8085,
           "peak_pct": 16.376277433405942,
-          "market_cap_fmt": "$696B",
+          "market_cap_fmt": "$697B",
           "logo_url": "https://api.elbstream.com/logos/symbol/INTC",
           "headline_quote": "China invades Taiwan, takes Taiwan first... the second this happens, I'm not shorting TSMC, we're just longing Intel. We're gonna long Intel to trillions of\u2026",
           "thesis": "If China takes Taiwan, US domestic fabs become priceless and Intel re-rates toward trillions",
@@ -14372,8 +14372,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2778360215",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 18.14
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 17.55
         },
         {
           "id": "831e30fc-0",
@@ -14451,8 +14451,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2778360215",
           "cmc_symbol": "BABA",
-          "cmc_price": 106.9533382307195,
-          "since_call_pct": -17.57
+          "cmc_price": 107.0402353532184,
+          "since_call_pct": -17.5
         }
       ]
     },
@@ -14519,8 +14519,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2777582358",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 19.45
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 19.08
         },
         {
           "id": "db6e97ab-5",
@@ -14574,8 +14574,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2777582358",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -30.09
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -30.07
         },
         {
           "id": "5a1ff0a3-3",
@@ -14619,8 +14619,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2777582358",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 50.06
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 50.38
         },
         {
           "id": "25263cec-a",
@@ -14669,8 +14669,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2777582358",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -19.59
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -19.65
         },
         {
           "id": "a3e1fdcd-5",
@@ -14719,8 +14719,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2777582358",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -17.38
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -17.42
         },
         {
           "id": "bdb18f97-f",
@@ -14774,8 +14774,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2777582358",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -4.85
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -4.78
         },
         {
           "id": "d3aa8d26-3",
@@ -14842,8 +14842,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2777582358",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": -11.7
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": -11.88
         }
       ]
     },
@@ -14908,8 +14908,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776804031",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 56.17
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 56.49
         },
         {
           "id": "89567179-4",
@@ -14965,8 +14965,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776804031",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -17.43
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -17.47
         },
         {
           "id": "6abecbdb-0",
@@ -15085,8 +15085,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776804031",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -30.69
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -30.67
         },
         {
           "id": "0177eec7-a",
@@ -15138,8 +15138,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776804031",
           "cmc_symbol": "ETH",
-          "cmc_price": 1733.2705221637857,
-          "since_call_pct": -18.99
+          "cmc_price": 1731.8353107483947,
+          "since_call_pct": -19.06
         },
         {
           "id": "ed048f9d-5",
@@ -15210,8 +15210,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776804031",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -7.75
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -7.69
         },
         {
           "id": "07bac70b-3",
@@ -15314,8 +15314,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776804031",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -3.27
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -3.29
         },
         {
           "id": "b09b209f-7",
@@ -15562,8 +15562,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -16.57
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -16.61
         },
         {
           "id": "104305c3-c",
@@ -15617,8 +15617,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -18.48
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -18.46
         },
         {
           "id": "a5568c89-1",
@@ -15672,8 +15672,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 42.82
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 42.38
         },
         {
           "id": "a5a75612-1",
@@ -15722,8 +15722,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "VVV",
-          "cmc_price": 14.393938240147454,
-          "since_call_pct": -15.99
+          "cmc_price": 14.381816242338934,
+          "since_call_pct": -16.06
         },
         {
           "id": "696ed5fe-9",
@@ -15775,8 +15775,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 63.64
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 63.98
         },
         {
           "id": "a6cefca8-1",
@@ -15843,8 +15843,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 73.02
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 73.3
         },
         {
           "id": "5074bf93-0",
@@ -15920,7 +15920,7 @@
           "entry_price": 0.35448,
           "posted_price": 0.26562,
           "peak_pct": 3.2554728052358364,
-          "market_cap_fmt": "$232M",
+          "market_cap_fmt": "$233M",
           "logo_url": "https://api.elbstream.com/logos/crypto/LDO",
           "headline_quote": "Probably think Hyperliquid and Lido are still under-owned. They both have strong business fundamentals while hitting the current regulatory zeitgeist. Target\u2026",
           "thesis": "Under-owned with strong fundamentals on the cusp of regulatory acceptance; $2 target relayed and endorsed",
@@ -15950,8 +15950,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "LDO",
-          "cmc_price": 0.2747942902345611,
-          "since_call_pct": -22.48
+          "cmc_price": 0.2765081792219173,
+          "since_call_pct": -22.0
         },
         {
           "id": "7dd1afec-8",
@@ -16062,8 +16062,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2776023214",
           "cmc_symbol": "SPCX",
-          "cmc_price": 181.4220100853136,
-          "since_call_pct": -10.9
+          "cmc_price": 181.05712143015987,
+          "since_call_pct": -11.08
         }
       ]
     },
@@ -16127,8 +16127,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2775249215",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -15.97
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -15.95
         },
         {
           "id": "a328956e-4",
@@ -16189,8 +16189,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2775249215",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 49.78
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 49.33
         },
         {
           "id": "97f7caca-6",
@@ -16241,8 +16241,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2775249215",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 67.76
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 68.11
         },
         {
           "id": "ad540b89-a",
@@ -16296,8 +16296,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2775249215",
           "cmc_symbol": "UBER",
-          "cmc_price": 76.5787806862502,
-          "since_call_pct": 2.0
+          "cmc_price": 76.37500724537752,
+          "since_call_pct": 1.72
         },
         {
           "id": "8f27a3b1-c",
@@ -16349,8 +16349,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2775249215",
           "cmc_symbol": "COIN",
-          "cmc_price": 166.99171908990334,
-          "since_call_pct": -11.66
+          "cmc_price": 166.92217515549908,
+          "since_call_pct": -11.7
         },
         {
           "id": "42eec2f2-1",
@@ -16515,8 +16515,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=jJRAvZNGUvI",
           "cmc_symbol": "CRM",
-          "cmc_price": 153.94604811710735,
-          "since_call_pct": -11.29
+          "cmc_price": 153.76986309247837,
+          "since_call_pct": -11.39
         },
         {
           "id": "cd92709f-5",
@@ -16612,8 +16612,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=jJRAvZNGUvI",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -32.63
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -32.35
         },
         {
           "id": "e14b6251-e",
@@ -16657,7 +16657,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=jJRAvZNGUvI",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": -8.05
         },
         {
@@ -16707,8 +16707,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=jJRAvZNGUvI",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": -1.13
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": -1.11
         },
         {
           "id": "c23d3602-d",
@@ -16828,8 +16828,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772819198",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 54.87
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 54.4
         },
         {
           "id": "fca4f051-5",
@@ -16876,8 +16876,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772819198",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -10.08
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -10.06
         },
         {
           "id": "04ee9349-9",
@@ -16925,8 +16925,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772819198",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -4.96
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -4.98
         },
         {
           "id": "0b9278b4-f",
@@ -16990,8 +16990,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772819198",
           "cmc_symbol": "POET",
-          "cmc_price": 12.72794412757344,
-          "since_call_pct": -20.6
+          "cmc_price": 12.528466388288289,
+          "since_call_pct": -21.84
         }
       ]
     },
@@ -17048,8 +17048,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772001960",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -14.12
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -14.1
         },
         {
           "id": "31f3f874-1",
@@ -17108,8 +17108,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772001960",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 57.7
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 57.22
         },
         {
           "id": "0194b83f-4",
@@ -17160,8 +17160,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772001960",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 21.74
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 21.13
         },
         {
           "id": "03216c8d-0",
@@ -17225,8 +17225,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772001960",
           "cmc_symbol": "CBRS",
-          "cmc_price": 233.14562281660926,
-          "since_call_pct": -27.29
+          "cmc_price": 233.75043390048302,
+          "since_call_pct": -27.11
         },
         {
           "id": "13fbcdf3-6",
@@ -17305,8 +17305,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772001960",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 47.36
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 47.66
         },
         {
           "id": "cd9c77bd-0",
@@ -17355,8 +17355,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772001960",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -21.04
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -21.07
         },
         {
           "id": "6bdf6979-a",
@@ -17501,8 +17501,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2772001960",
           "cmc_symbol": "CRCL",
-          "cmc_price": 81.53772006649785,
-          "since_call_pct": -34.24
+          "cmc_price": 81.7122450631739,
+          "since_call_pct": -34.1
         },
         {
           "id": "aba5b844-4",
@@ -17672,8 +17672,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2771197785",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -11.53
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -11.51
         },
         {
           "id": "f86c480b-4",
@@ -17775,8 +17775,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2771197785",
           "cmc_symbol": "EBAY",
-          "cmc_price": 106.55824175919982,
-          "since_call_pct": -5.68
+          "cmc_price": 106.59164929251774,
+          "since_call_pct": -5.65
         },
         {
           "id": "8b00a524-a",
@@ -17888,8 +17888,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2771197785",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": -9.88
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": -10.02
         },
         {
           "id": "81d8d8c5-2",
@@ -17938,8 +17938,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2771197785",
           "cmc_symbol": "BE",
-          "cmc_price": 342.3584571174961,
-          "since_call_pct": 18.15
+          "cmc_price": 326.79181907256736,
+          "since_call_pct": 12.78
         },
         {
           "id": "e01ff2b2-7",
@@ -18076,8 +18076,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2771197785",
           "cmc_symbol": "NVO",
-          "cmc_price": 43.98777846369166,
-          "since_call_pct": -6.57
+          "cmc_price": 44.25631650120651,
+          "since_call_pct": -6.0
         }
       ]
     },
@@ -18142,8 +18142,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2770422034",
           "cmc_symbol": "NEAR",
-          "cmc_price": 2.216202416478036,
-          "since_call_pct": 37.12
+          "cmc_price": 2.23959040019894,
+          "since_call_pct": 38.56
         },
         {
           "id": "3cdfede8-e",
@@ -18198,8 +18198,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2770422034",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -15.41
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -15.39
         },
         {
           "id": "64ee41ca-1",
@@ -18265,8 +18265,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2770422034",
           "cmc_symbol": "CBRS",
-          "cmc_price": 233.14562281660926,
-          "since_call_pct": -20.97
+          "cmc_price": 233.75043390048302,
+          "since_call_pct": -20.77
         },
         {
           "id": "7c4eef18-6",
@@ -18431,8 +18431,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2769661202",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -21.61
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -21.64
         },
         {
           "id": "efb5dda0-b",
@@ -18479,8 +18479,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2769661202",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -16.02
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -16.0
         },
         {
           "id": "18d98814-c",
@@ -18582,8 +18582,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2769661202",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 43.96
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 44.26
         },
         {
           "id": "e3d26253-8",
@@ -18679,8 +18679,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2769661202",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -16.92
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -16.89
         },
         {
           "id": "c8273630-7",
@@ -18727,8 +18727,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2769661202",
           "cmc_symbol": "XMR",
-          "cmc_price": 321.01504594442747,
-          "since_call_pct": -22.61
+          "cmc_price": 320.5416618945529,
+          "since_call_pct": -22.72
         },
         {
           "id": "cf476a2f-f",
@@ -18795,8 +18795,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2769661202",
           "cmc_symbol": "CBRS",
-          "cmc_price": 233.14562281660926,
-          "since_call_pct": -18.78
+          "cmc_price": 233.75043390048302,
+          "since_call_pct": -18.57
         }
       ]
     },
@@ -18870,8 +18870,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=10MdOvK-aG4",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -30.46
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -30.18
         },
         {
           "id": "3d853a3c-f",
@@ -18927,8 +18927,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=10MdOvK-aG4",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": -15.37
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": -15.17
         },
         {
           "id": "97866ad6-b",
@@ -18987,7 +18987,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=10MdOvK-aG4",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": -8.57
         },
         {
@@ -19132,8 +19132,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=10MdOvK-aG4",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -6.18
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -6.19
         },
         {
           "id": "0c8f91a4-e",
@@ -19180,8 +19180,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=10MdOvK-aG4",
           "cmc_symbol": "CRWD",
-          "cmc_price": 737.4337112517394,
-          "since_call_pct": 39.75
+          "cmc_price": 737.4944292285486,
+          "since_call_pct": 39.76
         },
         {
           "id": "8d591ad8-7",
@@ -19230,8 +19230,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=10MdOvK-aG4",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 53.05
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 53.37
         },
         {
           "id": "6ce16367-7",
@@ -19285,8 +19285,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=10MdOvK-aG4",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -2.81
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -2.75
         }
       ]
     },
@@ -19358,8 +19358,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2767294194",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -19.12
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -19.1
         },
         {
           "id": "a52f4ee1-f",
@@ -19408,8 +19408,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2767294194",
           "cmc_symbol": "COIN",
-          "cmc_price": 166.99171908990334,
-          "since_call_pct": -15.63
+          "cmc_price": 166.92217515549908,
+          "since_call_pct": -15.66
         },
         {
           "id": "cf9ee7cd-e",
@@ -19516,8 +19516,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2767294194",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -19.99
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -20.03
         },
         {
           "id": "4e4b3cce-e",
@@ -19536,7 +19536,7 @@
           "entry_price": 28.644,
           "posted_price": 26.2295,
           "peak_pct": 29.287110738723655,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "Hims earnings on Monday is up 10%, painting a pretty chart, cannot lie.",
           "thesis": "First earnings since the lawsuit, 34% short, down from $72 to $26: squeeze setup on Monday print",
@@ -19574,8 +19574,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2767294194",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 27.21
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 26.78
         },
         {
           "id": "412b948f-0",
@@ -19642,8 +19642,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2767294194",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 52.69
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 53.01
         }
       ]
     },
@@ -19725,8 +19725,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2766515247",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -16.64
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -16.62
         },
         {
           "id": "14252d08-e",
@@ -19780,8 +19780,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2766515247",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -2.41
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -2.43
         },
         {
           "id": "ae94d36c-a",
@@ -19961,8 +19961,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2766515247",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 62.38
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 61.89
         },
         {
           "id": "55c12464-1",
@@ -20044,8 +20044,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2766515247",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -16.33
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -16.31
         }
       ]
     },
@@ -20132,8 +20132,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2765747470",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": -17.61
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": -17.59
         },
         {
           "id": "fed8bcf9-6",
@@ -20171,8 +20171,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2765747470",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -21.08
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -21.12
         },
         {
           "id": "bc5e07c3-5",
@@ -20246,8 +20246,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2765747470",
           "cmc_symbol": "AAVE",
-          "cmc_price": 75.63317206721592,
-          "since_call_pct": -19.92
+          "cmc_price": 75.91359392690954,
+          "since_call_pct": -19.62
         },
         {
           "id": "95af1174-2",
@@ -20357,8 +20357,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2765747470",
           "cmc_symbol": "EWY",
-          "cmc_price": 218.84518078295562,
-          "since_call_pct": 20.8
+          "cmc_price": 219.28054860472085,
+          "since_call_pct": 21.04
         }
       ]
     },
@@ -20445,8 +20445,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764966342",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -21.42
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -21.45
         },
         {
           "id": "9f2c9578-f",
@@ -20519,8 +20519,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764966342",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 76.26
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 76.63
         },
         {
           "id": "7cd79e7a-2",
@@ -20558,8 +20558,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764966342",
           "cmc_symbol": "XMR",
-          "cmc_price": 321.01504594442747,
-          "since_call_pct": -23.98
+          "cmc_price": 320.5416618945529,
+          "since_call_pct": -24.09
         },
         {
           "id": "0ae47813-9",
@@ -20597,8 +20597,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764966342",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 6.56
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 6.63
         }
       ]
     },
@@ -20649,8 +20649,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764207002",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -12.66
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -12.6
         },
         {
           "id": "cd200ac2-4",
@@ -20724,8 +20724,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764207002",
           "cmc_symbol": "EBAY",
-          "cmc_price": 106.55824175919982,
-          "since_call_pct": -2.52
+          "cmc_price": 106.59164929251774,
+          "since_call_pct": -2.49
         },
         {
           "id": "da07b1a5-d",
@@ -20835,8 +20835,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764207002",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -19.66
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -19.7
         },
         {
           "id": "756f3320-3",
@@ -20874,8 +20874,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764207002",
           "cmc_symbol": "EWY",
-          "cmc_price": 218.84518078295562,
-          "since_call_pct": 33.92
+          "cmc_price": 219.28054860472085,
+          "since_call_pct": 34.19
         },
         {
           "id": "31a289e9-8",
@@ -20913,8 +20913,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2764207002",
           "cmc_symbol": "URNM",
-          "cmc_price": 58.72506559621752,
-          "since_call_pct": -11.53
+          "cmc_price": 59.04774450606862,
+          "since_call_pct": -11.05
         },
         {
           "id": "cfca20a9-d",
@@ -20952,7 +20952,7 @@
           ],
           "source_url": "https://twitch.tv/videos/2764207002",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": -5.06
         },
         {
@@ -21061,8 +21061,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fpC4sbawSzQ",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": -6.34
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": -6.12
         },
         {
           "id": "2eab918e-e",
@@ -21111,8 +21111,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fpC4sbawSzQ",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -35.62
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -35.36
         },
         {
           "id": "bea0a77f-5",
@@ -21131,7 +21131,7 @@
           "entry_price": 163.12,
           "posted_price": 218.915,
           "peak_pct": 53.55566454144187,
-          "market_cap_fmt": "$533B",
+          "market_cap_fmt": "$534B",
           "logo_url": "https://api.elbstream.com/logos/symbol/ORCL",
           "headline_quote": "Who will this benefit? It will benefit the hyperscalers, specifically Oracle, Amazon, Meta, Microsoft and Google.",
           "thesis": "Power and componentry are the real choke point, and the squeeze re-rates the hyperscalers holding the capacity",
@@ -21161,8 +21161,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fpC4sbawSzQ",
           "cmc_symbol": "ORCL",
-          "cmc_price": 185.88732001951104,
-          "since_call_pct": 13.96
+          "cmc_price": 186.61341731518448,
+          "since_call_pct": 14.4
         },
         {
           "id": "4473a870-2",
@@ -21211,8 +21211,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fpC4sbawSzQ",
           "cmc_symbol": "CRWD",
-          "cmc_price": 737.4337112517394,
-          "since_call_pct": 61.85
+          "cmc_price": 737.4944292285486,
+          "since_call_pct": 61.86
         },
         {
           "id": "a3a9bf98-0",
@@ -21261,8 +21261,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fpC4sbawSzQ",
           "cmc_symbol": "PANW",
-          "cmc_price": 286.37410995410283,
-          "since_call_pct": 58.15
+          "cmc_price": 287.13193329183815,
+          "since_call_pct": 58.57
         },
         {
           "id": "156946be-d",
@@ -21311,8 +21311,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fpC4sbawSzQ",
           "cmc_symbol": "NVO",
-          "cmc_price": 43.98777846369166,
-          "since_call_pct": 0.25
+          "cmc_price": 44.25631650120651,
+          "since_call_pct": 0.86
         },
         {
           "id": "0180dbf2-4",
@@ -21379,8 +21379,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fpC4sbawSzQ",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 13.8
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 13.82
         }
       ]
     },
@@ -21539,8 +21539,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2761765658",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -17.66
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -17.7
         },
         {
           "id": "65303333-d",
@@ -21578,8 +21578,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2761765658",
           "cmc_symbol": "QCOM",
-          "cmc_price": 225.79082613130774,
-          "since_call_pct": 27.54
+          "cmc_price": 226.1988004177912,
+          "since_call_pct": 27.77
         },
         {
           "id": "c7afc938-6",
@@ -21701,8 +21701,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760918929",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": 10.27
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": 10.29
         },
         {
           "id": "2e4c4d34-3",
@@ -21897,7 +21897,7 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 2.01
         },
         {
@@ -22008,8 +22008,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -14.99
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -15.03
         },
         {
           "id": "0cec4dec-d",
@@ -22028,7 +22028,7 @@
           "entry_price": 94.105,
           "posted_price": 112.7,
           "peak_pct": 47.632963179427236,
-          "market_cap_fmt": "$696B",
+          "market_cap_fmt": "$697B",
           "logo_url": "https://api.elbstream.com/logos/symbol/INTC",
           "headline_quote": "Intel is just an absolute monster. It's at $94 after hours, it closed at $94.75. Bubble Boy is so fucking paid. I asked him what his next trade was. He said\u2026",
           "thesis": "Intel is a runaway monster on Trump equity stake and OpenAI-phone fab narrative; more upside via calls.",
@@ -22047,8 +22047,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 49.87
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 49.12
         },
         {
           "id": "c0f5fbe8-6",
@@ -22194,8 +22194,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -15.32
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -15.36
         },
         {
           "id": "4bd4c368-f",
@@ -22233,8 +22233,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "SOL",
-          "cmc_price": 73.11740313321597,
-          "since_call_pct": -11.78
+          "cmc_price": 73.24668491148688,
+          "since_call_pct": -11.62
         },
         {
           "id": "2fe18183-b",
@@ -22272,8 +22272,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": -8.38
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": -8.52
         },
         {
           "id": "debbeb63-d",
@@ -22311,8 +22311,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 118.23
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 118.68
         },
         {
           "id": "749aa9b3-0",
@@ -22386,8 +22386,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2760135165",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -15.48
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -15.52
         }
       ]
     },
@@ -22474,8 +22474,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=9WQu7w1tII0",
           "cmc_symbol": "TSM",
-          "cmc_price": 464.7360779648321,
-          "since_call_pct": 18.26
+          "cmc_price": 462.43010695685376,
+          "since_call_pct": 17.67
         }
       ]
     },
@@ -22562,8 +22562,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2759336391",
           "cmc_symbol": "BE",
-          "cmc_price": 342.3584571174961,
-          "since_call_pct": 51.0
+          "cmc_price": 326.79181907256736,
+          "since_call_pct": 44.13
         },
         {
           "id": "6c74e679-d",
@@ -22673,8 +22673,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2759336391",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 6.95
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 6.93
         },
         {
           "id": "8b1beecc-6",
@@ -22748,8 +22748,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2759336391",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -1.59
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -1.53
         },
         {
           "id": "4a1b66be-4",
@@ -22768,7 +22768,7 @@
           "entry_price": 166.31,
           "posted_price": 214.065,
           "peak_pct": 50.6103060549576,
-          "market_cap_fmt": "$533B",
+          "market_cap_fmt": "$534B",
           "logo_url": "https://api.elbstream.com/logos/symbol/ORCL",
           "headline_quote": "I think as long as the US models are better, have some lead, people will pay exponentially more money for bleeding edge... But if it gets even, that's the\u2026",
           "thesis": "The real AI bubble risk isn't OpenAI vs Anthropic but Chinese models closing the gap, killing US lab pricing.",
@@ -22787,8 +22787,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2759336391",
           "cmc_symbol": "ORCL",
-          "cmc_price": 185.88732001951104,
-          "since_call_pct": 11.77
+          "cmc_price": 186.61341731518448,
+          "since_call_pct": 12.21
         },
         {
           "id": "8db8de2f-b",
@@ -22807,7 +22807,7 @@
           "entry_price": 85.143,
           "posted_price": 113.525,
           "peak_pct": 63.17254501250837,
-          "market_cap_fmt": "$696B",
+          "market_cap_fmt": "$697B",
           "logo_url": "https://api.elbstream.com/logos/symbol/INTC",
           "headline_quote": "increasingly Semis isn't driven by nodes at all. Intel, it's actually being driven by packaging. And this is a case where I've really been hammering that TSMC\u2026",
           "thesis": "Intel's packaging edge and node turnaround make it wildly underpriced; should be a trillion-plus market cap.",
@@ -22826,8 +22826,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2759336391",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 65.64
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 64.82
         },
         {
           "id": "c7661197-e",
@@ -22901,8 +22901,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2759336391",
           "cmc_symbol": "SNDK",
-          "cmc_price": 2204.0094758656032,
-          "since_call_pct": 112.13
+          "cmc_price": 2209.6450079583146,
+          "since_call_pct": 112.67
         },
         {
           "id": "e35b4eea-6",
@@ -23025,8 +23025,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": -3.7
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": -3.64
         },
         {
           "id": "7486bf24-0",
@@ -23045,7 +23045,7 @@
           "entry_price": 84.918,
           "posted_price": 113.525,
           "peak_pct": 63.60488942273722,
-          "market_cap_fmt": "$696B",
+          "market_cap_fmt": "$697B",
           "logo_url": "https://api.elbstream.com/logos/symbol/INTC",
           "headline_quote": "And I like nibbled at Intel because I didn't know what else to do. But it's actually, it's actually up a lot of money.",
           "thesis": "Intel breaks a 27-year all-time high range, a multi-decade fractal breakout with packaging upside.",
@@ -23064,8 +23064,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 66.08
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 65.26
         },
         {
           "id": "6d92cbfd-f",
@@ -23103,8 +23103,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -16.61
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -16.65
         },
         {
           "id": "938b893c-3",
@@ -23142,8 +23142,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": -6.94
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": -7.09
         },
         {
           "id": "846fefd8-a",
@@ -23181,8 +23181,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "BE",
-          "cmc_price": 342.3584571174961,
-          "since_call_pct": 45.83
+          "cmc_price": 326.79181907256736,
+          "since_call_pct": 39.2
         },
         {
           "id": "57a68e5c-2",
@@ -23256,8 +23256,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "ETH",
-          "cmc_price": 1733.2705221637857,
-          "since_call_pct": -24.32
+          "cmc_price": 1731.8353107483947,
+          "since_call_pct": -24.38
         },
         {
           "id": "f0f447d2-1",
@@ -23312,7 +23312,7 @@
           "entry_price": 29.444,
           "posted_price": 27.33,
           "peak_pct": 25.774351310963194,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "most people, like the dumb retail money, is all now at the same time throwing headlines and charts and ideas into AI, asking it what to long, and are just\u2026",
           "thesis": "Hallucination yield: as retail dumps headlines into AI and slams the suggested ticker, AI picks become flows.",
@@ -23331,8 +23331,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 23.75
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 23.34
         },
         {
           "id": "2e1f5b58-e",
@@ -23370,8 +23370,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "POET",
-          "cmc_price": 12.72794412757344,
-          "since_call_pct": 60.1
+          "cmc_price": 12.528466388288289,
+          "since_call_pct": 57.59
         },
         {
           "id": "f5d32118-5",
@@ -23409,8 +23409,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -10.19
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -10.04
         },
         {
           "id": "4175e0dd-7",
@@ -23448,8 +23448,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "QCOM",
-          "cmc_price": 225.79082613130774,
-          "since_call_pct": 50.27
+          "cmc_price": 226.1988004177912,
+          "since_call_pct": 50.54
         },
         {
           "id": "15bfbf0e-8",
@@ -23487,8 +23487,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2758570970",
           "cmc_symbol": "ASML",
-          "cmc_price": 1941.5045113706421,
-          "since_call_pct": 35.51
+          "cmc_price": 1944.65706474987,
+          "since_call_pct": 35.73
         }
       ]
     },
@@ -23550,8 +23550,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=1bCXCxrDsCs",
           "cmc_symbol": "CRWD",
-          "cmc_price": 737.4337112517394,
-          "since_call_pct": 64.56
+          "cmc_price": 737.4944292285486,
+          "since_call_pct": 64.57
         },
         {
           "id": "41524ae4-d",
@@ -23597,10 +23597,7 @@
             "Per-seat pricing collapses as products go headless via MCP/agents",
             "Net dollar retention craters; recent IPO names with high multiples most exposed"
           ],
-          "source_url": "https://youtube.com/watch?v=1bCXCxrDsCs",
-          "cmc_symbol": "FIG",
-          "cmc_price": 18.692070279171762,
-          "since_call_pct": 7.0
+          "source_url": "https://youtube.com/watch?v=1bCXCxrDsCs"
         },
         {
           "id": "b7ef43b6-d",
@@ -23659,8 +23656,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=1bCXCxrDsCs",
           "cmc_symbol": "CRM",
-          "cmc_price": 153.94604811710735,
-          "since_call_pct": -13.59
+          "cmc_price": 153.76986309247837,
+          "since_call_pct": -13.69
         },
         {
           "id": "a7e87ee4-2",
@@ -23711,8 +23708,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=1bCXCxrDsCs",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": 8.6
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": 8.61
         },
         {
           "id": "73fbccf2-9",
@@ -23826,8 +23823,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2756113516",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -17.29
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -17.33
         },
         {
           "id": "d6570d7b-4",
@@ -23846,7 +23843,7 @@
           "entry_price": 82.652,
           "posted_price": 112.72,
           "peak_pct": 68.09030634467406,
-          "market_cap_fmt": "$696B",
+          "market_cap_fmt": "$697B",
           "logo_url": "https://api.elbstream.com/logos/symbol/INTC",
           "headline_quote": "I come over here to big tech and I look at Intel and it's up 24% today at a $400 billion market cap.",
           "thesis": "Intel up 25% in a day at $412B cap shows semis have reflexivity crypto lacks right now",
@@ -23865,8 +23862,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2756113516",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 70.64
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 69.79
         },
         {
           "id": "0adfb4fa-9",
@@ -23904,8 +23901,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2756113516",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 0.5
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 0.57
         },
         {
           "id": "dc841c1b-c",
@@ -24015,8 +24012,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2756113516",
           "cmc_symbol": "NVO",
-          "cmc_price": 43.98777846369166,
-          "since_call_pct": 6.82
+          "cmc_price": 44.25631650120651,
+          "since_call_pct": 7.47
         },
         {
           "id": "26ab6a65-1",
@@ -24090,8 +24087,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2756113516",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": 9.47
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": 9.49
         },
         {
           "id": "4b816a08-1",
@@ -24129,8 +24126,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2756113516",
           "cmc_symbol": "BE",
-          "cmc_price": 342.3584571174961,
-          "since_call_pct": 48.18
+          "cmc_price": 326.79181907256736,
+          "since_call_pct": 41.44
         },
         {
           "id": "c46d423a-1",
@@ -24342,7 +24339,7 @@
           "entry_price": 75.889,
           "posted_price": 113.635,
           "peak_pct": 83.07001014639805,
-          "market_cap_fmt": "$696B",
+          "market_cap_fmt": "$697B",
           "logo_url": "https://api.elbstream.com/logos/symbol/INTC",
           "headline_quote": "That's what we do, baby. We trade fucking stories. That is what we do, man. We trade stories. We trade momentum. We trade attention.",
           "thesis": "Market trades stories not fundamentals; Intel rips on momentum and government backing, stay long",
@@ -24361,8 +24358,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 85.84
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 84.92
         },
         {
           "id": "2b4b8c07-7",
@@ -24436,8 +24433,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": 40.19
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": 40.23
         },
         {
           "id": "9dbad619-1",
@@ -24475,8 +24472,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -17.42
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -17.46
         },
         {
           "id": "7842efd2-3",
@@ -24513,8 +24510,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 7.71
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 7.69
         },
         {
           "id": "e8b833bd-f",
@@ -24588,8 +24585,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "TAO",
-          "cmc_price": 236.5612737549127,
-          "since_call_pct": -4.28
+          "cmc_price": 236.2322468355155,
+          "since_call_pct": -4.41
         },
         {
           "id": "b7b6e6ba-1",
@@ -24627,8 +24624,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "CHIP",
-          "cmc_price": 0.03778494330802568,
-          "since_call_pct": -61.94
+          "cmc_price": 0.037794935164553976,
+          "since_call_pct": -61.93
         },
         {
           "id": "f131a8d4-6",
@@ -24666,8 +24663,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "CHIP",
-          "cmc_price": 0.03778494330802568,
-          "since_call_pct": -63.67
+          "cmc_price": 0.037794935164553976,
+          "since_call_pct": -63.66
         },
         {
           "id": "8303466f-6",
@@ -24705,8 +24702,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "XMR",
-          "cmc_price": 321.01504594442747,
-          "since_call_pct": -14.74
+          "cmc_price": 320.5416618945529,
+          "since_call_pct": -14.87
         },
         {
           "id": "bd38ca79-0",
@@ -24780,8 +24777,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2755333326",
           "cmc_symbol": "BABA",
-          "cmc_price": 106.9533382307195,
-          "since_call_pct": -18.8
+          "cmc_price": 107.0402353532184,
+          "since_call_pct": -18.74
         }
       ]
     },
@@ -24832,8 +24829,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2754544222",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -18.45
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -18.48
         },
         {
           "id": "23cb84ac-2",
@@ -24871,8 +24868,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2754544222",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 68.81
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 68.3
         },
         {
           "id": "6fb8e29c-8",
@@ -24910,8 +24907,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2754544222",
           "cmc_symbol": "XMR",
-          "cmc_price": 321.01504594442747,
-          "since_call_pct": -15.32
+          "cmc_price": 320.5416618945529,
+          "since_call_pct": -15.44
         },
         {
           "id": "66ba2163-4",
@@ -24949,8 +24946,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2754544222",
           "cmc_symbol": "SOXL",
-          "cmc_price": 283.17391234867085,
-          "since_call_pct": 167.98
+          "cmc_price": 284.99515138403905,
+          "since_call_pct": 169.7
         },
         {
           "id": "e381dd2d-d",
@@ -24988,8 +24985,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2754544222",
           "cmc_symbol": "CHIP",
-          "cmc_price": 0.03778494330802568,
-          "since_call_pct": -63.54
+          "cmc_price": 0.037794935164553976,
+          "since_call_pct": -63.53
         },
         {
           "id": "6ba93c37-4",
@@ -25008,7 +25005,7 @@
           "entry_price": 28.825,
           "posted_price": 27.308,
           "peak_pct": 25.283607979184737,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "it's the most easily vamplable moat of all time... I am a subscriber of Hims and I do use it, but it feels like the most easily vamplable business in the\u2026",
           "thesis": "Hims has the most easily copied moat ever; Amazon, Walmart GLP-1 launches eat the upside",
@@ -25027,8 +25024,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2754544222",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 26.41
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 25.99
         }
       ]
     },
@@ -25079,8 +25076,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2753754385",
           "cmc_symbol": "XMR",
-          "cmc_price": 321.01504594442747,
-          "since_call_pct": -16.19
+          "cmc_price": 320.5416618945529,
+          "since_call_pct": -16.31
         },
         {
           "id": "314d4141-9",
@@ -25118,8 +25115,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2753754385",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 3.53
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 3.51
         },
         {
           "id": "53b24244-5",
@@ -25174,7 +25171,7 @@
           "entry_price": 30.429,
           "posted_price": 27.308,
           "peak_pct": 29.22212363206152,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "Amazon basically vamped him's business model one-to-one... This is exactly why I sold him when I did, because to hold it any longer was to fundamentally\u2026",
           "thesis": "Sold Hims before Amazon launched a one-to-one GLP-1 clone; the model has no moat against distribution giants",
@@ -25193,8 +25190,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2753754385",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 19.74
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 19.34
         },
         {
           "id": "730806b7-6",
@@ -25268,8 +25265,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2753754385",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -34.26
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -34.0
         }
       ]
     },
@@ -25337,7 +25334,7 @@
           "entry_price": 31.317,
           "posted_price": 27.3185,
           "peak_pct": 18.252067567136063,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "this idea of hallucination yield which is like figuring out what the AI is going to tell everybody to do and getting in front of that is probably very\u2026",
           "thesis": "GPT/LLM recommendations now drive retail flows; front-run what the AI tells everyone to buy",
@@ -25356,8 +25353,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2752978410",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 16.35
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 15.96
         },
         {
           "id": "2432a31c-7",
@@ -25395,8 +25392,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2752978410",
           "cmc_symbol": "XMR",
-          "cmc_price": 321.01504594442747,
-          "since_call_pct": -9.12
+          "cmc_price": 320.5416618945529,
+          "since_call_pct": -9.25
         },
         {
           "id": "5a15be2e-0",
@@ -25434,8 +25431,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2752978410",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -15.78
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -15.82
         },
         {
           "id": "821ecc2a-4",
@@ -25620,8 +25617,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=SFdqX7IY7RY",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 0.97
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 1.21
         },
         {
           "id": "bc4d2ba0-9",
@@ -25675,7 +25672,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=SFdqX7IY7RY",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 8.1
         },
         {
@@ -25745,8 +25742,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=SFdqX7IY7RY",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -30.7
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -30.42
         },
         {
           "id": "5c77eb70-a",
@@ -25795,8 +25792,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=SFdqX7IY7RY",
           "cmc_symbol": "BE",
-          "cmc_price": 342.3584571174961,
-          "since_call_pct": 64.71
+          "cmc_price": 326.79181907256736,
+          "since_call_pct": 57.22
         }
       ]
     },
@@ -25847,8 +25844,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2750490320",
           "cmc_symbol": "TAO",
-          "cmc_price": 236.5612737549127,
-          "since_call_pct": -8.79
+          "cmc_price": 236.2322468355155,
+          "since_call_pct": -8.91
         },
         {
           "id": "75389598-b",
@@ -25886,8 +25883,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2750490320",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 54.54
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 54.07
         },
         {
           "id": "7180e8f7-1",
@@ -25925,8 +25922,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2750490320",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": 43.35
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": 43.39
         },
         {
           "id": "9a8df300-7",
@@ -25964,8 +25961,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2750490320",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -16.97
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -17.01
         },
         {
           "id": "e3e461ac-5",
@@ -26003,8 +26000,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2750490320",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 0.4
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 0.38
         },
         {
           "id": "ab831782-e",
@@ -26040,10 +26037,7 @@
             "Figma down 9% again, Adobe off a cliff on the news",
             "Could have taken a megachurch short on the announcement"
           ],
-          "source_url": "https://twitch.tv/videos/2750490320",
-          "cmc_symbol": "FIG",
-          "cmc_price": 18.692070279171762,
-          "since_call_pct": -1.1
+          "source_url": "https://twitch.tv/videos/2750490320"
         },
         {
           "id": "41e32dc4-e",
@@ -26062,7 +26056,7 @@
           "entry_price": 28.688,
           "posted_price": 27.3185,
           "peak_pct": 29.088817624093704,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "We saw that RFK announcement where he's basically like, look, we are going to hyper speed up the process of the FDA of getting these peptides approved. And\u2026",
           "thesis": "Sold the HIMS leverage long into peak attention; RFK peptide approval news drove the megachurch run, exit when crowd piles in.",
@@ -26081,8 +26075,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2750490320",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 27.01
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 26.59
         },
         {
           "id": "4c8b9824-4",
@@ -26156,8 +26150,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2750490320",
           "cmc_symbol": "EWY",
-          "cmc_price": 218.84518078295562,
-          "since_call_pct": 43.84
+          "cmc_price": 219.28054860472085,
+          "since_call_pct": 44.12
         }
       ]
     },
@@ -26189,7 +26183,7 @@
           "entry_price": 27.007,
           "posted_price": 27.3235,
           "peak_pct": 37.12370866812308,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "Hims which I'm in. It's also in my body, like I take it every day. Finasteride, it's the craziest business model of all time, is absolutely ripping.",
           "thesis": "Hims rips on RFK peptide reclassification, a megachurch attention trade riding looksmaxing demand",
@@ -26208,8 +26202,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2749679693",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 34.92
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 34.47
         },
         {
           "id": "3c231948-8",
@@ -26247,8 +26241,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2749679693",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 3.53
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 3.51
         },
         {
           "id": "ca917b2a-0",
@@ -26286,8 +26280,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2749679693",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 21.93
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 21.94
         },
         {
           "id": "8c9ebe02-1",
@@ -26427,7 +26421,7 @@
           "entry_price": 25.6,
           "posted_price": 27.3165,
           "peak_pct": 44.66015625,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "I hold no stocks except for a Hims long that I took 30 minutes ago. Okay, we got it down as much as 10%.",
           "thesis": "RFK peptide reclassification reopens the gray market; HIMS captures it at 70-80% margins and shorts cover.",
@@ -26446,8 +26440,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2748897017",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 42.33
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 41.86
         },
         {
           "id": "e5590d22-0",
@@ -26557,8 +26551,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2748897017",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -14.09
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -14.13
         },
         {
           "id": "5d0c7db5-5",
@@ -26668,8 +26662,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2748897017",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -10.05
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -9.98
         },
         {
           "id": "4853567c-7",
@@ -26743,8 +26737,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2748897017",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 5.39
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 5.46
         }
       ]
     },
@@ -27011,8 +27005,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2748101641",
           "cmc_symbol": "BE",
-          "cmc_price": 342.3584571174961,
-          "since_call_pct": 56.16
+          "cmc_price": 326.79181907256736,
+          "since_call_pct": 49.06
         },
         {
           "id": "abe152a0-6",
@@ -27207,8 +27201,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2747322441",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -12.2
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -12.24
         },
         {
           "id": "3dc0e6b9-7",
@@ -27246,8 +27240,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2747322441",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 58.69
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 58.21
         },
         {
           "id": "7a6130a3-6",
@@ -27350,8 +27344,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DVBJQQCjgXU",
           "cmc_symbol": "TAO",
-          "cmc_price": 236.5612737549127,
-          "since_call_pct": -7.95
+          "cmc_price": 236.2322468355155,
+          "since_call_pct": -8.08
         },
         {
           "id": "6abebed9-6",
@@ -27425,8 +27419,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DVBJQQCjgXU",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": -12.98
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": -12.63
         },
         {
           "id": "1483fdb8-e",
@@ -27522,8 +27516,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DVBJQQCjgXU",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 13.96
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 14.04
         },
         {
           "id": "11a3253e-c",
@@ -27587,8 +27581,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DVBJQQCjgXU",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 13.63
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 13.91
         },
         {
           "id": "8a9617fc-4",
@@ -27632,7 +27626,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=DVBJQQCjgXU",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 14.04
         },
         {
@@ -27719,8 +27713,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DVBJQQCjgXU",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -1.35
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -1.28
         }
       ]
     },
@@ -27771,8 +27765,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2744809212",
           "cmc_symbol": "HYPE",
-          "cmc_price": 69.03338993125598,
-          "since_call_pct": 66.05
+          "cmc_price": 68.8226757602345,
+          "since_call_pct": 65.54
         },
         {
           "id": "2222073f-e",
@@ -27810,8 +27804,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2744809212",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": 21.43
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": 21.46
         },
         {
           "id": "9f04a73b-d",
@@ -27885,8 +27879,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2744809212",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -12.47
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -12.51
         },
         {
           "id": "629c6a41-a",
@@ -27924,8 +27918,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2744809212",
           "cmc_symbol": "TAO",
-          "cmc_price": 236.5612737549127,
-          "since_call_pct": -10.48
+          "cmc_price": 236.2322468355155,
+          "since_call_pct": -10.61
         }
       ]
     },
@@ -27976,8 +27970,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2744000726",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -10.95
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -10.99
         },
         {
           "id": "bf09eda3-e",
@@ -28051,8 +28045,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2744000726",
           "cmc_symbol": "ZEC",
-          "cmc_price": 466.34633460288353,
-          "since_call_pct": 23.68
+          "cmc_price": 466.46451809998405,
+          "since_call_pct": 23.71
         },
         {
           "id": "196a911e-7",
@@ -28107,7 +28101,7 @@
           "entry_price": 605.52,
           "posted_price": 602.805,
           "peak_pct": 23.150350112300185,
-          "market_cap_fmt": "$79B",
+          "market_cap_fmt": "$80B",
           "logo_url": "https://api.elbstream.com/logos/symbol/BNB",
           "headline_quote": "Binance wants to go public, but his prison stint has made an IPO unpalatable for any serious US underwriter or institutional investor. This is his attempt at\u2026",
           "thesis": "Binance pushing for IPO via CZ media blitz; equity-ownership questions cloud the deal",
@@ -28126,8 +28120,8 @@
           ],
           "source_url": "https://twitch.tv/videos/2744000726",
           "cmc_symbol": "BNB",
-          "cmc_price": 589.0280014225148,
-          "since_call_pct": -2.72
+          "cmc_price": 590.6297233925435,
+          "since_call_pct": -2.46
         }
       ]
     },
@@ -28302,8 +28296,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=mjNP5IOzCbA",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 10.55
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 10.53
         },
         {
           "id": "053f22c5-f",
@@ -28352,8 +28346,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=mjNP5IOzCbA",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 17.92
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 18.0
         },
         {
           "id": "e01fcee9-f",
@@ -28459,8 +28453,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=mjNP5IOzCbA",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -13.25
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -13.19
         },
         {
           "id": "a736e2d1-c",
@@ -28585,8 +28579,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=N-pust8qtGI",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 11.25
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 11.23
         },
         {
           "id": "37dfacd3-8",
@@ -28820,8 +28814,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4Gmd5UTF4rk",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": 4.06
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": 4.23
         },
         {
           "id": "42b52d2d-4",
@@ -28912,8 +28906,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4Gmd5UTF4rk",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 7.79
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 7.77
         },
         {
           "id": "bfb63df9-4",
@@ -28962,8 +28956,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4Gmd5UTF4rk",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 24.86
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 24.94
         },
         {
           "id": "e8a7943b-a",
@@ -29007,8 +29001,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=4Gmd5UTF4rk",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 136.88
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 137.26
         }
       ]
     },
@@ -29059,8 +29053,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=Axpnkqd-Agk",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 20.08
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 20.1
         }
       ]
     },
@@ -29142,8 +29136,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "CRWV",
-          "cmc_price": 117.95787459179004,
-          "since_call_pct": 44.56
+          "cmc_price": 119.60211226139619,
+          "since_call_pct": 46.58
         },
         {
           "id": "6b121b26-d",
@@ -29187,8 +29181,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": 0.51
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": 0.68
         },
         {
           "id": "7a3f894b-5",
@@ -29237,8 +29231,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": 20.09
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": 20.11
         },
         {
           "id": "c3792fd4-2",
@@ -29287,8 +29281,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 182.77
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 183.36
         },
         {
           "id": "d921eea7-2",
@@ -29374,8 +29368,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 147.45
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 147.84
         },
         {
           "id": "74039a03-1",
@@ -29419,8 +29413,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "BABA",
-          "cmc_price": 106.9533382307195,
-          "since_call_pct": -11.99
+          "cmc_price": 107.0402353532184,
+          "since_call_pct": -11.92
         },
         {
           "id": "9c49f3bf-0",
@@ -29469,8 +29463,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 25.59
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 26.09
         },
         {
           "id": "c14e9d55-7",
@@ -29516,7 +29510,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 20.46
         },
         {
@@ -29581,8 +29575,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "IREN",
-          "cmc_price": 60.631064128635835,
-          "since_call_pct": 43.81
+          "cmc_price": 60.570283922775616,
+          "since_call_pct": 43.67
         },
         {
           "id": "27158960-6",
@@ -29631,8 +29625,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-JBhTBu9ZbA",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 19.08
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 19.17
         }
       ]
     },
@@ -29716,7 +29710,7 @@
           "entry_price": 199.23,
           "posted_price": 487.945,
           "peak_pct": 3.2525222105104605,
-          "market_cap_fmt": "$882B",
+          "market_cap_fmt": "$885B",
           "logo_url": "https://api.elbstream.com/logos/symbol/AMD",
           "headline_quote": "the alternatives, the custom ASIC, AMD, others are going to cost 25 to 30 billion, and you're going to lose share.",
           "thesis": "Even free chips lose if they can't match Nvidia's pace, a direct knock on AMD's cheaper alternative",
@@ -29746,8 +29740,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "AMD",
-          "cmc_price": 539.2354708879326,
-          "since_call_pct": 170.66
+          "cmc_price": 540.8405050876956,
+          "since_call_pct": 171.47
         },
         {
           "id": "0c53b79a-a",
@@ -29791,8 +29785,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 159.88
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 160.3
         },
         {
           "id": "58f3e509-2",
@@ -29883,8 +29877,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "ADBE",
-          "cmc_price": 201.42679970444544,
-          "since_call_pct": -18.12
+          "cmc_price": 200.5212344806102,
+          "since_call_pct": -18.48
         },
         {
           "id": "477e119e-8",
@@ -30012,8 +30006,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "TAO",
-          "cmc_price": 236.5612737549127,
-          "since_call_pct": -5.23
+          "cmc_price": 236.2322468355155,
+          "since_call_pct": -5.36
         },
         {
           "id": "c246f43e-0",
@@ -30062,8 +30056,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "UBER",
-          "cmc_price": 76.5787806862502,
-          "since_call_pct": 1.64
+          "cmc_price": 76.37500724537752,
+          "since_call_pct": 1.37
         },
         {
           "id": "0d727c53-e",
@@ -30211,8 +30205,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": 2.15
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": 2.13
         },
         {
           "id": "67ac51fb-6",
@@ -30256,7 +30250,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 18.4
         },
         {
@@ -30301,8 +30295,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": 16.13
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": 15.95
         },
         {
           "id": "c9867cc7-6",
@@ -30371,8 +30365,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 17.09
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 17.17
         },
         {
           "id": "de041ccf-7",
@@ -30426,8 +30420,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 4.68
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 4.93
         },
         {
           "id": "c44ce895-b",
@@ -30484,8 +30478,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gwW8GKwHB3I",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 24.66
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 25.16
         }
       ]
     },
@@ -30572,8 +30566,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=3ZVqcW6Wwmg",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 14.12
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 14.2
         }
       ]
     },
@@ -30624,8 +30618,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=9y7TTU1jIvk",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 19.69
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 20.17
         },
         {
           "id": "eb634140-a",
@@ -30699,8 +30693,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=9y7TTU1jIvk",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 14.59
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 14.67
         },
         {
           "id": "4912bd1a-1",
@@ -30738,8 +30732,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=9y7TTU1jIvk",
           "cmc_symbol": "XAI",
-          "cmc_price": 0.008445844197162393,
-          "since_call_pct": -22.8
+          "cmc_price": 0.008420661687412644,
+          "since_call_pct": -23.03
         },
         {
           "id": "189cfeaa-a",
@@ -30777,8 +30771,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=9y7TTU1jIvk",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 1.16
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 1.41
         },
         {
           "id": "d1178a34-8",
@@ -30841,8 +30835,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=9y7TTU1jIvk",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 160.17
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 160.59
         },
         {
           "id": "5cdc8413-5",
@@ -30886,8 +30880,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=9y7TTU1jIvk",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -15.53
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -15.46
         }
       ]
     },
@@ -31125,8 +31119,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HiVej9_fvl8",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 14.03
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 14.49
         },
         {
           "id": "8b44ff81-6",
@@ -31188,8 +31182,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=HiVej9_fvl8",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 4.34
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 4.6
         }
       ]
     },
@@ -31362,8 +31356,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=yAHfG6jU2qA",
           "cmc_symbol": "TSM",
-          "cmc_price": 464.7360779648321,
-          "since_call_pct": 43.17
+          "cmc_price": 462.43010695685376,
+          "since_call_pct": 42.46
         },
         {
           "id": "f76ebbfc-5",
@@ -31410,8 +31404,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=yAHfG6jU2qA",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 20.26
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 20.34
         }
       ]
     },
@@ -31468,8 +31462,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=elhGYEiZ7fw",
           "cmc_symbol": "QBTS",
-          "cmc_price": 24.593456499601267,
-          "since_call_pct": 32.29
+          "cmc_price": 24.65753143019485,
+          "since_call_pct": 32.64
         },
         {
           "id": "9439c098-6",
@@ -31713,8 +31707,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gzwRflcLPAA",
           "cmc_symbol": "PLTR",
-          "cmc_price": 128.51930299449134,
-          "since_call_pct": -15.89
+          "cmc_price": 128.61382583883812,
+          "since_call_pct": -15.82
         },
         {
           "id": "b0741987-e",
@@ -31773,8 +31767,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gzwRflcLPAA",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 12.08
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 12.53
         },
         {
           "id": "3c8813e7-1",
@@ -31828,7 +31822,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=gzwRflcLPAA",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 20.93
         },
         {
@@ -31883,8 +31877,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gzwRflcLPAA",
           "cmc_symbol": "BA",
-          "cmc_price": 221.66122330434897,
-          "since_call_pct": -4.09
+          "cmc_price": 222.59974178236274,
+          "since_call_pct": -3.68
         }
       ]
     },
@@ -32058,8 +32052,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=u-vMNzHgSHI",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -3.99
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -4.03
         },
         {
           "id": "6743bf13-b",
@@ -32288,8 +32282,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=kzWbCF_IkHY",
           "cmc_symbol": "CRM",
-          "cmc_price": 153.94604811710735,
-          "since_call_pct": -20.97
+          "cmc_price": 153.76986309247837,
+          "since_call_pct": -21.06
         },
         {
           "id": "570ef25d-f",
@@ -32327,8 +32321,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=kzWbCF_IkHY",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 17.58
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 17.66
         },
         {
           "id": "92d8cbd8-0",
@@ -32366,8 +32360,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=kzWbCF_IkHY",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 47.05
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 47.41
         },
         {
           "id": "f7549d52-6",
@@ -32475,8 +32469,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=CnaegIpkenA",
           "cmc_symbol": "CRWV",
-          "cmc_price": 117.95787459179004,
-          "since_call_pct": 24.68
+          "cmc_price": 119.60211226139619,
+          "since_call_pct": 26.42
         },
         {
           "id": "540641ba-b",
@@ -32610,8 +32604,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=CnaegIpkenA",
           "cmc_symbol": "PAXG",
-          "cmc_price": 4155.7856092194015,
-          "since_call_pct": -15.84
+          "cmc_price": 4156.223819279874,
+          "since_call_pct": -15.83
         },
         {
           "id": "79528104-7",
@@ -32832,10 +32826,7 @@
             "Figma's per-seat design moat erodes as the layer commoditizes",
             "Already down 80% from highs and still re-rating lower"
           ],
-          "source_url": "https://youtube.com/watch?v=wTiHheA40nI",
-          "cmc_symbol": "FIG",
-          "cmc_price": 18.692070279171762,
-          "since_call_pct": -15.0
+          "source_url": "https://youtube.com/watch?v=wTiHheA40nI"
         },
         {
           "id": "bd4b6ace-d",
@@ -32889,8 +32880,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=wTiHheA40nI",
           "cmc_symbol": "CRM",
-          "cmc_price": 153.94604811710735,
-          "since_call_pct": -19.55
+          "cmc_price": 153.76986309247837,
+          "since_call_pct": -19.64
         },
         {
           "id": "ccebaa6f-7",
@@ -32939,8 +32930,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=wTiHheA40nI",
           "cmc_symbol": "SNOW",
-          "cmc_price": 230.87510055384686,
-          "since_call_pct": 37.07
+          "cmc_price": 230.706572430835,
+          "since_call_pct": 36.97
         },
         {
           "id": "1453f49a-b",
@@ -32984,8 +32975,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=wTiHheA40nI",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": 16.12
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": 15.94
         },
         {
           "id": "e4ea93a5-a",
@@ -33143,8 +33134,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=wTiHheA40nI",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 12.78
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 12.86
         }
       ]
     },
@@ -33201,7 +33192,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=gXY1kx7zlkk",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 7.63
         },
         {
@@ -33251,8 +33242,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=gXY1kx7zlkk",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -6.43
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -6.45
         },
         {
           "id": "11b31375-1",
@@ -33371,8 +33362,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -28.11
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -28.14
         },
         {
           "id": "f30ea5e0-0",
@@ -33436,8 +33427,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "CRCL",
-          "cmc_price": 81.53772006649785,
-          "since_call_pct": 14.31
+          "cmc_price": 81.7122450631739,
+          "since_call_pct": 14.56
         },
         {
           "id": "fd4ba41e-b",
@@ -33486,8 +33477,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "INTU",
-          "cmc_price": 268.35674590969916,
-          "since_call_pct": -52.42
+          "cmc_price": 267.85280967619934,
+          "since_call_pct": -52.51
         },
         {
           "id": "8c587270-6",
@@ -33551,8 +33542,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "CRWD",
-          "cmc_price": 737.4337112517394,
-          "since_call_pct": 62.97
+          "cmc_price": 737.4944292285486,
+          "since_call_pct": 62.99
         },
         {
           "id": "948b88e4-c",
@@ -33624,8 +33615,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "ACHR",
-          "cmc_price": 5.596779922682637,
-          "since_call_pct": -35.0
+          "cmc_price": 5.594958414046624,
+          "since_call_pct": -35.02
         },
         {
           "id": "302a190a-a",
@@ -33724,8 +33715,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "GEV",
-          "cmc_price": 1147.9402579869643,
-          "since_call_pct": 74.52
+          "cmc_price": 1154.871869234545,
+          "since_call_pct": 75.57
         },
         {
           "id": "73b14ed1-3",
@@ -33779,8 +33770,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 11.45
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 11.53
         },
         {
           "id": "ea7bdabf-7",
@@ -33829,8 +33820,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "COIN",
-          "cmc_price": 166.99171908990334,
-          "since_call_pct": -22.74
+          "cmc_price": 166.92217515549908,
+          "since_call_pct": -22.77
         },
         {
           "id": "f2014e65-2",
@@ -33891,7 +33882,7 @@
           "entry_price": 176.9,
           "posted_price": 218.32,
           "peak_pct": 41.59412097230072,
-          "market_cap_fmt": "$533B",
+          "market_cap_fmt": "$534B",
           "logo_url": "https://api.elbstream.com/logos/symbol/ORCL",
           "headline_quote": "we have a long-term lease agreement with Oracle... a long-term, you know, 15-year off-take agreement with Oracle. Um, and so they're committed to sort of\u2026",
           "thesis": "Oracle holds a 15-year off-take on Crusoe's flagship Abilene Stargate campus, anchoring AI compute revenue",
@@ -33926,8 +33917,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=w2BqPnVKVo4",
           "cmc_symbol": "ORCL",
-          "cmc_price": 185.88732001951104,
-          "since_call_pct": 5.08
+          "cmc_price": 186.61341731518448,
+          "since_call_pct": 5.49
         }
       ]
     },
@@ -33994,8 +33985,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=b5p40OuTTW4",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 27.35
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 27.65
         },
         {
           "id": "311c393a-8",
@@ -34014,7 +34005,7 @@
           "entry_price": 29.60674967061352,
           "posted_price": 26.8045,
           "peak_pct": 25.082963891701628,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "The only investments we've ever made in those spaces are ones that go direct to consumer because we know going through the government, there's just not enough\u2026",
           "thesis": "DTC health platforms ride GLP-1 access plus self-directed health wave as gov clears the lane",
@@ -34044,8 +34035,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=b5p40OuTTW4",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 23.07
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 22.66
         },
         {
           "id": "718839bd-e",
@@ -34108,8 +34099,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=b5p40OuTTW4",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 3.03
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 3.05
         },
         {
           "id": "2b8594e6-e",
@@ -34171,8 +34162,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=b5p40OuTTW4",
           "cmc_symbol": "NVO",
-          "cmc_price": 43.98777846369166,
-          "since_call_pct": -29.35
+          "cmc_price": 44.25631650120651,
+          "since_call_pct": -28.92
         },
         {
           "id": "a3516ddd-0",
@@ -34384,8 +34375,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "JPM",
-          "cmc_price": 328.88386675455075,
-          "since_call_pct": 10.47
+          "cmc_price": 329.03449085706785,
+          "since_call_pct": 10.52
         },
         {
           "id": "7ddafefa-1",
@@ -34443,8 +34434,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -28.26
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -28.29
         },
         {
           "id": "2b90377e-7",
@@ -34498,8 +34489,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "CRCL",
-          "cmc_price": 81.53772006649785,
-          "since_call_pct": 14.12
+          "cmc_price": 81.7122450631739,
+          "since_call_pct": 14.36
         },
         {
           "id": "f6d0107e-6",
@@ -34609,8 +34600,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "COIN",
-          "cmc_price": 166.99171908990334,
-          "since_call_pct": -23.43
+          "cmc_price": 166.92217515549908,
+          "since_call_pct": -23.47
         },
         {
           "id": "55359e85-1",
@@ -34653,8 +34644,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -10.19
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -10.21
         },
         {
           "id": "cf9bcbe8-c",
@@ -34753,8 +34744,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 13.45
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 13.53
         },
         {
           "id": "7e3a5ff8-d",
@@ -34807,8 +34798,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 186.09
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 186.68
         },
         {
           "id": "104ed205-4",
@@ -34857,8 +34848,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=-yrLEKjMyrM",
           "cmc_symbol": "WDC",
-          "cmc_price": 779.1315784722912,
-          "since_call_pct": 229.6
+          "cmc_price": 776.8423432655065,
+          "since_call_pct": 228.63
         },
         {
           "id": "11d5f349-c",
@@ -34966,8 +34957,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=NyP-euljCHM",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 13.26
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 13.34
         },
         {
           "id": "d87f34f5-b",
@@ -35066,8 +35057,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=NyP-euljCHM",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -15.57
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -15.43
         },
         {
           "id": "caccbae5-1",
@@ -35086,7 +35077,7 @@
           "entry_price": 181.62,
           "posted_price": 233.255,
           "peak_pct": 37.914326616011444,
-          "market_cap_fmt": "$533B",
+          "market_cap_fmt": "$534B",
           "logo_url": "https://api.elbstream.com/logos/symbol/ORCL",
           "headline_quote": "you see Oracle making a huge investment. You see, uh, Blackstone making huge investments, real estate companies. Um, ultimately, I think these are very savvy\u2026",
           "thesis": "Sacks holds up Oracle's data-center buildout as smart, deep-pocketed money that sees real ROI, which is a soft bullish endorsement of the company doing the spending. Among the names he cites, Oracle is the one with a tradeable equity perp on Hyperliquid, so the AI-capex conviction routes to long ORCL.",
@@ -35111,8 +35102,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=NyP-euljCHM",
           "cmc_symbol": "ORCL",
-          "cmc_price": 185.88732001951104,
-          "since_call_pct": 2.35
+          "cmc_price": 186.61341731518448,
+          "since_call_pct": 2.75
         },
         {
           "id": "651517fc-5",
@@ -35156,8 +35147,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=NyP-euljCHM",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -10.77
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -10.78
         },
         {
           "id": "9ee79f0b-b",
@@ -35206,8 +35197,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=NyP-euljCHM",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 38.71
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 39.26
         },
         {
           "id": "476983f2-b",
@@ -35256,8 +35247,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=NyP-euljCHM",
           "cmc_symbol": "NVO",
-          "cmc_price": 43.98777846369166,
-          "since_call_pct": -29.35
+          "cmc_price": 44.25631650120651,
+          "since_call_pct": -28.92
         }
       ]
     },
@@ -35341,8 +35332,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=5nCbHsCG334",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -16.07
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -15.93
         },
         {
           "id": "3951a240-7",
@@ -35391,8 +35382,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=5nCbHsCG334",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 17.46
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 17.54
         },
         {
           "id": "c8da9dd9-8",
@@ -35441,8 +35432,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=5nCbHsCG334",
           "cmc_symbol": "DELL",
-          "cmc_price": 407.27488319381433,
-          "since_call_pct": 259.61
+          "cmc_price": 407.9228334491655,
+          "since_call_pct": 260.18
         }
       ]
     },
@@ -35568,8 +35559,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=y2NeAef6d30",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -17.17
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -17.03
         },
         {
           "id": "5abc13a1-c",
@@ -35637,7 +35628,7 @@
           "entry_price": 231.73,
           "posted_price": 487.01,
           "peak_pct": 140.8578949639667,
-          "market_cap_fmt": "$882B",
+          "market_cap_fmt": "$885B",
           "logo_url": "https://api.elbstream.com/logos/symbol/AMD",
           "headline_quote": "What I can tell you is that Open AI is aggressively trying to diversify so that they have multiple paths of inference available. They have a huge deal with\u2026",
           "thesis": "OpenAI's multi-vendor inference push lands huge deals at AMD as it diversifies off Nvidia",
@@ -35661,8 +35652,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=y2NeAef6d30",
           "cmc_symbol": "AMD",
-          "cmc_price": 539.2354708879326,
-          "since_call_pct": 132.7
+          "cmc_price": 540.8405050876956,
+          "since_call_pct": 133.39
         },
         {
           "id": "30bd57af-2",
@@ -35708,8 +35699,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=y2NeAef6d30",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 12.25
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 12.33
         },
         {
           "id": "91755ec8-3",
@@ -35752,8 +35743,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=y2NeAef6d30",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 48.83
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 49.43
         },
         {
           "id": "569a1100-4",
@@ -35930,8 +35921,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DBlOJpT9Y1Y",
           "cmc_symbol": "NVO",
-          "cmc_price": 43.98777846369166,
-          "since_call_pct": -22.99
+          "cmc_price": 44.25631650120651,
+          "since_call_pct": -22.52
         },
         {
           "id": "288b5e88-4",
@@ -35969,8 +35960,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DBlOJpT9Y1Y",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 6.23
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 6.24
         },
         {
           "id": "a91a6aad-e",
@@ -36008,8 +35999,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DBlOJpT9Y1Y",
           "cmc_symbol": "ABBV",
-          "cmc_price": 220.33487911299795,
-          "since_call_pct": 1.65
+          "cmc_price": 220.8196195557035,
+          "since_call_pct": 1.88
         },
         {
           "id": "aebc4492-3",
@@ -36047,8 +36038,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=DBlOJpT9Y1Y",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": 15.01
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": 15.03
         }
       ]
     },
@@ -36099,8 +36090,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=F8cXD5hTt3c",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 26.04
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 26.54
         },
         {
           "id": "49d5d649-7",
@@ -36174,8 +36165,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=F8cXD5hTt3c",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -8.01
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -8.03
         },
         {
           "id": "7e103079-1",
@@ -36213,8 +36204,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=F8cXD5hTt3c",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -8.01
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -8.03
         },
         {
           "id": "0ce8d0ec-5",
@@ -36269,7 +36260,7 @@
           "entry_price": 31.514099983604044,
           "posted_price": 27.52,
           "peak_pct": 17.51247860248998,
-          "market_cap_fmt": "$8B",
+          "market_cap_fmt": "$9B",
           "logo_url": "https://api.elbstream.com/logos/symbol/HIMS",
           "headline_quote": "one of the places I come back to is health wearables... so many different health wearables out there... I think we're on the cusp. I go back to marrying this\u2026",
           "thesis": "Wearables plus blood work converge into continuous monitoring and customized medicine",
@@ -36288,8 +36279,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=F8cXD5hTt3c",
           "cmc_symbol": "HIMS",
-          "cmc_price": 36.43716369040311,
-          "since_call_pct": 15.62
+          "cmc_price": 36.31541295176167,
+          "since_call_pct": 15.24
         }
       ]
     },
@@ -36345,8 +36336,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=pw7po593hJM",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": -1.01
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": -1.17
         },
         {
           "id": "74a159b3-d",
@@ -36389,8 +36380,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=pw7po593hJM",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -10.35
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -10.37
         },
         {
           "id": "0f2a5909-e",
@@ -36804,8 +36795,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=yEb2DX0TzKM",
           "cmc_symbol": "AMZN",
-          "cmc_price": 243.3959651482111,
-          "since_call_pct": -2.4
+          "cmc_price": 243.0231768167722,
+          "since_call_pct": -2.55
         },
         {
           "id": "10cee610-c",
@@ -36950,8 +36941,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=yEb2DX0TzKM",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -20.35
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -20.22
         },
         {
           "id": "dda84bab-1",
@@ -37015,7 +37006,7 @@
           "author_date": "2026-01-10T00:00:00Z",
           "entry_price": 0.9675,
           "posted_price": 0.9675,
-          "peak_pct": 2.739018087855294,
+          "peak_pct": 2.790697674418607,
           "market_cap_fmt": null,
           "logo_url": "https://icon.horse/icon/polymarket.com",
           "headline_quote": "I don't think SpaceX will IPO. I think that it will reverse merge into Tesla and I think Elon will use it as a moment to consolidate control and power of his\u2026",
@@ -37087,8 +37078,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=yEb2DX0TzKM",
           "cmc_symbol": "TSLA",
-          "cmc_price": 401.86773860673895,
-          "since_call_pct": -9.84
+          "cmc_price": 401.7973429460948,
+          "since_call_pct": -9.86
         },
         {
           "id": "6e3d0549-4",
@@ -37279,8 +37270,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "BA",
-          "cmc_price": 221.66122330434897,
-          "since_call_pct": -2.52
+          "cmc_price": 222.59974178236274,
+          "since_call_pct": -2.1
         },
         {
           "id": "831071c4-f",
@@ -37318,8 +37309,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -29.51
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -29.54
         },
         {
           "id": "dfcc1a7d-1",
@@ -37393,8 +37384,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "URNM",
-          "cmc_price": 58.72506559621752,
-          "since_call_pct": -6.89
+          "cmc_price": 59.04774450606862,
+          "since_call_pct": -6.38
         },
         {
           "id": "6ee3c08a-3",
@@ -37432,8 +37423,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 1.11
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 1.13
         },
         {
           "id": "913022e0-0",
@@ -37490,7 +37481,7 @@
           "author_date": "2026-01-09T01:18:50.000Z",
           "entry_price": 106.66421569783293,
           "posted_price": 194.195,
-          "peak_pct": 105.94535717798652,
+          "peak_pct": 106.10473584016277,
           "market_cap_fmt": "$26B",
           "logo_url": "https://api.elbstream.com/logos/symbol/EWY",
           "headline_quote": "Korean stock market up 70%. Japan up like 20s or 30s. Europe. Up more than 15%, right? All of these up.",
@@ -37510,8 +37501,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "EWY",
-          "cmc_price": 218.84518078295562,
-          "since_call_pct": 105.17
+          "cmc_price": 219.28054860472085,
+          "since_call_pct": 105.58
         },
         {
           "id": "532cb1f0-9",
@@ -37549,8 +37540,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "MU",
-          "cmc_price": 1143.3724568098621,
-          "since_call_pct": 251.92
+          "cmc_price": 1145.7460894918613,
+          "since_call_pct": 252.65
         },
         {
           "id": "506fe04c-2",
@@ -37624,8 +37615,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "TSM",
-          "cmc_price": 464.7360779648321,
-          "since_call_pct": 46.06
+          "cmc_price": 462.43010695685376,
+          "since_call_pct": 45.33
         },
         {
           "id": "397f1ef6-3",
@@ -37663,8 +37654,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 13.13
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 13.21
         },
         {
           "id": "66eb5572-0",
@@ -37683,7 +37674,7 @@
           "entry_price": 41.807,
           "posted_price": 113.48,
           "peak_pct": 232.3127705886574,
-          "market_cap_fmt": "$696B",
+          "market_cap_fmt": "$697B",
           "logo_url": "https://api.elbstream.com/logos/symbol/INTC",
           "headline_quote": "10% of Intel. There's a lot of these deals where you could say all these companies that are on the bleeding edge of America, America's national treasures,\u2026",
           "thesis": "US government owns 10% of Intel and is steering CHIPS money to it; equity backstop limits downside.",
@@ -37702,8 +37693,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=fd6QaEJOjvI",
           "cmc_symbol": "INTC",
-          "cmc_price": 141.03333137397755,
-          "since_call_pct": 237.34
+          "cmc_price": 140.33296257235068,
+          "since_call_pct": 235.67
         }
       ]
     },
@@ -37826,8 +37817,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=7_3gKoQPUfM",
           "cmc_symbol": "AAPL",
-          "cmc_price": 296.4018236218752,
-          "since_call_pct": 8.93
+          "cmc_price": 296.4479743912476,
+          "since_call_pct": 8.95
         },
         {
           "id": "6819d5cc-1",
@@ -37865,8 +37856,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=7_3gKoQPUfM",
           "cmc_symbol": "BTC",
-          "cmc_price": 64177.391387994125,
-          "since_call_pct": -26.75
+          "cmc_price": 64147.99451181553,
+          "since_call_pct": -26.79
         },
         {
           "id": "f1c6d979-4",
@@ -37940,8 +37931,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=7_3gKoQPUfM",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 10.9
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 10.97
         },
         {
           "id": "2777b737-1",
@@ -38051,7 +38042,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=7_3gKoQPUfM",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 15.47
         }
       ]
@@ -38270,8 +38261,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=G0GuHkUbuEY",
           "cmc_symbol": "TSM",
-          "cmc_price": 464.7360779648321,
-          "since_call_pct": 58.42
+          "cmc_price": 462.43010695685376,
+          "since_call_pct": 57.64
         },
         {
           "id": "cd75da33-d",
@@ -38319,8 +38310,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=G0GuHkUbuEY",
           "cmc_symbol": "BA",
-          "cmc_price": 221.66122330434897,
-          "since_call_pct": 2.22
+          "cmc_price": 222.59974178236274,
+          "since_call_pct": 2.66
         }
       ]
     },
@@ -38371,8 +38362,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=GIW1yU9zHW8",
           "cmc_symbol": "UBER",
-          "cmc_price": 76.5787806862502,
-          "since_call_pct": -3.44
+          "cmc_price": 76.37500724537752,
+          "since_call_pct": -3.7
         },
         {
           "id": "b4563bc1-0",
@@ -38545,8 +38536,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=cY5UFw2AIZo",
           "cmc_symbol": "DIS",
-          "cmc_price": 104.01224310181601,
-          "since_call_pct": -6.8
+          "cmc_price": 103.62840127530852,
+          "since_call_pct": -7.14
         },
         {
           "id": "1efafb4c-b",
@@ -38691,7 +38682,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=cY5UFw2AIZo",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 17.99
         }
       ]
@@ -38754,8 +38745,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=Uxi6LVKanuY",
           "cmc_symbol": "NVDA",
-          "cmc_price": 209.16019467584303,
-          "since_call_pct": 14.78
+          "cmc_price": 209.30143282247977,
+          "since_call_pct": 14.86
         },
         {
           "id": "58b23e84-5",
@@ -38811,7 +38802,7 @@
           ],
           "source_url": "https://youtube.com/watch?v=Uxi6LVKanuY",
           "cmc_symbol": "GOOGL",
-          "cmc_price": 363.8573739184275,
+          "cmc_price": 363.85741706899483,
           "since_call_pct": 13.52
         },
         {
@@ -38913,8 +38904,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=Uxi6LVKanuY",
           "cmc_symbol": "ANTHROPIC",
-          "cmc_price": 739.7094497879192,
-          "since_call_pct": 85.48
+          "cmc_price": 742.6806454522497,
+          "since_call_pct": 86.22
         },
         {
           "id": "88122adc-3",
@@ -38958,8 +38949,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=Uxi6LVKanuY",
           "cmc_symbol": "MSFT",
-          "cmc_price": 381.48823553877895,
-          "since_call_pct": -20.92
+          "cmc_price": 382.1240816167423,
+          "since_call_pct": -20.79
         },
         {
           "id": "de4193bb-1",
@@ -39055,8 +39046,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=Uxi6LVKanuY",
           "cmc_symbol": "XAI",
-          "cmc_price": 0.008445844197162393,
-          "since_call_pct": -49.06
+          "cmc_price": 0.008420661687412644,
+          "since_call_pct": -49.21
         },
         {
           "id": "41571df1-a",
@@ -39118,8 +39109,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=Uxi6LVKanuY",
           "cmc_symbol": "OPENAI",
-          "cmc_price": 968.1506201209272,
-          "since_call_pct": 27.82
+          "cmc_price": 970.4876706975186,
+          "since_call_pct": 28.13
         },
         {
           "id": "3efd8c80-f",
@@ -39207,8 +39198,8 @@
           ],
           "source_url": "https://youtube.com/watch?v=Uxi6LVKanuY",
           "cmc_symbol": "LLY",
-          "cmc_price": 1098.7553547300774,
-          "since_call_pct": 8.73
+          "cmc_price": 1098.902772084341,
+          "since_call_pct": 8.75
         }
       ]
     }

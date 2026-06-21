@@ -19,6 +19,10 @@ from ..models import CallCandidate
 from ..util import get_key
 
 BASE = "https://pro-api.coinmarketcap.com"
+# CMC's web gateway — powers coinmarketcap.com itself. Unauthenticated (no Pro key), undocumented,
+# free (credit_count 0). Used only for data the Pro REST API doesn't expose: liquidations.
+GATEWAY = "https://api.coinmarketcap.com"
+_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 
 # DEX perp venues — for the CEX/DEX tag (and kept in the major set below).
 _DEX_PERP = {"hyperliquid", "gmx", "dydx", "vertex", "drift", "aevo", "apex", "paradex", "jupiter", "orderly"}
@@ -61,6 +65,26 @@ class CMCSource:
         status = (body or {}).get("status", {})
         code = status.get("error_code")
         if code is not None and str(code) not in ("0", ""):   # CMC returns 0 or "0" on success
+            raise CMCError(f"{path}: {status.get('error_message') or 'error_code ' + str(code)}")
+        if r.status_code >= 400:
+            raise CMCError(f"{path}: HTTP {r.status_code}")
+        return body.get("data", body) if isinstance(body, dict) else body
+
+    def _get_gateway(self, path: str, params: Optional[dict] = None) -> dict:
+        """GET the CMC web gateway (api.coinmarketcap.com/data-api). No Pro key; browser-like
+        headers. Same status-envelope as _get. Best-effort — callers wrap in try/except so a
+        gateway change degrades one signal (liquidations) instead of breaking the funnel."""
+        r = requests.get(f"{GATEWAY}{path}", params=params or {}, timeout=self.timeout,
+                         headers={"User-Agent": _UA, "Accept": "application/json",
+                                  "Referer": "https://coinmarketcap.com/charts/liquidations/"})
+        try:
+            body = r.json()
+        except ValueError:
+            r.raise_for_status()
+            raise CMCError(f"non-JSON response from gateway {path}")
+        status = (body or {}).get("status", {})
+        code = status.get("error_code")
+        if code is not None and str(code) not in ("0", ""):
             raise CMCError(f"{path}: {status.get('error_message') or 'error_code ' + str(code)}")
         if r.status_code >= 400:
             raise CMCError(f"{path}: HTTP {r.status_code}")
@@ -277,7 +301,7 @@ class CMCSource:
                 if best:
                     e, u = best
                     out[(e.get("symbol") or key).upper()] = {
-                        "id": e.get("id"),
+                        "id": e.get("id"), "cmc_rank": e.get("cmc_rank"),
                         "price": u.get("price"), "percent_change_24h": u.get("percent_change_24h"),
                         "percent_change_7d": u.get("percent_change_7d"), "volume_24h": u.get("volume_24h"),
                         "cex_volume_24h": u.get("cex_volume_24h"), "dex_volume_24h": u.get("dex_volume_24h"),
@@ -538,6 +562,51 @@ class CMCSource:
             "venue": rows[0]["venue"], "n_venues": len(rows), "venues": rows[:12],
         }
 
+    # --- Liquidations (CMC web gateway — not in the Pro REST API) -----------
+
+    def liquidations_global(self) -> dict:
+        """Market-wide 24h liquidations (the /charts/liquidations dashboard top card).
+        {total_24h, long_24h, short_24h, long_pct}. Empty dict if unavailable."""
+        try:
+            d = self._get_gateway("/data-api/v3/liquidations/summary")
+        except Exception as e:
+            print(f"  [liquidations_global] {type(e).__name__}: {e}")
+            return {}
+        total, longs, shorts = _num(d.get("total")), _num(d.get("longs")), _num(d.get("shorts"))
+        if total <= 0:
+            return {}
+        return {"total_24h": total, "long_24h": longs, "short_24h": shorts,
+                "long_pct": round(longs / total, 3) if total else None}
+
+    def liquidations_by_coin(self, interval: str = "1d", pages: int = 2, page_size: int = 500) -> Dict[int, dict]:
+        """Per-coin liquidations keyed by CMC id (the dashboard's per-coin table), sorted by total
+        liquidations desc. interval: 1h|4h|1d|1w (1d == the dashboard's 24h). Returns
+        {coin_id: {long, short, total, open_interest, long_pct}}. Empty if unavailable."""
+        sort = {"1h": "totalLiquidations1h", "4h": "totalLiquidations4h",
+                "1d": "totalLiquidations1d", "1w": "totalLiquidations1d"}.get(interval, "totalLiquidations1d")
+        out: Dict[int, dict] = {}
+        for page in range(1, pages + 1):
+            try:
+                d = self._get_gateway("/data-api/v3/liquidations/table",
+                                      {"page": page, "pageSize": page_size, "interval": interval,
+                                       "sort": sort, "ascendingOrder": "false"})
+            except Exception as e:
+                print(f"  [liquidations_by_coin p{page}] {type(e).__name__}: {e}")
+                break
+            items = (d.get("items") if isinstance(d, dict) else None) or []
+            for it in items:
+                cid = it.get("coinId")
+                if cid is None:
+                    continue
+                lo, sh = _num(it.get("longLiquidations")), _num(it.get("shortLiquidations"))
+                tot = _num(it.get("totalLiquidations")) or (lo + sh)
+                out[int(cid)] = {"long": lo, "short": sh, "total": tot,
+                                 "open_interest": _num(it.get("openInterestUsd")),
+                                 "long_pct": round(lo / tot, 3) if tot else None}
+            if len(items) < page_size:
+                break
+        return out
+
     def regime_inputs(self) -> dict:
         fg, fg_label = None, None
         try:
@@ -677,6 +746,52 @@ class CMCSource:
                 seen.add(k)
                 uniq.append(c)
         return uniq
+
+    def community_pulse(self, cid, limit: int = 8) -> dict:
+        """Structured CMC community content for DISPLAY (kept whole, not flattened into calls):
+        top community posts (author/avatar/text/engagement) + recent news articles for a coin.
+        {posts:[{author, avatar, text, likes, comments, url, ts}], articles:[{title, source, url, ts}],
+        n_posts, engagement}. Best-effort — empty lists on failure."""
+        posts = []
+        try:
+            d = self._get("/v1/content/posts/top", {"id": cid})
+            rows = d if isinstance(d, list) else (d.get("list") or d.get("data") or [])
+            for p in rows:
+                owner = p.get("owner") or {}
+                text = (p.get("text_content") or "").strip()
+                ts = _epoch_ms(p.get("post_time"))
+                if not text or ts is None:
+                    continue
+                posts.append({
+                    "author": owner.get("nickname") or "cmc",
+                    "avatar": owner.get("avatar_url") or (owner.get("avatar") or {}).get("url"),
+                    "text": text[:280],
+                    "likes": int(_num(p.get("like_count"))), "comments": int(_num(p.get("comment_count"))),
+                    # comments_url is the (auth-gated) API path; build the public community permalink instead
+                    "url": f"https://coinmarketcap.com/community/post/{p.get('post_id')}/" if p.get("post_id") else None,
+                    "ts": ts.isoformat(),
+                })
+                if len(posts) >= limit:
+                    break
+        except Exception as e:
+            print(f"  [community_pulse posts {cid}] {type(e).__name__}: {e}")
+        articles = []
+        try:
+            news = self._get("/v1/content/latest", {"id": cid, "limit": 10})
+            news = news if isinstance(news, list) else (news.get("data") or [])
+            for it in news:
+                ts = _parse_ts(it.get("released_at") or it.get("created_at"))
+                title = (it.get("title") or "").strip()
+                if not title or ts is None:
+                    continue
+                articles.append({"title": title[:160], "source": it.get("source_name") or it.get("source") or "news",
+                                 "url": it.get("source_url") or it.get("url"), "ts": ts.isoformat()})
+                if len(articles) >= 6:
+                    break
+        except Exception as e:
+            print(f"  [community_pulse news {cid}] {type(e).__name__}: {e}")
+        return {"posts": posts, "articles": articles, "n_posts": len(posts),
+                "engagement": sum(p["likes"] + p["comments"] for p in posts)}
 
 
 def _underlying_ticker(sym: str, name: str) -> str:

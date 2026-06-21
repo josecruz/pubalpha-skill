@@ -123,6 +123,33 @@ export default function IntelPage() {
           </div>
         </div>
       </Card>
+
+      {/* market-wide liquidations (CMC liquidations dashboard) */}
+      {scan.liquidations && scan.liquidations.total_24h > 0 && (() => {
+        const lq = scan.liquidations;
+        const lp = lq.long_pct ?? 0.5;
+        return (
+          <Card className="rounded-none p-3 gap-3">
+            <div className="flex items-baseline gap-2">
+              <Label>liquidations (24h)</Label>
+              <span className="text-muted-foreground text-[11px]">market-wide · forced position closes across venues</span>
+            </div>
+            <div className="flex flex-wrap gap-x-10 gap-y-4 items-end">
+              <div><Label>total</Label><div className="text-2xl">{usd(lq.total_24h)}</div></div>
+              <div><Label>long</Label><div className="text-2xl" style={{ color: hsl(SC.bullish) }}>{usd(lq.long_24h)}</div></div>
+              <div><Label>short</Label><div className="text-2xl" style={{ color: hsl(SC.bearish) }}>{usd(lq.short_24h)}</div></div>
+              <div className="flex-1 min-w-[220px]">
+                <Label>long / short split</Label>
+                <div className="flex h-3 mt-1 border border-border">
+                  <div style={{ width: `${lp * 100}%`, background: hsl(SC.bullish) }} />
+                  <div style={{ width: `${(1 - lp) * 100}%`, background: hsl(SC.bearish) }} />
+                </div>
+                <div className="text-[11px] text-muted-foreground mt-0.5">{Math.round(lp * 100)}% long · {Math.round((1 - lp) * 100)}% short</div>
+              </div>
+            </div>
+          </Card>
+        );
+      })()}
     </Wrap>
   );
 }

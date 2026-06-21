@@ -21,7 +21,7 @@ from scripts.backtest import compute_gate_stats              # noqa: E402
 from scripts.calls import group_by_symbol, normalize         # noqa: E402
 from scripts.classifier import classify                      # noqa: E402
 from scripts.confirm import confirm                          # noqa: E402
-from scripts.decide import kol_sentiment, perp_breakout, spot_breakout  # noqa: E402
+from scripts.decide import kol_sentiment, leverage_read, perp_breakout, spot_breakout  # noqa: E402
 from scripts.regime import get_state                         # noqa: E402
 from scripts.sources.paste_trade import PasteTradeSource     # noqa: E402
 from scripts.sources.seed import SeedSource                  # noqa: E402
@@ -169,6 +169,8 @@ def scan(cfg, args) -> dict:
             print(f"[fear_greed_trend] {e}", file=sys.stderr)
     narrative = narrative or {"heating": False, "available": False, "trending_topics": [], "top_categories": []}
 
+    liq_global = {}
+
     # social-signal feed: classify every cluster with >= min_calls
     signals = []
     for sym, cs in groups.items():
@@ -295,6 +297,46 @@ def scan(cfg, args) -> dict:
                     print(f"[derivatives {s['symbol']}] {e}", file=sys.stderr)
         print(f"  price series for {len(series_by_sym)} assets")
 
+    # liquidations (CMC web gateway — not in the Pro REST API): market-wide card + per-coin,
+    # stamped onto each signal by CMC id, then fused with perp positioning into a leverage read.
+    if market is not None and signals:
+        try:
+            liq_global = market.liquidations_global()
+        except Exception as e:
+            print(f"[liquidations_global] {e}", file=sys.stderr)
+        try:
+            liq_by_coin = market.liquidations_by_coin()
+        except Exception as e:
+            liq_by_coin = {}
+            print(f"[liquidations_by_coin] {e}", file=sys.stderr)
+        n_liq = 0
+        for s in signals:
+            cid = (s.get("market") or {}).get("id")
+            liq = liq_by_coin.get(int(cid)) if cid else None
+            if liq:
+                s["liquidations"] = liq
+                n_liq += 1
+            lr = leverage_read(s.get("perp") or {}, liq or {})
+            if lr:
+                s["leverage_read"] = lr
+        print(f"  liquidations: ${liq_global.get('total_24h', 0):,.0f} market-wide · {n_liq} assets matched")
+
+    # CMC community pulse (top posts + news for display) — bounded to the trade ideas + top signals
+    if market is not None and signals:
+        want_comm = {i["symbol"] for i in ideas} | {s["symbol"] for s in signals[:12]}
+        for s in signals:
+            if s["symbol"] not in want_comm:
+                continue
+            cid = (s.get("market") or {}).get("id")
+            if not cid:
+                continue
+            try:
+                cp = market.community_pulse(cid)
+                if cp.get("posts") or cp.get("articles"):
+                    s["community"] = cp
+            except Exception as e:
+                print(f"[community_pulse {s['symbol']}] {e}", file=sys.stderr)
+
     # decision setups (forward screens — NOT backtested) — ranked candidates, breakouts on top.
     spot_setups, perp_setups = [], []
     for s in signals:
@@ -372,6 +414,7 @@ def scan(cfg, args) -> dict:
         "regime": _regime_dict(regime, altseason_index, fg_trend),
         "narrative": narrative,
         "gate_stats": gate,
+        "liquidations": liq_global,
         "market_insights": insights,
         "cmc_attention": cmc_attention,
         "setups": setups,

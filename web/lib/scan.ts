@@ -6,6 +6,7 @@ export interface Market {
   price: number | null; percent_change_24h: number | null; percent_change_7d: number | null;
   volume_24h: number | null; cex_volume_24h: number | null; dex_volume_24h: number | null;
   market_cap: number | null; kind: "crypto" | "tokenized_stock"; chain: string | null;
+  cmc_rank?: number | null;
 }
 export interface Call {
   symbol: string; classification?: Verdict; score?: number; author: string; source: string;
@@ -70,6 +71,15 @@ export interface PerpSetup {
 }
 export interface Setups { spot: SpotSetup[]; perp: PerpSetup[]; disclaimer: string; }
 
+// ---- liquidations (CMC liquidations dashboard, via the web gateway) ----
+export interface Liquidations { total_24h: number; long_24h: number; short_24h: number; long_pct: number | null; }
+export interface AssetLiquidations { long: number; short: number; total: number; open_interest: number; long_pct: number | null; }
+export interface LeverageRead { label: string; note: string | null; long_pct: number | null; total: number; }
+// ---- CMC community pulse (top posts + news, kept whole for display) ----
+export interface CommunityPost { author: string; avatar: string | null; text: string; likes: number; comments: number; url: string | null; ts: string; }
+export interface CommunityArticle { title: string; source: string; url: string | null; ts: string; }
+export interface CommunityPulse { posts: CommunityPost[]; articles: CommunityArticle[]; n_posts: number; engagement: number; }
+
 export interface Signal {
   symbol: string; n_calls: number; classification: Verdict; score: number; reasons: string[];
   features?: Record<string, number>; distinct_authors: number; sources: string[];
@@ -77,6 +87,7 @@ export interface Signal {
   latest_ts: string; top_calls: Call[]; market?: Market | null;
   attention?: Attention; identity?: Identity | null; performance?: Performance | null; venues?: Venue[];
   price_series?: PricePoint[]; sentiment?: Sentiment; breakout?: Breakout | null; perp?: Perp | null;
+  liquidations?: AssetLiquidations | null; leverage_read?: LeverageRead | null; community?: CommunityPulse | null;
 }
 export interface Idea {
   symbol: string; score: number; classification: Verdict; confidence: number; confirmed: boolean;
@@ -99,6 +110,7 @@ export interface Scan {
   };
   narrative: { heating: boolean; sector?: string; trending_topics?: string[]; available?: boolean };
   gate_stats: { clusters_seen: number; organic_pct: number; filtered_coordinated_pct: number; mixed_pct: number };
+  liquidations?: Liquidations | null;
   market_insights: Insights;
   cmc_attention: CmcAttention;
   setups: Setups;
@@ -131,6 +143,15 @@ export function usd(n?: number | null): string {
 }
 export function pct(n?: number | null): string {
   return n == null ? "—" : `${n >= 0 ? "+" : ""}${n.toFixed(1)}%`;
+}
+// full-precision price for the header (CMC-style), unlike usd() which abbreviates to K/M/B
+export function price(n?: number | null): string {
+  if (n == null) return "—";
+  const a = Math.abs(n);
+  if (a >= 1) return `$${n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  if (a >= 0.01) return `$${n.toFixed(4)}`;
+  if (a > 0) return `$${n.toPrecision(4)}`;
+  return "$0";
 }
 export function funding(n?: number | null): string {
   return n == null ? "—" : `${n >= 0 ? "+" : ""}${(n * 100).toFixed(4)}%`;

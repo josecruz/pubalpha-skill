@@ -99,6 +99,31 @@ def perp_breakout(derivs: dict, breakout: dict) -> dict:
             "is_breakout": is_bo, "bias": bias, "score": round(min(1.0, score), 2)}
 
 
+def leverage_read(perp: dict, liq: dict) -> dict:
+    """Fuse perp positioning (CMC derivatives funding / long_share) with realized liquidations
+    (CMC liquidation table) into a one-line leverage-stress read for the thesis page.
+    short squeeze = shorts getting liquidated (into crowded shorts ⇒ upside fuel);
+    long flush/cascade = longs getting liquidated (while crowded long ⇒ downside risk).
+    Returns {label, note, long_pct, total} or {} when there's no liquidation data."""
+    total = (liq or {}).get("total")
+    if not isinstance(total, (int, float)) or total <= 0:
+        return {}
+    long_pct = liq.get("long_pct")                       # share of liquidations that were longs
+    fr = (perp or {}).get("funding_rate")
+    long_share = (perp or {}).get("long_share")          # share of perp volume where funding > 0
+    label, note = "balanced", "longs and shorts liquidating evenly"
+    if long_pct is not None:
+        if long_pct >= 0.62:
+            label, note = "long flush", "longs being liquidated"
+            if (long_share is not None and long_share > 0.6) or (fr is not None and fr > 0.0003):
+                label, note = "cascade risk", "longs liquidating while leverage is crowded long"
+        elif long_pct <= 0.38:
+            label, note = "short squeeze", "shorts being liquidated"
+            if (long_share is not None and long_share < 0.4) or (fr is not None and fr < -0.0003):
+                label, note = "squeeze fuel", "shorts liquidating while leverage is crowded short"
+    return {"label": label, "note": note, "long_pct": long_pct, "total": float(total)}
+
+
 def _atr(rows, n: int = 14) -> Optional[float]:
     if len(rows) < n + 1:
         return None
