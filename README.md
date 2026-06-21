@@ -16,8 +16,6 @@ Follow the trades other traders are calling across social — filtered for coord
 > own crowd**. Then act only when on-chain flow confirms it, and emit a transparent, backtested
 > strategy spec. CoinMarketCap is the data spine. No live execution, no real money.
 
-**Targeting:** Track 2 placement + the stackable **"Best Use of CoinMarketCap Data"** special prize.
-
 ---
 
 ## What it does

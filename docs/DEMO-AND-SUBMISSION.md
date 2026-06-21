@@ -39,7 +39,7 @@ Host unlisted on YouTube/Loom; test the link in an incognito window.
 ---
 
 ## 2. Make the repo public (before submitting)
-The repo is currently **private** (`github.com/josecruz/cmc-hackathon`). DoraHacks needs a **public**
+The repo is currently **private** (`github.com/josecruz/pubalpha-skill`). DoraHacks needs a **public**
 repo. In GitHub: Settings → General → Danger Zone → Change visibility → Public. Then confirm it opens
 in an incognito window. Double-check no secrets: `.env` is gitignored; `results/` is gitignored.
 
@@ -48,7 +48,7 @@ in an incognito window. Double-check no secrets: `.env` is gitignored; `results/
 ## 3. DoraHacks submission checklist
 Pre-stage all of this by ~T-3h; the form fill is ~15 min. **Aim to submit by T-2h (≈10:00 UTC Jun 21).**
 
-- [ ] **Public repo URL:** `https://github.com/josecruz/cmc-hackathon` (verify public in incognito)
+- [ ] **Public repo URL:** `https://github.com/josecruz/pubalpha-skill` (verify public in incognito)
 - [ ] **Demo video link** (YouTube unlisted / Loom; tested in incognito)
 - [ ] **Track:** Track 2 — Strategy Skills
 - [ ] **Sponsor tags:** **CoinMarketCap** (Best Use of CMC Data) — and Trust Wallet / BNB Chain if the
@@ -85,7 +85,7 @@ on-chain flow, gates by regime, and emits a transparent, backtested spec.
 > on-chain confirmation are forward-validated, and every report carries a mandatory honesty block.
 > No live execution, no real money — this is quant research that emits a transparent, inspectable spec.
 >
-> Repo: github.com/josecruz/cmc-hackathon · Built on the official CMC skills pattern (cmc-mcp,
+> Repo: github.com/josecruz/pubalpha-skill · Built on the official CMC skills pattern (cmc-mcp,
 > cmc-api-dex, cmc-api-market). MIT.
 
 **On-chain proof note (if the form asks):** No live execution — this is a research/strategy-spec Skill;
