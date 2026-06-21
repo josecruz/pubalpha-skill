@@ -21,19 +21,8 @@ const VERDICT_BLURB: Record<string, string> = {
   coordinated: "These show the hallmarks of a coordinated pump.",
   mixed: "Mixed — some genuine interest, some signs of coordination.",
 };
-const SIGNAL_ROWS: { key: string; label: string; text: Record<string, string> }[] = [
-  { key: "timing_clustering", label: "Timing", text: { organic: "spread over time, not bunched", coordinated: "jammed into a tight window", mixed: "somewhat bunched together", na: "—" } },
-  { key: "author_concentration", label: "Authors", text: { organic: "many independent accounts", coordinated: "a few accounts repeating", mixed: "a handful of accounts", na: "—" } },
-  { key: "language_similarity", label: "Wording", text: { organic: "varied, original phrasing", coordinated: "near-identical copypasta", mixed: "some repeated phrasing", na: "—" } },
-  { key: "low_substance", label: "Substance", text: { organic: "real theses, not just hype", coordinated: "pure urgency / hype", mixed: "mixed substance", na: "—" } },
-  { key: "onchain_pump", label: "Pump check", text: { organic: "no pump pattern on-chain", coordinated: "price spiking on thin liquidity", mixed: "some on-chain froth", na: "not checked on-chain" } },
-];
-function signalState(v: number | undefined): "organic" | "coordinated" | "mixed" | "na" {
-  if (v == null) return "na";
-  return v < 0.34 ? "organic" : v > 0.66 ? "coordinated" : "mixed";
-}
-const STATE_ICON: Record<string, string> = { organic: "✓", coordinated: "✕", mixed: "~", na: "·" };
-const STATE_COLOR: Record<string, string> = { organic: SC.bullish, coordinated: SC.bearish, mixed: "40 71% 73%", na: SC.neutral };
+// Strip the source-namespace prefix, e.g. "paste_trade:all-in" → "all-in".
+const srcName = (s?: string) => (s ? s.replace(/^[^:]+:/, "") : "");
 
 export default function AssetPage() {
   const [scan, setScan] = useState<Scan | null>(null);
@@ -50,6 +39,15 @@ export default function AssetPage() {
   const sig: Signal | undefined = useMemo(() => scan?.signals.find((s) => s.symbol === sym), [scan, sym]);
   const idea: Idea | undefined = useMemo(() => scan?.trade_ideas.find((i) => i.symbol === sym), [scan, sym]);
   const calls: Call[] = useMemo(() => (scan?.feed ?? []).filter((c) => c.symbol === sym), [scan, sym]);
+  // one row per KOL — their most-recent call — for the "who / when / where" roster
+  const roster: Call[] = useMemo(() => {
+    const byAuthor = new Map<string, Call>();
+    for (const c of calls) {
+      const prev = byAuthor.get(c.author);
+      if (!prev || new Date(c.ts).getTime() > new Date(prev.ts).getTime()) byAuthor.set(c.author, c);
+    }
+    return [...byAuthor.values()].sort((a, b) => new Date(b.ts).getTime() - new Date(a.ts).getTime());
+  }, [calls]);
 
   const back = <Link href="/" className="text-muted-foreground hover:text-primary text-sm">← back</Link>;
   if (err) return <Wrap>{back}<div className="text-destructive p-6">Failed to load — {err}</div></Wrap>;
@@ -61,6 +59,11 @@ export default function AssetPage() {
   const id = sig.identity, perf = sig.performance, att = sig.attention, venues = sig.venues ?? [];
   const perpVenues = sig.perp?.venues ?? [];
   const fundingColor = (fr: number | null | undefined) => ((fr ?? 0) >= 0 ? SC.bullish : SC.bearish);
+
+  // thesis — strongest bull / bear case from the actual KOL call summaries
+  const byConv = (a: Call, b: Call) => (b.conviction ?? 0) - (a.conviction ?? 0);
+  const bullCase = (sig.top_calls ?? []).filter((c) => c.stance === "bullish").sort(byConv)[0];
+  const bearCase = (sig.top_calls ?? []).filter((c) => c.stance === "bearish").sort(byConv)[0];
 
   return (
     <Wrap>
@@ -91,115 +94,137 @@ export default function AssetPage() {
         </span>
       </div>
 
-      {/* price chart with call markers */}
+      {/* price chart — self-contained: header · range selector · avatar markers · legend */}
       {sig.price_series && sig.price_series.length > 1 && (
-        <div>
-          <div className="flex items-baseline justify-between">
-            <Label>price — last {sig.price_series.length}d · {calls.length} calls marked</Label>
-            <span className="text-[11px] text-muted-foreground">
-              {usd(Math.min(...sig.price_series.map((p) => p.close)))} – {usd(Math.max(...sig.price_series.map((p) => p.close)))}
-            </span>
-          </div>
-          <div className="mt-1"><PriceChart series={sig.price_series} calls={calls.map((c) => ({ ts: c.ts, stance: c.stance }))} /></div>
-          <div className="flex gap-3 text-[10px] uppercase tracking-wider text-muted-foreground mt-1">
-            <span style={{ color: hsl(SC.bullish) }}>● long call</span>
-            <span style={{ color: hsl(SC.bearish) }}>● short call</span>
-            <span style={{ color: hsl(SC.neutral) }}>● watch</span>
-          </div>
-        </div>
+        <PriceChart series={sig.price_series} calls={calls.map((c) => ({ ts: c.ts, stance: c.stance, entry_price: c.entry_price, author: c.author, source: c.source, platform: c.platform, since_call_pct: c.since_call_pct, summary: c.summary, verified: c.verified }))} />
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-        {/* market */}
-        <Card className="rounded-none p-3 gap-2">
-          <Label>market</Label>
-          {m ? (
-            <>
-              <div className="flex flex-wrap gap-x-6 gap-y-2">
-                <Stat k="Price" v={usd(m.price)} />
-                <Stat k="24h" v={pct(m.percent_change_24h)} color={(m.percent_change_24h ?? 0) >= 0 ? SC.bullish : SC.bearish} />
-                <Stat k="7d" v={pct(m.percent_change_7d)} color={(m.percent_change_7d ?? 0) >= 0 ? SC.bullish : SC.bearish} />
-                <Stat k="24h vol" v={usd(m.volume_24h)} />
-                <Stat k="Market cap" v={usd(m.market_cap)} />
+      {/* market — its own full-width row below the chart */}
+      <Card className="rounded-none p-3 gap-2">
+        <Label>market</Label>
+        {m ? (
+          <>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <Stat k="Price" v={usd(m.price)} />
+              <Stat k="24h" v={pct(m.percent_change_24h)} color={(m.percent_change_24h ?? 0) >= 0 ? SC.bullish : SC.bearish} />
+              <Stat k="7d" v={pct(m.percent_change_7d)} color={(m.percent_change_7d ?? 0) >= 0 ? SC.bullish : SC.bearish} />
+              <Stat k="24h vol" v={usd(m.volume_24h)} />
+              <Stat k="Market cap" v={usd(m.market_cap)} />
+            </div>
+            <div className="mt-1">
+              <Label>CEX vs DEX volume</Label>
+              <div className="flex h-3 mt-1 border border-border">
+                <div style={{ width: `${(cex / tot) * 100}%`, background: hsl("213 32% 52%") }} />
+                <div style={{ width: `${(dex / tot) * 100}%`, background: hsl("92 28% 65%") }} />
               </div>
+              <div className="text-[11px] text-muted-foreground mt-0.5">CEX {usd(cex)} · DEX {usd(dex)}</div>
+            </div>
+            {perf && (
               <div className="mt-1">
-                <Label>CEX vs DEX volume</Label>
-                <div className="flex h-3 mt-1 border border-border">
-                  <div style={{ width: `${(cex / tot) * 100}%`, background: hsl("213 32% 52%") }} />
-                  <div style={{ width: `${(dex / tot) * 100}%`, background: hsl("92 28% 65%") }} />
+                <Label>price context</Label>
+                <div className="flex flex-wrap gap-x-6 gap-y-2 mt-0.5">
+                  <Stat k="ATH" v={usd(perf.ath)} />
+                  <Stat k="% from ATH" v={pct(perf.pct_from_ath)} color={(perf.pct_from_ath ?? 0) >= 0 ? SC.bullish : SC.bearish} />
+                  {perf.ath_date && <Stat k="ATH date" v={age(perf.ath_date) + " ago"} />}
                 </div>
-                <div className="text-[11px] text-muted-foreground mt-0.5">CEX {usd(cex)} · DEX {usd(dex)}</div>
-              </div>
-              {perf && (
-                <div className="mt-1">
-                  <Label>price context</Label>
-                  <div className="flex flex-wrap gap-x-6 gap-y-2 mt-0.5">
-                    <Stat k="ATH" v={usd(perf.ath)} />
-                    <Stat k="% from ATH" v={pct(perf.pct_from_ath)} color={(perf.pct_from_ath ?? 0) >= 0 ? SC.bullish : SC.bearish} />
-                    {perf.ath_date && <Stat k="ATH date" v={age(perf.ath_date) + " ago"} />}
-                  </div>
-                  <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5 text-xs">
-                    {(["7d", "30d", "90d", "365d"] as const).map((p) => (
-                      <span key={p} className="text-muted-foreground">{p} <span style={{ color: hsl((perf.periods[p] ?? 0) >= 0 ? SC.bullish : SC.bearish) }}>{pct(perf.periods[p])}</span></span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1.5 text-xs">
+                  {(["7d", "30d", "90d", "365d"] as const).map((p) => (
+                    <span key={p} className="text-muted-foreground">{p} <span style={{ color: hsl((perf.periods[p] ?? 0) >= 0 ? SC.bullish : SC.bearish) }}>{pct(perf.periods[p])}</span></span>
+                  ))}
                 </div>
-              )}
-            </>
-          ) : <div className="text-muted-foreground text-sm">no market data on CMC for this asset.</div>}
-        </Card>
-
-        {/* why — plain language */}
-        <Card className="rounded-none p-3 gap-2">
-          <Label>why this verdict</Label>
-          <div className="flex items-baseline gap-2">
-            <span className="text-base uppercase font-semibold" style={{ color: hsl(vc(sig.classification)) }}>{sig.classification}</span>
-            <span className="text-sm text-muted-foreground">{VERDICT_BLURB[sig.classification]}</span>
-          </div>
-          <div className="space-y-1 mt-0.5">
-            {SIGNAL_ROWS.map((row) => {
-              const st = signalState(sig.features?.[row.key]);
-              return (
-                <div key={row.key} className="flex items-baseline gap-2 text-sm">
-                  <span className="w-4 text-center shrink-0" style={{ color: hsl(STATE_COLOR[st]) }}>{STATE_ICON[st]}</span>
-                  <span className="w-28 shrink-0 text-muted-foreground">{row.label}</span>
-                  <span className="flex-1">{row.text[st]}</span>
-                </div>
-              );
-            })}
-            {idea?.onchain && (
-              <div className="flex items-baseline gap-2 text-sm border-t border-border pt-2 mt-1">
-                <span className="w-4 text-center shrink-0" style={{ color: hsl(idea.onchain.confirmed ? SC.bullish : SC.neutral) }}>{idea.onchain.confirmed ? "✓" : "·"}</span>
-                <span className="w-28 shrink-0 text-muted-foreground">Confirmation</span>
-                <span className="flex-1">{idea.onchain.confirmed ? "money is moving on-chain — confirmed" : "not yet confirmed on-chain"}</span>
               </div>
             )}
-          </div>
-        </Card>
-      </div>
+          </>
+        ) : <div className="text-muted-foreground text-sm">no market data on CMC for this asset.</div>}
+      </Card>
 
-      {/* decision signals — KOL sentiment · breakout · perp */}
-      {(sig.sentiment || sig.breakout || sig.perp) && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {/* thesis — plain-language read of what the KOLs are actually arguing */}
+        <Card className="rounded-none p-3 gap-2">
+          <Label>thesis</Label>
           {sig.sentiment && (() => {
-            const s = sig.sentiment, tot = s.bull + s.bear + s.neutral || 1;
+            const s = sig.sentiment;
             const clr = s.label === "bullish" ? SC.bullish : s.label === "bearish" ? SC.bearish : SC.neutral;
             return (
-              <Card className="rounded-none p-3 gap-2">
-                <Label>KOL sentiment</Label>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-lg uppercase" style={{ color: hsl(clr) }}>{s.label}</span>
-                  <span className="text-muted-foreground text-sm">{s.score >= 0 ? "+" : ""}{s.score.toFixed(2)} · {s.n_kols} KOLs</span>
-                </div>
-                <div className="flex h-3 border border-border">
-                  <div style={{ width: `${(s.bull / tot) * 100}%`, background: hsl(SC.bullish) }} />
-                  <div style={{ width: `${(s.neutral / tot) * 100}%`, background: hsl(SC.neutral) }} />
-                  <div style={{ width: `${(s.bear / tot) * 100}%`, background: hsl(SC.bearish) }} />
-                </div>
-                <div className="text-[11px] text-muted-foreground">{s.bull} bull · {s.bear} bear · {s.neutral} neutral</div>
-              </Card>
+              <div className="text-sm">
+                <span className="uppercase" style={{ color: hsl(clr) }}>{s.label} lean</span>
+                <span className="text-muted-foreground"> · {s.n_kols} voices · {s.bull} bull / {s.bear} bear</span>
+              </div>
             );
           })()}
+          {bullCase && (
+            <div className="text-sm">
+              <span className="text-[11px] uppercase tracking-wider" style={{ color: hsl(SC.bullish) }}>bull case</span>
+              <p>{bullCase.summary} <span className="text-muted-foreground">— @{bullCase.author}</span></p>
+            </div>
+          )}
+          {bearCase && (
+            <div className="text-sm">
+              <span className="text-[11px] uppercase tracking-wider" style={{ color: hsl(SC.bearish) }}>bear case</span>
+              <p>{bearCase.summary} <span className="text-muted-foreground">— @{bearCase.author}</span></p>
+            </div>
+          )}
+          {idea?.onchain && (
+            <div className="flex items-baseline gap-2 text-sm border-t border-border pt-2">
+              <span className="shrink-0" style={{ color: hsl(idea.onchain.confirmed ? SC.bullish : SC.neutral) }}>{idea.onchain.confirmed ? "✓" : "·"}</span>
+              <span className="text-muted-foreground">{idea.onchain.confirmed ? "money is moving on-chain — confirmed" : "not yet confirmed on-chain"}</span>
+            </div>
+          )}
+          <div className="text-sm border-t border-border pt-2">
+            <span className="uppercase font-semibold" style={{ color: hsl(vc(sig.classification)) }}>{sig.classification}</span>
+            <span className="text-muted-foreground"> — {VERDICT_BLURB[sig.classification]}</span>
+          </div>
+        </Card>
+
+        {/* KOL sentiment + per-KOL roster (who · stance · when · where) */}
+        {sig.sentiment && (() => {
+          const s = sig.sentiment, stot = s.bull + s.bear + s.neutral || 1;
+          const clr = s.label === "bullish" ? SC.bullish : s.label === "bearish" ? SC.bearish : SC.neutral;
+          return (
+            <Card className="rounded-none p-3 gap-2">
+              <Label>KOL sentiment</Label>
+              <div className="flex items-baseline gap-2">
+                <span className="text-lg uppercase" style={{ color: hsl(clr) }}>{s.label}</span>
+                <span className="text-muted-foreground text-sm">{s.score >= 0 ? "+" : ""}{s.score.toFixed(2)} · {s.n_kols} KOLs</span>
+              </div>
+              <div className="flex h-3 border border-border">
+                <div style={{ width: `${(s.bull / stot) * 100}%`, background: hsl(SC.bullish) }} />
+                <div style={{ width: `${(s.neutral / stot) * 100}%`, background: hsl(SC.neutral) }} />
+                <div style={{ width: `${(s.bear / stot) * 100}%`, background: hsl(SC.bearish) }} />
+              </div>
+              <div className="text-[11px] text-muted-foreground">{s.bull} bull · {s.bear} bear · {s.neutral} neutral</div>
+              {roster.length > 0 && (
+                <div className="space-y-1 mt-1 border-t border-border pt-2">
+                  {roster.slice(0, 8).map((c, i) => {
+                    const stClr = c.stance === "bullish" ? SC.bullish : c.stance === "bearish" ? SC.bearish : SC.neutral;
+                    return (
+                      <div key={i} className="flex items-center gap-1.5 text-xs">
+                        <Avatar handle={c.author} platform={c.platform} size={14} />
+                        {c.source_id
+                          ? <Link href={`/speaker?handle=${encodeURIComponent(c.author)}`} className="font-medium hover:text-primary truncate max-w-[100px]">{c.author}</Link>
+                          : <span className="font-medium truncate max-w-[100px]">{c.author}</span>}
+                        {c.verified && <VerifiedBadge size={11} />}
+                        <span className="uppercase" style={{ color: hsl(stClr) }}>{stanceLabel(c.stance)}</span>
+                        <span className="text-muted-foreground">{ago(c.ts)}</span>
+                        {c.source_id
+                          ? <Link href={`/stream?id=${encodeURIComponent(c.source_id)}${c.video_seconds ? `&t=${c.video_seconds}` : ""}`} className="text-muted-foreground hover:text-primary ml-auto truncate max-w-[90px]">{srcName(c.source)} ↗</Link>
+                          : c.url
+                            ? <a href={c.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary ml-auto truncate max-w-[90px]">{srcName(c.source)} ↗</a>
+                            : <span className="text-muted-foreground ml-auto truncate max-w-[90px]">{srcName(c.source)}</span>}
+                      </div>
+                    );
+                  })}
+                  {roster.length > 8 && <div className="text-[11px] text-muted-foreground">+{roster.length - 8} more — see mentions below</div>}
+                </div>
+              )}
+            </Card>
+          );
+        })()}
+      </div>
+
+      {/* breakout · perp */}
+      {((sig.breakout && sig.breakout.strength != null) || (sig.perp && sig.perp.bias)) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {sig.breakout && sig.breakout.strength != null && (
             <Card className="rounded-none p-3 gap-2">
               <Label>breakout (spot)</Label>
@@ -241,40 +266,42 @@ export default function AssetPage() {
         </div>
       )}
 
-      {/* top venues */}
-      {venues.length > 0 && (
-        <div>
-          <Label>top venues — {venues.length} spot markets by 24h volume</Label>
-          <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
-            {venues.map((v, i) => (
-              <div key={i} className="flex items-center gap-2.5 px-3 py-1.5">
-                <ExchangeIcon id={v.exchange_id} name={v.exchange} size={16} />
-                <span className="font-medium w-40 truncate">{v.exchange}</span>
-                <span className="text-muted-foreground w-28">{v.pair}</span>
-                <span className="text-muted-foreground w-20 text-xs">{v.category}</span>
-                <span className="ml-auto">{usd(v.volume_24h)}</span>
+      {/* venues — spot + perp, two columns */}
+      {(venues.length > 0 || perpVenues.length > 0) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+          {venues.length > 0 && (
+            <div>
+              <Label>top venues — {venues.length} spot markets by 24h volume</Label>
+              <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
+                {venues.map((v, i) => (
+                  <div key={i} className="flex items-center gap-2 px-3 py-1.5">
+                    <ExchangeIcon id={v.exchange_id} name={v.exchange} size={16} />
+                    <span className="font-medium truncate">{v.exchange}</span>
+                    <span className="text-muted-foreground text-xs shrink-0">{v.pair}</span>
+                    <span className="ml-auto shrink-0">{usd(v.volume_24h)}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      )}
+            </div>
+          )}
 
-      {/* perp venues (CEX + DEX) */}
-      {perpVenues.length > 0 && (
-        <div>
-          <Label>perp venues — {perpVenues.length} of {sig.perp?.n_venues ?? perpVenues.length} by 24h volume (funding / OI)</Label>
-          <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
-            {perpVenues.map((v, i) => (
-              <div key={i} className="flex items-center gap-2.5 px-3 py-1.5">
-                <ExchangeIcon id={v.exchange_id} name={v.venue} size={16} />
-                <span className="font-medium w-36 truncate">{v.venue}</span>
-                <span className="text-[10px] uppercase tracking-wider px-1 border border-border text-muted-foreground">{v.is_dex ? "DEX" : "CEX"}</span>
-                <span className="text-xs" style={{ color: hsl(fundingColor(v.funding_rate)) }}>funding {funding(v.funding_rate)}</span>
-                <span className="text-muted-foreground text-xs">OI {usd(v.oi)}</span>
-                <span className="ml-auto">{usd(v.volume_24h)}</span>
+          {perpVenues.length > 0 && (
+            <div>
+              <Label>perp venues — {perpVenues.length} of {sig.perp?.n_venues ?? perpVenues.length} by 24h volume (funding / OI)</Label>
+              <div className="mt-1 border border-border bg-card divide-y divide-border text-sm">
+                {perpVenues.map((v, i) => (
+                  <div key={i} className="flex items-center gap-2 px-3 py-1.5">
+                    <ExchangeIcon id={v.exchange_id} name={v.venue} size={16} />
+                    <span className="font-medium truncate">{v.venue}</span>
+                    <span className="text-[10px] uppercase tracking-wider px-1 border border-border text-muted-foreground shrink-0">{v.is_dex ? "DEX" : "CEX"}</span>
+                    <span className="text-xs shrink-0" style={{ color: hsl(fundingColor(v.funding_rate)) }}>{funding(v.funding_rate)}</span>
+                    <span className="text-muted-foreground text-xs shrink-0">OI {usd(v.oi)}</span>
+                    <span className="ml-auto shrink-0">{usd(v.volume_24h)}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       )}
 
