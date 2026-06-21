@@ -31,7 +31,7 @@ const Asset = ({ s }: { s: string }) => (
 export default function Page() {
   const [scan, setScan] = useState<Scan | null>(null);
   const [err, setErr] = useState<string | null>(null);
-  const [view, setView] = useState<"timeline" | "calls" | "assets" | "grouped">("timeline");
+  const [view, setView] = useState<"timeline" | "calls" | "assets" | "grouped" | "news">("timeline");
 
   useEffect(() => {
     fetch("/scan.json")
@@ -118,7 +118,7 @@ export default function Page() {
           <div className="flex items-center justify-between">
             <Label>social trades feed</Label>
             <div className="flex border border-border">
-              {(["timeline", "calls", "assets", "grouped"] as const).map((m) => (
+              {(["timeline", "calls", "assets", "grouped", "news"] as const).map((m) => (
                 <button key={m} onClick={() => setView(m)}
                   className={`text-[11px] uppercase tracking-wider px-2.5 py-1 ${view === m ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}>{m}</button>
               ))}
@@ -166,6 +166,27 @@ export default function Page() {
                   <div className="divide-y divide-border">{calls.slice(0, 6).map((c, i) => <CallRow key={i} c={c} logo={logoBy[c.symbol]} compact />)}</div>
                 </Card>
               ))}
+            </div>
+          )}
+
+          {view === "news" && (
+            <div className="space-y-1.5">
+              {(scan.news ?? []).map((it, i) => (
+                <div key={i} className="border border-border bg-card px-3 py-2">
+                  {it.url
+                    ? <a href={it.url} target="_blank" rel="noreferrer" className="text-sm text-foreground hover:text-primary">{it.title} <span className="text-muted-foreground text-[11px]">↗</span></a>
+                    : <span className="text-sm text-foreground">{it.title}</span>}
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1 text-[11px] text-muted-foreground">
+                    <span>{it.source}</span>
+                    <span>· {ago(it.ts)} ago</span>
+                    {it.symbols.slice(0, 5).map((s) => (
+                      <Link key={s} href={`/asset?symbol=${encodeURIComponent(s)}`}
+                        className="px-1 border border-border hover:text-primary hover:border-primary">{s}</Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              {(scan.news ?? []).length === 0 && <div className="text-muted-foreground text-sm">no news in this scan.</div>}
             </div>
           )}
         </div>

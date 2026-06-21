@@ -793,6 +793,37 @@ class CMCSource:
         return {"posts": posts, "articles": articles, "n_posts": len(posts),
                 "engagement": sum(p["likes"] + p["comments"] for p in posts)}
 
+    def news_feed(self, limit: int = 200) -> List[dict]:
+        """Market-wide CMC news + Alexandria articles across ALL listed assets (the site's
+        Feeds/News). [{title, subtitle, source, url, ts, symbols:[SYM], type, cover}], newest
+        first. Best-effort — empty list on failure."""
+        try:
+            items = self._get("/v1/content/latest", {"limit": limit})
+        except Exception as e:
+            print(f"  [news_feed] {type(e).__name__}: {e}")
+            return []
+        items = items if isinstance(items, list) else (items.get("data") or [])
+        out: List[dict] = []
+        for it in items:
+            ts = _parse_ts(it.get("released_at") or it.get("created_at") or it.get("published_at"))
+            title = (it.get("title") or "").strip()
+            if not title or ts is None:
+                continue
+            syms = []
+            for a in (it.get("assets") or it.get("related_coins") or []):
+                s = (a.get("symbol") or "").upper() if isinstance(a, dict) else None
+                if s and s not in syms:
+                    syms.append(s)
+            out.append({
+                "title": title[:160], "subtitle": (it.get("subtitle") or "")[:200] or None,
+                "source": it.get("source_name") or it.get("source") or "news",
+                "url": it.get("source_url") or it.get("url"),
+                "ts": ts.isoformat(), "symbols": syms[:6],
+                "type": it.get("type") or "news", "cover": it.get("cover"),
+            })
+        out.sort(key=lambda x: x["ts"], reverse=True)
+        return out
+
 
 def _underlying_ticker(sym: str, name: str) -> str:
     """Strip the issuer suffix from a tokenized-stock symbol to get the real ticker.

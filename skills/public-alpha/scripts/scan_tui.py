@@ -71,6 +71,15 @@ def _funding(n) -> str:
         return "—"
 
 
+def _pct_c(n) -> str:
+    """Signed percent with green/up red/down Rich markup."""
+    try:
+        n = float(n)
+    except (TypeError, ValueError):
+        return "—"
+    return f"[{'green' if n >= 0 else 'red'}]{'+' if n >= 0 else ''}{n:.1f}%[/]"
+
+
 def _load() -> dict:
     if not SCAN_JSON.exists():
         return {}
@@ -103,6 +112,18 @@ class DetailScreen(Screen):
             head += f"   [bold cyan]· confidence {it['confidence']}[/]"
         L += [head, ""]
 
+        # market — price near the top (mirrors the site's asset header)
+        mkt = full.get("market") or it.get("market") or {}
+        perf = full.get("performance") or it.get("performance") or {}
+        if mkt:
+            L.append("[bold underline]  Market[/]")
+            L.append(f"   [bold]{_usd(mkt.get('price'))}[/]   [dim]24h[/] {_pct_c(mkt.get('percent_change_24h'))}   "
+                     f"[dim]7d[/] {_pct_c(mkt.get('percent_change_7d'))}   [dim]mcap[/] {_usd(mkt.get('market_cap'))}   "
+                     f"[dim]24h vol[/] {_usd(mkt.get('volume_24h'))}")
+            if perf.get("ath"):
+                L.append(f"   [dim]ATH[/] {_usd(perf.get('ath'))}   [dim]from ATH[/] {_pct_c(perf.get('pct_from_ath'))}")
+            L.append("")
+
         L.append("[bold underline]  Why[/]")
         L += [f"   • {_esc(r)}" for r in it.get("reasons", [])]
         L.append("")
@@ -115,6 +136,26 @@ class DetailScreen(Screen):
             L += [f"   [dim]• {_esc(n)}[/]" for n in oc.get("notes", [])[:4]]
             L.append("")
 
+        # KOL sentiment lean (mirrors the site's sentiment bar)
+        sent = full.get("sentiment") or it.get("sentiment") or {}
+        if sent.get("n_kols"):
+            lbl = sent.get("label", "neutral")
+            sty = {"bullish": "green", "bearish": "red"}.get(lbl, "yellow")
+            L.append("[bold underline]  KOL sentiment[/]")
+            L.append(f"   [{sty}]{_esc(lbl)} lean[/] [dim]· {sent.get('n_kols')} KOLs · "
+                     f"{sent.get('bull')} bull / {sent.get('bear')} bear[/]")
+            L.append("")
+
+        # breakout (spot) — mirrors the site's breakout card
+        bo = full.get("breakout") or it.get("breakout") or {}
+        if bo and bo.get("strength") is not None:
+            status = "[green]● BREAKOUT[/]" if bo.get("is_breakout") else "[dim]building[/]"
+            conf = "  [green]✓ social-confirmed[/]" if bo.get("social_confirmed") else ""
+            L.append("[bold underline]  Breakout (spot)[/]")
+            L.append(f"   {status}{conf}   [dim]vs 20d-high[/] {_pct_c(bo.get('pct_above_20d_high'))}   "
+                     f"[dim]vol×[/] {bo.get('vol_mult')}   [dim]strength[/] {bo.get('strength')}")
+            L.append("")
+
         L.append("[bold underline]  Social evidence — the calls[/]")
         for c in it.get("top_calls", []):
             stance = c.get("stance") or "?"
@@ -125,6 +166,15 @@ class DetailScreen(Screen):
             L.append(f"   [bold]{_esc(c.get('author', '?')[:18]):<18}[/] [{sc}]{stance:<8}[/] "
                      f"[dim]{str(c.get('ts', ''))[:10]} {engtxt:>10}[/]  {_esc((c.get('summary') or '')[:70])}")
         L.append("")
+
+        # top spot venues (mirrors the site's venues table)
+        venues = full.get("venues") or it.get("venues") or []
+        if venues:
+            L.append("[bold underline]  Top venues[/]")
+            for v in venues[:5]:
+                L.append(f"   [bold]{_esc((v.get('exchange') or '?')[:16]):<16}[/] "
+                         f"[dim]{_esc((v.get('pair') or '')[:14]):<14}[/]  {_usd(v.get('volume_24h'))}")
+            L.append("")
 
         # leverage & liquidations (perp funding/OI + realized liquidations + the fused read)
         perp = it.get("perp") or full.get("perp") or {}
@@ -180,6 +230,7 @@ class ScannerApp(App):
         ("r", "rescan", "Rescan"),
         ("1", "tab('signals')", "Signals"),
         ("2", "tab('ideas')", "Trade Ideas"),
+        ("3", "tab('news')", "News"),
     ]
     TITLE = "Public Alpha — Scanner"
 
@@ -196,6 +247,8 @@ class ScannerApp(App):
                 yield DataTable(id="signals_t", cursor_type="row", zebra_stripes=True)
             with TabPane("Trade Ideas", id="ideas"):
                 yield DataTable(id="ideas_t", cursor_type="row", zebra_stripes=True)
+            with TabPane("News", id="news"):
+                yield DataTable(id="news_t", cursor_type="row", zebra_stripes=True)
         yield Footer()
 
     def on_mount(self) -> None:
@@ -248,6 +301,14 @@ class ScannerApp(App):
                 f"{top.get('author', '')[:14]}: {(top.get('summary') or '')[:40]}",
             )
             self.by_key[key.value] = i
+
+        # News — market-wide CMC feed across all listed assets (mirrors the site's News tab)
+        nw = self.query_one("#news_t", DataTable)
+        nw.clear(columns=True)
+        nw.add_columns("Time", "Source", "Assets", "Headline")
+        for it in scan.get("news", [])[:60]:
+            nw.add_row(str(it.get("ts", ""))[:10], (it.get("source") or "")[:14],
+                       " ".join(it.get("symbols", [])[:3])[:14], (it.get("title") or "")[:84])
 
     def on_data_table_row_selected(self, event: DataTable.RowSelected) -> None:
         item = self.by_key.get(event.row_key.value)

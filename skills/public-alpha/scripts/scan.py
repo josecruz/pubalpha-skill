@@ -144,10 +144,21 @@ def scan(cfg, args) -> dict:
         cands += PasteTradeSource().fetch(since)
     except Exception as e:
         print(f"[paste_trade] {e}", file=sys.stderr)
+
+    market = _market(cfg)
+    # broaden the universe with CMC's own market-wide news — any listed asset getting press,
+    # not just the KOL streams. News carries no stance, so it surfaces COVERAGE, not a trade call.
+    if market is not None:
+        try:
+            news_cands = [c for c in market.fetch(since, limit=200) if c.symbol]
+            cands += news_cands
+            print(f"  +{len(news_cands)} CMC news candidates (universe broadened)")
+        except Exception as e:
+            print(f"[cmc news] {e}", file=sys.stderr)
+
     calls = normalize(cands, cfg)
     groups = group_by_symbol(calls)
 
-    market = _market(cfg)
     regime = narrative = None
     altseason_index, fg_trend = {}, {}
     if market is not None:
@@ -170,6 +181,7 @@ def scan(cfg, args) -> dict:
     narrative = narrative or {"heating": False, "available": False, "trending_topics": [], "top_categories": []}
 
     liq_global = {}
+    news = []
 
     # social-signal feed: classify every cluster with >= min_calls
     signals = []
@@ -177,7 +189,8 @@ def scan(cfg, args) -> dict:
         if len(cs) < args.min_calls:
             continue
         res = classify(cs, sym, conf=None, cfg=cfg)
-        top = sorted(cs, key=lambda c: c.weight, reverse=True)[:6]
+        real = [c for c in cs if c.source.split(":")[0] != "cmc_news"]   # news broadens the universe, but the
+        top = sorted(real or cs, key=lambda c: c.weight, reverse=True)[:6]  # per-asset "calls" stay KOL/social
         signals.append({
             "symbol": sym, "n_calls": len(cs),
             "classification": res.classification, "score": res.score, "reasons": res.reasons,
@@ -337,6 +350,33 @@ def scan(cfg, args) -> dict:
             except Exception as e:
                 print(f"[community_pulse {s['symbol']}] {e}", file=sys.stderr)
 
+    # market-wide news feed (the site's Feeds/News) + per-asset articles on EVERY signal that has press.
+    # One bulk fetch maps news → {symbol: articles}, so every asset gets news without per-coin calls.
+    if market is not None:
+        try:
+            news = market.news_feed()
+        except Exception as e:
+            print(f"[news_feed] {e}", file=sys.stderr)
+        arts_by_sym: dict = {}
+        for it in news:
+            art = {"title": it["title"], "source": it["source"], "url": it["url"], "ts": it["ts"]}
+            for sym in it.get("symbols", []):
+                bucket = arts_by_sym.setdefault(sym, [])
+                if len(bucket) < 6:
+                    bucket.append(art)
+        for s in signals:
+            arts = arts_by_sym.get(s["symbol"])
+            if not arts:
+                continue
+            com = s.get("community")
+            if com:                              # top-N already have posts; backfill articles if thin
+                if not com.get("articles"):
+                    com["articles"] = arts
+            else:
+                s["community"] = {"posts": [], "articles": arts, "n_posts": 0, "engagement": 0}
+        print(f"  news: {len(news)} items · per-asset articles on "
+              f"{sum(1 for s in signals if (s.get('community') or {}).get('articles'))} assets")
+
     # decision setups (forward screens — NOT backtested) — ranked candidates, breakouts on top.
     spot_setups, perp_setups = [], []
     for s in signals:
@@ -377,6 +417,8 @@ def scan(cfg, args) -> dict:
         s = sig_by_sym.get(c.symbol)
         if not s:
             continue
+        if c.source.split(":")[0] == "cmc_news":   # news lives in the News feed, not the social-trades feed
+            continue
         entry, since = _since_call(series_by_sym.get(c.symbol), c.ts.isoformat(), price_by_sym.get(c.symbol))
         feed.append({
             "symbol": c.symbol, "classification": s["classification"], "score": s["score"],
@@ -415,6 +457,7 @@ def scan(cfg, args) -> dict:
         "narrative": narrative,
         "gate_stats": gate,
         "liquidations": liq_global,
+        "news": news[:80],
         "market_insights": insights,
         "cmc_attention": cmc_attention,
         "setups": setups,

@@ -79,6 +79,8 @@ export interface LeverageRead { label: string; note: string | null; long_pct: nu
 export interface CommunityPost { author: string; avatar: string | null; text: string; likes: number; comments: number; url: string | null; ts: string; }
 export interface CommunityArticle { title: string; source: string; url: string | null; ts: string; }
 export interface CommunityPulse { posts: CommunityPost[]; articles: CommunityArticle[]; n_posts: number; engagement: number; }
+// ---- market-wide CMC news feed (all listed assets, like CMC's Feeds/News page) ----
+export interface NewsItem { title: string; subtitle: string | null; source: string; url: string | null; ts: string; symbols: string[]; type?: string; cover?: string | null; }
 
 export interface Signal {
   symbol: string; n_calls: number; classification: Verdict; score: number; reasons: string[];
@@ -111,6 +113,7 @@ export interface Scan {
   narrative: { heating: boolean; sector?: string; trending_topics?: string[]; available?: boolean };
   gate_stats: { clusters_seen: number; organic_pct: number; filtered_coordinated_pct: number; mixed_pct: number };
   liquidations?: Liquidations | null;
+  news?: NewsItem[];
   market_insights: Insights;
   cmc_attention: CmcAttention;
   setups: Setups;
