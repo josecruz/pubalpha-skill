@@ -23,12 +23,16 @@ export default function SpeakerPage() {
   }, []);
 
   const sp = paste?.speakers[handle];
-  // every call by this speaker, with its episode, newest first
+  // every call by this speaker — episode trades + tweet-feed calls — newest first
   const calls = useMemo(() => {
-    const out: { t: PasteTrade; ep: PasteEpisode }[] = [];
+    const out: { t: PasteTrade; ep: PasteEpisode | null }[] = [];
     for (const ep of paste?.episodes ?? [])
       for (const t of ep.trades) if (t.speaker === handle) out.push({ t, ep });
-    return out.sort((a, b) => (b.ep.published_at ?? "").localeCompare(a.ep.published_at ?? ""));
+    for (const tw of paste?.tweets ?? [])
+      if (tw.speaker === handle) out.push({ t: tw as unknown as PasteTrade, ep: null });
+    return out.sort((a, b) =>
+      ((b.ep?.published_at ?? (b.t as unknown as { published_at?: string }).published_at) ?? "")
+        .localeCompare((a.ep?.published_at ?? (a.t as unknown as { published_at?: string }).published_at) ?? ""));
   }, [paste, handle]);
 
   const back = <Link href="/streams" className="text-muted-foreground hover:text-primary text-sm uppercase tracking-wider">← streams</Link>;
@@ -48,29 +52,45 @@ export default function SpeakerPage() {
       </div>
 
       <Card className="rounded-none p-3 gap-2">
-        <Label>activity</Label>
+        <Label>activity & record</Label>
         <div className="flex flex-wrap gap-x-8 gap-y-2">
           <Stat k="Calls" v={String(sp.n_calls)} />
           <Stat k="Long" v={String(sp.long)} color={SC.bullish} />
           <Stat k="Short" v={String(sp.short)} color={SC.bearish} />
+          {sp.win_rate != null && <Stat k="Win rate" v={`${Math.round(sp.win_rate * 100)}%`} />}
+          {sp.total_pnl != null && <Stat k="Total PnL" v={pct(sp.total_pnl)} color={sp.total_pnl >= 0 ? SC.bullish : SC.bearish} />}
+          {sp.role && <Stat k="Role" v={sp.role} />}
           <Stat k="Episodes" v={String(sp.n_episodes)} />
           <Stat k="Shows" v={sp.shows.join(", ")} />
         </div>
+        {(sp.best || sp.worst) && (
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-muted-foreground border-t border-border pt-2">
+            {sp.best?.ticker && <span>best: <span className="text-foreground">{sp.best.ticker}</span> {sp.best.pnl_pct != null && <span style={{ color: hsl(SC.bullish) }}>{pct(sp.best.pnl_pct)}</span>}</span>}
+            {sp.worst?.ticker && <span>worst: <span className="text-foreground">{sp.worst.ticker}</span> {sp.worst.pnl_pct != null && <span style={{ color: hsl(SC.bearish) }}>{pct(sp.worst.pnl_pct)}</span>}</span>}
+          </div>
+        )}
       </Card>
 
       <Label>calls — {calls.length}</Label>
       <div className="border border-border bg-card divide-y divide-border">
-        {calls.map(({ t, ep }, i) => (
-          <div key={i} className="flex items-center gap-2 px-3 py-1.5 text-sm">
-            <span className="text-muted-foreground text-xs w-16 shrink-0">{dateFmt(ep.published_at)}</span>
-            <AssetIcon logo={t.logo_url} symbol={t.ticker} size={16} />
-            <Link href={`/asset?symbol=${encodeURIComponent(t.ticker)}`} className="font-semibold w-14 truncate hover:text-primary">{t.ticker}</Link>
-            <span className="uppercase text-xs w-10 shrink-0" style={{ color: hsl(dirColor(t.direction)) }}>{dirLabel(t.direction)}</span>
-            <span className="text-muted-foreground truncate flex-1 min-w-0">{t.headline_quote ?? t.thesis}</span>
-            {t.since_call_pct != null && <span className="text-xs shrink-0 w-14 text-right" style={{ color: hsl(t.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(t.since_call_pct)}</span>}
-            <Link href={`/stream?id=${encodeURIComponent(ep.id)}`} className="text-primary text-xs shrink-0 hover:underline" title="open stream at this call">▶ {mmss(t.video_seconds) || "stream"}</Link>
-          </div>
-        ))}
+        {calls.map(({ t, ep }, i) => {
+          const date = ep?.published_at ?? (t as unknown as { published_at?: string | null }).published_at ?? null;
+          return (
+            <div key={i} className="flex items-center gap-2 px-3 py-1.5 text-sm">
+              <span className="text-muted-foreground text-xs w-16 shrink-0">{dateFmt(date)}</span>
+              <AssetIcon logo={t.logo_url} symbol={t.ticker} size={16} />
+              <Link href={`/asset?symbol=${encodeURIComponent(t.ticker)}`} className="font-semibold w-14 truncate hover:text-primary">{t.ticker}</Link>
+              <span className="uppercase text-xs w-10 shrink-0" style={{ color: hsl(dirColor(t.direction)) }}>{dirLabel(t.direction)}</span>
+              <span className="text-muted-foreground truncate flex-1 min-w-0">{t.headline_quote ?? t.thesis}</span>
+              {t.since_call_pct != null && <span className="text-xs shrink-0 w-14 text-right" style={{ color: hsl(t.since_call_pct >= 0 ? SC.bullish : SC.bearish) }}>{pct(t.since_call_pct)}</span>}
+              {ep
+                ? <Link href={`/stream?id=${encodeURIComponent(ep.id)}`} className="text-primary text-xs shrink-0 hover:underline" title="open stream at this call">▶ {mmss(t.video_seconds) || "stream"}</Link>
+                : t.source_url
+                  ? <a href={t.source_url} target="_blank" rel="noreferrer" className="text-primary text-xs shrink-0 hover:underline" title="open the post">post ↗</a>
+                  : <span className="w-12 shrink-0" />}
+            </div>
+          );
+        })}
       </div>
     </Wrap>
   );

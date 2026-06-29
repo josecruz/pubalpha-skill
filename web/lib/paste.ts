@@ -18,16 +18,33 @@ export interface PasteEpisode {
   id: string; show: string; title: string | null; url: string | null; platform: string | null;
   published_at: string | null; thumbnail: string | null; n_positions: number; n_ideas: number; trades: PasteTrade[];
 }
+export interface PnlMark { trade_id?: string; ticker?: string; pnl_pct?: number }
 export interface PasteSpeaker {
   handle: string; name: string | null; verified: boolean; platform: string | null;
   n_calls: number; long: number; short: number; shows: string[]; n_episodes: number; episodes: string[];
+  // cross-show trading record (from paste.trade's per-show speaker stats, summed across shows)
+  avatar_url?: string | null; role?: string | null;
+  trade_count?: number; total_pnl?: number | null; avg_pnl?: number | null; win_rate?: number | null;
+  best?: PnlMark | null; worst?: PnlMark | null;
 }
 export interface PasteShow {
-  slug: string; platform: string | null; streamer: string; streamer_name: string | null;
-  n_episodes: number; n_trades: number; speakers: string[];
+  slug: string; name?: string | null; platform: string | null; medium?: string | null;
+  avatar_url?: string | null; channel_url?: string | null; is_feed?: boolean;
+  streamer: string; streamer_name: string | null;
+  n_episodes: number; n_trades: number; n_speakers?: number; speakers: string[];
+}
+// A single call from a tweet/X feed show (flat — no episode context; links to the post).
+export interface PasteTweet {
+  id: string; show: string; ticker: string; direction: string | null;
+  speaker: string; speaker_name: string | null; speaker_verified: boolean; platform: string | null;
+  published_at: string | null; logo_url: string | null;
+  entry_price: number | null; peak_pct: number | null;
+  headline_quote: string | null; thesis: string | null; source_url: string | null;
+  since_call_pct?: number | null; cmc_symbol?: string | null; cmc_price?: number | null;
 }
 export interface Paste {
-  generated_at: string; shows: PasteShow[]; speakers: Record<string, PasteSpeaker>; episodes: PasteEpisode[];
+  generated_at: string; shows: PasteShow[]; speakers: Record<string, PasteSpeaker>;
+  episodes: PasteEpisode[]; tweets?: PasteTweet[];
 }
 
 export function mmss(sec?: number | null): string {

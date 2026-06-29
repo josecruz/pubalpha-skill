@@ -41,6 +41,7 @@ export default function StreamPage() {
 
   const host = ep.trades[0]?.speaker ?? ep.show;
   const hostVerified = ep.trades.some((t) => t.speaker_verified);
+  const seekable = ep.platform === "youtube" || ep.platform === "twitch"; // newsletters/tweets have no player
 
   return (
     <Wrap>
@@ -60,7 +61,7 @@ export default function StreamPage() {
       <div className="border border-border bg-card divide-y divide-border">
         {ep.trades.map((t) => (
           <div key={t.id} className="flex items-center gap-2 px-3 py-1.5 text-sm">
-            <button onClick={() => setSeek(t.video_seconds ?? 0)} disabled={t.video_seconds == null}
+            <button onClick={() => setSeek(t.video_seconds ?? 0)} disabled={!seekable || t.video_seconds == null}
               className="text-primary text-xs w-12 shrink-0 text-left hover:underline disabled:text-muted-foreground disabled:no-underline" title="jump to this point">
               ▶ {mmss(t.video_seconds) || "—"}</button>
             <Ticker t={t} /><Dir d={t.direction} />
@@ -73,7 +74,7 @@ export default function StreamPage() {
 
       <Label>trades explained</Label>
       <div className="space-y-2">
-        {ep.trades.map((t) => <TradeCard key={t.id} t={t} onSeek={() => setSeek(t.video_seconds ?? 0)} />)}
+        {ep.trades.map((t) => <TradeCard key={t.id} t={t} seekable={seekable} onSeek={() => setSeek(t.video_seconds ?? 0)} />)}
       </div>
 
       <div className="text-[11px] text-muted-foreground border-t border-border pt-2">
@@ -84,12 +85,12 @@ export default function StreamPage() {
   );
 }
 
-function TradeCard({ t, onSeek }: { t: PasteTrade; onSeek: () => void }) {
+function TradeCard({ t, seekable, onSeek }: { t: PasteTrade; seekable: boolean; onSeek: () => void }) {
   const [open, setOpen] = useState(false);
   return (
     <Card className="rounded-none p-3 gap-2">
       <div className="flex items-center gap-2 text-xs">
-        <button onClick={onSeek} disabled={t.video_seconds == null} className="text-primary hover:underline disabled:text-muted-foreground disabled:no-underline">▶ {mmss(t.video_seconds) || "—"}</button>
+        <button onClick={onSeek} disabled={!seekable || t.video_seconds == null} className="text-primary hover:underline disabled:text-muted-foreground disabled:no-underline">▶ {mmss(t.video_seconds) || "—"}</button>
         {t.bucket && <span className="px-1.5 py-px border border-border uppercase tracking-wider text-muted-foreground">{t.bucket}</span>}
         {t.staked && <span className="px-1.5 py-px border uppercase tracking-wider" style={{ color: hsl("205 70% 60%"), borderColor: hsl("205 70% 60%", 0.4) }}>paste pick</span>}
         {(t.video_url || t.source_url) && <a href={t.video_url || t.source_url || "#"} target="_blank" rel="noreferrer" className="ml-auto text-muted-foreground hover:text-primary">source ↗</a>}

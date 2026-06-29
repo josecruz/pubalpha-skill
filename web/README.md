@@ -41,13 +41,15 @@ the call feed works regardless.
 - **Trade Ideas** — the confirmed subset with a gate scoreboard (heating / organic / confirmed / regime).
 
 ### Streams browser (`/streams` · `/stream?id=` · `/speaker?handle=`)
-A paste.trade-style browser of the source shows (threadguy/Twitch, all-in/YouTube). The index lists
-episodes (filter by show/speaker, sort newest/most-calls); a **stream page** has the streamer header, an
-**embedded Twitch/YouTube player** (click a call's timestamp to seek), the calls list, and "trades
-explained" cards (bucket / paste-pick tags, the quote, speaker, reasoning, price box, expandable reasoning);
-**speaker pages** show a speaker's calls + L/S + verified. Every call links to its CMC `/asset` thesis.
-Reads `public/paste.json` (from `paste_browse.py`). Content is paste.trade's, shown **with attribution +
-links** to the show and source video.
+A paste.trade-style browser across **all ~36 source shows** (podcasts, newsletters, and an aggregate X
+feed). A **Shows** tab lists episodes (filter by show — grouped by medium — speaker, or ticker; sort
+newest/most-calls) and a **Tweets** tab is the flat X/tweet call feed. A **stream page** has the streamer
+header, an **embedded Twitch/YouTube player** (click a call's timestamp to seek), the calls list, and
+"trades explained" cards (bucket / paste-pick tags, the quote, speaker, reasoning, price box, expandable
+reasoning); **speaker/trader pages** show a trader's calls **across every show they appear on** + L/S +
+verified + win-rate / total-PnL record. Every call links to its CMC `/asset` thesis. Reads
+`public/paste.json` (from `paste_browse.py`, built from paste.trade's robots-allowed `/api/shows` surface).
+Content is paste.trade's, shown **with attribution + links** to the show and source video.
 
 ### Setups (`/setups`)
 The *decide / predict a move* surface — native re-implementations of CMC Skill Hub skills. Two ranked
