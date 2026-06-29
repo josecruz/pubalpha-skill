@@ -22,14 +22,17 @@ renders it. Remaining: record the demo video and submit on DoraHacks (after maki
   `/v2/cryptocurrency/ohlcv/historical` (backtest — BNB/CAKE/TWT are listed, so no DEX-OHLCV needed).
   Defensive parsing (tolerant of field drift). Holder data isn't exposed by the DEX API, so
   `confirm.py` doesn't gate on it.
-- **paste.trade (`scripts/sources/paste_trade.py`)** — real KOL calls (787 across all-in + threadguy).
-  **Access boundary (important):** their `robots.txt` + a server-side read-gate keep the bulk corpus
-  API (`/api/trades`, `/api/feed`) private and block AI crawlers (`ai-train=no`). But the operator
-  *explicitly designates the two curated shows and the trades belonging to them as the public surface*,
-  and that data is served under the robots-**allowed** `/api/shows/{all-in,threadguy}` prefix. We read
-  ONLY that prefix; we never touch the gated bulk API or circumvent the read-gate. Content signals
-  honored (we don't train). Theses are paraphrased short downstream (copyright). If the surface changes,
-  the adapter returns `[]` and the funnel falls back to CMC + seed.
+- **paste.trade (`scripts/sources/paste_trade.py`)** — real KOL calls (~4,500 across ~36 shows: podcasts,
+  newsletters, and an aggregate Tweets/X feed), with traders **cross-referenced across shows**.
+  **Access boundary (important):** their `robots.txt` declares the public surface explicitly —
+  `Allow: /api/shows` (the show index *and* each show's trades/sources), `Allow: /api/prices /api/og/
+  /api/avatars/` — while `Disallow`ing the gated bulk corpus API (`/api/trades`, `/api/feed`,
+  `/api/sources`, `/api/leaderboard`, `/api/users`, `/api/asset`, `/api/news`, `/api/search`, …). We
+  discover shows from the allowed `/api/shows` index and read ONLY `/api/shows/<slug>`; `_assert_allowed()`
+  hard-blocks every `Disallow`ed prefix so the adapter can never reach the gated corpus, even by bug. We
+  never circumvent the read-gate. Content signals honored (`ai-train=no` — we don't train). Theses are
+  paraphrased short downstream (copyright). If the index/surface changes, the adapter falls back to the two
+  seed shows (or `[]`) and the funnel keeps running on CMC + seed.
 - **Seed (`scripts/sources/seed.py` + `fixtures/calls_seed.json`)** — curated, paraphrased, real-shaped
   calls: one organic cluster (CAKE) + one coordinated cluster ($MOON) so the wedge is demonstrable and
   deterministic offline.

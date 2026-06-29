@@ -22,7 +22,8 @@ Other traders are calling tokens all day across social. **Public Alpha follows t
 turns the noise into a signal you can act on:
 
 1. **Discover** — sweep the specific token *calls* traders are making across social (paste.trade
-   KOL shows on Twitch/X/YouTube + CMC community posts + CMC news) and rank what's heating up.
+   KOL shows — every podcast / newsletter / X feed on its public surface — + CMC community posts + CMC news)
+   and rank what's heating up.
 2. **Filter the noise** — tell a call growing **organically** apart from a **coordinated pump**
    (the classifier below) so you follow conviction, not copypasta.
 3. **Cross-reference the crowd** — check the calls against **CMC's own crowd** (most-visited,
@@ -124,11 +125,13 @@ the 5-mode social feed, and a Trade Ideas panel.
 
 Four more views deepen each asset/thesis:
 
-- **Streams** (`/streams` · `/stream?id=` · `/speaker?handle=`) — a paste.trade-style browser of the source
-  shows: an episode index (filter by show/speaker), a **stream page** (embedded Twitch/YouTube player +
-  the calls at their in-stream timestamps + "trades explained" cards) and **speaker profiles** (their calls
-  + L/S + verified). Each call links to its CMC `/asset` thesis. The same data is on the CLI via
-  `paste_browse.py` (`--shows`/`--list`/`--stream`/`--speaker`). Content is paste.trade's, shown with credit.
+- **Streams** (`/streams` · `/stream?id=` · `/speaker?handle=`) — a paste.trade-style browser across **all
+  ~36 shows**: an episode index (filter by show — grouped by medium: podcasts / newsletters — and by
+  speaker/ticker), a separate **Tweets** tab for the flat X/tweet call feed, a **stream page** (embedded
+  Twitch/YouTube player + the calls at their in-stream timestamps + "trades explained" cards) and
+  **speaker/trader profiles** (their calls across every show they appear on + L/S + verified + win-rate /
+  total-PnL record). Each call links to its CMC `/asset` thesis. The same data is on the CLI via
+  `paste_browse.py` (`--shows`/`--list`/`--tweets`/`--stream`/`--speaker`). Content is paste.trade's, shown with credit.
 - **Setups** (`/setups`) — the *decide / predict a move* surface: **spot breakout candidates** (Donchian
   20-day-high + volume + **social confirmation**) and **perp breakout candidates** (funding / open interest
   on major venues + bias). Native re-implementations of the CMC Skill Hub skills
@@ -158,11 +161,15 @@ Four more views deepen each asset/thesis:
 ## Data sources & access (honest)
 
 - **CMC** — the spine. The widest set of families above.
-- **paste.trade** — real KOL calls, accessed via the operator's **explicitly public surface only**
-  (`/api/shows/{all-in,threadguy}`, allowed by their `robots.txt`; show trades are designated public).
-  We do **not** touch the gated bulk corpus API (`/api/trades`, `/api/feed`) or circumvent their
-  read-gate. Content signals respected (`ai-train=no` — we don't train). If the surface changes, the
-  adapter degrades gracefully.
+- **paste.trade** — real KOL calls, accessed via the operator's **robots-allowed public surface only**:
+  the `/api/shows` index and each show's trades/sources. We ingest **every show** that surface exposes
+  (~36 with calls — podcasts, newsletters, and an aggregate Tweets/X feed), and **cross-reference traders
+  across shows** (unified profile + L/S + record where a speaker appears on more than one). We do **not**
+  touch the gated bulk corpus API (`/api/trades`, `/api/feed`, `/api/sources`, `/api/leaderboard`,
+  `/api/users`, `/api/asset`, `/api/news`, …) — all `Disallow`ed in their `robots.txt`; the adapter
+  **hard-blocks** those paths (`_assert_allowed`) so it can never reach the gated corpus, even by bug.
+  Content signals respected (`ai-train=no` — we don't train). If the surface changes, the adapter
+  degrades gracefully (falls back to the two seed shows or skips).
 - **Seed set** — a small, curated, **paraphrased** set of real-shaped calls (one organic + one
   coordinated cluster) so the classifier is demonstrable and deterministic offline.
 - **Attribution.** In the funnel/dashboard, social evidence is kept to short (≤15-word) paraphrases. The

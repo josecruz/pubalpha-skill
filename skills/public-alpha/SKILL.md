@@ -75,7 +75,7 @@ Then read `skills/public-alpha/results/strategy_card.md` and narrate, stage by s
 | # | Stage | What it uses | What to say to the user |
 |---|-------|--------------|-------------------------|
 | 1 | **Narrative heating** | CMC categories + community trending | "Which sectors are heating, and why I'm hunting calls there." |
-| 2 | **Call extraction** | paste.trade allowed surface + CMC content + seed | "How many calls on the token, from which sources/authors." |
+| 2 | **Call extraction** | paste.trade allowed surface (all shows) + CMC content + seed | "How many calls on the token, from which sources/authors." |
 | 3 | **Organic vs coordinated** ★ | `classifier.py` | **The money shot.** State the verdict AND the deciding `reasons` (clustered timing? copypasta? low-credibility authors? pure urgency?). **Announce what you FILTER and why.** |
 | 4 | **Confirmation** (asset-aware) | CMC DEX pools (crypto) → DEX volume → market volume (any asset) | "Is money actually moving? On-chain liquidity/flow for crypto, market volume for other assets — confirmed or not." |
 | 5 | **Regime gate** | CMC Fear & Greed + global metrics | "Is the macro backdrop risk-on? Size accordingly." |
@@ -150,24 +150,29 @@ JSON-encoded string; e.g. `{universe:["BTC","ETH"], venue:"Binance", timeframe:"
 is missing, **ask — do not fabricate**; on failure, give the reason + 1–2 alternative skills, **don't
 silently retry**. The Skill Hub is **not required** — the native `decide.py` skills run regardless.
 
-## paste.trade browser (streams · streamers · calls)
+## paste.trade browser (shows · traders · calls)
 The calls come from paste.trade shows; you can browse the source the same way the web does.
-`scripts/paste_browse.py` builds `results/paste.json` (the operator's allowed public surface — the
-`threadguy`/`all-in` shows — with a CMC-derived, collision-guarded since-call % where the ticker resolves)
-and exposes a CLI so **you have the same streamer/stream/call info as the web**:
+`scripts/paste_browse.py` builds `results/paste.json` from the operator's **robots-allowed surface** — the
+`/api/shows` index and each show's trades (**every show with calls** — podcasts, newsletters, and an
+aggregate Tweets/X feed), with a CMC-derived, collision-guarded since-call % where the ticker resolves.
+Traders are **cross-referenced across shows** (one unified profile, with their per-show record), and it
+exposes a CLI so **you have the same show/trader/call info as the web**:
 
 ```bash
-python3 skills/public-alpha/scripts/paste_browse.py            # (re)build results/paste.json
-python3 skills/public-alpha/scripts/paste_browse.py --shows    # threadguy (twitch) · all-in (youtube)
-python3 skills/public-alpha/scripts/paste_browse.py --list [--show threadguy]   # episodes
+python3 skills/public-alpha/scripts/paste_browse.py            # (re)build results/paste.json (all shows)
+python3 skills/public-alpha/scripts/paste_browse.py --shows    # every show: medium · host · eps · calls
+python3 skills/public-alpha/scripts/paste_browse.py --list [--show <slug>]   # episodes
+python3 skills/public-alpha/scripts/paste_browse.py --tweets   # the flat tweet/X call feed
 python3 skills/public-alpha/scripts/paste_browse.py --stream <id>   # an episode's calls (ts · ticker · dir · entry · since%)
-python3 skills/public-alpha/scripts/paste_browse.py --speakers      # top speakers (calls · L/S · verified)
-python3 skills/public-alpha/scripts/paste_browse.py --speaker <handle>   # one speaker's calls
+python3 skills/public-alpha/scripts/paste_browse.py --speakers      # top traders (calls · L/S · verified)
+python3 skills/public-alpha/scripts/paste_browse.py --speaker <handle>   # one trader's calls across all shows
 ```
 
-Use it to answer "what did ThreadGuy call on the latest stream", "show chamath's calls", or to trace a
-feed mention back to its stream. The web mirrors this at `/streams`, `/stream?id=`, `/speaker?handle=`.
-Content is paste.trade's and **always shown with attribution + a link back to the show + source video**.
+Use it to answer "what did ThreadGuy call on the latest stream", "show chamath's calls across shows", "who
+traded NVDA on the podcasts", or to trace a feed mention back to its stream. The web mirrors this at
+`/streams` (Shows + Tweets tabs), `/stream?id=`, `/speaker?handle=`. Only the robots-allowed `/api/shows`
+surface is read — the gated bulk corpus API is never touched. Content is paste.trade's and **always shown
+with attribution + a link back to the show + source video**.
 
 ## Output contract
 The three artifacts follow `docs/PRDs/01/output-contract.md`. The optional dashboard and any reuse

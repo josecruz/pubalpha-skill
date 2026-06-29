@@ -18,7 +18,7 @@ recording + clicking submit. (Judging is async/after-lock — the **repo + video
 
 **The beats (let the agent narrate from SKILL.md):**
 1. **Heating** (~10s) — "CMC categories/community say <sector> is heating."
-2. **Calls** (~15s) — "N calls on CAKE from paste.trade (All-In/ThreadGuy) + CMC content + seed."
+2. **Calls** (~15s) — "N calls on CAKE from paste.trade (all ~36 shows — podcasts, newsletters, X feed) + CMC content + seed."
 3. **Organic vs coordinated** (~25s) ★ **the money shot** — show a coordinated cluster getting
    **FILTERED** (e.g. $MOON: 6 calls in 38 min, copypasta Jaccard 1.0, low-follower accounts, pure
    urgency) next to CAKE surviving as **organic** (spread over days, distinct authors, real theses).
