@@ -36,7 +36,7 @@ def gather_calls(cfg, sources, since, symbol):
         try:
             n0 = len(cands)
             cands += PasteTradeSource().fetch(since)
-            print(f"  [paste_trade] +{len(cands) - n0} calls from allowed shows (all-in, threadguy)")
+            print(f"  [paste_trade] +{len(cands) - n0} calls from paste.trade shows (robots-allowed /api/shows surface)")
         except Exception as e:
             print(f"  [paste_trade] unavailable: {type(e).__name__}: {e}")
     if "cmc" in sources:
