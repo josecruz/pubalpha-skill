@@ -248,7 +248,10 @@ def scan(cfg, args) -> dict:
     ideas = []
     regime_ok = regime is not None and regime.state in ("risk_on", "neutral")
     heating = bool(narrative.get("heating"))
-    organic = [s for s in signals if s["classification"] == "organic"]
+    # a trade idea needs a tradeable asset: when market data is on, require a resolved market
+    # (drops macro/real-world tickers like GOLD/WTI/SP500 that have no tradeable crypto/tokenized asset)
+    organic = [s for s in signals if s["classification"] == "organic"
+               and (market is None or (s.get("market") or {}).get("id"))]
     for s in organic[:args.confirm_top]:
         conf = None
         if market is not None:
@@ -287,8 +290,12 @@ def scan(cfg, args) -> dict:
         for s in signals:
             if s["symbol"] not in want_series:
                 continue
+            mkt = s.get("market") or {}
+            if not mkt.get("id"):   # unresolved real-world ticker (e.g. GOLD/WTI/SP500) — no tradeable series
+                continue
             try:
-                candles = market.ohlcv(s["symbol"], "daily", start, end)
+                # fetch the series for the SAME asset market_block priced (avoid ticker-collision tokens)
+                candles = market.ohlcv(s["symbol"], "daily", start, end, id=mkt.get("id"))
                 ser = sorted(({"ts": c["ts"], "close": c["close"]}
                               for c in candles if c.get("close") is not None), key=lambda x: x["ts"])
             except Exception as e:

@@ -188,15 +188,20 @@ class CMCSource:
         return {k: {"price": v["price"], "percent_change_24h": v["percent_change_24h"]}
                 for k, v in self._resolve(symbols).items()}
 
-    def ohlcv(self, symbol: str, interval: str, start: datetime, end: datetime) -> List[dict]:
+    def ohlcv(self, symbol: str, interval: str, start: datetime, end: datetime, id=None) -> List[dict]:
         params = {
             "convert": "USD", "interval": interval,
             "time_start": start.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "time_end": end.strftime("%Y-%m-%dT%H:%M:%SZ"), "count": 10000,
         }
-        info = self._resolve([symbol]).get(symbol.upper())   # use canonical id (avoid symbol-collision tokens)
-        if info and info.get("id"):
-            params["id"] = info["id"]
+        # Prefer a caller-supplied id (the one market_block already resolved) so the price series
+        # matches the price/quote for the SAME asset — otherwise a same-ticker collision token can
+        # give a series for a different asset than the quote (e.g. META stock price vs MetaDAO series).
+        if id is None:
+            info = self._resolve([symbol]).get(symbol.upper())   # canonical id (avoid symbol-collision tokens)
+            id = info.get("id") if info else None
+        if id:
+            params["id"] = id
         else:
             params["symbol"] = symbol.upper()
         data = self._get("/v2/cryptocurrency/ohlcv/historical", params)
@@ -311,7 +316,15 @@ class CMCSource:
         tok = {}
         for sym in syms:
             m = out.get(sym)
-            if (not m or not _num(m.get("volume_24h"))) and sym in idx:
+            if sym not in idx:
+                continue
+            # A ticker that IS a tokenized stock: for KOL finance calls the equity is the intended
+            # asset. Prefer it unless the crypto match is itself a solid top-1000 listing — so a
+            # low-rank / zero-mcap same-ticker memecoin (e.g. META->MetaDAO, GOOGL->junk) can't shadow it.
+            crypto_solid = bool(m and _num(m.get("volume_24h"))
+                                and (m.get("cmc_rank") or 10 ** 9) <= 1000
+                                and _num(m.get("market_cap")) > 0)
+            if not crypto_solid:
                 tok[sym] = max(idx[sym], key=lambda l: l.get("volume_24h") or 0)
         if tok:                                             # fetch the FULL quote by id (7d, mcap, cex/dex)
             full = {}
@@ -334,6 +347,16 @@ class CMCSource:
                     "cex_volume_24h": u.get("cex_volume_24h") or 0, "dex_volume_24h": u.get("dex_volume_24h") or 0,
                     "market_cap": u.get("market_cap"), "kind": "tokenized_stock", "chain": b.get("chain"),
                 }
+        # Drop dead/scam same-ticker duplicates of real-world tickers (e.g. GOLD->a $40k-mcap
+        # memecoin) that have no tokenized listing to fall back to. A beyond-rank-3000, sub-$1M-mcap
+        # match is noise, and resolving to it yields garbage prices / since-call % downstream — better
+        # to leave the symbol unresolved than to surface a wrong asset.
+        for sym in list(out.keys()):
+            m = out[sym]
+            if m.get("kind") == "crypto":
+                rank, mcap = m.get("cmc_rank"), _num(m.get("market_cap"))
+                if (rank is None or rank > 3000) and mcap < 1_000_000:
+                    del out[sym]
         return out
 
     def global_insights(self) -> dict:
